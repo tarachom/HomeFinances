@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Name>Нова конфігурація</Name>
+  <NameSpace>НоваКонфігурація_1_0</NameSpace>
+  <Author>
+  </Author>
+  <DateTimeSave>05.03.2021 14:07:21</DateTimeSave>
+  <ConstantsBlocks />
+  <Directories>
+    <Directory>
+      <Name>Записи</Name>
+      <Table>tab_a02</Table>
+      <Desc>Записи про витрати і надходження фінансів
+</Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a7</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>ДатаЗапису</Name>
+          <NameInTable>col_a6</NameInTable>
+          <Type>datetime</Type>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Опис</Name>
+          <NameInTable>col_a8</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>ТипЗапису</Name>
+          <NameInTable>col_a9</NameInTable>
+          <Type>enum</Type>
+          <Pointer>Перелічення.ТипЗапису</Pointer>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Сума</Name>
+          <NameInTable>col_b1</NameInTable>
+          <Type>integer</Type>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a02</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a4</NameInTable>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a5</NameInTable>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+  </Directories>
+  <Enums>
+    <Enum>
+      <Name>ТипЗапису</Name>
+      <Desc>Тип запису  - це поступлення фінансів або витрати фінансів</Desc>
+      <SerialNumber>3</SerialNumber>
+      <Fields>
+        <Field>
+          <Name>Витрати</Name>
+          <Value>2</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Поступлення</Name>
+          <Value>3</Value>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+    </Enum>
+  </Enums>
+  <Documents />
+  <RegistersInformation />
+  <RegistersAccumulation />
+</Configuration>

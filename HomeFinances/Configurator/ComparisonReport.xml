@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Control_Table>
+    <Type>Constants</Type>
+    <Name>Константи</Name>
+    <Table>tab_constants</Table>
+    <IsExist>yes</IsExist>
+  </Control_Table>
+  <Control_Table>
+    <Type>Directory</Type>
+    <Name>Записи</Name>
+    <Table>tab_a02</Table>
+    <IsExist>no</IsExist>
+    <TableCreate>
+      <FieldCreate>
+        <Name>Назва</Name>
+        <NameInTable>col_a7</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+      </FieldCreate>
+      <FieldCreate>
+        <Name>ДатаЗапису</Name>
+        <NameInTable>col_a6</NameInTable>
+        <ConfType>datetime</ConfType>
+        <DataType>timestamp without time zone</DataType>
+      </FieldCreate>
+      <FieldCreate>
+        <Name>Опис</Name>
+        <NameInTable>col_a8</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+      </FieldCreate>
+      <FieldCreate>
+        <Name>ТипЗапису</Name>
+        <NameInTable>col_a9</NameInTable>
+        <ConfType>enum</ConfType>
+        <DataType>integer</DataType>
+      </FieldCreate>
+      <FieldCreate>
+        <Name>Сума</Name>
+        <NameInTable>col_b1</NameInTable>
+        <ConfType>integer</ConfType>
+        <DataType>integer</DataType>
+      </FieldCreate>
+    </TableCreate>
+  </Control_Table>
+</root>
