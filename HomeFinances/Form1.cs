@@ -53,7 +53,9 @@ namespace HomeFinances
 			dataGridViewRecords.Columns[0].Visible = false;
 			dataGridViewRecords.Columns[1].Width = 300;
 			dataGridViewRecords.Columns[2].Width = 130;
+			dataGridViewRecords.Columns[3].Width = 80;
 			dataGridViewRecords.Columns[4].HeaderText = "Н.Сума";
+			dataGridViewRecords.Columns[4].Width = 80;
 
 			LoadRecords();		
 		}

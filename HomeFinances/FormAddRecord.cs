@@ -40,6 +40,7 @@ namespace HomeFinances
 		{
 			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Витрати);
 			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Поступлення);
+			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Благодійність);
 
 			if (IsNew.HasValue)
 				if (IsNew.Value)

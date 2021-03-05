@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>05.03.2021 14:07:21</DateTimeSave>
+  <DateTimeSave>05.03.2021 17:20:09</DateTimeSave>
   <ConstantsBlocks />
   <Directories>
     <Directory>
@@ -74,7 +74,7 @@
     <Enum>
       <Name>ТипЗапису</Name>
       <Desc>Тип запису  - це поступлення фінансів або витрати фінансів</Desc>
-      <SerialNumber>3</SerialNumber>
+      <SerialNumber>4</SerialNumber>
       <Fields>
         <Field>
           <Name>Витрати</Name>
@@ -85,6 +85,12 @@
         <Field>
           <Name>Поступлення</Name>
           <Value>3</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Благодійність</Name>
+          <Value>4</Value>
           <Desc>
           </Desc>
         </Field>

@@ -1,5 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <info>Створити таблицю Записи (tab_a02)</info>
-  <sql>CREATE TABLE tab_a02 (uid uuid NOT NULL,  "col_a7" text,  "col_a6" timestamp without time zone,  "col_a8" text,  "col_a9" integer,  "col_b1" integer, PRIMARY KEY(uid));</sql>
-</root>
+<root />
