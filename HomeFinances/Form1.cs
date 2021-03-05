@@ -68,6 +68,8 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Назва);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
 
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
+
 			записи_Select.Select();
 
 			while (записи_Select.MoveNext())
@@ -86,8 +88,21 @@ namespace HomeFinances
 		private void menuAddRecordToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			FormAddRecord formAddRecord = new FormAddRecord();
+			formAddRecord.IsNew = true;
 			formAddRecord.OwnerForm = this;
 			formAddRecord.Show();
+		}
+
+		private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex >= 0 && e.RowIndex < dataGridViewRecords.RowCount)
+			{
+				FormAddRecord formAddRecord = new FormAddRecord();
+				formAddRecord.OwnerForm = this;
+				formAddRecord.IsNew = false;
+				formAddRecord.Uid = dataGridViewRecords.Rows[e.RowIndex].Cells[0].Value.ToString();
+				formAddRecord.Show();
+			}
 		}
 
 		private void toolStripButtonRefresh_Click(object sender, EventArgs e)
@@ -125,6 +140,8 @@ namespace HomeFinances
 				LoadRecords();
 			}
 		}
+
+		
 	}
 
 	public class Записи

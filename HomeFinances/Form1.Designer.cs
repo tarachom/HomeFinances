@@ -76,6 +76,7 @@ namespace HomeFinances
 			this.dataGridViewRecords.ReadOnly = true;
 			this.dataGridViewRecords.Size = new System.Drawing.Size(618, 475);
 			this.dataGridViewRecords.TabIndex = 0;
+			this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
 			// 
 			// menuStripTop
 			// 

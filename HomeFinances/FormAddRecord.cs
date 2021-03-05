@@ -30,40 +30,84 @@ namespace HomeFinances
 
 		public Form1 OwnerForm { get; set; }
 
+		public Nullable<bool> IsNew { get; set; }
+
+		public string Uid { get; set; }
+
+		private Довідники.Записи_Objest записи_Objest { get; set; }
+
 		private void FormAddRecord_Load(object sender, EventArgs e)
 		{
-			dateTimePickerRecord.Value = DateTime.Now;
-
 			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Витрати);
 			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Поступлення);
 
-			comboBoxTypeRecord.SelectedIndex = 0;
+			if (IsNew.HasValue)
+				if (IsNew.Value)
+				{
+					dateTimePickerRecord.Value = DateTime.Now;
+					comboBoxTypeRecord.SelectedIndex = 0;
+					maskedTextBoxSuma.Text = "0";
 
-			maskedTextBoxSuma.Text = "0";
+					this.Text = "Новий запис";
+				}
+				else
+				{
+					записи_Objest = new Довідники.Записи_Objest();
+					if (записи_Objest.Read(new UnigueID(Uid)))
+					{
+						dateTimePickerRecord.Value = записи_Objest.ДатаЗапису;
+						textBoxName.Text = записи_Objest.Назва;
+						textBoxOpys.Text = записи_Objest.Опис;
+						comboBoxTypeRecord.SelectedItem = записи_Objest.ТипЗапису;
+						maskedTextBoxSuma.Text = записи_Objest.Сума.ToString();
+
+						this.Text = "Редагування запису - " + записи_Objest.Назва;
+					}
+					else
+						MessageBox.Show("Error read");
+				}
 		}
 
 		private void buttonSave_Click(object sender, EventArgs e)
 		{
-			try
-			{
-				Довідники.Записи_Objest записи_Objest = new Довідники.Записи_Objest();
-				записи_Objest.New();
-				записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
-				записи_Objest.Назва = textBoxName.Text;
-				записи_Objest.Опис = textBoxOpys.Text;
-				записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
-				записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
-				записи_Objest.Save();
+			if (IsNew.HasValue)
+				if (IsNew.Value)
+				{
+					try
+					{
+						записи_Objest = new Довідники.Записи_Objest();
+						записи_Objest.New();
+						записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
+						записи_Objest.Назва = textBoxName.Text;
+						записи_Objest.Опис = textBoxOpys.Text;
+						записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
+						записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
+						записи_Objest.Save();
 
-				if (OwnerForm != null)
-					OwnerForm.LoadRecords();
+						if (OwnerForm != null)
+							OwnerForm.LoadRecords();
 
-				this.Close();
-			}
-			catch (Exception exp)
-			{
-				MessageBox.Show(exp.Message);
-			}
+						this.Close();
+					}
+					catch (Exception exp)
+					{
+						MessageBox.Show(exp.Message);
+					}
+				}
+				else
+				{
+					записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
+					записи_Objest.Назва = textBoxName.Text;
+					записи_Objest.Опис = textBoxOpys.Text;
+					записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
+					записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
+					записи_Objest.Save();
+
+					if (OwnerForm != null)
+						OwnerForm.LoadRecords();
+
+					this.Close();
+				}
 		}
 	}
 }
