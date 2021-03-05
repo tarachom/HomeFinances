@@ -41,6 +41,7 @@ namespace HomeFinances
 			this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
@@ -126,7 +127,8 @@ namespace HomeFinances
 			this.toolStripRecords.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonAdd,
             this.toolStripButtonRefresh,
-            this.toolStripButtonDelete});
+            this.toolStripButtonDelete,
+            this.toolStripButtonCopy});
 			this.toolStripRecords.Location = new System.Drawing.Point(0, 0);
 			this.toolStripRecords.Name = "toolStripRecords";
 			this.toolStripRecords.Size = new System.Drawing.Size(618, 25);
@@ -163,6 +165,16 @@ namespace HomeFinances
 			this.toolStripButtonAdd.Text = "Додати";
 			this.toolStripButtonAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
 			// 
+			// toolStripButtonCopy
+			// 
+			this.toolStripButtonCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButtonCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCopy.Image")));
+			this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonCopy.Name = "toolStripButtonCopy";
+			this.toolStripButtonCopy.Size = new System.Drawing.Size(69, 22);
+			this.toolStripButtonCopy.Text = "Копіювати";
+			this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,7 +185,9 @@ namespace HomeFinances
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStripTop;
 			this.Name = "Form1";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Домашні фінанси";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -204,6 +218,7 @@ namespace HomeFinances
 		private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
 		private System.Windows.Forms.ToolStripButton toolStripButtonDelete;
 		private System.Windows.Forms.ToolStripButton toolStripButtonAdd;
+		private System.Windows.Forms.ToolStripButton toolStripButtonCopy;
 	}
 }
 
