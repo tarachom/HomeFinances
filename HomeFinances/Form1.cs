@@ -50,12 +50,17 @@ namespace HomeFinances
 			RecordsBindingList = new BindingList<Записи>();
 			dataGridViewRecords.DataSource = RecordsBindingList;
 
-			dataGridViewRecords.Columns[0].Visible = false;
-			dataGridViewRecords.Columns[1].Width = 300;
-			dataGridViewRecords.Columns[2].Width = 130;
-			dataGridViewRecords.Columns[3].Width = 80;
-			dataGridViewRecords.Columns[4].HeaderText = "Н.Сума";
-			dataGridViewRecords.Columns[4].Width = 80;
+			dataGridViewRecords.Columns["ID"].Visible = false;
+			dataGridViewRecords.Columns["Назва"].Width = 300;
+			dataGridViewRecords.Columns["ДатаЗапису"].Width = 130;
+			dataGridViewRecords.Columns["Сума"].Width = 80;
+
+			dataGridViewRecords.Columns["НаростаючаСума"].HeaderText = "Н.Сума";
+			dataGridViewRecords.Columns["НаростаючаСума"].Width = 80;
+
+			dataGridViewRecords.Columns["ТипЗапису"].HeaderText = "Тип";
+			dataGridViewRecords.Columns["ТипЗапису"].Width = 30;
+			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
 
 			LoadRecords();		
 		}
@@ -88,7 +93,9 @@ namespace HomeFinances
 
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
 
-				if (типЗапису == Перелічення.ТипЗапису.Витрати)
+				string типЗаписуПредставлення = (типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" : "-");
+
+				if (типЗапису == Перелічення.ТипЗапису.Витрати || типЗапису == Перелічення.ТипЗапису.Благодійність)
 					allSuma = allSuma - int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
 				else
 					allSuma = allSuma + int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
@@ -98,7 +105,8 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
-					allSuma.ToString()
+					allSuma.ToString(),
+					типЗаписуПредставлення
 					));
 			}
 
@@ -201,13 +209,14 @@ namespace HomeFinances
 
 	public class Записи
 	{
-		public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _НаростаючаСума)
+		public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _НаростаючаСума, string _ТипЗапису)
 		{
 			ID = _id;
 			Назва = _Назва;
 			ДатаЗапису = _ДатаЗапису;
 			Сума = _Сума;
 			НаростаючаСума = _НаростаючаСума;
+			ТипЗапису = _ТипЗапису;
 		}
 
 		public string ID { get; set; }
@@ -215,5 +224,6 @@ namespace HomeFinances
 		public string ДатаЗапису { get; set; }
 		public string Сума { get; set; }
 		public string НаростаючаСума { get; set; }
+		public string ТипЗапису { get; set; }
 	}
 }
