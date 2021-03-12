@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>11.03.2021 22:20:07</DateTimeSave>
+  <DateTimeSave>06.03.2021 11:34:17</DateTimeSave>
   <ConstantsBlocks />
   <Directories>
     <Directory>
@@ -17,38 +17,35 @@
           <Name>Назва</Name>
           <NameInTable>col_a7</NameInTable>
           <Type>string</Type>
-          <Desc>Назва операції</Desc>
+          <Desc>
+          </Desc>
         </Field>
         <Field>
           <Name>ДатаЗапису</Name>
           <NameInTable>col_a6</NameInTable>
           <Type>datetime</Type>
-          <Desc>Дата запису</Desc>
+          <Desc>
+          </Desc>
         </Field>
         <Field>
           <Name>Опис</Name>
           <NameInTable>col_a8</NameInTable>
           <Type>string</Type>
-          <Desc>Опис операції</Desc>
+          <Desc>
+          </Desc>
         </Field>
         <Field>
           <Name>ТипЗапису</Name>
           <NameInTable>col_a9</NameInTable>
           <Type>enum</Type>
           <Pointer>Перелічення.ТипЗапису</Pointer>
-          <Desc>Тип операції</Desc>
+          <Desc>
+          </Desc>
         </Field>
         <Field>
           <Name>Сума</Name>
           <NameInTable>col_b1</NameInTable>
           <Type>integer</Type>
-          <Desc>Сума операції</Desc>
-        </Field>
-        <Field>
-          <Name>Витрата</Name>
-          <NameInTable>col_a1</NameInTable>
-          <Type>pointer</Type>
-          <Pointer>Довідники.КласифікаторВитрат</Pointer>
           <Desc>
           </Desc>
         </Field>
@@ -67,46 +64,6 @@
             <Field>
               <Name>Код</Name>
               <NameInTable>col_a5</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
-    </Directory>
-    <Directory>
-      <Name>КласифікаторВитрат</Name>
-      <Table>tab_a01</Table>
-      <Desc>
-      </Desc>
-      <Fields>
-        <Field>
-          <Name>Назва</Name>
-          <NameInTable>col_a1</NameInTable>
-          <Type>string</Type>
-          <Desc>Назва</Desc>
-        </Field>
-        <Field>
-          <Name>Код</Name>
-          <NameInTable>col_a2</NameInTable>
-          <Type>string</Type>
-          <Desc>Код</Desc>
-        </Field>
-      </Fields>
-      <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a01</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
             </Field>
           </Fields>
         </View>

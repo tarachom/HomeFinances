@@ -18,11 +18,6 @@
       <UdtName>timestamp</UdtName>
     </Column>
     <Column>
-      <Name>col_a1</Name>
-      <DataType>uuid</DataType>
-      <UdtName>uuid</UdtName>
-    </Column>
-    <Column>
       <Name>col_b1</Name>
       <DataType>integer</DataType>
       <UdtName>int4</UdtName>
@@ -36,24 +31,6 @@
       <Name>col_a7</Name>
       <DataType>text</DataType>
       <UdtName>text</UdtName>
-    </Column>
-  </Table>
-  <Table>
-    <Name>tab_a01</Name>
-    <Column>
-      <Name>col_a1</Name>
-      <DataType>text</DataType>
-      <UdtName>text</UdtName>
-    </Column>
-    <Column>
-      <Name>col_a2</Name>
-      <DataType>text</DataType>
-      <UdtName>text</UdtName>
-    </Column>
-    <Column>
-      <Name>uid</Name>
-      <DataType>uuid</DataType>
-      <UdtName>uuid</UdtName>
     </Column>
   </Table>
   <Table>

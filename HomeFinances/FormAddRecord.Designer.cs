@@ -41,7 +41,6 @@ namespace HomeFinances
 			this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
-			this.directoryControl1 = new HomeFinances.DirectoryControl();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -132,7 +131,7 @@ namespace HomeFinances
 			// 
 			// buttonSave
 			// 
-			this.buttonSave.Location = new System.Drawing.Point(60, 236);
+			this.buttonSave.Location = new System.Drawing.Point(60, 183);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(164, 23);
 			this.buttonSave.TabIndex = 13;
@@ -142,7 +141,7 @@ namespace HomeFinances
 			// 
 			// buttonClose
 			// 
-			this.buttonClose.Location = new System.Drawing.Point(389, 236);
+			this.buttonClose.Location = new System.Drawing.Point(389, 183);
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.Size = new System.Drawing.Size(164, 23);
 			this.buttonClose.TabIndex = 14;
@@ -150,20 +149,11 @@ namespace HomeFinances
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
 			// 
-			// directoryControl1
-			// 
-			this.directoryControl1.DP = null;
-			this.directoryControl1.Location = new System.Drawing.Point(60, 173);
-			this.directoryControl1.Name = "directoryControl1";
-			this.directoryControl1.Size = new System.Drawing.Size(382, 27);
-			this.directoryControl1.TabIndex = 15;
-			// 
 			// FormAddRecord
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(565, 272);
-			this.Controls.Add(this.directoryControl1);
+			this.ClientSize = new System.Drawing.Size(565, 226);
 			this.Controls.Add(this.buttonClose);
 			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.comboBoxTypeRecord);
@@ -200,6 +190,5 @@ namespace HomeFinances
 		private System.Windows.Forms.ComboBox comboBoxTypeRecord;
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button buttonClose;
-		private DirectoryControl directoryControl1;
 	}
 }
