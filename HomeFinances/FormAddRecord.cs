@@ -21,6 +21,8 @@ namespace HomeFinances
 		public FormAddRecord()
 		{
 			InitializeComponent();
+
+			
 		}
 
 		private void buttonClose_Click(object sender, EventArgs e)
@@ -50,6 +52,8 @@ namespace HomeFinances
 					maskedTextBoxSuma.Text = "0";
 
 					this.Text = "Новий запис";
+
+					directoryControl1.DP = new Довідники.КласифікаторВитрат_Pointer();
 				}
 				else
 				{
@@ -63,6 +67,8 @@ namespace HomeFinances
 						maskedTextBoxSuma.Text = записи_Objest.Сума.ToString();
 
 						this.Text = "Редагування запису - " + записи_Objest.Назва;
+
+						directoryControl1.DP = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
 					}
 					else
 						MessageBox.Show("Error read");
