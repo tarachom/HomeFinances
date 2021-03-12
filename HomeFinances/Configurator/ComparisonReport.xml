@@ -66,5 +66,44 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_Field>
+      <Name>Витрата</Name>
+      <NameInTable>col_a1</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>pointer</ConfType>
+        <DataType>uuid</DataType>
+        <UdtName>uuid</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+  </Control_Table>
+  <Control_Table>
+    <Type>Directory</Type>
+    <Name>КласифікаторВитрат</Name>
+    <Table>tab_a01</Table>
+    <IsExist>yes</IsExist>
+    <Control_Field>
+      <Name>Назва</Name>
+      <NameInTable>col_a1</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>Код</Name>
+      <NameInTable>col_a2</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
   </Control_Table>
 </root>
