@@ -37,10 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AccountingSoftware">
-      <HintPath>..\..\..\..\VS\Project\AccountingSoftware\bin\Debug\AccountingSoftware.dll</HintPath>
-    </Reference>
-    <Reference Include="HomeFinances">
-      <HintPath>obj\Debug\HomeFinances.exe</HintPath>
+      <HintPath>..\..\AccountingSoftware_29_05_21\bin\Debug\AccountingSoftware.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

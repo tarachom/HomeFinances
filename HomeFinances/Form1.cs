@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Xml;
+
 using AccountingSoftware;
 using Конфа = НоваКонфігурація_1_0;
 using Константи = НоваКонфігурація_1_0.Константи;
@@ -25,7 +27,7 @@ namespace HomeFinances
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			string pathToConfa = @"D:\AS_Config\HomeFinances\HomeFinances\HomeFinances\Configurator\Confa.xml";
+			string pathToConfa = @"E:\Project\HomeFinaces\HomeFinances\Configurator\Confa.xml";
 
 			Exception exception = null;
 
@@ -35,8 +37,8 @@ namespace HomeFinances
 			bool flag = Конфа.Config.Kernel.Open2(pathToConfa,
 					"localhost",
 					"postgres",
-					"525491",
-					5432,
+					"1",
+					5433,
 					"home_finances", out exception);
 
 			if (exception != null)
@@ -205,9 +207,81 @@ namespace HomeFinances
 				LoadRecords();
 			}
 		}
-	}
 
-	public class Записи
+        private void toolStripMenuItemExport_Click(object sender, EventArgs e)
+        {
+			XmlDocument xmlConfDocument = new XmlDocument();
+			xmlConfDocument.AppendChild(xmlConfDocument.CreateXmlDeclaration("1.0", "utf-8", ""));
+
+			XmlElement rootNode = xmlConfDocument.CreateElement("Exchange");
+			xmlConfDocument.AppendChild(rootNode);
+
+			XmlElement nodeDateTime = xmlConfDocument.CreateElement("DateTime");
+			nodeDateTime.InnerText = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+			rootNode.AppendChild(nodeDateTime);
+
+			XmlElement nodeRecords = xmlConfDocument.CreateElement("Records");
+			rootNode.AppendChild(nodeRecords);
+
+			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
+
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Назва);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ДатаЗапису);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Опис);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
+
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
+
+			записи_Select.Select();
+
+			while (записи_Select.MoveNext())
+			{
+				Довідники.Записи_Pointer cur = записи_Select.Current;
+
+				XmlElement nodeRecord = xmlConfDocument.CreateElement("Record");
+				nodeRecords.AppendChild(nodeRecord);
+
+				XmlElement nodeID = xmlConfDocument.CreateElement("ID");
+				nodeID.InnerText = cur.UnigueID.ToString();
+				nodeRecord.AppendChild(nodeID);
+
+				XmlElement nodeName = xmlConfDocument.CreateElement("Назва");
+				nodeName.InnerText = cur.Fields[Довідники.Записи_Select.Назва].ToString();
+				nodeRecord.AppendChild(nodeName);
+
+				XmlElement nodeDataSave = xmlConfDocument.CreateElement("ДатаЗапису");
+				nodeDataSave.InnerText = cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString();
+				nodeRecord.AppendChild(nodeDataSave);
+
+				XmlElement nodeDesc = xmlConfDocument.CreateElement("Опис");
+				nodeDesc.InnerText = cur.Fields[Довідники.Записи_Select.Опис].ToString();
+				nodeRecord.AppendChild(nodeDesc);
+
+				XmlElement nodeTypeRecord = xmlConfDocument.CreateElement("ТипЗапису");
+				nodeTypeRecord.InnerText = cur.Fields[Довідники.Записи_Select.ТипЗапису].ToString();
+				nodeRecord.AppendChild(nodeTypeRecord);
+
+				XmlElement nodeSumma = xmlConfDocument.CreateElement("Сума");
+				nodeSumma.InnerText = cur.Fields[Довідники.Записи_Select.Сума].ToString();
+				nodeRecord.AppendChild(nodeSumma);
+
+				XmlElement nodeStation = xmlConfDocument.CreateElement("Витрата");
+				nodeStation.InnerText = cur.Fields[Довідники.Записи_Select.Витрата].ToString();
+				nodeRecord.AppendChild(nodeStation);
+			}
+
+			xmlConfDocument.Save("E:\\export.xml");
+		}
+
+        private void toolStripMenuItemImport_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class Записи
 	{
 		public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _НаростаючаСума, string _ТипЗапису)
 		{
