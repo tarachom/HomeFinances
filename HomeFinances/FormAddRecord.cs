@@ -16,7 +16,7 @@ using Перелічення = НоваКонфігурація_1_0.Перелі
 
 namespace HomeFinances
 {
-	public partial class FormAddRecord : Form
+	public partial class FormAddRecord : System.Windows.Forms.Form
 	{
 		public FormAddRecord()
 		{
@@ -30,7 +30,7 @@ namespace HomeFinances
 			this.Close();
 		}
 
-		public Form1 OwnerForm { get; set; }
+		public FormRecordFinance OwnerForm { get; set; }
 
 		public Nullable<bool> IsNew { get; set; }
 
@@ -90,25 +90,34 @@ namespace HomeFinances
 						записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
 						записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
 						записи_Objest.Save();
-
-						if (OwnerForm != null)
-							OwnerForm.LoadRecords();
-
-						this.Close();
 					}
 					catch (Exception exp)
 					{
 						MessageBox.Show(exp.Message);
+						return;
 					}
+
+					if (OwnerForm != null)
+						OwnerForm.LoadRecords();
+
+					this.Close();
 				}
 				else
 				{
-					записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
-					записи_Objest.Назва = textBoxName.Text;
-					записи_Objest.Опис = textBoxOpys.Text;
-					записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
-					записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
-					записи_Objest.Save();
+					try
+					{
+						записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
+						записи_Objest.Назва = textBoxName.Text;
+						записи_Objest.Опис = textBoxOpys.Text;
+						записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
+						записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
+						записи_Objest.Save();
+					}
+					catch (Exception exp)
+					{
+						MessageBox.Show(exp.Message);
+						return;
+					}
 
 					if (OwnerForm != null)
 						OwnerForm.LoadRecords();

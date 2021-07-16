@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 29.05.2021 14:19:43
+ * Дата конфігурації: 16.07.2021 16:22:11
  *
  */
 
@@ -341,6 +341,152 @@ namespace НоваКонфігурація_1_0.Довідники
              new string[] { "Назва", "Код" },
              new string[] { "string", "string" },
              "Довідник_КласифікаторВитрат_Список")
+        {
+            
+        }
+        
+    }
+      
+    
+    #endregion
+    
+    #region DIRECTORY "Записник"
+    ///<summary>
+    ///Записник інформації.
+    ///</summary>
+    class Записник_Objest : DirectoryObject
+    {
+        public Записник_Objest() : base(Config.Kernel, "tab_a03",
+             new string[] { "col_a1", "col_a4", "col_a3" }) 
+        {
+            Назва = "";
+            Опис = "";
+            Дата = DateTime.MinValue;
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a1"].ToString();
+                Опис = base.FieldValue["col_a4"].ToString();
+                Дата = (base.FieldValue["col_a3"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a3"].ToString()) : DateTime.MinValue;
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a1"] = Назва;
+            base.FieldValue["col_a4"] = Опис;
+            base.FieldValue["col_a3"] = Дата;
+            
+            BaseSave();
+        }
+
+        public string Serialize()
+        {
+            return 
+            "<Записник>" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "<Дата>" + Дата.ToString() + "</Дата>"  +
+               "</Записник>";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Записник_Pointer GetDirectoryPointer()
+        {
+            Записник_Pointer directoryPointer = new Записник_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public string Опис { get; set; }
+        public DateTime Дата { get; set; }
+        
+    }
+    
+    ///<summary>
+    ///Записник інформації.
+    ///</summary>
+    class Записник_Pointer : DirectoryPointer
+    {
+        public Записник_Pointer(object uid = null) : base(Config.Kernel, "tab_a03")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Записник_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a03")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Записник_Objest GetDirectoryObject()
+        {
+            Записник_Objest ЗаписникObjestItem = new Записник_Objest();
+            return ЗаписникObjestItem.Read(base.UnigueID) ? ЗаписникObjestItem : null;
+        }
+    }
+    
+    ///<summary>
+    ///Записник інформації.
+    ///</summary>
+    class Записник_Select : DirectorySelect, IDisposable
+    {
+        public Записник_Select() : base(Config.Kernel, "tab_a03",
+            new string[] { "col_a1", "col_a4", "col_a3" },
+            new string[] { "Назва", "Опис", "Дата" }) { }
+        
+        public const string Назва = "col_a1";
+        public const string Опис = "col_a4";
+        public const string Дата = "col_a3";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Записник_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Записник_Pointer Current { get; private set; }
+        
+        public Записник_Pointer FindByField(string name, object value)
+        {
+            Записник_Pointer itemPointer = new Записник_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Записник_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Записник_Pointer> directoryPointerList = new List<Записник_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Записник_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      ///<summary>
+    ///Список.
+    ///</summary>
+    class Записник_Список_View : DirectoryView
+    {
+        public Записник_Список_View() : base(Config.Kernel, "tab_a03", 
+             new string[] { "col_a1", "col_a2" },
+             new string[] { "Назва", "Код" },
+             new string[] { "string", "" },
+             "Довідник_Записник_Список")
         {
             
         }

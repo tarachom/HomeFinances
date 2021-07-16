@@ -106,4 +106,30 @@
       </Type>
     </Control_Field>
   </Control_Table>
+  <Control_Table>
+    <Type>Directory</Type>
+    <Name>Записник</Name>
+    <Table>tab_a03</Table>
+    <IsExist>no</IsExist>
+    <TableCreate>
+      <FieldCreate>
+        <Name>Назва</Name>
+        <NameInTable>col_a1</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+      </FieldCreate>
+      <FieldCreate>
+        <Name>Опис</Name>
+        <NameInTable>col_a4</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+      </FieldCreate>
+      <FieldCreate>
+        <Name>Дата</Name>
+        <NameInTable>col_a3</NameInTable>
+        <ConfType>datetime</ConfType>
+        <DataType>timestamp without time zone</DataType>
+      </FieldCreate>
+    </TableCreate>
+  </Control_Table>
 </root>

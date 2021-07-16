@@ -1,2 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root />
+<root>
+  <info>Створити таблицю Записник (tab_a03)</info>
+  <sql>CREATE TABLE tab_a03 (uid uuid NOT NULL,  "col_a1" text,  "col_a4" text,  "col_a3" timestamp without time zone, PRIMARY KEY(uid));</sql>
+</root>

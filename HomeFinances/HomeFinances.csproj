@@ -59,11 +59,11 @@
     <Compile Include="DirectoryControl.Designer.cs">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormRecordFinance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormRecordFinance.Designer.cs">
+      <DependentUpon>FormRecordFinance.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAddRecord.cs">
       <SubType>Form</SubType>
@@ -76,8 +76,8 @@
     <EmbeddedResource Include="DirectoryControl.resx">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormRecordFinance.resx">
+      <DependentUpon>FormRecordFinance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddRecord.resx">
       <DependentUpon>FormAddRecord.cs</DependentUpon>

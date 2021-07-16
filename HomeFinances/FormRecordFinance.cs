@@ -18,9 +18,9 @@ using Перелічення = НоваКонфігурація_1_0.Перелі
 
 namespace HomeFinances
 {
-	public partial class Form1 : Form
+	public partial class FormRecordFinance : System.Windows.Forms.Form
 	{
-		public Form1()
+		public FormRecordFinance()
 		{
 			InitializeComponent();
 		}
@@ -54,15 +54,21 @@ namespace HomeFinances
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
 			dataGridViewRecords.Columns["Назва"].Width = 300;
-			dataGridViewRecords.Columns["ДатаЗапису"].Width = 130;
-			dataGridViewRecords.Columns["Сума"].Width = 80;
 
-			dataGridViewRecords.Columns["НаростаючаСума"].HeaderText = "Н.Сума";
-			dataGridViewRecords.Columns["НаростаючаСума"].Width = 80;
+			dataGridViewRecords.Columns["ДатаЗапису"].Width = 130;
+			dataGridViewRecords.Columns["ДатаЗапису"].DisplayIndex = 1;
+
+			dataGridViewRecords.Columns["Сума"].Width = 80;
+			dataGridViewRecords.Columns["Сума"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
+			//dataGridViewRecords.Columns["НаростаючаСума"].HeaderText = "Н.Сума";
+			//dataGridViewRecords.Columns["НаростаючаСума"].Width = 80;
 
 			dataGridViewRecords.Columns["ТипЗапису"].HeaderText = "Тип";
 			dataGridViewRecords.Columns["ТипЗапису"].Width = 30;
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
+			dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 			LoadRecords();		
 		}
@@ -83,11 +89,11 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
 
-			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
 
 			записи_Select.Select();
 
-			int allSuma = 0;
+			//int allSuma = 0;
 
 			while (записи_Select.MoveNext())
 			{
@@ -97,17 +103,17 @@ namespace HomeFinances
 
 				string типЗаписуПредставлення = (типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" : "-");
 
-				if (типЗапису == Перелічення.ТипЗапису.Витрати || типЗапису == Перелічення.ТипЗапису.Благодійність)
-					allSuma = allSuma - int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
-				else
-					allSuma = allSuma + int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
+				//if (типЗапису == Перелічення.ТипЗапису.Витрати || типЗапису == Перелічення.ТипЗапису.Благодійність)
+				//	allSuma = allSuma - int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
+				//else
+				//	allSuma = allSuma + int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
 					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
-					allSuma.ToString(),
+					/*allSuma.ToString(),*/
 					типЗаписуПредставлення
 					));
 			}
@@ -232,8 +238,6 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
 
-			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
-
 			записи_Select.Select();
 
 			while (записи_Select.MoveNext())
@@ -283,21 +287,20 @@ namespace HomeFinances
 
     public class Записи
 	{
-		public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _НаростаючаСума, string _ТипЗапису)
+		public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, /*string _НаростаючаСума,*/ string _ТипЗапису)
 		{
 			ID = _id;
 			Назва = _Назва;
 			ДатаЗапису = _ДатаЗапису;
 			Сума = _Сума;
-			НаростаючаСума = _НаростаючаСума;
+			//НаростаючаСума = _НаростаючаСума;
 			ТипЗапису = _ТипЗапису;
 		}
-
 		public string ID { get; set; }
 		public string Назва { get; set; }
 		public string ДатаЗапису { get; set; }
 		public string Сума { get; set; }
-		public string НаростаючаСума { get; set; }
+		//public string НаростаючаСума { get; set; }
 		public string ТипЗапису { get; set; }
 	}
 }

@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>29.05.2021 14:19:43</DateTimeSave>
+  <DateTimeSave>16.07.2021 16:22:11</DateTimeSave>
   <ConstantsBlocks />
   <Directories>
     <Directory>
@@ -107,6 +107,52 @@
               <Name>Код</Name>
               <NameInTable>col_a2</NameInTable>
               <Type>string</Type>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>Записник</Name>
+      <Table>tab_a03</Table>
+      <Desc>Записник інформації</Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a1</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+        </Field>
+        <Field>
+          <Name>Опис</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Дата</Name>
+          <NameInTable>col_a3</NameInTable>
+          <Type>datetime</Type>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a03</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a2</NameInTable>
             </Field>
           </Fields>
         </View>

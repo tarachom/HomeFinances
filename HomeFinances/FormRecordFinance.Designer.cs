@@ -1,7 +1,7 @@
 ﻿
 namespace HomeFinances
 {
-	partial class Form1
+	partial class FormRecordFinance
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@ namespace HomeFinances
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecordFinance));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
@@ -39,13 +39,13 @@ namespace HomeFinances
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
-            this.menuStripTop = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuAddRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItemExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripTop = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -156,6 +156,37 @@ namespace HomeFinances
             this.toolStripButtonCopy.Text = "Копіювати";
             this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemExport,
+            this.toolStripMenuItemImport});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(55, 22);
+            this.toolStripDropDownButton1.Text = "Обмін";
+            // 
+            // toolStripMenuItemExport
+            // 
+            this.toolStripMenuItemExport.Name = "toolStripMenuItemExport";
+            this.toolStripMenuItemExport.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemExport.Text = "Вигрузити";
+            this.toolStripMenuItemExport.Click += new System.EventHandler(this.toolStripMenuItemExport_Click);
+            // 
+            // toolStripMenuItemImport
+            // 
+            this.toolStripMenuItemImport.Name = "toolStripMenuItemImport";
+            this.toolStripMenuItemImport.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemImport.Text = "Загрузити";
+            this.toolStripMenuItemImport.Click += new System.EventHandler(this.toolStripMenuItemImport_Click);
+            // 
             // menuStripTop
             // 
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -177,42 +208,11 @@ namespace HomeFinances
             // menuAddRecordToolStripMenuItem
             // 
             this.menuAddRecordToolStripMenuItem.Name = "menuAddRecordToolStripMenuItem";
-            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.menuAddRecordToolStripMenuItem.Text = "Додати запис";
             this.menuAddRecordToolStripMenuItem.Click += new System.EventHandler(this.menuAddRecordToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemExport,
-            this.toolStripMenuItemImport});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(55, 22);
-            this.toolStripDropDownButton1.Text = "Обмін";
-            // 
-            // toolStripMenuItemExport
-            // 
-            this.toolStripMenuItemExport.Name = "toolStripMenuItemExport";
-            this.toolStripMenuItemExport.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemExport.Text = "Вигрузити";
-            this.toolStripMenuItemExport.Click += new System.EventHandler(this.toolStripMenuItemExport_Click);
-            // 
-            // toolStripMenuItemImport
-            // 
-            this.toolStripMenuItemImport.Name = "toolStripMenuItemImport";
-            this.toolStripMenuItemImport.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemImport.Text = "Загрузити";
-            this.toolStripMenuItemImport.Click += new System.EventHandler(this.toolStripMenuItemImport_Click);
-            // 
-            // Form1
+            // FormFinacesRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,7 +221,7 @@ namespace HomeFinances
             this.Controls.Add(this.menuStripTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripTop;
-            this.Name = "Form1";
+            this.Name = "FormFinacesRecord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Домашні фінанси";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
