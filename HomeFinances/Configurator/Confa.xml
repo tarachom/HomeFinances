@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>16.07.2021 16:22:11</DateTimeSave>
+  <DateTimeSave>16.07.2021 16:48:42</DateTimeSave>
   <ConstantsBlocks />
   <Directories>
     <Directory>
@@ -153,6 +153,70 @@
             <Field>
               <Name>Код</Name>
               <NameInTable>col_a2</NameInTable>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>Користувач</Name>
+      <Table>tab_a04</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a1</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+        </Field>
+        <Field>
+          <Name>Код</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+      <TabularParts>
+        <TablePart>
+          <Name>НалаштуванняФормиЗаписиФінансів</Name>
+          <Table>tab_a06</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Ключ</Name>
+              <NameInTable>col_a5</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a6</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a04</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a2</NameInTable>
+              <Type>string</Type>
             </Field>
           </Fields>
         </View>

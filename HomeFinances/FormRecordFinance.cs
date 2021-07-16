@@ -61,7 +61,6 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["Сума"].Width = 80;
 			dataGridViewRecords.Columns["Сума"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-
 			//dataGridViewRecords.Columns["НаростаючаСума"].HeaderText = "Н.Сума";
 			//dataGridViewRecords.Columns["НаростаючаСума"].Width = 80;
 
@@ -69,6 +68,45 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["ТипЗапису"].Width = 30;
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
 			dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+			/*
+			Довідники.Користувач_Select користувач = new Довідники.Користувач_Select();
+			Довідники.Користувач_Pointer користувач_Ссилка = користувач.FindByField(Довідники.Користувач_Select.Код, "1");
+			
+			if (користувач_Ссилка.IsEmpty())
+            {
+				Довідники.Користувач_Objest користувач_НовийЗапис = new Довідники.Користувач_Objest();
+				користувач_НовийЗапис.New();
+				користувач_НовийЗапис.Код = "1";
+				користувач_НовийЗапис.Назва = "Основний";
+				користувач_НовийЗапис.Save();
+
+				користувач_Ссилка = користувач_НовийЗапис.GetDirectoryPointer();
+			}
+
+			Довідники.Користувач_Objest користувач_Обєкт = користувач_Ссилка.GetDirectoryObject();
+			користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Read();
+
+			if (користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records.Count > 0)
+			{
+
+
+				foreach (Довідники.Користувач_НалаштуванняФормиЗаписиФінансів_TablePart.Record record in
+					користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records)
+				{
+					if (record.Ключ == "НазваФорми")
+					{
+
+					}
+				}
+			}
+			else
+			{
+				користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records.Add(
+					new Довідники.Користувач_НалаштуванняФормиЗаписиФінансів_TablePart.Record("НазваФорми", "Назва форми"));
+				користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Save(true);
+			}
+			*/
 
 			LoadRecords();		
 		}

@@ -67,7 +67,7 @@ namespace HomeFinances
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(856, 503);
-            this.splitContainer1.SplitterDistance = 234;
+            this.splitContainer1.SplitterDistance = 158;
             this.splitContainer1.TabIndex = 0;
             // 
             // panel2
@@ -76,7 +76,7 @@ namespace HomeFinances
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(618, 475);
+            this.panel2.Size = new System.Drawing.Size(694, 475);
             this.panel2.TabIndex = 2;
             // 
             // dataGridViewRecords
@@ -88,7 +88,7 @@ namespace HomeFinances
             this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.ReadOnly = true;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(618, 475);
+            this.dataGridViewRecords.Size = new System.Drawing.Size(694, 475);
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
             // 
@@ -98,7 +98,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(618, 28);
+            this.panel1.Size = new System.Drawing.Size(694, 28);
             this.panel1.TabIndex = 1;
             // 
             // toolStripRecords
@@ -112,7 +112,7 @@ namespace HomeFinances
             this.toolStripDropDownButton1});
             this.toolStripRecords.Location = new System.Drawing.Point(0, 0);
             this.toolStripRecords.Name = "toolStripRecords";
-            this.toolStripRecords.Size = new System.Drawing.Size(618, 25);
+            this.toolStripRecords.Size = new System.Drawing.Size(694, 25);
             this.toolStripRecords.TabIndex = 0;
             this.toolStripRecords.Text = "toolStrip1";
             // 
@@ -208,11 +208,11 @@ namespace HomeFinances
             // menuAddRecordToolStripMenuItem
             // 
             this.menuAddRecordToolStripMenuItem.Name = "menuAddRecordToolStripMenuItem";
-            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.menuAddRecordToolStripMenuItem.Text = "Додати запис";
             this.menuAddRecordToolStripMenuItem.Click += new System.EventHandler(this.menuAddRecordToolStripMenuItem_Click);
             // 
-            // FormFinacesRecord
+            // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,7 +221,7 @@ namespace HomeFinances
             this.Controls.Add(this.menuStripTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripTop;
-            this.Name = "FormFinacesRecord";
+            this.Name = "FormRecordFinance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Домашні фінанси";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

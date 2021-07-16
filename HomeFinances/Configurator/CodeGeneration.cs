@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 16.07.2021 16:22:11
+ * Дата конфігурації: 16.07.2021 16:48:42
  *
  */
 
@@ -487,6 +487,234 @@ namespace НоваКонфігурація_1_0.Довідники
              new string[] { "Назва", "Код" },
              new string[] { "string", "" },
              "Довідник_Записник_Список")
+        {
+            
+        }
+        
+    }
+      
+    
+    #endregion
+    
+    #region DIRECTORY "Користувач"
+    
+    class Користувач_Objest : DirectoryObject
+    {
+        public Користувач_Objest() : base(Config.Kernel, "tab_a04",
+             new string[] { "col_a1", "col_a2" }) 
+        {
+            Назва = "";
+            Код = "";
+            
+            //Табличні частини
+            НалаштуванняФормиЗаписиФінансів_TablePart = new Користувач_НалаштуванняФормиЗаписиФінансів_TablePart(this);
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a1"].ToString();
+                Код = base.FieldValue["col_a2"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a1"] = Назва;
+            base.FieldValue["col_a2"] = Код;
+            
+            BaseSave();
+        }
+
+        public string Serialize()
+        {
+            return 
+            "<Користувач>" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
+               "</Користувач>";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Користувач_Pointer GetDirectoryPointer()
+        {
+            Користувач_Pointer directoryPointer = new Користувач_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public string Код { get; set; }
+        
+        //Табличні частини
+        public Користувач_НалаштуванняФормиЗаписиФінансів_TablePart НалаштуванняФормиЗаписиФінансів_TablePart { get; set; }
+        
+    }
+    
+    
+    class Користувач_Pointer : DirectoryPointer
+    {
+        public Користувач_Pointer(object uid = null) : base(Config.Kernel, "tab_a04")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Користувач_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a04")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Користувач_Objest GetDirectoryObject()
+        {
+            Користувач_Objest КористувачObjestItem = new Користувач_Objest();
+            return КористувачObjestItem.Read(base.UnigueID) ? КористувачObjestItem : null;
+        }
+    }
+    
+    
+    class Користувач_Select : DirectorySelect, IDisposable
+    {
+        public Користувач_Select() : base(Config.Kernel, "tab_a04",
+            new string[] { "col_a1", "col_a2" },
+            new string[] { "Назва", "Код" }) { }
+        
+        public const string Назва = "col_a1";
+        public const string Код = "col_a2";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Користувач_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Користувач_Pointer Current { get; private set; }
+        
+        public Користувач_Pointer FindByField(string name, object value)
+        {
+            Користувач_Pointer itemPointer = new Користувач_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Користувач_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Користувач_Pointer> directoryPointerList = new List<Користувач_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Користувач_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      
+    class Користувач_НалаштуванняФормиЗаписиФінансів_TablePart : DirectoryTablePart
+    {
+        public Користувач_НалаштуванняФормиЗаписиФінансів_TablePart(Користувач_Objest owner) : base(Config.Kernel, "tab_a06",
+             new string[] { "col_a5", "col_a6" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public Користувач_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Ключ = fieldValue["col_a5"].ToString();
+                record.Значення = fieldValue["col_a6"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a5", record.Ключ);
+                    fieldValue.Add("col_a6", record.Значення);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Ключ = "";
+                Значення = "";
+                
+            }
+        
+            
+            public Record(
+                string _Ключ = "", string _Значення = "")
+            {
+                Ключ = _Ключ;
+                Значення = _Значення;
+                
+            }
+            public string Ключ { get; set; }
+            public string Значення { get; set; }
+            
+        }
+    }
+      ///<summary>
+    ///Список.
+    ///</summary>
+    class Користувач_Список_View : DirectoryView
+    {
+        public Користувач_Список_View() : base(Config.Kernel, "tab_a04", 
+             new string[] { "col_a1", "col_a2" },
+             new string[] { "Назва", "Код" },
+             new string[] { "string", "string" },
+             "Довідник_Користувач_Список")
         {
             
         }
