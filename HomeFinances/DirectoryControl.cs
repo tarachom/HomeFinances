@@ -41,7 +41,7 @@ namespace HomeFinances
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			FormDirectoryList formDirectoryList = new FormDirectoryList();
+			FormCostСlassifier formDirectoryList = new FormCostСlassifier();
 			formDirectoryList.DirectoryPointerItemSelect = DirectoryPointerItem;
 			formDirectoryList.DC = this;
 			formDirectoryList.Show();

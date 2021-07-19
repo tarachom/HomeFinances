@@ -69,6 +69,8 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
 			dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+			dataGridViewRecords.Columns["Витрата"].Width = 250;
+
 			//Користувач
 			//Записи налаштувань користувача
 
@@ -127,33 +129,48 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Назва);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
 
 			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
 
+			//Створення тимчасової таблиці
+			записи_Select.QuerySelect.CreateTempTable = true;
 			записи_Select.Select();
 
-			//int allSuma = 0;
+			Dictionary<string, string> dictionaryCostСlassifier = new Dictionary<string, string>();
+
+			Довідники.КласифікаторВитрат_Select класифікаторВитрат_Select = new Довідники.КласифікаторВитрат_Select();
+			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Select.Назва);
+			класифікаторВитрат_Select.QuerySelect.Where.Add(new Where("uid", Comparison.IN, "SELECT DISTINCT " + Довідники.Записи_Select.Витрата + " FROM " + записи_Select.QuerySelect.TempTable, true));
+			класифікаторВитрат_Select.Select();
+
+			while (класифікаторВитрат_Select.MoveNext())
+			{
+				Довідники.КласифікаторВитрат_Pointer cur = класифікаторВитрат_Select.Current;
+				dictionaryCostСlassifier.Add(cur.UnigueID.ToString(), cur.Fields[Довідники.КласифікаторВитрат_Select.Назва].ToString());
+			}
+
+			//Видалення тимчасової таблиці
+			записи_Select.DeleteTempTable();
+
+			//Нормальна вибірка даних
+			записи_Select.Select();
 
 			while (записи_Select.MoveNext())
 			{
 				Довідники.Записи_Pointer cur = записи_Select.Current;
 
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
-
 				string типЗаписуПредставлення = (типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" : "-");
-
-				//if (типЗапису == Перелічення.ТипЗапису.Витрати || типЗапису == Перелічення.ТипЗапису.Благодійність)
-				//	allSuma = allSuma - int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
-				//else
-				//	allSuma = allSuma + int.Parse(cur.Fields[Довідники.Записи_Select.Сума].ToString());
+				Довідники.КласифікаторВитрат_Pointer Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(cur.Fields[Довідники.Записи_Select.Витрата].ToString()));
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
 					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
-					/*allSuma.ToString(),*/
-					типЗаписуПредставлення
+					типЗаписуПредставлення,
+					!Витрата.IsEmpty() ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : ""
 					));
 			}
 
@@ -169,7 +186,7 @@ namespace HomeFinances
 			FormAddRecord formAddRecord = new FormAddRecord();
 			formAddRecord.IsNew = true;
 			formAddRecord.OwnerForm = this;
-			formAddRecord.Show();
+			formAddRecord.ShowDialog();
 		}
 
 		private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -180,7 +197,7 @@ namespace HomeFinances
 				formAddRecord.OwnerForm = this;
 				formAddRecord.IsNew = false;
 				formAddRecord.Uid = dataGridViewRecords.Rows[e.RowIndex].Cells[0].Value.ToString();
-				formAddRecord.Show();
+				formAddRecord.ShowDialog();
 			}
 		}
 
@@ -325,7 +342,7 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, /*string _НаростаючаСума,*/ string _ТипЗапису)
+			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, /*string _НаростаючаСума,*/ string _ТипЗапису, string _Витрата)
 			{
 				ID = _id;
 				Назва = _Назва;
@@ -333,6 +350,7 @@ namespace HomeFinances
 				Сума = _Сума;
 				//НаростаючаСума = _НаростаючаСума;
 				ТипЗапису = _ТипЗапису;
+				Витрата = _Витрата;
 			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
@@ -340,6 +358,7 @@ namespace HomeFinances
 			public string Сума { get; set; }
 			//public string НаростаючаСума { get; set; }
 			public string ТипЗапису { get; set; }
+			public string Витрата { get; set; }
 		}
 	}
 

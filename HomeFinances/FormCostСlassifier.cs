@@ -16,9 +16,9 @@ using Перелічення = НоваКонфігурація_1_0.Перелі
 
 namespace HomeFinances
 {
-    public partial class FormDirectoryList : Form
+    public partial class FormCostСlassifier : Form
     {
-        public FormDirectoryList()
+        public FormCostСlassifier()
         {
             InitializeComponent();
         }
@@ -110,6 +110,63 @@ namespace HomeFinances
 			DC.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
 
 			this.Hide();
+		}
+
+        private void toolStripButtonAdd_Click(object sender, EventArgs e)
+        {
+			FormAddCostСlassifier formAddCostСlassifier = new FormAddCostСlassifier();
+			formAddCostСlassifier.IsNew = true;
+			formAddCostСlassifier.OwnerForm = this;
+			formAddCostСlassifier.ShowDialog();
+		}
+
+        private void toolStripButtonEdit_Click(object sender, EventArgs e)
+        {
+			if (dataGridViewRecords.SelectedRows.Count > 0)
+			{
+				int RowIndex = dataGridViewRecords.SelectedRows[0].Index;
+
+				FormAddCostСlassifier formAddCostСlassifier = new FormAddCostСlassifier();
+				formAddCostСlassifier.OwnerForm = this;
+				formAddCostСlassifier.IsNew = false;
+				formAddCostСlassifier.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
+				formAddCostСlassifier.ShowDialog();
+			}			
+		}
+
+        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+        {
+			LoadRecords();
+		}
+
+        private void toolStripButtonCopy_Click(object sender, EventArgs e)
+        {
+			if (dataGridViewRecords.SelectedRows.Count != 0 &&
+				MessageBox.Show("Копіювати записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
+				{
+					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
+					string uid = row.Cells[0].Value.ToString();
+
+					Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
+					if (класифікаторВитрат_Objest.Read(new UnigueID(uid)))
+					{
+						Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest_Новий = new Довідники.КласифікаторВитрат_Objest();
+						класифікаторВитрат_Objest_Новий.New();
+						класифікаторВитрат_Objest_Новий.Назва = "(Копія) - " + класифікаторВитрат_Objest.Назва;
+						класифікаторВитрат_Objest_Новий.Код = класифікаторВитрат_Objest.Код;
+						класифікаторВитрат_Objest_Новий.Save();
+					}
+					else
+					{
+						MessageBox.Show("Error read");
+						break;
+					}
+				}
+
+				LoadRecords();
+			}
 		}
     }
 }
