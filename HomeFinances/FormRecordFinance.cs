@@ -322,24 +322,26 @@ namespace HomeFinances
         {
 
         }
-    }
 
-    public class Записи
-	{
-		public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, /*string _НаростаючаСума,*/ string _ТипЗапису)
+		private class Записи
 		{
-			ID = _id;
-			Назва = _Назва;
-			ДатаЗапису = _ДатаЗапису;
-			Сума = _Сума;
-			//НаростаючаСума = _НаростаючаСума;
-			ТипЗапису = _ТипЗапису;
+			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, /*string _НаростаючаСума,*/ string _ТипЗапису)
+			{
+				ID = _id;
+				Назва = _Назва;
+				ДатаЗапису = _ДатаЗапису;
+				Сума = _Сума;
+				//НаростаючаСума = _НаростаючаСума;
+				ТипЗапису = _ТипЗапису;
+			}
+			public string ID { get; set; }
+			public string Назва { get; set; }
+			public string ДатаЗапису { get; set; }
+			public string Сума { get; set; }
+			//public string НаростаючаСума { get; set; }
+			public string ТипЗапису { get; set; }
 		}
-		public string ID { get; set; }
-		public string Назва { get; set; }
-		public string ДатаЗапису { get; set; }
-		public string Сума { get; set; }
-		//public string НаростаючаСума { get; set; }
-		public string ТипЗапису { get; set; }
 	}
+
+    
 }

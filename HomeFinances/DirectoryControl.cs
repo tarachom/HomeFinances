@@ -20,28 +20,36 @@ namespace HomeFinances
 			InitializeComponent();
 		}
 
-		private DirectoryPointer mDP;
-		public DirectoryPointer DP 
+		private DirectoryPointer mDirectoryPointerItem;
+		public DirectoryPointer DirectoryPointerItem
 		{
 			get
 			{
-				return mDP;
+				return mDirectoryPointerItem;
 			}
 
 			set
 			{
-				mDP = value;
+				mDirectoryPointerItem = value;
 
-				if (mDP != null)
+				if (mDirectoryPointerItem != null)
 				{
-					textBoxControl.Text = mDP.GetType().InvokeMember("GetPresentation", BindingFlags.InvokeMethod, null, mDP, new object[] { }).ToString();
+					textBoxControl.Text = mDirectoryPointerItem.GetType().InvokeMember("GetPresentation", BindingFlags.InvokeMethod, null, mDirectoryPointerItem, new object[] { }).ToString();
 				}
 			}
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			
+			FormDirectoryList formDirectoryList = new FormDirectoryList();
+			formDirectoryList.DirectoryPointerItemSelect = DirectoryPointerItem;
+			formDirectoryList.DC = this;
+			formDirectoryList.Show();
 		}
-	}
+
+        private void DirectoryControl_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

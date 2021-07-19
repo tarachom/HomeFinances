@@ -53,7 +53,7 @@ namespace HomeFinances
 
 					this.Text = "Новий запис";
 
-					directoryControl1.DP = new Довідники.КласифікаторВитрат_Pointer();
+					directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer();
 				}
 				else
 				{
@@ -68,7 +68,7 @@ namespace HomeFinances
 
 						this.Text = "Редагування запису - " + записи_Objest.Назва;
 
-						directoryControl1.DP = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
+						directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
 					}
 					else
 						MessageBox.Show("Error read");
@@ -84,8 +84,8 @@ namespace HomeFinances
 					{
 						Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
 						класифікаторВитрат_Objest.New();
-						класифікаторВитрат_Objest.Назва = "Назва 1";
-						класифікаторВитрат_Objest.Код = "1";
+						класифікаторВитрат_Objest.Назва = "Назва 2";
+						класифікаторВитрат_Objest.Код = "2";
 						класифікаторВитрат_Objest.Save();
 
 						записи_Objest = new Довідники.Записи_Objest();
@@ -122,6 +122,7 @@ namespace HomeFinances
 						записи_Objest.Опис = textBoxOpys.Text;
 						записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
 						записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
+						записи_Objest.Витрата = (Довідники.КласифікаторВитрат_Pointer)directoryControl1.DirectoryPointerItem;
 						записи_Objest.Save();
 					}
 					catch (Exception exp)

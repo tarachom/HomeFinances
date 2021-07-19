@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 19.07.2021 18:10:25
+ * Дата конфігурації: 19.07.2021 18:51:25
  *
  */
 
@@ -329,7 +329,7 @@ namespace НоваКонфігурація_1_0.Довідники
 		public string GetPresentation()
         {
 		    return base.BasePresentation(
-			    new string[] { "col_a1", "col_a2" }
+			    new string[] { "col_a1" }
 			);
         }
     }

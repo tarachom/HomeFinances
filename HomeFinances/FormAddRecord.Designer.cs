@@ -152,10 +152,9 @@ namespace HomeFinances
             // 
             // directoryControl1
             // 
-            this.directoryControl1.DP = null;
             this.directoryControl1.Location = new System.Drawing.Point(60, 173);
             this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(382, 27);
+            this.directoryControl1.Size = new System.Drawing.Size(493, 27);
             this.directoryControl1.TabIndex = 15;
             // 
             // FormAddRecord
