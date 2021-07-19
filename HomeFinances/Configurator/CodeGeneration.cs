@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 16.07.2021 16:48:42
+ * Дата конфігурації: 19.07.2021 17:05:35
  *
  */
 
@@ -47,6 +47,24 @@ namespace НоваКонфігурація_1_0
 namespace НоваКонфігурація_1_0.Константи
 {
     
+    static class Основний
+    {
+        public static void ReadAll()
+        {
+            
+            Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+            bool IsSelect = Config.Kernel.DataBase.SelectAllConstants("tab_constants",
+                 new string[] {  }, fieldValue);
+            
+            if (IsSelect)
+            {
+                
+            }
+        }
+        
+             
+    }
+    
 }
 
 namespace НоваКонфігурація_1_0.Довідники
@@ -59,7 +77,7 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записи_Objest : DirectoryObject
     {
         public Записи_Objest() : base(Config.Kernel, "tab_a02",
-             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1" }) 
+             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2" }) 
         {
             Назва = "";
             ДатаЗапису = DateTime.MinValue;
@@ -67,6 +85,7 @@ namespace НоваКонфігурація_1_0.Довідники
             ТипЗапису = 0;
             Сума = 0;
             Витрата = new Довідники.КласифікаторВитрат_Pointer();
+            Каса = new Довідники.Каса_Pointer();
             
         }
         
@@ -80,6 +99,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 ТипЗапису = (base.FieldValue["col_a9"] != DBNull.Value) ? (Перелічення.ТипЗапису)base.FieldValue["col_a9"] : 0;
                 Сума = (base.FieldValue["col_b1"] != DBNull.Value) ? (int)base.FieldValue["col_b1"] : 0;
                 Витрата = new Довідники.КласифікаторВитрат_Pointer(base.FieldValue["col_a1"]);
+                Каса = new Довідники.Каса_Pointer(base.FieldValue["col_a2"]);
                 
                 BaseClear();
                 return true;
@@ -96,6 +116,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a9"] = (int)ТипЗапису;
             base.FieldValue["col_b1"] = Сума;
             base.FieldValue["col_a1"] = Витрата.UnigueID.UGuid;
+            base.FieldValue["col_a2"] = Каса.UnigueID.UGuid;
             
             BaseSave();
         }
@@ -111,6 +132,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<ТипЗапису>" + ((int)ТипЗапису).ToString() + "</ТипЗапису>"  +
                "<Сума>" + Сума.ToString() + "</Сума>"  +
                "<Витрата>" + Витрата.ToString() + "</Витрата>"  +
+               "<Каса>" + Каса.ToString() + "</Каса>"  +
                "</Записи>";
         }
 
@@ -131,6 +153,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Перелічення.ТипЗапису ТипЗапису { get; set; }
         public int Сума { get; set; }
         public Довідники.КласифікаторВитрат_Pointer Витрата { get; set; }
+        public Довідники.Каса_Pointer Каса { get; set; }
         
     }
     
@@ -154,6 +177,13 @@ namespace НоваКонфігурація_1_0.Довідники
             Записи_Objest ЗаписиObjestItem = new Записи_Objest();
             return ЗаписиObjestItem.Read(base.UnigueID) ? ЗаписиObjestItem : null;
         }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] { "col_a7", "col_a6" }
+			);
+        }
     }
     
     ///<summary>
@@ -162,8 +192,8 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записи_Select : DirectorySelect, IDisposable
     {
         public Записи_Select() : base(Config.Kernel, "tab_a02",
-            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1" },
-            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата" }) { }
+            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2" },
+            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса" }) { }
         
         public const string Назва = "col_a7";
         public const string ДатаЗапису = "col_a6";
@@ -171,6 +201,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public const string ТипЗапису = "col_a9";
         public const string Сума = "col_b1";
         public const string Витрата = "col_a1";
+        public const string Каса = "col_a2";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -293,6 +324,13 @@ namespace НоваКонфігурація_1_0.Довідники
         {
             КласифікаторВитрат_Objest КласифікаторВитратObjestItem = new КласифікаторВитрат_Objest();
             return КласифікаторВитратObjestItem.Read(base.UnigueID) ? КласифікаторВитратObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
         }
     }
     
@@ -437,6 +475,13 @@ namespace НоваКонфігурація_1_0.Довідники
             Записник_Objest ЗаписникObjestItem = new Записник_Objest();
             return ЗаписникObjestItem.Read(base.UnigueID) ? ЗаписникObjestItem : null;
         }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
+        }
     }
     
     ///<summary>
@@ -579,6 +624,13 @@ namespace НоваКонфігурація_1_0.Довідники
         {
             Користувач_Objest КористувачObjestItem = new Користувач_Objest();
             return КористувачObjestItem.Read(base.UnigueID) ? КористувачObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
         }
     }
     
@@ -724,6 +776,300 @@ namespace НоваКонфігурація_1_0.Довідники
     
     #endregion
     
+    #region DIRECTORY "Каса"
+    ///<summary>
+    ///Місце зберігання грошей.
+    ///</summary>
+    class Каса_Objest : DirectoryObject
+    {
+        public Каса_Objest() : base(Config.Kernel, "tab_a05",
+             new string[] { "col_a1", "col_a2", "col_a3" }) 
+        {
+            Назва = "";
+            Валюта = new Довідники.Валюта_Pointer();
+            ТипВалюти = 0;
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a1"].ToString();
+                Валюта = new Довідники.Валюта_Pointer(base.FieldValue["col_a2"]);
+                ТипВалюти = (base.FieldValue["col_a3"] != DBNull.Value) ? (Перелічення.ТипВалюти)base.FieldValue["col_a3"] : 0;
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a1"] = Назва;
+            base.FieldValue["col_a2"] = Валюта.UnigueID.UGuid;
+            base.FieldValue["col_a3"] = (int)ТипВалюти;
+            
+            BaseSave();
+        }
+
+        public string Serialize()
+        {
+            return 
+            "<Каса>" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Валюта>" + Валюта.ToString() + "</Валюта>"  +
+               "<ТипВалюти>" + ((int)ТипВалюти).ToString() + "</ТипВалюти>"  +
+               "</Каса>";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Каса_Pointer GetDirectoryPointer()
+        {
+            Каса_Pointer directoryPointer = new Каса_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public Довідники.Валюта_Pointer Валюта { get; set; }
+        public Перелічення.ТипВалюти ТипВалюти { get; set; }
+        
+    }
+    
+    ///<summary>
+    ///Місце зберігання грошей.
+    ///</summary>
+    class Каса_Pointer : DirectoryPointer
+    {
+        public Каса_Pointer(object uid = null) : base(Config.Kernel, "tab_a05")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Каса_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a05")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Каса_Objest GetDirectoryObject()
+        {
+            Каса_Objest КасаObjestItem = new Каса_Objest();
+            return КасаObjestItem.Read(base.UnigueID) ? КасаObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
+        }
+    }
+    
+    ///<summary>
+    ///Місце зберігання грошей.
+    ///</summary>
+    class Каса_Select : DirectorySelect, IDisposable
+    {
+        public Каса_Select() : base(Config.Kernel, "tab_a05",
+            new string[] { "col_a1", "col_a2", "col_a3" },
+            new string[] { "Назва", "Валюта", "ТипВалюти" }) { }
+        
+        public const string Назва = "col_a1";
+        public const string Валюта = "col_a2";
+        public const string ТипВалюти = "col_a3";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Каса_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Каса_Pointer Current { get; private set; }
+        
+        public Каса_Pointer FindByField(string name, object value)
+        {
+            Каса_Pointer itemPointer = new Каса_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Каса_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Каса_Pointer> directoryPointerList = new List<Каса_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Каса_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      ///<summary>
+    ///Список.
+    ///</summary>
+    class Каса_Список_View : DirectoryView
+    {
+        public Каса_Список_View() : base(Config.Kernel, "tab_a05", 
+             new string[] { "col_a1", "col_a2" },
+             new string[] { "Назва", "Код" },
+             new string[] { "string", "pointer" },
+             "Довідник_Каса_Список")
+        {
+            
+        }
+        
+    }
+      
+    
+    #endregion
+    
+    #region DIRECTORY "Валюта"
+    
+    class Валюта_Objest : DirectoryObject
+    {
+        public Валюта_Objest() : base(Config.Kernel, "tab_a07",
+             new string[] { "col_a3", "col_a4" }) 
+        {
+            Назва = "";
+            Код = "";
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a3"].ToString();
+                Код = base.FieldValue["col_a4"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a3"] = Назва;
+            base.FieldValue["col_a4"] = Код;
+            
+            BaseSave();
+        }
+
+        public string Serialize()
+        {
+            return 
+            "<Валюта>" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
+               "</Валюта>";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Валюта_Pointer GetDirectoryPointer()
+        {
+            Валюта_Pointer directoryPointer = new Валюта_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public string Код { get; set; }
+        
+    }
+    
+    
+    class Валюта_Pointer : DirectoryPointer
+    {
+        public Валюта_Pointer(object uid = null) : base(Config.Kernel, "tab_a07")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Валюта_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a07")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Валюта_Objest GetDirectoryObject()
+        {
+            Валюта_Objest ВалютаObjestItem = new Валюта_Objest();
+            return ВалютаObjestItem.Read(base.UnigueID) ? ВалютаObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
+        }
+    }
+    
+    
+    class Валюта_Select : DirectorySelect, IDisposable
+    {
+        public Валюта_Select() : base(Config.Kernel, "tab_a07",
+            new string[] { "col_a3", "col_a4" },
+            new string[] { "Назва", "Код" }) { }
+        
+        public const string Назва = "col_a3";
+        public const string Код = "col_a4";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Валюта_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Валюта_Pointer Current { get; private set; }
+        
+        public Валюта_Pointer FindByField(string name, object value)
+        {
+            Валюта_Pointer itemPointer = new Валюта_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Валюта_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Валюта_Pointer> directoryPointerList = new List<Валюта_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Валюта_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      ///<summary>
+    ///Список.
+    ///</summary>
+    class Валюта_Список_View : DirectoryView
+    {
+        public Валюта_Список_View() : base(Config.Kernel, "tab_a07", 
+             new string[] { "col_a3", "col_a4" },
+             new string[] { "Назва", "Код" },
+             new string[] { "string", "string" },
+             "Довідник_Валюта_Список")
+        {
+            
+        }
+        
+    }
+      
+    
+    #endregion
+    
 }
 
 namespace НоваКонфігурація_1_0.Перелічення
@@ -736,6 +1082,15 @@ namespace НоваКонфігурація_1_0.Перелічення
          Витрати = 2,
          Поступлення = 3,
          Благодійність = 4
+    }
+    
+    ///<summary>
+    ///Нал, безнал.
+    ///</summary>
+    public enum ТипВалюти
+    {
+         Готівка = 1,
+         Карточка = 2
     }
     
     

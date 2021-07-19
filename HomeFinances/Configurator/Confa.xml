@@ -4,8 +4,15 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>16.07.2021 16:48:42</DateTimeSave>
-  <ConstantsBlocks />
+  <DateTimeSave>19.07.2021 17:05:35</DateTimeSave>
+  <ConstantsBlocks>
+    <ConstantsBlock>
+      <Name>Основний</Name>
+      <Desc>
+      </Desc>
+      <Constants />
+    </ConstantsBlock>
+  </ConstantsBlocks>
   <Directories>
     <Directory>
       <Name>Записи</Name>
@@ -18,18 +25,21 @@
           <NameInTable>col_a7</NameInTable>
           <Type>string</Type>
           <Desc>Назва операції</Desc>
+          <IsPresentation>1</IsPresentation>
         </Field>
         <Field>
           <Name>ДатаЗапису</Name>
           <NameInTable>col_a6</NameInTable>
           <Type>datetime</Type>
           <Desc>Дата запису</Desc>
+          <IsPresentation>1</IsPresentation>
         </Field>
         <Field>
           <Name>Опис</Name>
           <NameInTable>col_a8</NameInTable>
           <Type>string</Type>
           <Desc>Опис операції</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>ТипЗапису</Name>
@@ -37,20 +47,30 @@
           <Type>enum</Type>
           <Pointer>Перелічення.ТипЗапису</Pointer>
           <Desc>Тип операції</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>Сума</Name>
           <NameInTable>col_b1</NameInTable>
           <Type>integer</Type>
           <Desc>Сума операції</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>Витрата</Name>
           <NameInTable>col_a1</NameInTable>
           <Type>pointer</Type>
           <Pointer>Довідники.КласифікаторВитрат</Pointer>
-          <Desc>
-          </Desc>
+          <Desc>Стаття витрат</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Каса</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.Каса</Pointer>
+          <Desc>З якого місця зберігання грошей відбувається операція</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
       <TabularParts />
@@ -83,12 +103,14 @@
           <NameInTable>col_a1</NameInTable>
           <Type>string</Type>
           <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>Код</Name>
           <NameInTable>col_a2</NameInTable>
           <Type>string</Type>
           <Desc>Код</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
       <TabularParts />
@@ -122,6 +144,7 @@
           <NameInTable>col_a1</NameInTable>
           <Type>string</Type>
           <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>Опис</Name>
@@ -129,6 +152,7 @@
           <Type>string</Type>
           <Desc>
           </Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>Дата</Name>
@@ -136,6 +160,7 @@
           <Type>datetime</Type>
           <Desc>
           </Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
       <TabularParts />
@@ -169,6 +194,7 @@
           <NameInTable>col_a1</NameInTable>
           <Type>string</Type>
           <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
           <Name>Код</Name>
@@ -176,6 +202,7 @@
           <Type>string</Type>
           <Desc>
           </Desc>
+          <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
       <TabularParts>
@@ -191,6 +218,7 @@
               <Type>string</Type>
               <Desc>
               </Desc>
+              <IsPresentation>0</IsPresentation>
             </Field>
             <Field>
               <Name>Значення</Name>
@@ -198,6 +226,7 @@
               <Type>string</Type>
               <Desc>
               </Desc>
+              <IsPresentation>0</IsPresentation>
             </Field>
           </Fields>
         </TablePart>
@@ -216,6 +245,101 @@
             <Field>
               <Name>Код</Name>
               <NameInTable>col_a2</NameInTable>
+              <Type>string</Type>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>Каса</Name>
+      <Table>tab_a05</Table>
+      <Desc>Місце зберігання грошей</Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a1</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Валюта</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.Валюта</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>ТипВалюти</Name>
+          <NameInTable>col_a3</NameInTable>
+          <Type>enum</Type>
+          <Pointer>Перелічення.ТипВалюти</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a05</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a2</NameInTable>
+              <Type>pointer</Type>
+              <Pointer>Довідники.Валюта</Pointer>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>Валюта</Name>
+      <Table>tab_a07</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a3</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Код</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Type>string</Type>
+          <Desc>Код</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a07</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a3</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a4</NameInTable>
               <Type>string</Type>
             </Field>
           </Fields>
@@ -244,6 +368,25 @@
         <Field>
           <Name>Благодійність</Name>
           <Value>4</Value>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+    </Enum>
+    <Enum>
+      <Name>ТипВалюти</Name>
+      <Desc>Нал, безнал</Desc>
+      <SerialNumber>2</SerialNumber>
+      <Fields>
+        <Field>
+          <Name>Готівка</Name>
+          <Value>1</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Карточка</Name>
+          <Value>2</Value>
           <Desc>
           </Desc>
         </Field>

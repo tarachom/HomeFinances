@@ -69,6 +69,9 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
 			dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+			//Користувач
+			//Записи налаштувань користувача
+
 			/*
 			Довідники.Користувач_Select користувач = new Довідники.Користувач_Select();
 			Довідники.Користувач_Pointer користувач_Ссилка = користувач.FindByField(Довідники.Користувач_Select.Код, "1");
@@ -89,8 +92,6 @@ namespace HomeFinances
 
 			if (користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records.Count > 0)
 			{
-
-
 				foreach (Довідники.Користувач_НалаштуванняФормиЗаписиФінансів_TablePart.Record record in
 					користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records)
 				{

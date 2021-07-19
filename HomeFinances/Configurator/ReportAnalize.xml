@@ -1,5 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <info>Додати колонку Код (col_a2, тип text)  в таблицю Користувач (tab_a04)</info>
-  <sql>ALTER TABLE tab_a04 ADD COLUMN "col_a2" text;</sql>
-</root>
+<root />

@@ -32,7 +32,7 @@ namespace HomeFinances
 				mDP = value;
 
 				if (mDP != null)
-					textBoxControl.Text = mDP.ToString();
+					textBoxControl.Text = mDP.Representation();
 			}
 		}
 
