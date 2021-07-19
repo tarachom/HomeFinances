@@ -168,5 +168,31 @@ namespace HomeFinances
 				LoadRecords();
 			}
 		}
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+			if (dataGridViewRecords.SelectedRows.Count != 0 &&
+				MessageBox.Show("Видалити записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
+				{
+					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
+					string uid = row.Cells[0].Value.ToString();
+
+					Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
+					if (класифікаторВитрат_Objest.Read(new UnigueID(uid)))
+					{
+						класифікаторВитрат_Objest.Delete();
+					}
+					else
+					{
+						MessageBox.Show("Error read");
+						break;
+					}
+				}
+
+				LoadRecords();
+			}
+		}
     }
 }

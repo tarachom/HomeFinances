@@ -49,6 +49,7 @@ namespace HomeFinances
 				if (IsNew.Value)
 				{
 					dateTimePickerRecord.Value = DateTime.Now;
+					maskedTextBoxTime.Text = DateTime.Now.TimeOfDay.ToString();
 					comboBoxTypeRecord.SelectedIndex = 0;
 					maskedTextBoxSuma.Text = "0";
 
@@ -61,6 +62,7 @@ namespace HomeFinances
 					if (записи_Objest.Read(new UnigueID(Uid)))
 					{
 						dateTimePickerRecord.Value = записи_Objest.ДатаЗапису;
+						maskedTextBoxTime.Text = записи_Objest.ДатаЗапису.TimeOfDay.ToString();
 						textBoxName.Text = записи_Objest.Назва;
 						textBoxOpys.Text = записи_Objest.Опис;
 						comboBoxTypeRecord.SelectedItem = записи_Objest.ТипЗапису;
@@ -87,7 +89,12 @@ namespace HomeFinances
 
 				try
 				{
-					записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
+					TimeSpan ts = TimeSpan.Parse(maskedTextBoxTime.Text);
+
+					записи_Objest.ДатаЗапису = new DateTime(
+						dateTimePickerRecord.Value.Year, dateTimePickerRecord.Value.Month, dateTimePickerRecord.Value.Day,
+						ts.Hours, ts.Minutes, ts.Seconds);
+
 					записи_Objest.Назва = textBoxName.Text;
 					записи_Objest.Опис = textBoxOpys.Text;
 					записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;

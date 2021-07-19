@@ -170,7 +170,7 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
-					!Витрата.IsEmpty() ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : ""
+					(!Витрата.IsEmpty() && dictionaryCostСlassifier.ContainsKey(Витрата.UnigueID.ToString())) ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : ""
 					));
 			}
 
@@ -257,6 +257,7 @@ namespace HomeFinances
 						записи_Objest_Новий.Опис = записи_Objest.Опис;
 						записи_Objest_Новий.Сума = записи_Objest.Сума;
 						записи_Objest_Новий.ТипЗапису = записи_Objest.ТипЗапису;
+						записи_Objest_Новий.Витрата = записи_Objest.Витрата;
 						записи_Objest_Новий.Save();
 					}
 					else

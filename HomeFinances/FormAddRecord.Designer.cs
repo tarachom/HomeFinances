@@ -42,6 +42,7 @@ namespace HomeFinances
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.maskedTextBoxTime = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -152,16 +153,27 @@ namespace HomeFinances
             // 
             // directoryControl1
             // 
+            this.directoryControl1.DirectoryPointerItem = null;
             this.directoryControl1.Location = new System.Drawing.Point(60, 173);
             this.directoryControl1.Name = "directoryControl1";
             this.directoryControl1.Size = new System.Drawing.Size(493, 27);
             this.directoryControl1.TabIndex = 15;
+            // 
+            // maskedTextBoxTime
+            // 
+            this.maskedTextBoxTime.Location = new System.Drawing.Point(266, 9);
+            this.maskedTextBoxTime.Mask = "00:00:00";
+            this.maskedTextBoxTime.Name = "maskedTextBoxTime";
+            this.maskedTextBoxTime.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBoxTime.TabIndex = 16;
+            this.maskedTextBoxTime.ValidatingType = typeof(System.DateTime);
             // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 272);
+            this.Controls.Add(this.maskedTextBoxTime);
             this.Controls.Add(this.directoryControl1);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonSave);
@@ -200,5 +212,6 @@ namespace HomeFinances
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Button buttonClose;
 		private DirectoryControl directoryControl1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxTime;
     }
 }
