@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>19.07.2021 17:05:35</DateTimeSave>
+  <DateTimeSave>19.07.2021 18:10:25</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -103,14 +103,14 @@
           <NameInTable>col_a1</NameInTable>
           <Type>string</Type>
           <Desc>Назва</Desc>
-          <IsPresentation>0</IsPresentation>
+          <IsPresentation>1</IsPresentation>
         </Field>
         <Field>
           <Name>Код</Name>
           <NameInTable>col_a2</NameInTable>
           <Type>string</Type>
           <Desc>Код</Desc>
-          <IsPresentation>0</IsPresentation>
+          <IsPresentation>1</IsPresentation>
         </Field>
       </Fields>
       <TabularParts />

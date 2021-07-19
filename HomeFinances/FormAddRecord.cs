@@ -82,6 +82,12 @@ namespace HomeFinances
 				{
 					try
 					{
+						Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
+						класифікаторВитрат_Objest.New();
+						класифікаторВитрат_Objest.Назва = "Назва 1";
+						класифікаторВитрат_Objest.Код = "1";
+						класифікаторВитрат_Objest.Save();
+
 						записи_Objest = new Довідники.Записи_Objest();
 						записи_Objest.New();
 						записи_Objest.ДатаЗапису = dateTimePickerRecord.Value;
@@ -89,7 +95,12 @@ namespace HomeFinances
 						записи_Objest.Опис = textBoxOpys.Text;
 						записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
 						записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
+
+						записи_Objest.Витрата = класифікаторВитрат_Objest.GetDirectoryPointer();
+
 						записи_Objest.Save();
+
+						
 					}
 					catch (Exception exp)
 					{

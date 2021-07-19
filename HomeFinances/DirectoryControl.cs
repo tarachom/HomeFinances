@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 using AccountingSoftware;
 
@@ -32,7 +33,9 @@ namespace HomeFinances
 				mDP = value;
 
 				if (mDP != null)
-					textBoxControl.Text = mDP.Representation();
+				{
+					textBoxControl.Text = mDP.GetType().InvokeMember("GetPresentation", BindingFlags.InvokeMethod, null, mDP, new object[] { }).ToString();
+				}
 			}
 		}
 
