@@ -46,6 +46,8 @@ namespace HomeFinances
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -190,7 +192,8 @@ namespace HomeFinances
             // menuStripTop
             // 
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.довідникиToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(856, 24);
@@ -211,6 +214,21 @@ namespace HomeFinances
             this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.menuAddRecordToolStripMenuItem.Text = "Додати запис";
             this.menuAddRecordToolStripMenuItem.Click += new System.EventHandler(this.menuAddRecordToolStripMenuItem_Click);
+            // 
+            // довідникиToolStripMenuItem
+            // 
+            this.довідникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.класифікаторВитратToolStripMenuItem});
+            this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
+            this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.довідникиToolStripMenuItem.Text = "Довідники";
+            // 
+            // класифікаторВитратToolStripMenuItem
+            // 
+            this.класифікаторВитратToolStripMenuItem.Name = "класифікаторВитратToolStripMenuItem";
+            this.класифікаторВитратToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.класифікаторВитратToolStripMenuItem.Text = "Класифікатор витрат";
+            this.класифікаторВитратToolStripMenuItem.Click += new System.EventHandler(this.класифікаторВитратToolStripMenuItem_Click);
             // 
             // FormRecordFinance
             // 
@@ -260,6 +278,8 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExport;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImport;
+        private System.Windows.Forms.ToolStripMenuItem довідникиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem класифікаторВитратToolStripMenuItem;
     }
 }
 

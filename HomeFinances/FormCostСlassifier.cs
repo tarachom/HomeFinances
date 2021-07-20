@@ -62,12 +62,16 @@ namespace HomeFinances
 
 		public void LoadRecords()
 		{
+			int selectRow = dataGridViewRecords.SelectedRows.Count > 0 ?
+				dataGridViewRecords.SelectedRows[dataGridViewRecords.SelectedRows.Count - 1].Index : 0;
+
 			RecordsBindingList.Clear();
 
 			Довідники.КласифікаторВитрат_Select класифікаторВитрат_Select = new Довідники.КласифікаторВитрат_Select();
 
 			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Select.Назва);
 			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Select.Код);
+			класифікаторВитрат_Select.QuerySelect.Order.Add(Довідники.КласифікаторВитрат_Select.Назва, SelectOrder.ASC);
 
 			класифікаторВитрат_Select.Select();
 
@@ -87,6 +91,12 @@ namespace HomeFinances
 						dataGridViewRecords.Rows[0].Selected = false;
 						dataGridViewRecords.Rows[RecordsBindingList.Count - 1].Selected = true;
 					}
+			}
+
+			if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
+			{
+				dataGridViewRecords.Rows[0].Selected = false;
+				dataGridViewRecords.Rows[selectRow].Selected = true;
 			}
 		}
 
@@ -111,8 +121,11 @@ namespace HomeFinances
 			if (DC != null)
             {
 				DC.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
-
 				this.Close();
+			}
+            else
+            {
+				toolStripButtonEdit_Click(this, null);
 			}
 		}
 

@@ -365,5 +365,12 @@ namespace HomeFinances
 			public string ТипЗапису { get; set; }
 			public string Витрата { get; set; }
 		}
-	}
+
+        private void класифікаторВитратToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
+			formCostСlassifier.Show();
+
+		}
+    }
 }
