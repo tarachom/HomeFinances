@@ -53,23 +53,22 @@ namespace HomeFinances
 			dataGridViewRecords.DataSource = RecordsBindingList;
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = 300;
+			dataGridViewRecords.Columns["Назва"].Width = 500;
 
-			dataGridViewRecords.Columns["ДатаЗапису"].Width = 130;
+			dataGridViewRecords.Columns["ДатаЗапису"].Width = 120;
 			dataGridViewRecords.Columns["ДатаЗапису"].DisplayIndex = 1;
 
 			dataGridViewRecords.Columns["Сума"].Width = 80;
 			dataGridViewRecords.Columns["Сума"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-			//dataGridViewRecords.Columns["НаростаючаСума"].HeaderText = "Н.Сума";
-			//dataGridViewRecords.Columns["НаростаючаСума"].Width = 80;
+			dataGridViewRecords.Columns["Сума"].DisplayIndex = 5;
 
 			dataGridViewRecords.Columns["ТипЗапису"].HeaderText = "Тип";
-			dataGridViewRecords.Columns["ТипЗапису"].Width = 30;
+			dataGridViewRecords.Columns["ТипЗапису"].Width = 80;
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
-			dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Font = new Font("Arial", 11);
 
-			dataGridViewRecords.Columns["Витрата"].Width = 250;
+			dataGridViewRecords.Columns["Витрата"].Width = 200;
 
 			//Користувач
 			//Записи налаштувань користувача
@@ -161,7 +160,12 @@ namespace HomeFinances
 				Довідники.Записи_Pointer cur = записи_Select.Current;
 
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
-				string типЗаписуПредставлення = (типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" : "-");
+				string типЗаписуПредставлення = типЗапису.ToString(); 
+				/*(
+					типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" :
+					типЗапису == Перелічення.ТипЗапису.Витрати ? "-" :
+					типЗапису == Перелічення.ТипЗапису.Замітка ? "*" :
+					типЗапису == Перелічення.ТипЗапису.Благодійність ? "." : "");*/
 
 				Довідники.КласифікаторВитрат_Pointer Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(cur.Fields[Довідники.Записи_Select.Витрата].ToString()));
 				string ВитратаПредставлення = (!Витрата.IsEmpty() && dictionaryCostСlassifier.ContainsKey(Витрата.UnigueID.ToString())) ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : "";
@@ -345,13 +349,12 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, /*string _НаростаючаСума,*/ string _ТипЗапису, string _Витрата)
+			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата)
 			{
 				ID = _id;
 				Назва = _Назва;
 				ДатаЗапису = _ДатаЗапису;
 				Сума = _Сума;
-				//НаростаючаСума = _НаростаючаСума;
 				ТипЗапису = _ТипЗапису;
 				Витрата = _Витрата;
 			}
@@ -359,11 +362,8 @@ namespace HomeFinances
 			public string Назва { get; set; }
 			public string ДатаЗапису { get; set; }
 			public string Сума { get; set; }
-			//public string НаростаючаСума { get; set; }
 			public string ТипЗапису { get; set; }
 			public string Витрата { get; set; }
 		}
 	}
-
-    
 }

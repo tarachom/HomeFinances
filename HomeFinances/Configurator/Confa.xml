@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>19.07.2021 18:51:25</DateTimeSave>
+  <DateTimeSave>20.07.2021 16:37:28</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -351,7 +351,7 @@
     <Enum>
       <Name>ТипЗапису</Name>
       <Desc>Тип запису  - це поступлення фінансів або витрати фінансів</Desc>
-      <SerialNumber>4</SerialNumber>
+      <SerialNumber>6</SerialNumber>
       <Fields>
         <Field>
           <Name>Витрати</Name>
@@ -370,6 +370,11 @@
           <Value>4</Value>
           <Desc>
           </Desc>
+        </Field>
+        <Field>
+          <Name>Замітка</Name>
+          <Value>5</Value>
+          <Desc>Ні витрати ні поступлення. Звичайна замітка</Desc>
         </Field>
       </Fields>
     </Enum>

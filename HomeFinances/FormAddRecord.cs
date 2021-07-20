@@ -38,9 +38,9 @@ namespace HomeFinances
 
 		private void FormAddRecord_Load(object sender, EventArgs e)
 		{
-			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Витрати);
-			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Поступлення);
-			comboBoxTypeRecord.Items.Add(Перелічення.ТипЗапису.Благодійність);
+			//Заповнення елементів перелічення
+			foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ТипЗапису"].Fields.Values)
+				comboBoxTypeRecord.Items.Add((Перелічення.ТипЗапису)field.Value);
 
 			if (IsNew.HasValue)
 			{
