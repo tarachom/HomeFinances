@@ -44,7 +44,7 @@ namespace HomeFinances
 			FormCostСlassifier formDirectoryList = new FormCostСlassifier();
 			formDirectoryList.DirectoryPointerItemSelect = DirectoryPointerItem;
 			formDirectoryList.DC = this;
-			formDirectoryList.Show();
+			formDirectoryList.ShowDialog();
 		}
 
         private void DirectoryControl_Load(object sender, EventArgs e)

@@ -107,9 +107,13 @@ namespace HomeFinances
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 			string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
-			DC.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
 
-			this.Hide();
+			if (DC != null)
+            {
+				DC.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
+
+				this.Close();
+			}
 		}
 
         private void toolStripButtonAdd_Click(object sender, EventArgs e)

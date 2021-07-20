@@ -208,7 +208,7 @@ namespace HomeFinances
             // menuAddRecordToolStripMenuItem
             // 
             this.menuAddRecordToolStripMenuItem.Name = "menuAddRecordToolStripMenuItem";
-            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.menuAddRecordToolStripMenuItem.Text = "Додати запис";
             this.menuAddRecordToolStripMenuItem.Click += new System.EventHandler(this.menuAddRecordToolStripMenuItem_Click);
             // 

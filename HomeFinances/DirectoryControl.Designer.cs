@@ -41,6 +41,7 @@ namespace HomeFinances
             this.textBoxControl.Location = new System.Drawing.Point(0, 3);
             this.textBoxControl.Multiline = true;
             this.textBoxControl.Name = "textBoxControl";
+            this.textBoxControl.ReadOnly = true;
             this.textBoxControl.Size = new System.Drawing.Size(201, 22);
             this.textBoxControl.TabIndex = 0;
             // 

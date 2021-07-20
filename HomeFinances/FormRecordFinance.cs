@@ -162,7 +162,9 @@ namespace HomeFinances
 
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
 				string типЗаписуПредставлення = (типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" : "-");
+
 				Довідники.КласифікаторВитрат_Pointer Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(cur.Fields[Довідники.Записи_Select.Витрата].ToString()));
+				string ВитратаПредставлення = (!Витрата.IsEmpty() && dictionaryCostСlassifier.ContainsKey(Витрата.UnigueID.ToString())) ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : "";
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
@@ -170,7 +172,7 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
-					(!Витрата.IsEmpty() && dictionaryCostСlassifier.ContainsKey(Витрата.UnigueID.ToString())) ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : ""
+					ВитратаПредставлення
 					));
 			}
 

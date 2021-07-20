@@ -41,8 +41,10 @@ namespace HomeFinances
             this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.maskedTextBoxTime = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -133,7 +135,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(60, 236);
+            this.buttonSave.Location = new System.Drawing.Point(60, 240);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -143,7 +145,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(389, 236);
+            this.buttonClose.Location = new System.Drawing.Point(389, 240);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -151,28 +153,48 @@ namespace HomeFinances
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // directoryControl1
-            // 
-            this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(60, 173);
-            this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(493, 27);
-            this.directoryControl1.TabIndex = 15;
-            // 
             // maskedTextBoxTime
             // 
-            this.maskedTextBoxTime.Location = new System.Drawing.Point(266, 9);
+            this.maskedTextBoxTime.Location = new System.Drawing.Point(302, 9);
             this.maskedTextBoxTime.Mask = "00:00:00";
             this.maskedTextBoxTime.Name = "maskedTextBoxTime";
             this.maskedTextBoxTime.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxTime.TabIndex = 16;
             this.maskedTextBoxTime.ValidatingType = typeof(System.DateTime);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 186);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Стаття витрат:";
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(100, 179);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(453, 27);
+            this.directoryControl1.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(266, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Час:";
+            // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 272);
+            this.ClientSize = new System.Drawing.Size(565, 278);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.maskedTextBoxTime);
             this.Controls.Add(this.directoryControl1);
             this.Controls.Add(this.buttonClose);
@@ -213,5 +235,7 @@ namespace HomeFinances
 		private System.Windows.Forms.Button buttonClose;
 		private DirectoryControl directoryControl1;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxTime;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
