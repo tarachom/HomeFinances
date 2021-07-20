@@ -85,7 +85,7 @@ namespace HomeFinances
 					cur.Fields[Довідники.КласифікаторВитрат_Select.Код].ToString()
 					));
 
-				if (DirectoryPointerItemSelect != null)
+				if (DirectoryPointerItemSelect != null && selectRow == 0) //??
 					if (cur.UnigueID.ToString() == DirectoryPointerItemSelect.UnigueID.ToString())
 					{
 						dataGridViewRecords.Rows[0].Selected = false;

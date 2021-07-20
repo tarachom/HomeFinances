@@ -187,14 +187,6 @@ namespace HomeFinances
 			}
 		}
 
-		private void menuAddRecordToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			FormAddRecord formAddRecord = new FormAddRecord();
-			formAddRecord.IsNew = true;
-			formAddRecord.OwnerForm = this;
-			formAddRecord.ShowDialog();
-		}
-
 		private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex >= 0 && e.RowIndex < dataGridViewRecords.RowCount)
@@ -214,7 +206,10 @@ namespace HomeFinances
 
 		private void toolStripButtonAdd_Click(object sender, EventArgs e)
 		{
-			menuAddRecordToolStripMenuItem_Click(this, EventArgs.Empty);
+			FormAddRecord formAddRecord = new FormAddRecord();
+			formAddRecord.IsNew = true;
+			formAddRecord.OwnerForm = this;
+			formAddRecord.ShowDialog();
 		}
 
 		private void toolStripButtonDelete_Click(object sender, EventArgs e)

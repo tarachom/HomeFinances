@@ -44,8 +44,6 @@ namespace HomeFinances
             this.toolStripMenuItemExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemImport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuAddRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -192,28 +190,12 @@ namespace HomeFinances
             // menuStripTop
             // 
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
             this.довідникиToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(856, 24);
             this.menuStripTop.TabIndex = 1;
             this.menuStripTop.Text = "menuStripTop";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuAddRecordToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
-            this.toolStripMenuItem1.Text = "Записи";
-            // 
-            // menuAddRecordToolStripMenuItem
-            // 
-            this.menuAddRecordToolStripMenuItem.Name = "menuAddRecordToolStripMenuItem";
-            this.menuAddRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.menuAddRecordToolStripMenuItem.Text = "Додати запис";
-            this.menuAddRecordToolStripMenuItem.Click += new System.EventHandler(this.menuAddRecordToolStripMenuItem_Click);
             // 
             // довідникиToolStripMenuItem
             // 
@@ -265,8 +247,6 @@ namespace HomeFinances
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.DataGridView dataGridViewRecords;
 		private System.Windows.Forms.MenuStrip menuStripTop;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem menuAddRecordToolStripMenuItem;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ToolStrip toolStripRecords;
