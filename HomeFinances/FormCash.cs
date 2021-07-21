@@ -69,17 +69,43 @@ namespace HomeFinances
 			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
 
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Назва);
+			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Валюта);
 			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
 
+			//Створення тимчасової таблиці
+			каса_Select.QuerySelect.CreateTempTable = true;
+			каса_Select.Select();
+
+			Dictionary<string, string> dictionaryCurrency = new Dictionary<string, string>();
+
+			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
+			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Select.Назва);
+			валюта_Select.QuerySelect.Where.Add(new Where("uid", Comparison.IN, "SELECT DISTINCT " + Довідники.Каса_Select.Валюта + " FROM " + каса_Select.QuerySelect.TempTable, true));
+			валюта_Select.Select();
+
+			while (валюта_Select.MoveNext())
+			{
+				Довідники.Валюта_Pointer cur = валюта_Select.Current;
+				dictionaryCurrency.Add(cur.UnigueID.ToString(), cur.Fields[Довідники.Валюта_Select.Назва].ToString());
+			}
+
+			//Видалення тимчасової таблиці
+			каса_Select.DeleteTempTable();
+
+			//Нормальна вибірка даних
 			каса_Select.Select();
 
 			while (каса_Select.MoveNext())
 			{
 				Довідники.Каса_Pointer cur = каса_Select.Current;
 
+				Довідники.Валюта_Pointer Валюта = new Довідники.Валюта_Pointer(new UnigueID(cur.Fields[Довідники.Каса_Select.Валюта].ToString()));
+				string ВалютаПредставлення = (!Валюта.IsEmpty() && dictionaryCurrency.ContainsKey(Валюта.UnigueID.ToString())) ? dictionaryCurrency[Валюта.UnigueID.ToString()] : "";
+
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.КласифікаторВитрат_Select.Назва].ToString()
+					cur.Fields[Довідники.КласифікаторВитрат_Select.Назва].ToString(),
+					ВалютаПредставлення
 					));
 
 				if (DirectoryPointerItemSelect != null && selectRow == 0) //??
@@ -99,13 +125,15 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва)
+			public Записи(string _id, string _Назва, string _Валюта)
 			{
 				ID = _id;
 				Назва = _Назва;
+				Валюта = _Валюта;
 			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
+			public string Валюта { get; set; }
 		}
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -114,7 +142,7 @@ namespace HomeFinances
 
 			if (DC != null)
             {
-				DC.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
+				DC.DirectoryPointerItem = new Довідники.Каса_Pointer(new UnigueID(Uid));
 				this.Close();
 			}
             else

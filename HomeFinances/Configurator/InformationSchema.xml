@@ -74,6 +74,11 @@
       <UdtName>text</UdtName>
     </Column>
     <Column>
+      <Name>col_a1</Name>
+      <DataType>text</DataType>
+      <UdtName>text</UdtName>
+    </Column>
+    <Column>
       <Name>col_a5</Name>
       <DataType>text</DataType>
       <UdtName>text</UdtName>

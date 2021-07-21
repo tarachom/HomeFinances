@@ -31,23 +31,36 @@ namespace HomeFinances
 
         private Довідники.Каса_Objest каса_Objest { get; set; }
 
-        private void FormAddCostСlassifier_Load(object sender, EventArgs e)
+		public void CallBack_DirectoryControl_Open_FormCurrency(DirectoryPointer directoryPointerItem)
+        {
+			FormCurrency formCurrency = new FormCurrency();
+			formCurrency.DirectoryPointerItem = directoryPointerItem;
+			formCurrency.DC = directoryControl1;
+			formCurrency.ShowDialog();
+		}
+
+		private void FormAddCostСlassifier_Load(object sender, EventArgs e)
         {
 			if (IsNew.HasValue)
 			{
 				каса_Objest = new Довідники.Каса_Objest();
 
+				directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCurrency;
+
 				if (IsNew.Value)
 				{
 					this.Text = "Новий запис";
+
+					directoryControl1.DirectoryPointerItem = new Довідники.Валюта_Pointer();
 				}
 				else
 				{
 					if (каса_Objest.Read(new UnigueID(Uid)))
 					{
-						textBoxName.Text = каса_Objest.Назва;
-
 						this.Text = "Редагування запису - " + каса_Objest.Назва;
+
+						textBoxName.Text = каса_Objest.Назва;
+						directoryControl1.DirectoryPointerItem = new Довідники.Валюта_Pointer(каса_Objest.Валюта.UnigueID);
 					}
 					else
 						MessageBox.Show("Error read");
@@ -67,6 +80,7 @@ namespace HomeFinances
 				try
 				{
 					каса_Objest.Назва = textBoxName.Text;
+					каса_Objest.Валюта = (Довідники.Валюта_Pointer)directoryControl1.DirectoryPointerItem;
 					каса_Objest.Save();
 				}
 				catch (Exception exp)

@@ -36,6 +36,14 @@ namespace HomeFinances
 
 		private Довідники.Записи_Objest записи_Objest { get; set; }
 
+		public void CallBack_DirectoryControl_Open_FormCostСlassifier(DirectoryPointer directoryPointerItem)
+		{
+			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
+			formCostСlassifier.DirectoryPointerItem = directoryPointerItem;
+			formCostСlassifier.DC = directoryControl1;
+			formCostСlassifier.ShowDialog();
+		}
+
 		private void FormAddRecord_Load(object sender, EventArgs e)
 		{
 			//Заповнення елементів перелічення
@@ -45,6 +53,7 @@ namespace HomeFinances
 			if (IsNew.HasValue)
 			{
 				записи_Objest = new Довідники.Записи_Objest();
+				directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
 
 				if (IsNew.Value)
 				{

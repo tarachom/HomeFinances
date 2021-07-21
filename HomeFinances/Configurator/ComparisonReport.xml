@@ -353,13 +353,13 @@
     <Control_Field>
       <Name>Скайп</Name>
       <NameInTable>col_a1</NameInTable>
-      <IsExist>no</IsExist>
-      <FieldCreate>
-        <Name>Скайп</Name>
-        <NameInTable>col_a1</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
         <ConfType>string</ConfType>
         <DataType>text</DataType>
-      </FieldCreate>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
     </Control_Field>
   </Control_Table>
 </root>

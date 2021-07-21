@@ -1,5 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <info>Додати колонку Скайп (col_a1, тип text)  в таблицю Контакти (tab_a08)</info>
-  <sql>ALTER TABLE tab_a08 ADD COLUMN "col_a1" text;</sql>
-</root>
+<root />

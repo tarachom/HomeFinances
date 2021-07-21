@@ -31,10 +31,10 @@ namespace HomeFinances
         {
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxCode = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -49,7 +49,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(56, 93);
+            this.buttonSave.Location = new System.Drawing.Point(88, 93);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 15;
@@ -57,51 +57,52 @@ namespace HomeFinances
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // textBoxCode
-            // 
-            this.textBoxCode.Location = new System.Drawing.Point(56, 38);
-            this.textBoxCode.Name = "textBoxCode";
-            this.textBoxCode.Size = new System.Drawing.Size(493, 20);
-            this.textBoxCode.TabIndex = 18;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Код:";
-            // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(56, 12);
+            this.textBoxName.Location = new System.Drawing.Point(88, 12);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(493, 20);
+            this.textBoxName.Size = new System.Drawing.Size(461, 20);
             this.textBoxName.TabIndex = 20;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 15);
+            this.label2.Location = new System.Drawing.Point(40, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Назва:";
             // 
-            // FormAddCostСlassifier
+            // directoryControl1
+            // 
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(88, 38);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(465, 27);
+            this.directoryControl1.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Валюта:";
+            // 
+            // FormAddCash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 128);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.directoryControl1);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxCode);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FormAddCostСlassifier";
+            this.Name = "FormAddCash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddCostСlassifier";
             this.Load += new System.EventHandler(this.FormAddCostСlassifier_Load);
@@ -114,9 +115,9 @@ namespace HomeFinances
 
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxCode;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label2;
+        private DirectoryControl directoryControl1;
+        private System.Windows.Forms.Label label1;
     }
 }

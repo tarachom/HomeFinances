@@ -20,6 +20,8 @@ namespace HomeFinances
 			InitializeComponent();
 		}
 
+		public Action<DirectoryPointer> CallBack { get; set; }
+
 		private DirectoryPointer mDirectoryPointerItem;
 		public DirectoryPointer DirectoryPointerItem
 		{
@@ -41,10 +43,7 @@ namespace HomeFinances
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			FormCostСlassifier formDirectoryList = new FormCostСlassifier();
-			formDirectoryList.DirectoryPointerItemSelect = DirectoryPointerItem;
-			formDirectoryList.DC = this;
-			formDirectoryList.ShowDialog();
+			CallBack.Invoke(DirectoryPointerItem);
 		}
 
         private void DirectoryControl_Load(object sender, EventArgs e)

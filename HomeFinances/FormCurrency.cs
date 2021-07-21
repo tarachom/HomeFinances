@@ -23,19 +23,19 @@ namespace HomeFinances
             InitializeComponent();
         }
 
-		private DirectoryPointer mDirectoryPointerItemSelect;
-		public DirectoryPointer DirectoryPointerItemSelect
+		private DirectoryPointer mDirectoryPointerItem;
+		public DirectoryPointer DirectoryPointerItem
 		{
 			get
 			{
-				return mDirectoryPointerItemSelect;
+				return mDirectoryPointerItem;
 			}
 
 			set
 			{
-				mDirectoryPointerItemSelect = value;
+				mDirectoryPointerItem = value;
 
-				if (mDirectoryPointerItemSelect != null)
+				if (mDirectoryPointerItem != null)
 				{
 					
 				}
@@ -85,8 +85,8 @@ namespace HomeFinances
 					cur.Fields[Довідники.Валюта_Select.Код].ToString()
 					));
 
-				if (DirectoryPointerItemSelect != null && selectRow == 0) //??
-					if (cur.UnigueID.ToString() == DirectoryPointerItemSelect.UnigueID.ToString())
+				if (DirectoryPointerItem != null && selectRow == 0) //??
+					if (cur.UnigueID.ToString() == DirectoryPointerItem.UnigueID.ToString())
 					{
 						dataGridViewRecords.Rows[0].Selected = false;
 						dataGridViewRecords.Rows[RecordsBindingList.Count - 1].Selected = true;
