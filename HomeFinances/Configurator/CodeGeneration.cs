@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 20.07.2021 16:37:28
+ * Дата конфігурації: 21.07.2021 10:01:56
  *
  */
 
@@ -121,10 +121,10 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize()
+        public string Serialize(string root = "Записи")
         {
             return 
-            "<Записи>" +
+            "<" + root + ">" +
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<ДатаЗапису>" + ДатаЗапису.ToString() + "</ДатаЗапису>"  +
@@ -133,7 +133,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Сума>" + Сума.ToString() + "</Сума>"  +
                "<Витрата>" + Витрата.ToString() + "</Витрата>"  +
                "<Каса>" + Каса.ToString() + "</Каса>"  +
-               "</Записи>";
+               "</" + root + ">";
         }
 
         public void Delete()
@@ -281,14 +281,14 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize()
+        public string Serialize(string root = "КласифікаторВитрат")
         {
             return 
-            "<КласифікаторВитрат>" +
+            "<" + root + ">" +
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
-               "</КласифікаторВитрат>";
+               "</" + root + ">";
         }
 
         public void Delete()
@@ -427,15 +427,15 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize()
+        public string Serialize(string root = "Записник")
         {
             return 
-            "<Записник>" +
+            "<" + root + ">" +
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
                "<Дата>" + Дата.ToString() + "</Дата>"  +
-               "</Записник>";
+               "</" + root + ">";
         }
 
         public void Delete()
@@ -578,14 +578,14 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize()
+        public string Serialize(string root = "Користувач")
         {
             return 
-            "<Користувач>" +
+            "<" + root + ">" +
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
-               "</Користувач>";
+               "</" + root + ">";
         }
 
         public void Delete()
@@ -815,15 +815,15 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize()
+        public string Serialize(string root = "Каса")
         {
             return 
-            "<Каса>" +
+            "<" + root + ">" +
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Валюта>" + Валюта.ToString() + "</Валюта>"  +
                "<ТипВалюти>" + ((int)ТипВалюти).ToString() + "</ТипВалюти>"  +
-               "</Каса>";
+               "</" + root + ">";
         }
 
         public void Delete()
@@ -963,14 +963,14 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize()
+        public string Serialize(string root = "Валюта")
         {
             return 
-            "<Валюта>" +
+            "<" + root + ">" +
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
-               "</Валюта>";
+               "</" + root + ">";
         }
 
         public void Delete()

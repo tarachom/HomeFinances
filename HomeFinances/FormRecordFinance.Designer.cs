@@ -176,14 +176,14 @@ namespace HomeFinances
             // toolStripMenuItemExport
             // 
             this.toolStripMenuItemExport.Name = "toolStripMenuItemExport";
-            this.toolStripMenuItemExport.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemExport.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItemExport.Text = "Вигрузити";
             this.toolStripMenuItemExport.Click += new System.EventHandler(this.toolStripMenuItemExport_Click);
             // 
             // toolStripMenuItemImport
             // 
             this.toolStripMenuItemImport.Name = "toolStripMenuItemImport";
-            this.toolStripMenuItemImport.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemImport.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItemImport.Text = "Загрузити";
             this.toolStripMenuItemImport.Click += new System.EventHandler(this.toolStripMenuItemImport_Click);
             // 

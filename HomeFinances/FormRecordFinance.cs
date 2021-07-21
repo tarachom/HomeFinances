@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Xml;
+using System.IO;
 
 using AccountingSoftware;
 using Конфа = НоваКонфігурація_1_0;
@@ -272,8 +273,49 @@ namespace HomeFinances
 			}
 		}
 
-        private void toolStripMenuItemExport_Click(object sender, EventArgs e)
+		private void Export()
+		{
+			StreamWriter sw = new StreamWriter("E:\\Вигрузка.xml");
+			sw.AutoFlush = true;
+
+			sw.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+			sw.WriteLine("<ВигрузкаДаних>");
+			sw.WriteLine("<Дата>" + DateTime.Now.ToString() + "</Дата>");
+
+			//1
+			sw.WriteLine("<Довідник_КласифікаторВитрат>");
+
+			Довідники.КласифікаторВитрат_Select класифікаторВитрат_Select = new Довідники.КласифікаторВитрат_Select();
+			класифікаторВитрат_Select.Select();
+			while (класифікаторВитрат_Select.MoveNext())
+			{
+				sw.WriteLine(класифікаторВитрат_Select.Current.GetDirectoryObject().Serialize("Запис"));
+			}
+
+			sw.WriteLine("</Довідник_КласифікаторВитрат>");
+
+			//2
+			sw.WriteLine("<Довідник_Записи>");
+
+			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
+			записи_Select.Select();
+			while (записи_Select.MoveNext())
+			{
+				sw.WriteLine(записи_Select.Current.GetDirectoryObject().Serialize("Запис"));
+			}
+
+			sw.WriteLine("</Довідник_Записи>");
+
+			sw.WriteLine("</ВигрузкаДаних>");
+
+			sw.Close();
+		}
+
+		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
         {
+			Export();
+
+			/*
 			XmlDocument xmlConfDocument = new XmlDocument();
 			xmlConfDocument.AppendChild(xmlConfDocument.CreateXmlDeclaration("1.0", "utf-8", ""));
 
@@ -335,6 +377,7 @@ namespace HomeFinances
 			}
 
 			xmlConfDocument.Save("E:\\export.xml");
+			*/
 		}
 
         private void toolStripMenuItemImport_Click(object sender, EventArgs e)
