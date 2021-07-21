@@ -52,11 +52,11 @@ namespace HomeFinances
 			dataGridViewRecords.DataSource = RecordsBindingList;
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = 300;
-			dataGridViewRecords.Columns["Телефон"].Width = 200;
-			dataGridViewRecords.Columns["Пошта"].Width = 200;
-			dataGridViewRecords.Columns["Скайп"].Width = 200;
-			dataGridViewRecords.Columns["Сайт"].Width = 200;
+			dataGridViewRecords.Columns["Назва"].Width = 350;
+			dataGridViewRecords.Columns["Телефон"].Width = 250;
+			//dataGridViewRecords.Columns["Пошта"].Width = 200;
+			//dataGridViewRecords.Columns["Скайп"].Width = 200;
+			//dataGridViewRecords.Columns["Сайт"].Width = 200;
 
 			LoadRecords();
 		}
@@ -89,10 +89,10 @@ namespace HomeFinances
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
 					cur.Fields[Довідники.Контакти_Select.Назва].ToString(),
-					cur.Fields[Довідники.Контакти_Select.Телефон].ToString(),
+					cur.Fields[Довідники.Контакти_Select.Телефон].ToString()/*,
 					cur.Fields[Довідники.Контакти_Select.Пошта].ToString(),
 					cur.Fields[Довідники.Контакти_Select.Скайп].ToString(),
-					cur.Fields[Довідники.Контакти_Select.Сайт].ToString()
+					cur.Fields[Довідники.Контакти_Select.Сайт].ToString()*/
 					));
 
 				//if (DirectoryPointerItemSelect != null && selectRow == 0) //??
@@ -112,21 +112,21 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _Телефон, string _Пошта, string _Скайп, string _Сайт)
+			public Записи(string _id, string _Назва, string _Телефон/*, string _Пошта, string _Скайп, string _Сайт*/)
 			{
 				ID = _id;
 				Назва = _Назва;
 				Телефон = _Телефон;
-				Пошта = _Пошта;
+				/*Пошта = _Пошта;
 				Скайп = _Скайп;
-				Сайт = _Сайт;				
+				Сайт = _Сайт;*/
 			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
 			public string Телефон { get; set; }
-			public string Пошта { get; set; }
-			public string Скайп { get; set; }
-			public string Сайт { get; set; }
+			//public string Пошта { get; set; }
+			//public string Скайп { get; set; }
+			//public string Сайт { get; set; }
 		}
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -187,6 +187,11 @@ namespace HomeFinances
 						Довідники.Контакти_Objest контакти_Objest_Новий = new Довідники.Контакти_Objest();
 						контакти_Objest_Новий.New();
 						контакти_Objest_Новий.Назва = "(Копія) - " + контакти_Objest.Назва;
+						контакти_Objest_Новий.Телефон = контакти_Objest.Телефон;
+						контакти_Objest_Новий.Пошта = контакти_Objest.Пошта;
+						контакти_Objest_Новий.Скайп = контакти_Objest.Скайп;
+						контакти_Objest_Новий.Сайт = контакти_Objest.Сайт;
+
 						контакти_Objest_Новий.Save();
 					}
 					else
