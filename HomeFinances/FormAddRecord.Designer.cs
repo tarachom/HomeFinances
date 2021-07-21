@@ -43,8 +43,11 @@ namespace HomeFinances
             this.buttonClose = new System.Windows.Forms.Button();
             this.maskedTextBoxTime = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label7 = new System.Windows.Forms.Label();
+            this.textBoxUrlLink = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonOpenBrouser = new System.Windows.Forms.Button();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +63,7 @@ namespace HomeFinances
             // 
             this.textBoxName.Location = new System.Drawing.Point(60, 35);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(493, 20);
+            this.textBoxName.Size = new System.Drawing.Size(667, 20);
             this.textBoxName.TabIndex = 1;
             // 
             // textBoxOpys
@@ -68,7 +71,7 @@ namespace HomeFinances
             this.textBoxOpys.Location = new System.Drawing.Point(60, 61);
             this.textBoxOpys.Multiline = true;
             this.textBoxOpys.Name = "textBoxOpys";
-            this.textBoxOpys.Size = new System.Drawing.Size(493, 53);
+            this.textBoxOpys.Size = new System.Drawing.Size(667, 162);
             this.textBoxOpys.TabIndex = 3;
             // 
             // label2
@@ -99,7 +102,7 @@ namespace HomeFinances
             // 
             // maskedTextBoxSuma
             // 
-            this.maskedTextBoxSuma.Location = new System.Drawing.Point(60, 147);
+            this.maskedTextBoxSuma.Location = new System.Drawing.Point(60, 256);
             this.maskedTextBoxSuma.Mask = "00000";
             this.maskedTextBoxSuma.Name = "maskedTextBoxSuma";
             this.maskedTextBoxSuma.Size = new System.Drawing.Size(100, 20);
@@ -109,7 +112,7 @@ namespace HomeFinances
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 150);
+            this.label5.Location = new System.Drawing.Point(12, 259);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 10;
@@ -118,7 +121,7 @@ namespace HomeFinances
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 123);
+            this.label4.Location = new System.Drawing.Point(12, 232);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 11;
@@ -128,14 +131,14 @@ namespace HomeFinances
             // 
             this.comboBoxTypeRecord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTypeRecord.FormattingEnabled = true;
-            this.comboBoxTypeRecord.Location = new System.Drawing.Point(60, 120);
+            this.comboBoxTypeRecord.Location = new System.Drawing.Point(60, 229);
             this.comboBoxTypeRecord.Name = "comboBoxTypeRecord";
             this.comboBoxTypeRecord.Size = new System.Drawing.Size(164, 21);
             this.comboBoxTypeRecord.TabIndex = 12;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(60, 240);
+            this.buttonSave.Location = new System.Drawing.Point(60, 359);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -145,7 +148,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(389, 240);
+            this.buttonClose.Location = new System.Drawing.Point(563, 359);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -165,19 +168,11 @@ namespace HomeFinances
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 186);
+            this.label6.Location = new System.Drawing.Point(12, 289);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "Стаття витрат:";
-            // 
-            // directoryControl1
-            // 
-            this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(100, 179);
-            this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(453, 27);
-            this.directoryControl1.TabIndex = 15;
             // 
             // label7
             // 
@@ -188,11 +183,48 @@ namespace HomeFinances
             this.label7.TabIndex = 18;
             this.label7.Text = "Час:";
             // 
+            // textBoxUrlLink
+            // 
+            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 315);
+            this.textBoxUrlLink.Name = "textBoxUrlLink";
+            this.textBoxUrlLink.Size = new System.Drawing.Size(589, 20);
+            this.textBoxUrlLink.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 318);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Ссилка на сайт:";
+            // 
+            // buttonOpenBrouser
+            // 
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 313);
+            this.buttonOpenBrouser.Name = "buttonOpenBrouser";
+            this.buttonOpenBrouser.Size = new System.Drawing.Size(33, 23);
+            this.buttonOpenBrouser.TabIndex = 21;
+            this.buttonOpenBrouser.Text = "...";
+            this.buttonOpenBrouser.UseVisualStyleBackColor = true;
+            this.buttonOpenBrouser.Click += new System.EventHandler(this.buttonOpenBrouser_Click);
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(99, 282);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(453, 27);
+            this.directoryControl1.TabIndex = 15;
+            // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 278);
+            this.ClientSize = new System.Drawing.Size(739, 396);
+            this.Controls.Add(this.buttonOpenBrouser);
+            this.Controls.Add(this.textBoxUrlLink);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.maskedTextBoxTime);
@@ -237,5 +269,8 @@ namespace HomeFinances
         private System.Windows.Forms.MaskedTextBox maskedTextBoxTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxUrlLink;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonOpenBrouser;
     }
 }

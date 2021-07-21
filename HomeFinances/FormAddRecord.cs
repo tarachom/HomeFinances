@@ -48,29 +48,28 @@ namespace HomeFinances
 
 				if (IsNew.Value)
 				{
+					this.Text = "Новий запис";
+
 					dateTimePickerRecord.Value = DateTime.Now;
 					maskedTextBoxTime.Text = DateTime.Now.TimeOfDay.ToString();
 					comboBoxTypeRecord.SelectedIndex = 0;
 					maskedTextBoxSuma.Text = "0";
-
-					this.Text = "Новий запис";
-
 					directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer();
 				}
 				else
 				{
 					if (записи_Objest.Read(new UnigueID(Uid)))
 					{
+						this.Text = "Редагування запису - " + записи_Objest.Назва;
+
 						dateTimePickerRecord.Value = записи_Objest.ДатаЗапису;
 						maskedTextBoxTime.Text = записи_Objest.ДатаЗапису.TimeOfDay.ToString();
 						textBoxName.Text = записи_Objest.Назва;
 						textBoxOpys.Text = записи_Objest.Опис;
 						comboBoxTypeRecord.SelectedItem = записи_Objest.ТипЗапису;
 						maskedTextBoxSuma.Text = записи_Objest.Сума.ToString();
-
-						this.Text = "Редагування запису - " + записи_Objest.Назва;
-
 						directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
+						textBoxUrlLink.Text = записи_Objest.СсилкаНаСайт;
 					}
 					else
 						MessageBox.Show("Error read");
@@ -100,6 +99,8 @@ namespace HomeFinances
 					записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
 					записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
 					записи_Objest.Витрата = (Довідники.КласифікаторВитрат_Pointer)directoryControl1.DirectoryPointerItem;
+					записи_Objest.СсилкаНаСайт = textBoxUrlLink.Text;
+
 					записи_Objest.Save();
 				}
 				catch (Exception exp)
@@ -114,5 +115,10 @@ namespace HomeFinances
 				this.Close();
 			}
 		}
-	}
+
+        private void buttonOpenBrouser_Click(object sender, EventArgs e)
+        {
+			System.Diagnostics.Process.Start("firefox.exe", textBoxUrlLink.Text);
+		}
+    }
 }

@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 21.07.2021 10:01:56
+ * Дата конфігурації: 21.07.2021 12:29:09
  *
  */
 
@@ -77,7 +77,7 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записи_Objest : DirectoryObject
     {
         public Записи_Objest() : base(Config.Kernel, "tab_a02",
-             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2" }) 
+             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4" }) 
         {
             Назва = "";
             ДатаЗапису = DateTime.MinValue;
@@ -86,6 +86,7 @@ namespace НоваКонфігурація_1_0.Довідники
             Сума = 0;
             Витрата = new Довідники.КласифікаторВитрат_Pointer();
             Каса = new Довідники.Каса_Pointer();
+            СсилкаНаСайт = "";
             
         }
         
@@ -100,6 +101,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Сума = (base.FieldValue["col_b1"] != DBNull.Value) ? (int)base.FieldValue["col_b1"] : 0;
                 Витрата = new Довідники.КласифікаторВитрат_Pointer(base.FieldValue["col_a1"]);
                 Каса = new Довідники.Каса_Pointer(base.FieldValue["col_a2"]);
+                СсилкаНаСайт = base.FieldValue["col_a4"].ToString();
                 
                 BaseClear();
                 return true;
@@ -117,6 +119,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_b1"] = Сума;
             base.FieldValue["col_a1"] = Витрата.UnigueID.UGuid;
             base.FieldValue["col_a2"] = Каса.UnigueID.UGuid;
+            base.FieldValue["col_a4"] = СсилкаНаСайт;
             
             BaseSave();
         }
@@ -133,6 +136,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Сума>" + Сума.ToString() + "</Сума>"  +
                "<Витрата>" + Витрата.ToString() + "</Витрата>"  +
                "<Каса>" + Каса.ToString() + "</Каса>"  +
+               "<СсилкаНаСайт>" + "<![CDATA[" + СсилкаНаСайт + "]]>" + "</СсилкаНаСайт>"  +
                "</" + root + ">";
         }
 
@@ -154,6 +158,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public int Сума { get; set; }
         public Довідники.КласифікаторВитрат_Pointer Витрата { get; set; }
         public Довідники.Каса_Pointer Каса { get; set; }
+        public string СсилкаНаСайт { get; set; }
         
     }
     
@@ -192,8 +197,8 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записи_Select : DirectorySelect, IDisposable
     {
         public Записи_Select() : base(Config.Kernel, "tab_a02",
-            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2" },
-            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса" }) { }
+            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4" },
+            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса", "СсилкаНаСайт" }) { }
         
         public const string Назва = "col_a7";
         public const string ДатаЗапису = "col_a6";
@@ -202,6 +207,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public const string Сума = "col_b1";
         public const string Витрата = "col_a1";
         public const string Каса = "col_a2";
+        public const string СсилкаНаСайт = "col_a4";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -236,7 +242,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Записи_Список_View() : base(Config.Kernel, "tab_a02", 
              new string[] { "col_a4", "col_a5" },
              new string[] { "Назва", "Код" },
-             new string[] { "", "" },
+             new string[] { "string", "" },
              "Довідник_Записи_Список")
         {
             

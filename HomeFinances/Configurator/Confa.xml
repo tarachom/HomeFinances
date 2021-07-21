@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>21.07.2021 10:01:56</DateTimeSave>
+  <DateTimeSave>21.07.2021 12:29:09</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -72,6 +72,13 @@
           <Desc>З якого місця зберігання грошей відбувається операція</Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
+        <Field>
+          <Name>СсилкаНаСайт</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Type>string</Type>
+          <Desc>Привязка запису до сторінки в інтернеті</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
       </Fields>
       <TabularParts />
       <Views>
@@ -83,6 +90,7 @@
             <Field>
               <Name>Назва</Name>
               <NameInTable>col_a4</NameInTable>
+              <Type>string</Type>
             </Field>
             <Field>
               <Name>Код</Name>
