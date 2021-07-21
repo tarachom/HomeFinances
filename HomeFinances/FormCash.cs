@@ -23,21 +23,21 @@ namespace HomeFinances
             InitializeComponent();
         }
 
-		private DirectoryPointer mDirectoryPointerItemSelect;
-		public DirectoryPointer DirectoryPointerItemSelect
+		private DirectoryPointer mDirectoryPointerItem;
+		public DirectoryPointer DirectoryPointerItem
 		{
 			get
 			{
-				return mDirectoryPointerItemSelect;
+				return mDirectoryPointerItem;
 			}
 
 			set
 			{
-				mDirectoryPointerItemSelect = value;
+				mDirectoryPointerItem = value;
 
-				if (mDirectoryPointerItemSelect != null)
+				if (mDirectoryPointerItem != null)
 				{
-					
+
 				}
 			}
 		}
@@ -70,6 +70,7 @@ namespace HomeFinances
 
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Назва);
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Валюта);
+			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.ТипВалюти);
 			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
 
 			//Створення тимчасової таблиці
@@ -99,17 +100,20 @@ namespace HomeFinances
 			{
 				Довідники.Каса_Pointer cur = каса_Select.Current;
 
+				string ТипВалютиПредставлення = ((Перелічення.ТипВалюти)cur.Fields[Довідники.Каса_Select.ТипВалюти]).ToString();
+
 				Довідники.Валюта_Pointer Валюта = new Довідники.Валюта_Pointer(new UnigueID(cur.Fields[Довідники.Каса_Select.Валюта].ToString()));
 				string ВалютаПредставлення = (!Валюта.IsEmpty() && dictionaryCurrency.ContainsKey(Валюта.UnigueID.ToString())) ? dictionaryCurrency[Валюта.UnigueID.ToString()] : "";
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.КласифікаторВитрат_Select.Назва].ToString(),
-					ВалютаПредставлення
+					cur.Fields[Довідники.Каса_Select.Назва].ToString(),
+					ВалютаПредставлення,
+					ТипВалютиПредставлення
 					));
 
-				if (DirectoryPointerItemSelect != null && selectRow == 0) //??
-					if (cur.UnigueID.ToString() == DirectoryPointerItemSelect.UnigueID.ToString())
+				if (DirectoryPointerItem != null && selectRow == 0) //??
+					if (cur.UnigueID.ToString() == DirectoryPointerItem.UnigueID.ToString())
 					{
 						dataGridViewRecords.Rows[0].Selected = false;
 						dataGridViewRecords.Rows[RecordsBindingList.Count - 1].Selected = true;
@@ -125,15 +129,17 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _Валюта)
+			public Записи(string _id, string _Назва, string _Валюта, string _ТипВалюти)
 			{
 				ID = _id;
 				Назва = _Назва;
 				Валюта = _Валюта;
+				ТипВалюти = _ТипВалюти;
 			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
 			public string Валюта { get; set; }
+			public string ТипВалюти { get; set; }
 		}
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -39,8 +39,12 @@ namespace HomeFinances
 			formCurrency.ShowDialog();
 		}
 
-		private void FormAddCostСlassifier_Load(object sender, EventArgs e)
+		private void FormAddCash_Load(object sender, EventArgs e)
         {
+			//Заповнення елементів перелічення
+			foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ТипВалюти"].Fields.Values)
+				comboBoxTypeCurrency.Items.Add((Перелічення.ТипВалюти)field.Value);
+
 			if (IsNew.HasValue)
 			{
 				каса_Objest = new Довідники.Каса_Objest();
@@ -52,6 +56,7 @@ namespace HomeFinances
 					this.Text = "Новий запис";
 
 					directoryControl1.DirectoryPointerItem = new Довідники.Валюта_Pointer();
+					comboBoxTypeCurrency.SelectedIndex = 0;
 				}
 				else
 				{
@@ -61,6 +66,7 @@ namespace HomeFinances
 
 						textBoxName.Text = каса_Objest.Назва;
 						directoryControl1.DirectoryPointerItem = new Довідники.Валюта_Pointer(каса_Objest.Валюта.UnigueID);
+						comboBoxTypeCurrency.SelectedItem = каса_Objest.ТипВалюти;
 					}
 					else
 						MessageBox.Show("Error read");
@@ -81,6 +87,7 @@ namespace HomeFinances
 				{
 					каса_Objest.Назва = textBoxName.Text;
 					каса_Objest.Валюта = (Довідники.Валюта_Pointer)directoryControl1.DirectoryPointerItem;
+					каса_Objest.ТипВалюти = (Перелічення.ТипВалюти)comboBoxTypeCurrency.SelectedItem;
 					каса_Objest.Save();
 				}
 				catch (Exception exp)

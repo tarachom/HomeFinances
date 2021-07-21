@@ -35,11 +35,13 @@ namespace HomeFinances
             this.label2 = new System.Windows.Forms.Label();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxTypeCurrency = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(385, 93);
+            this.buttonClose.Location = new System.Drawing.Point(385, 129);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 16;
@@ -49,7 +51,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(88, 93);
+            this.buttonSave.Location = new System.Drawing.Point(88, 129);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 15;
@@ -75,6 +77,7 @@ namespace HomeFinances
             // 
             // directoryControl1
             // 
+            this.directoryControl1.CallBack = null;
             this.directoryControl1.DirectoryPointerItem = null;
             this.directoryControl1.Location = new System.Drawing.Point(88, 38);
             this.directoryControl1.Name = "directoryControl1";
@@ -90,11 +93,31 @@ namespace HomeFinances
             this.label1.TabIndex = 22;
             this.label1.Text = "Валюта:";
             // 
+            // comboBoxTypeCurrency
+            // 
+            this.comboBoxTypeCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTypeCurrency.FormattingEnabled = true;
+            this.comboBoxTypeCurrency.Location = new System.Drawing.Point(88, 71);
+            this.comboBoxTypeCurrency.Name = "comboBoxTypeCurrency";
+            this.comboBoxTypeCurrency.Size = new System.Drawing.Size(204, 21);
+            this.comboBoxTypeCurrency.TabIndex = 24;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(53, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Тип:";
+            // 
             // FormAddCash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 128);
+            this.ClientSize = new System.Drawing.Size(565, 164);
+            this.Controls.Add(this.comboBoxTypeCurrency);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.directoryControl1);
             this.Controls.Add(this.textBoxName);
@@ -105,7 +128,7 @@ namespace HomeFinances
             this.Name = "FormAddCash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddCostСlassifier";
-            this.Load += new System.EventHandler(this.FormAddCostСlassifier_Load);
+            this.Load += new System.EventHandler(this.FormAddCash_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,5 +142,7 @@ namespace HomeFinances
         private System.Windows.Forms.Label label2;
         private DirectoryControl directoryControl1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxTypeCurrency;
+        private System.Windows.Forms.Label label4;
     }
 }

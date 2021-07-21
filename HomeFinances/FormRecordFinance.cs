@@ -320,6 +320,32 @@ namespace HomeFinances
 
 			sw.WriteLine("</Довідник_Контакти>");
 
+			//4
+			sw.WriteLine("<Довідник_Валюти>");
+
+			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
+			валюта_Select.QuerySelect.Order.Add(Довідники.Валюта_Select.Назва, SelectOrder.ASC);
+			валюта_Select.Select();
+			while (валюта_Select.MoveNext())
+			{
+				sw.WriteLine(валюта_Select.Current.GetDirectoryObject().Serialize("Запис"));
+			}
+
+			sw.WriteLine("</Довідник_Валюти>");
+
+			//5
+			sw.WriteLine("<Довідник_Каси>");
+
+			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
+			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
+			каса_Select.Select();
+			while (каса_Select.MoveNext())
+			{
+				sw.WriteLine(каса_Select.Current.GetDirectoryObject().Serialize("Запис"));
+			}
+
+			sw.WriteLine("</Довідник_Каси>");
+
 			sw.WriteLine("</ВигрузкаДаних>");
 
 			sw.Close();

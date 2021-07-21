@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>21.07.2021 16:41:50</DateTimeSave>
+  <DateTimeSave>21.07.2021 17:58:39</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -268,7 +268,7 @@
           <NameInTable>col_a1</NameInTable>
           <Type>string</Type>
           <Desc>Назва</Desc>
-          <IsPresentation>0</IsPresentation>
+          <IsPresentation>1</IsPresentation>
         </Field>
         <Field>
           <Name>Валюта</Name>

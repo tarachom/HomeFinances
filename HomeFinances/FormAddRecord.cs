@@ -44,6 +44,14 @@ namespace HomeFinances
 			formCostСlassifier.ShowDialog();
 		}
 
+		public void CallBack_DirectoryControl_Open_FormCash(DirectoryPointer directoryPointerItem)
+		{
+			FormCash formCash = new FormCash();
+			formCash.DirectoryPointerItem = directoryPointerItem;
+			formCash.DC = directoryControl2;
+			formCash.ShowDialog();
+		}
+
 		private void FormAddRecord_Load(object sender, EventArgs e)
 		{
 			//Заповнення елементів перелічення
@@ -54,6 +62,7 @@ namespace HomeFinances
 			{
 				записи_Objest = new Довідники.Записи_Objest();
 				directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
+				directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
 
 				if (IsNew.Value)
 				{
@@ -64,6 +73,7 @@ namespace HomeFinances
 					comboBoxTypeRecord.SelectedIndex = 0;
 					maskedTextBoxSuma.Text = "0";
 					directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer();
+					directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer();
 				}
 				else
 				{
@@ -79,6 +89,7 @@ namespace HomeFinances
 						maskedTextBoxSuma.Text = записи_Objest.Сума.ToString();
 						directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
 						textBoxUrlLink.Text = записи_Objest.СсилкаНаСайт;
+						directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.Каса.UnigueID);
 					}
 					else
 						MessageBox.Show("Error read");
@@ -109,6 +120,7 @@ namespace HomeFinances
 					записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
 					записи_Objest.Витрата = (Довідники.КласифікаторВитрат_Pointer)directoryControl1.DirectoryPointerItem;
 					записи_Objest.СсилкаНаСайт = textBoxUrlLink.Text;
+					записи_Objest.Каса = (Довідники.Каса_Pointer)directoryControl2.DirectoryPointerItem;
 
 					записи_Objest.Save();
 				}

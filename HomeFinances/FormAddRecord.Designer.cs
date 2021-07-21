@@ -48,6 +48,8 @@ namespace HomeFinances
             this.label8 = new System.Windows.Forms.Label();
             this.buttonOpenBrouser = new System.Windows.Forms.Button();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.label9 = new System.Windows.Forms.Label();
+            this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.SuspendLayout();
             // 
             // label1
@@ -138,7 +140,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(60, 359);
+            this.buttonSave.Location = new System.Drawing.Point(60, 393);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -148,7 +150,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(563, 359);
+            this.buttonClose.Location = new System.Drawing.Point(563, 393);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -211,17 +213,38 @@ namespace HomeFinances
             // 
             // directoryControl1
             // 
+            this.directoryControl1.CallBack = null;
             this.directoryControl1.DirectoryPointerItem = null;
             this.directoryControl1.Location = new System.Drawing.Point(99, 282);
             this.directoryControl1.Name = "directoryControl1";
             this.directoryControl1.Size = new System.Drawing.Size(453, 27);
             this.directoryControl1.TabIndex = 15;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 348);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Каса:";
+            // 
+            // directoryControl2
+            // 
+            this.directoryControl2.CallBack = null;
+            this.directoryControl2.DirectoryPointerItem = null;
+            this.directoryControl2.Location = new System.Drawing.Point(99, 341);
+            this.directoryControl2.Name = "directoryControl2";
+            this.directoryControl2.Size = new System.Drawing.Size(453, 27);
+            this.directoryControl2.TabIndex = 22;
+            // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 396);
+            this.ClientSize = new System.Drawing.Size(739, 428);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.directoryControl2);
             this.Controls.Add(this.buttonOpenBrouser);
             this.Controls.Add(this.textBoxUrlLink);
             this.Controls.Add(this.label8);
@@ -272,5 +295,7 @@ namespace HomeFinances
         private System.Windows.Forms.TextBox textBoxUrlLink;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonOpenBrouser;
+        private System.Windows.Forms.Label label9;
+        private DirectoryControl directoryControl2;
     }
 }

@@ -148,7 +148,7 @@ namespace HomeFinances
 				formAddCurrency.IsNew = false;
 				formAddCurrency.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
 				formAddCurrency.ShowDialog();
-			}			
+			}
 		}
 
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
