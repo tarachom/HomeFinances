@@ -65,6 +65,12 @@
     <Compile Include="FormAddContacts.Designer.cs">
       <DependentUpon>FormAddContacts.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddCash.Designer.cs">
+      <DependentUpon>FormAddCash.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddCurrency.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,12 @@
     </Compile>
     <Compile Include="FormContacts.Designer.cs">
       <DependentUpon>FormContacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCash.Designer.cs">
+      <DependentUpon>FormCash.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCurrency.cs">
       <SubType>Form</SubType>
@@ -115,6 +127,9 @@
     <EmbeddedResource Include="FormAddContacts.resx">
       <DependentUpon>FormAddContacts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddCash.resx">
+      <DependentUpon>FormAddCash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddCurrency.resx">
       <DependentUpon>FormAddCurrency.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormContacts.resx">
       <DependentUpon>FormContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCash.resx">
+      <DependentUpon>FormCash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCurrency.resx">
       <DependentUpon>FormCurrency.cs</DependentUpon>

@@ -435,5 +435,11 @@ namespace HomeFinances
 			FormCurrency formCurrency = new FormCurrency();
 			formCurrency.Show();
 		}
+
+        private void касиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormCash formCash = new FormCash();
+			formCash.Show();
+		}
     }
 }

@@ -48,6 +48,7 @@ namespace HomeFinances
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.контактиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.валютиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.касиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -204,7 +205,8 @@ namespace HomeFinances
             this.довідникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.класифікаторВитратToolStripMenuItem,
             this.контактиToolStripMenuItem,
-            this.валютиToolStripMenuItem});
+            this.валютиToolStripMenuItem,
+            this.касиToolStripMenuItem});
             this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
             this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.довідникиToolStripMenuItem.Text = "Довідники";
@@ -229,6 +231,13 @@ namespace HomeFinances
             this.валютиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.валютиToolStripMenuItem.Text = "Валюти";
             this.валютиToolStripMenuItem.Click += new System.EventHandler(this.валютиToolStripMenuItem_Click);
+            // 
+            // касиToolStripMenuItem
+            // 
+            this.касиToolStripMenuItem.Name = "касиToolStripMenuItem";
+            this.касиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.касиToolStripMenuItem.Text = "Каси";
+            this.касиToolStripMenuItem.Click += new System.EventHandler(this.касиToolStripMenuItem_Click);
             // 
             // FormRecordFinance
             // 
@@ -280,6 +289,7 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripMenuItem класифікаторВитратToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem контактиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem валютиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem касиToolStripMenuItem;
     }
 }
 
