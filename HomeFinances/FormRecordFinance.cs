@@ -422,14 +422,18 @@ namespace HomeFinances
         {
 			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
 			formCostСlassifier.Show();
-
 		}
 
         private void контактиToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			FormContacts formContacts = new FormContacts();
 			formContacts.Show();
+		}
 
+        private void валютиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormCurrency formCurrency = new FormCurrency();
+			formCurrency.Show();
 		}
     }
 }
