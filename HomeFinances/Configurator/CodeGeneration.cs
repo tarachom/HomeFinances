@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 21.07.2021 12:58:59
+ * Дата конфігурації: 21.07.2021 13:43:55
  *
  */
 
@@ -548,7 +548,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Користувач"
-    
+    ///<summary>
+    ///Користувач програми.
+    ///</summary>
     class Користувач_Objest : DirectoryObject
     {
         public Користувач_Objest() : base(Config.Kernel, "tab_a04",
@@ -613,7 +615,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Користувач програми.
+    ///</summary>
     class Користувач_Pointer : DirectoryPointer
     {
         public Користувач_Pointer(object uid = null) : base(Config.Kernel, "tab_a04")
@@ -640,7 +644,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Користувач програми.
+    ///</summary>
     class Користувач_Select : DirectorySelect, IDisposable
     {
         public Користувач_Select() : base(Config.Kernel, "tab_a04",
@@ -1077,17 +1083,20 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Контакти"
-    
+    ///<summary>
+    ///Довідник для контактів.
+    ///</summary>
     class Контакти_Objest : DirectoryObject
     {
         public Контакти_Objest() : base(Config.Kernel, "tab_a08",
-             new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7" }) 
+             new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1" }) 
         {
             Телефон = "";
             Назва = "";
             Сайт = "";
             Пошта = "";
             Опис = "";
+            Скайп = "";
             
         }
         
@@ -1100,6 +1109,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Сайт = base.FieldValue["col_a5"].ToString();
                 Пошта = base.FieldValue["col_a6"].ToString();
                 Опис = base.FieldValue["col_a7"].ToString();
+                Скайп = base.FieldValue["col_a1"].ToString();
                 
                 BaseClear();
                 return true;
@@ -1115,6 +1125,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a5"] = Сайт;
             base.FieldValue["col_a6"] = Пошта;
             base.FieldValue["col_a7"] = Опис;
+            base.FieldValue["col_a1"] = Скайп;
             
             BaseSave();
         }
@@ -1129,6 +1140,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Сайт>" + "<![CDATA[" + Сайт + "]]>" + "</Сайт>"  +
                "<Пошта>" + "<![CDATA[" + Пошта + "]]>" + "</Пошта>"  +
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "<Скайп>" + "<![CDATA[" + Скайп + "]]>" + "</Скайп>"  +
                "</" + root + ">";
         }
 
@@ -1148,10 +1160,13 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Сайт { get; set; }
         public string Пошта { get; set; }
         public string Опис { get; set; }
+        public string Скайп { get; set; }
         
     }
     
-    
+    ///<summary>
+    ///Довідник для контактів.
+    ///</summary>
     class Контакти_Pointer : DirectoryPointer
     {
         public Контакти_Pointer(object uid = null) : base(Config.Kernel, "tab_a08")
@@ -1178,18 +1193,21 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Довідник для контактів.
+    ///</summary>
     class Контакти_Select : DirectorySelect, IDisposable
     {
         public Контакти_Select() : base(Config.Kernel, "tab_a08",
-            new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7" },
-            new string[] { "Телефон", "Назва", "Сайт", "Пошта", "Опис" }) { }
+            new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1" },
+            new string[] { "Телефон", "Назва", "Сайт", "Пошта", "Опис", "Скайп" }) { }
         
         public const string Телефон = "col_a4";
         public const string Назва = "col_a3";
         public const string Сайт = "col_a5";
         public const string Пошта = "col_a6";
         public const string Опис = "col_a7";
+        public const string Скайп = "col_a1";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -1224,7 +1242,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Контакти_Список_View() : base(Config.Kernel, "tab_a08", 
              new string[] { "col_a1", "col_a2" },
              new string[] { "Назва", "Код" },
-             new string[] { "", "" },
+             new string[] { "string", "" },
              "Довідник_Контакти_Список")
         {
             

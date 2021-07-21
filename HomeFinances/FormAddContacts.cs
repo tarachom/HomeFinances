@@ -45,10 +45,14 @@ namespace HomeFinances
 				{
 					if (контакти_Objest.Read(new UnigueID(Uid)))
 					{
-						textBoxName.Text = контакти_Objest.Назва;
-						
-
 						this.Text = "Редагування запису - " + контакти_Objest.Назва;
+
+						textBoxName.Text = контакти_Objest.Назва;
+						textBoxPhone.Text = контакти_Objest.Телефон;
+						textBoxEmail.Text = контакти_Objest.Пошта;
+						textBoxSkype.Text = контакти_Objest.Скайп;
+						textBoxSite.Text = контакти_Objest.Сайт;
+						textBoxDesc.Text = контакти_Objest.Опис;
 					}
 					else
 						MessageBox.Show("Error read");
@@ -68,6 +72,12 @@ namespace HomeFinances
 				try
 				{
 					контакти_Objest.Назва = textBoxName.Text;
+					контакти_Objest.Телефон = textBoxPhone.Text;
+					контакти_Objest.Пошта = textBoxEmail.Text;
+					контакти_Objest.Сайт = textBoxSite.Text;
+					контакти_Objest.Опис = textBoxDesc.Text;
+					контакти_Objest.Скайп = textBoxSkype.Text;
+
 					контакти_Objest.Save();
 				}
 				catch (Exception exp)

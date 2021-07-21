@@ -350,5 +350,16 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_Field>
+      <Name>Скайп</Name>
+      <NameInTable>col_a1</NameInTable>
+      <IsExist>no</IsExist>
+      <FieldCreate>
+        <Name>Скайп</Name>
+        <NameInTable>col_a1</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+      </FieldCreate>
+    </Control_Field>
   </Control_Table>
 </root>

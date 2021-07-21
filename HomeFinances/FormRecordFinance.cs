@@ -307,6 +307,19 @@ namespace HomeFinances
 
 			sw.WriteLine("</Довідник_Записи>");
 
+			//3
+			sw.WriteLine("<Довідник_Контакти>");
+
+			Довідники.Контакти_Select контакти_Select = new Довідники.Контакти_Select();
+			контакти_Select.QuerySelect.Order.Add(Довідники.Контакти_Select.Назва, SelectOrder.ASC);
+			контакти_Select.Select();
+			while (контакти_Select.MoveNext())
+			{
+				sw.WriteLine(контакти_Select.Current.GetDirectoryObject().Serialize("Запис"));
+			}
+
+			sw.WriteLine("</Довідник_Контакти>");
+
 			sw.WriteLine("</ВигрузкаДаних>");
 
 			sw.Close();
