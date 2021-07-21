@@ -46,6 +46,7 @@ namespace HomeFinances
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.контактиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -176,14 +177,14 @@ namespace HomeFinances
             // toolStripMenuItemExport
             // 
             this.toolStripMenuItemExport.Name = "toolStripMenuItemExport";
-            this.toolStripMenuItemExport.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemExport.Size = new System.Drawing.Size(130, 22);
             this.toolStripMenuItemExport.Text = "Вигрузити";
             this.toolStripMenuItemExport.Click += new System.EventHandler(this.toolStripMenuItemExport_Click);
             // 
             // toolStripMenuItemImport
             // 
             this.toolStripMenuItemImport.Name = "toolStripMenuItemImport";
-            this.toolStripMenuItemImport.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemImport.Size = new System.Drawing.Size(130, 22);
             this.toolStripMenuItemImport.Text = "Загрузити";
             this.toolStripMenuItemImport.Click += new System.EventHandler(this.toolStripMenuItemImport_Click);
             // 
@@ -200,7 +201,8 @@ namespace HomeFinances
             // довідникиToolStripMenuItem
             // 
             this.довідникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.класифікаторВитратToolStripMenuItem});
+            this.класифікаторВитратToolStripMenuItem,
+            this.контактиToolStripMenuItem});
             this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
             this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.довідникиToolStripMenuItem.Text = "Довідники";
@@ -211,6 +213,13 @@ namespace HomeFinances
             this.класифікаторВитратToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.класифікаторВитратToolStripMenuItem.Text = "Класифікатор витрат";
             this.класифікаторВитратToolStripMenuItem.Click += new System.EventHandler(this.класифікаторВитратToolStripMenuItem_Click);
+            // 
+            // контактиToolStripMenuItem
+            // 
+            this.контактиToolStripMenuItem.Name = "контактиToolStripMenuItem";
+            this.контактиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.контактиToolStripMenuItem.Text = "Контакти";
+            this.контактиToolStripMenuItem.Click += new System.EventHandler(this.контактиToolStripMenuItem_Click);
             // 
             // FormRecordFinance
             // 
@@ -260,6 +269,7 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImport;
         private System.Windows.Forms.ToolStripMenuItem довідникиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem класифікаторВитратToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem контактиToolStripMenuItem;
     }
 }
 

@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 21.07.2021 12:29:09
+ * Дата конфігурації: 21.07.2021 12:58:59
  *
  */
 
@@ -1067,6 +1067,165 @@ namespace НоваКонфігурація_1_0.Довідники
              new string[] { "Назва", "Код" },
              new string[] { "string", "string" },
              "Довідник_Валюта_Список")
+        {
+            
+        }
+        
+    }
+      
+    
+    #endregion
+    
+    #region DIRECTORY "Контакти"
+    
+    class Контакти_Objest : DirectoryObject
+    {
+        public Контакти_Objest() : base(Config.Kernel, "tab_a08",
+             new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7" }) 
+        {
+            Телефон = "";
+            Назва = "";
+            Сайт = "";
+            Пошта = "";
+            Опис = "";
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Телефон = base.FieldValue["col_a4"].ToString();
+                Назва = base.FieldValue["col_a3"].ToString();
+                Сайт = base.FieldValue["col_a5"].ToString();
+                Пошта = base.FieldValue["col_a6"].ToString();
+                Опис = base.FieldValue["col_a7"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a4"] = Телефон;
+            base.FieldValue["col_a3"] = Назва;
+            base.FieldValue["col_a5"] = Сайт;
+            base.FieldValue["col_a6"] = Пошта;
+            base.FieldValue["col_a7"] = Опис;
+            
+            BaseSave();
+        }
+
+        public string Serialize(string root = "Контакти")
+        {
+            return 
+            "<" + root + ">" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Телефон>" + "<![CDATA[" + Телефон + "]]>" + "</Телефон>"  +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Сайт>" + "<![CDATA[" + Сайт + "]]>" + "</Сайт>"  +
+               "<Пошта>" + "<![CDATA[" + Пошта + "]]>" + "</Пошта>"  +
+               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "</" + root + ">";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Контакти_Pointer GetDirectoryPointer()
+        {
+            Контакти_Pointer directoryPointer = new Контакти_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Телефон { get; set; }
+        public string Назва { get; set; }
+        public string Сайт { get; set; }
+        public string Пошта { get; set; }
+        public string Опис { get; set; }
+        
+    }
+    
+    
+    class Контакти_Pointer : DirectoryPointer
+    {
+        public Контакти_Pointer(object uid = null) : base(Config.Kernel, "tab_a08")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Контакти_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a08")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Контакти_Objest GetDirectoryObject()
+        {
+            Контакти_Objest КонтактиObjestItem = new Контакти_Objest();
+            return КонтактиObjestItem.Read(base.UnigueID) ? КонтактиObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] { "col_a3" }
+			);
+        }
+    }
+    
+    
+    class Контакти_Select : DirectorySelect, IDisposable
+    {
+        public Контакти_Select() : base(Config.Kernel, "tab_a08",
+            new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7" },
+            new string[] { "Телефон", "Назва", "Сайт", "Пошта", "Опис" }) { }
+        
+        public const string Телефон = "col_a4";
+        public const string Назва = "col_a3";
+        public const string Сайт = "col_a5";
+        public const string Пошта = "col_a6";
+        public const string Опис = "col_a7";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Контакти_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Контакти_Pointer Current { get; private set; }
+        
+        public Контакти_Pointer FindByField(string name, object value)
+        {
+            Контакти_Pointer itemPointer = new Контакти_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Контакти_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Контакти_Pointer> directoryPointerList = new List<Контакти_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Контакти_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      ///<summary>
+    ///Список.
+    ///</summary>
+    class Контакти_Список_View : DirectoryView
+    {
+        public Контакти_Список_View() : base(Config.Kernel, "tab_a08", 
+             new string[] { "col_a1", "col_a2" },
+             new string[] { "Назва", "Код" },
+             new string[] { "", "" },
+             "Довідник_Контакти_Список")
         {
             
         }

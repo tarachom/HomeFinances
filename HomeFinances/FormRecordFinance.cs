@@ -298,6 +298,7 @@ namespace HomeFinances
 			sw.WriteLine("<Довідник_Записи>");
 
 			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
 			записи_Select.Select();
 			while (записи_Select.MoveNext())
 			{
@@ -408,6 +409,13 @@ namespace HomeFinances
         {
 			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
 			formCostСlassifier.Show();
+
+		}
+
+        private void контактиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormContacts formContacts = new FormContacts();
+			formContacts.Show();
 
 		}
     }

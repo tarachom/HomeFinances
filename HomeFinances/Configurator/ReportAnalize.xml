@@ -1,5 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <info>Додати колонку СсилкаНаСайт (col_a4, тип text)  в таблицю Записи (tab_a02)</info>
-  <sql>ALTER TABLE tab_a02 ADD COLUMN "col_a4" text;</sql>
-</root>
+<root />
