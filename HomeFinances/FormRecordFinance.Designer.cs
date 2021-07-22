@@ -50,6 +50,7 @@ namespace HomeFinances
             this.валютиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.касиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -208,7 +209,8 @@ namespace HomeFinances
             this.контактиToolStripMenuItem,
             this.валютиToolStripMenuItem,
             this.касиToolStripMenuItem,
-            this.записникToolStripMenuItem});
+            this.записникToolStripMenuItem,
+            this.константиToolStripMenuItem});
             this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
             this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.довідникиToolStripMenuItem.Text = "Довідники";
@@ -247,6 +249,13 @@ namespace HomeFinances
             this.записникToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.записникToolStripMenuItem.Text = "Записник";
             this.записникToolStripMenuItem.Click += new System.EventHandler(this.записникToolStripMenuItem_Click);
+            // 
+            // константиToolStripMenuItem
+            // 
+            this.константиToolStripMenuItem.Name = "константиToolStripMenuItem";
+            this.константиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.константиToolStripMenuItem.Text = "Константи";
+            this.константиToolStripMenuItem.Click += new System.EventHandler(this.константиToolStripMenuItem_Click);
             // 
             // FormRecordFinance
             // 
@@ -300,6 +309,7 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripMenuItem валютиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem касиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem записникToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem константиToolStripMenuItem;
     }
 }
 

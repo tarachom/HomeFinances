@@ -48,6 +48,9 @@ namespace HomeFinances
 				return;
 			}
 
+			Конфа.Config.ReadAllConstants();
+
+
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 			RecordsBindingList = new BindingList<Записи>();
@@ -472,6 +475,12 @@ namespace HomeFinances
         {
 			FormNotebook formNotebook = new FormNotebook();
 			formNotebook.Show();
+		}
+
+        private void константиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormConstants formConstats = new FormConstants();
+			formConstats.Show();
 		}
     }
 }

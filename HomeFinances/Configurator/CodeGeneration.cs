@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 22.07.2021 16:34:51
+ * Дата конфігурації: 22.07.2021 21:06:24
  *
  */
 
@@ -40,6 +40,13 @@ namespace НоваКонфігурація_1_0
     static class Config
     {
         public static Kernel Kernel { get; set; }
+		
+        public static void ReadAllConstants()
+        {
+            Константи.Основний.ReadAll();
+            Константи.ЗначенняПоЗамовчуванню.ReadAll();
+            
+        }
         
     }
 }
@@ -52,16 +59,51 @@ namespace НоваКонфігурація_1_0.Константи
         public static void ReadAll()
         {
             
+        }
+        
+             
+    }
+    
+    static class ЗначенняПоЗамовчуванню
+    {
+        public static void ReadAll()
+        {
+            
             Dictionary<string, object> fieldValue = new Dictionary<string, object>();
             bool IsSelect = Config.Kernel.DataBase.SelectAllConstants("tab_constants",
-                 new string[] {  }, fieldValue);
+                 new string[] { "col_a1", "col_a2" }, fieldValue);
             
             if (IsSelect)
             {
+                m_ОсновнаКаса_Const = new Довідники.Каса_Pointer(fieldValue["col_a1"]);
+                m_ОсновнаСтаттяВитрат_Const = new Довідники.КласифікаторВитрат_Pointer(fieldValue["col_a2"]);
                 
+            }
+			
+        }
+        
+        
+        static Довідники.Каса_Pointer m_ОсновнаКаса_Const = new Довідники.Каса_Pointer();
+        public static Довідники.Каса_Pointer ОсновнаКаса_Const
+        {
+            get { return m_ОсновнаКаса_Const; }
+            set
+            {
+                m_ОсновнаКаса_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a1", m_ОсновнаКаса_Const.UnigueID.UGuid);
             }
         }
         
+        static Довідники.КласифікаторВитрат_Pointer m_ОсновнаСтаттяВитрат_Const = new Довідники.КласифікаторВитрат_Pointer();
+        public static Довідники.КласифікаторВитрат_Pointer ОсновнаСтаттяВитрат_Const
+        {
+            get { return m_ОсновнаСтаттяВитрат_Const; }
+            set
+            {
+                m_ОсновнаСтаттяВитрат_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a2", m_ОсновнаСтаттяВитрат_Const.UnigueID.UGuid);
+            }
+        }
              
     }
     

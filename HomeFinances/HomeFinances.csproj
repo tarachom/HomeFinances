@@ -89,6 +89,12 @@
     <Compile Include="FormAddCostСlassifier.Designer.cs">
       <DependentUpon>FormAddCostСlassifier.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormConstants.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConstants.Designer.cs">
+      <DependentUpon>FormConstants.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormContacts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddCostСlassifier.resx">
       <DependentUpon>FormAddCostСlassifier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConstants.resx">
+      <DependentUpon>FormConstants.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormContacts.resx">
       <DependentUpon>FormContacts.cs</DependentUpon>

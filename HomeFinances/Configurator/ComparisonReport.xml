@@ -5,6 +5,28 @@
     <Name>Константи</Name>
     <Table>tab_constants</Table>
     <IsExist>yes</IsExist>
+    <Control_Field>
+      <Name>ОсновнаКаса</Name>
+      <NameInTable>col_a1</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>pointer</ConfType>
+        <DataType>uuid</DataType>
+        <UdtName>uuid</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>ОсновнаСтаттяВитрат</Name>
+      <NameInTable>col_a2</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>pointer</ConfType>
+        <DataType>uuid</DataType>
+        <UdtName>uuid</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
