@@ -94,7 +94,7 @@ namespace HomeFinances
 				try
 				{
 					записник_Папки_Objest.Назва = textBoxName.Text;
-					записник_Папки_Objest.Родич = (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem;
+					записник_Папки_Objest.Родич = directoryControl1.DirectoryPointerItem != null ? (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem : new Довідники.Записник_Папки_Pointer();
 					записник_Папки_Objest.Save();
 				}
 				catch (Exception exp)
