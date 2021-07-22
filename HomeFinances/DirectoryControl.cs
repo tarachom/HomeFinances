@@ -40,6 +40,8 @@ namespace HomeFinances
 
 				if (mDirectoryPointerItem != null)
 					ReadPresentation();
+				else
+					textBoxControl.Text = "";
 			}
 		}
 
@@ -57,8 +59,7 @@ namespace HomeFinances
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-			DirectoryPointerItem.Init(new UnigueID(Guid.Empty));
-			ReadPresentation();
+			DirectoryPointerItem = null;
 		}
     }
 }

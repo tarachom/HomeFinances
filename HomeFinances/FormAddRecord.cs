@@ -95,6 +95,10 @@ namespace HomeFinances
 					maskedTextBoxSuma.Text = "0";
 					directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer();
 					directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer();
+
+					//Константи
+					directoryControl1.DirectoryPointerItem = Константи.ЗначенняПоЗамовчуванню.ОсновнаСтаттяВитрат_Const;
+					directoryControl2.DirectoryPointerItem = Константи.ЗначенняПоЗамовчуванню.ОсновнаКаса_Const;
 				}
 				else
 				{

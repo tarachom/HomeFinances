@@ -45,8 +45,6 @@ namespace HomeFinances
 
         private void FormConstats_Load(object sender, EventArgs e)
         {
-            //Конфа.Config.ReadAllConstants();
-
             directoryControl1.DirectoryPointerItem = new Довідники.Каса_Pointer(Константи.ЗначенняПоЗамовчуванню.ОсновнаКаса_Const.UnigueID);
             directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCash;
 
