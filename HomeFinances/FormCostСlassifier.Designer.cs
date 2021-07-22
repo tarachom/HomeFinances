@@ -150,7 +150,7 @@ namespace HomeFinances
             this.Name = "FormCostСlassifier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Класифікатор витрат";
-            this.Load += new System.EventHandler(this.FormDirectoryList_Load);
+            this.Load += new System.EventHandler(this.FormCostСlassifier_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

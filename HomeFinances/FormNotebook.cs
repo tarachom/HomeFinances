@@ -16,9 +16,9 @@ using Перелічення = НоваКонфігурація_1_0.Перелі
 
 namespace HomeFinances
 {
-    public partial class FormCash : Form
+    public partial class FormNotebook : Form
     {
-        public FormCash()
+        public FormNotebook()
         {
             InitializeComponent();
         }
@@ -35,9 +35,9 @@ namespace HomeFinances
 		/// </summary>
 		public DirectoryControl DirectoryControlItem { get; set; }
 
-        #endregion
+		#endregion
 
-        private void FormCash_Load(object sender, EventArgs e)
+		private void FormNotebook_Load(object sender, EventArgs e)
         {
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -46,6 +46,8 @@ namespace HomeFinances
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
 			dataGridViewRecords.Columns["Назва"].Width = 300;
+
+			//dataGridViewRecords.Columns["Назва"].CellType = DataGridViewImageCell;
 
 			LoadRecords();
 		}
@@ -59,50 +61,21 @@ namespace HomeFinances
 
 			RecordsBindingList.Clear();
 
-			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
+			Довідники.Записник_Папки_Select записник_Папки_Select = new Довідники.Записник_Папки_Select();
 
-			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Назва);
-			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Валюта);
-			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.ТипВалюти);
-			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
+			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Назва);
+			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Select.Назва, SelectOrder.ASC);
 
-			//Створення тимчасової таблиці
-			каса_Select.QuerySelect.CreateTempTable = true;
-			каса_Select.Select();
+			записник_Папки_Select.Select();
 
-			Dictionary<string, string> dictionaryCurrency = new Dictionary<string, string>();
-
-			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
-			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Select.Назва);
-			валюта_Select.QuerySelect.Where.Add(new Where("uid", Comparison.IN, "SELECT DISTINCT " + Довідники.Каса_Select.Валюта + " FROM " + каса_Select.QuerySelect.TempTable, true));
-			валюта_Select.Select();
-
-			while (валюта_Select.MoveNext())
+			while (записник_Папки_Select.MoveNext())
 			{
-				Довідники.Валюта_Pointer cur = валюта_Select.Current;
-				dictionaryCurrency.Add(cur.UnigueID.ToString(), cur.Fields[Довідники.Валюта_Select.Назва].ToString());
-			}
-
-			//Видалення тимчасової таблиці
-			каса_Select.DeleteTempTable();
-
-			//Нормальна вибірка даних
-			каса_Select.Select();
-
-			while (каса_Select.MoveNext())
-			{
-				Довідники.Каса_Pointer cur = каса_Select.Current;
-
-				string ТипВалютиПредставлення = ((Перелічення.ТипВалюти)cur.Fields[Довідники.Каса_Select.ТипВалюти]).ToString();
-
-				Довідники.Валюта_Pointer Валюта = new Довідники.Валюта_Pointer(new UnigueID(cur.Fields[Довідники.Каса_Select.Валюта].ToString()));
-				string ВалютаПредставлення = (!Валюта.IsEmpty() && dictionaryCurrency.ContainsKey(Валюта.UnigueID.ToString())) ? dictionaryCurrency[Валюта.UnigueID.ToString()] : "";
+				Довідники.Записник_Папки_Pointer cur = записник_Папки_Select.Current;
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Каса_Select.Назва].ToString(),
-					ВалютаПредставлення,
-					ТипВалютиПредставлення
+					true,
+					cur.Fields[Довідники.Записник_Папки_Select.Назва].ToString()
 					));
 
 				if (DirectoryPointerItem != null && selectRow == 0) //??
@@ -122,17 +95,16 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _Валюта, string _ТипВалюти)
+			public Записи(string _id, bool _IsGroup, string _Назва)
 			{
 				ID = _id;
 				Назва = _Назва;
-				Валюта = _Валюта;
-				ТипВалюти = _ТипВалюти;
+				IsGroup = _IsGroup;
 			}
 			public string ID { get; set; }
+			public bool IsGroup { get; set; }
 			public string Назва { get; set; }
-			public string Валюта { get; set; }
-			public string ТипВалюти { get; set; }
+
 		}
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -143,7 +115,7 @@ namespace HomeFinances
 
 				if (DirectoryControlItem != null)
 				{
-					DirectoryControlItem.DirectoryPointerItem = new Довідники.Каса_Pointer(new UnigueID(Uid));
+					DirectoryControlItem.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(new UnigueID(Uid));
 					this.Close();
 				}
 				else
@@ -155,11 +127,11 @@ namespace HomeFinances
 
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
-			FormAddCash formAddCash = new FormAddCash();
-			formAddCash.IsNew = true;
-			formAddCash.OwnerForm = this;
-			formAddCash.ShowDialog();
-		}
+            FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
+			formAddNotebookFolder.IsNew = true;
+			formAddNotebookFolder.OwnerForm = this;
+			formAddNotebookFolder.ShowDialog();
+        }
 
         private void toolStripButtonEdit_Click(object sender, EventArgs e)
         {
@@ -167,12 +139,12 @@ namespace HomeFinances
 			{
 				int RowIndex = dataGridViewRecords.SelectedRows[0].Index;
 
-				FormAddCash formAddCash = new FormAddCash();
-				formAddCash.OwnerForm = this;
-				formAddCash.IsNew = false;
-				formAddCash.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
-				formAddCash.ShowDialog();
-			}			
+				FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
+				formAddNotebookFolder.OwnerForm = this;
+				formAddNotebookFolder.IsNew = false;
+				formAddNotebookFolder.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
+				formAddNotebookFolder.ShowDialog();
+            }			
 		}
 
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
@@ -190,13 +162,13 @@ namespace HomeFinances
 					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
 					string uid = row.Cells[0].Value.ToString();
 
-					Довідники.Каса_Objest каса_Objest = new Довідники.Каса_Objest();
-					if (каса_Objest.Read(new UnigueID(uid)))
+					Довідники.Записник_Папки_Objest записник_Папки_Objest = new Довідники.Записник_Папки_Objest();
+					if (записник_Папки_Objest.Read(new UnigueID(uid)))
 					{
-						Довідники.Каса_Objest каса_Objest_Новий = new Довідники.Каса_Objest();
-						каса_Objest_Новий.New();
-						каса_Objest_Новий.Назва = "(Копія) - " + каса_Objest.Назва;
-						каса_Objest_Новий.Save();
+						Довідники.Записник_Папки_Objest записник_Папки_Objest_Новий = new Довідники.Записник_Папки_Objest();
+						записник_Папки_Objest_Новий.New();
+						записник_Папки_Objest_Новий.Назва = "(Копія) - " + записник_Папки_Objest.Назва;
+						записник_Папки_Objest_Новий.Save();
 					}
 					else
 					{
@@ -219,10 +191,10 @@ namespace HomeFinances
 					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
 					string uid = row.Cells[0].Value.ToString();
 
-					Довідники.Каса_Objest каса_Objest = new Довідники.Каса_Objest();
-					if (каса_Objest.Read(new UnigueID(uid)))
+					Довідники.Записник_Папки_Objest записник_Папки_Objest = new Довідники.Записник_Папки_Objest();
+					if (записник_Папки_Objest.Read(new UnigueID(uid)))
 					{
-						каса_Objest.Delete();
+						записник_Папки_Objest.Delete();
 					}
 					else
 					{
@@ -234,5 +206,13 @@ namespace HomeFinances
 				LoadRecords();
 			}
 		}
+
+        private void dataGridViewRecords_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+			if (dataGridViewRecords.Columns[e.ColumnIndex].Name == "Назва")
+            {
+				e.CellStyle.BackColor = Color.Azure;
+            }
+        }
     }
 }

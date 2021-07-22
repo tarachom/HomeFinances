@@ -59,6 +59,12 @@
     <Compile Include="DirectoryControl.Designer.cs">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddNotebookFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNotebookFolder.Designer.cs">
+      <DependentUpon>FormAddNotebookFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddContacts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     <Compile Include="FormCash.Designer.cs">
       <DependentUpon>FormCash.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNotebook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNotebook.Designer.cs">
+      <DependentUpon>FormNotebook.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCurrency.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +136,9 @@
     <EmbeddedResource Include="DirectoryControl.resx">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddNotebookFolder.resx">
+      <DependentUpon>FormAddNotebookFolder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddContacts.resx">
       <DependentUpon>FormAddContacts.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCash.resx">
       <DependentUpon>FormCash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNotebook.resx">
+      <DependentUpon>FormNotebook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCurrency.resx">
       <DependentUpon>FormCurrency.cs</DependentUpon>

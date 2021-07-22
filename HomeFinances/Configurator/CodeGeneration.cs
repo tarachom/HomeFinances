@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 21.07.2021 18:10:44
+ * Дата конфігурації: 22.07.2021 16:34:51
  *
  */
 
@@ -189,6 +189,11 @@ namespace НоваКонфігурація_1_0.Довідники
 			    new string[] { "col_a7", "col_a6" }
 			);
         }
+		
+        public Записи_Pointer GetEmptyPointer()
+        {
+            return new Записи_Pointer();
+        }
     }
     
     ///<summary>
@@ -338,6 +343,11 @@ namespace НоваКонфігурація_1_0.Довідники
 			    new string[] { "col_a1" }
 			);
         }
+		
+        public КласифікаторВитрат_Pointer GetEmptyPointer()
+        {
+            return new КласифікаторВитрат_Pointer();
+        }
     }
     
     
@@ -401,11 +411,12 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записник_Objest : DirectoryObject
     {
         public Записник_Objest() : base(Config.Kernel, "tab_a03",
-             new string[] { "col_a1", "col_a4", "col_a3" }) 
+             new string[] { "col_a1", "col_a4", "col_a3", "col_a2" }) 
         {
             Назва = "";
             Опис = "";
             Дата = DateTime.MinValue;
+            Папка = new Довідники.Записник_Папки_Pointer();
             
         }
         
@@ -416,6 +427,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Назва = base.FieldValue["col_a1"].ToString();
                 Опис = base.FieldValue["col_a4"].ToString();
                 Дата = (base.FieldValue["col_a3"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a3"].ToString()) : DateTime.MinValue;
+                Папка = new Довідники.Записник_Папки_Pointer(base.FieldValue["col_a2"]);
                 
                 BaseClear();
                 return true;
@@ -429,6 +441,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a1"] = Назва;
             base.FieldValue["col_a4"] = Опис;
             base.FieldValue["col_a3"] = Дата;
+            base.FieldValue["col_a2"] = Папка.UnigueID.UGuid;
             
             BaseSave();
         }
@@ -441,6 +454,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
                "<Дата>" + Дата.ToString() + "</Дата>"  +
+               "<Папка>" + Папка.ToString() + "</Папка>"  +
                "</" + root + ">";
         }
 
@@ -458,6 +472,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Назва { get; set; }
         public string Опис { get; set; }
         public DateTime Дата { get; set; }
+        public Довідники.Записник_Папки_Pointer Папка { get; set; }
         
     }
     
@@ -488,6 +503,11 @@ namespace НоваКонфігурація_1_0.Довідники
 			    new string[] {  }
 			);
         }
+		
+        public Записник_Pointer GetEmptyPointer()
+        {
+            return new Записник_Pointer();
+        }
     }
     
     ///<summary>
@@ -496,12 +516,13 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записник_Select : DirectorySelect, IDisposable
     {
         public Записник_Select() : base(Config.Kernel, "tab_a03",
-            new string[] { "col_a1", "col_a4", "col_a3" },
-            new string[] { "Назва", "Опис", "Дата" }) { }
+            new string[] { "col_a1", "col_a4", "col_a3", "col_a2" },
+            new string[] { "Назва", "Опис", "Дата", "Папка" }) { }
         
         public const string Назва = "col_a1";
         public const string Опис = "col_a4";
         public const string Дата = "col_a3";
+        public const string Папка = "col_a2";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -536,7 +557,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Записник_Список_View() : base(Config.Kernel, "tab_a03", 
              new string[] { "col_a1", "col_a2" },
              new string[] { "Назва", "Код" },
-             new string[] { "string", "" },
+             new string[] { "string", "pointer" },
              "Довідник_Записник_Список")
         {
             
@@ -641,6 +662,11 @@ namespace НоваКонфігурація_1_0.Довідники
 		    return base.BasePresentation(
 			    new string[] {  }
 			);
+        }
+		
+        public Користувач_Pointer GetEmptyPointer()
+        {
+            return new Користувач_Pointer();
         }
     }
     
@@ -882,6 +908,11 @@ namespace НоваКонфігурація_1_0.Довідники
 			    new string[] { "col_a1" }
 			);
         }
+		
+        public Каса_Pointer GetEmptyPointer()
+        {
+            return new Каса_Pointer();
+        }
     }
     
     ///<summary>
@@ -1025,6 +1056,11 @@ namespace НоваКонфігурація_1_0.Довідники
 		    return base.BasePresentation(
 			    new string[] { "col_a3" }
 			);
+        }
+		
+        public Валюта_Pointer GetEmptyPointer()
+        {
+            return new Валюта_Pointer();
         }
     }
     
@@ -1191,6 +1227,11 @@ namespace НоваКонфігурація_1_0.Довідники
 			    new string[] { "col_a3" }
 			);
         }
+		
+        public Контакти_Pointer GetEmptyPointer()
+        {
+            return new Контакти_Pointer();
+        }
     }
     
     ///<summary>
@@ -1244,6 +1285,152 @@ namespace НоваКонфігурація_1_0.Довідники
              new string[] { "Назва", "Код" },
              new string[] { "string", "" },
              "Довідник_Контакти_Список")
+        {
+            
+        }
+        
+    }
+      
+    
+    #endregion
+    
+    #region DIRECTORY "Записник_Папки"
+    
+    class Записник_Папки_Objest : DirectoryObject
+    {
+        public Записник_Папки_Objest() : base(Config.Kernel, "tab_a09",
+             new string[] { "col_a1", "col_a3" }) 
+        {
+            Назва = "";
+            Родич = new Довідники.Записник_Папки_Pointer();
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a1"].ToString();
+                Родич = new Довідники.Записник_Папки_Pointer(base.FieldValue["col_a3"]);
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a1"] = Назва;
+            base.FieldValue["col_a3"] = Родич.UnigueID.UGuid;
+            
+            BaseSave();
+        }
+
+        public string Serialize(string root = "Записник_Папки")
+        {
+            return 
+            "<" + root + ">" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Родич>" + Родич.ToString() + "</Родич>"  +
+               "</" + root + ">";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Записник_Папки_Pointer GetDirectoryPointer()
+        {
+            Записник_Папки_Pointer directoryPointer = new Записник_Папки_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public Довідники.Записник_Папки_Pointer Родич { get; set; }
+        
+    }
+    
+    
+    class Записник_Папки_Pointer : DirectoryPointer
+    {
+        public Записник_Папки_Pointer(object uid = null) : base(Config.Kernel, "tab_a09")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Записник_Папки_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a09")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Записник_Папки_Objest GetDirectoryObject()
+        {
+            Записник_Папки_Objest Записник_ПапкиObjestItem = new Записник_Папки_Objest();
+            return Записник_ПапкиObjestItem.Read(base.UnigueID) ? Записник_ПапкиObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] { "col_a1" }
+			);
+        }
+		
+        public Записник_Папки_Pointer GetEmptyPointer()
+        {
+            return new Записник_Папки_Pointer();
+        }
+    }
+    
+    
+    class Записник_Папки_Select : DirectorySelect, IDisposable
+    {
+        public Записник_Папки_Select() : base(Config.Kernel, "tab_a09",
+            new string[] { "col_a1", "col_a3" },
+            new string[] { "Назва", "Родич" }) { }
+        
+        public const string Назва = "col_a1";
+        public const string Родич = "col_a3";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Записник_Папки_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Записник_Папки_Pointer Current { get; private set; }
+        
+        public Записник_Папки_Pointer FindByField(string name, object value)
+        {
+            Записник_Папки_Pointer itemPointer = new Записник_Папки_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Записник_Папки_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Записник_Папки_Pointer> directoryPointerList = new List<Записник_Папки_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Записник_Папки_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      ///<summary>
+    ///Список.
+    ///</summary>
+    class Записник_Папки_Список_View : DirectoryView
+    {
+        public Записник_Папки_Список_View() : base(Config.Kernel, "tab_a09", 
+             new string[] { "col_a1", "col_a2" },
+             new string[] { "Назва", "Код" },
+             new string[] { "string", "" },
+             "Довідник_Записник_Папки_Список")
         {
             
         }

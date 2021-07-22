@@ -26,7 +26,7 @@ namespace HomeFinances
 			InitializeComponent();
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void FormRecordFinance_Load(object sender, EventArgs e)
 		{
 			string pathToConfa = @"E:\Project\HomeFinaces\HomeFinances\Configurator\Confa.xml";
 
@@ -466,6 +466,12 @@ namespace HomeFinances
         {
 			FormCash formCash = new FormCash();
 			formCash.Show();
+		}
+
+        private void записникToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormNotebook formNotebook = new FormNotebook();
+			formNotebook.Show();
 		}
     }
 }

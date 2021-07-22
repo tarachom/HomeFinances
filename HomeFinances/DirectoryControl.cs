@@ -32,23 +32,33 @@ namespace HomeFinances
 		/// </summary>
 		public DirectoryPointer DirectoryPointerItem
 		{
-			get{return mDirectoryPointerItem;}
+			get { return mDirectoryPointerItem; }
 
 			set
 			{
 				mDirectoryPointerItem = value;
 
 				if (mDirectoryPointerItem != null)
-				{
-					textBoxControl.Text = mDirectoryPointerItem.GetType().InvokeMember("GetPresentation", BindingFlags.InvokeMethod, null, mDirectoryPointerItem, new object[] { }).ToString();
-				}
+					ReadPresentation();
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void ReadPresentation()
+        {
+			textBoxControl.Text = mDirectoryPointerItem.GetType().InvokeMember(
+				"GetPresentation", BindingFlags.InvokeMethod, null, mDirectoryPointerItem, new object[] { }).ToString();
+		}
+
+		private void buttonOpen_Click(object sender, EventArgs e)
 		{
 			if (CallBack != null)
 				CallBack.Invoke(DirectoryPointerItem);
+		}
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+			DirectoryPointerItem.UnigueID.SetEmpty();
+			ReadPresentation();
 		}
     }
 }

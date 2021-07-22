@@ -49,6 +49,7 @@ namespace HomeFinances
             this.контактиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.валютиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.касиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -206,7 +207,8 @@ namespace HomeFinances
             this.класифікаторВитратToolStripMenuItem,
             this.контактиToolStripMenuItem,
             this.валютиToolStripMenuItem,
-            this.касиToolStripMenuItem});
+            this.касиToolStripMenuItem,
+            this.записникToolStripMenuItem});
             this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
             this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.довідникиToolStripMenuItem.Text = "Довідники";
@@ -239,6 +241,13 @@ namespace HomeFinances
             this.касиToolStripMenuItem.Text = "Каси";
             this.касиToolStripMenuItem.Click += new System.EventHandler(this.касиToolStripMenuItem_Click);
             // 
+            // записникToolStripMenuItem
+            // 
+            this.записникToolStripMenuItem.Name = "записникToolStripMenuItem";
+            this.записникToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.записникToolStripMenuItem.Text = "Записник";
+            this.записникToolStripMenuItem.Click += new System.EventHandler(this.записникToolStripMenuItem_Click);
+            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,7 +261,7 @@ namespace HomeFinances
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Домашні фінанси";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormRecordFinance_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -290,6 +299,7 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripMenuItem контактиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem валютиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem касиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem записникToolStripMenuItem;
     }
 }
 

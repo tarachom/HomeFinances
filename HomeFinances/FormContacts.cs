@@ -37,7 +37,7 @@ namespace HomeFinances
 
 		#endregion
 
-		private void FormDirectoryList_Load(object sender, EventArgs e)
+		private void FormContacts_Load(object sender, EventArgs e)
         {
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -124,16 +124,19 @@ namespace HomeFinances
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-			string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+			if (e.RowIndex >= 0 && e.RowIndex < dataGridViewRecords.RowCount)
+			{
+				string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
 
-			if (DirectoryControlItem != null)
-            {
-				DirectoryControlItem.DirectoryPointerItem = new Довідники.Контакти_Pointer(new UnigueID(Uid));
-				this.Close();
-			}
-            else
-            {
-				toolStripButtonEdit_Click(this, null);
+				if (DirectoryControlItem != null)
+				{
+					DirectoryControlItem.DirectoryPointerItem = new Довідники.Контакти_Pointer(new UnigueID(Uid));
+					this.Close();
+				}
+				else
+				{
+					toolStripButtonEdit_Click(this, null);
+				}
 			}
 		}
 

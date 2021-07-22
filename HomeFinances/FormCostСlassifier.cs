@@ -37,7 +37,7 @@ namespace HomeFinances
 
 		#endregion
 
-		private void FormDirectoryList_Load(object sender, EventArgs e)
+		private void FormCostСlassifier_Load(object sender, EventArgs e)
         {
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -109,16 +109,19 @@ namespace HomeFinances
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-			string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+			if (e.RowIndex >= 0 && e.RowIndex < dataGridViewRecords.RowCount)
+			{
+				string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
 
-			if (DirectoryControlItem != null)
-            {
-				DirectoryControlItem.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
-				this.Close();
-			}
-            else
-            {
-				toolStripButtonEdit_Click(this, null);
+				if (DirectoryControlItem != null)
+				{
+					DirectoryControlItem.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
+					this.Close();
+				}
+				else
+				{
+					toolStripButtonEdit_Click(this, null);
+				}
 			}
 		}
 
@@ -205,20 +208,5 @@ namespace HomeFinances
 			}
 		}
 
-        private void FormCostСlassifier_KeyDown(object sender, KeyEventArgs e)
-        {
-			MessageBox.Show(e.KeyCode.ToString());
-			
-        }
-
-        private void FormCostСlassifier_KeyPress(object sender, KeyPressEventArgs e)
-        {
-			MessageBox.Show(e.ToString());
-		}
-
-        private void FormCostСlassifier_KeyUp(object sender, KeyEventArgs e)
-        {
-			MessageBox.Show(e.KeyCode.ToString());
-		}
     }
 }

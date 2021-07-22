@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>21.07.2021 18:10:44</DateTimeSave>
+  <DateTimeSave>22.07.2021 16:34:51</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -170,6 +170,15 @@
           </Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
+        <Field>
+          <Name>Папка</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.Записник_Папки</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
       </Fields>
       <TabularParts />
       <Views>
@@ -186,6 +195,8 @@
             <Field>
               <Name>Код</Name>
               <NameInTable>col_a2</NameInTable>
+              <Type>pointer</Type>
+              <Pointer>Довідники.Записник_Папки</Pointer>
             </Field>
           </Fields>
         </View>
@@ -412,6 +423,50 @@
         <View>
           <Name>Список</Name>
           <Table>tab_a08</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a2</NameInTable>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>Записник_Папки</Name>
+      <Table>tab_a09</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a1</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+          <IsPresentation>1</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Родич</Name>
+          <NameInTable>col_a3</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.Записник_Папки</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a09</Table>
           <Desc>Список</Desc>
           <Fields>
             <Field>

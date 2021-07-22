@@ -1,7 +1,7 @@
 ﻿
 namespace HomeFinances
 {
-    partial class FormContacts
+    partial class FormNotebook
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace HomeFinances
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormContacts));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNotebook));
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
@@ -51,7 +51,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(971, 29);
+            this.panel1.Size = new System.Drawing.Size(962, 29);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -64,7 +64,7 @@ namespace HomeFinances
             this.toolStripButtonDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(971, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(962, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -124,7 +124,7 @@ namespace HomeFinances
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(971, 720);
+            this.panel2.Size = new System.Drawing.Size(962, 536);
             this.panel2.TabIndex = 2;
             // 
             // dataGridViewRecords
@@ -136,21 +136,22 @@ namespace HomeFinances
             this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.ReadOnly = true;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(971, 720);
+            this.dataGridViewRecords.Size = new System.Drawing.Size(962, 536);
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
+            this.dataGridViewRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewRecords_CellFormatting);
             // 
-            // FormContacts
+            // FormNotebook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 749);
+            this.ClientSize = new System.Drawing.Size(962, 565);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "FormContacts";
+            this.Name = "FormNotebook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Контакти";
-            this.Load += new System.EventHandler(this.FormContacts_Load);
+            this.Text = "Записник";
+            this.Load += new System.EventHandler(this.FormNotebook_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
