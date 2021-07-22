@@ -23,26 +23,19 @@ namespace HomeFinances
             InitializeComponent();
         }
 
-		private DirectoryPointer mDirectoryPointerItem;
-		public DirectoryPointer DirectoryPointerItem
-		{
-			get
-			{
-				return mDirectoryPointerItem;
-			}
+		#region DirectoryControl Open Form
 
-			set
-			{
-				mDirectoryPointerItem = value;
+		/// <summary>
+		/// Ссилка на елемент довідника
+		/// </summary>
+		public DirectoryPointer DirectoryPointerItem { get; set; }
 
-				if (mDirectoryPointerItem != null)
-				{
-					
-				}
-			}
-		}
+		/// <summary>
+		/// Контрол який викликав вибір
+		/// </summary>
+		public DirectoryControl DirectoryControlItem { get; set; }
 
-		public DirectoryControl DC { get; set; }
+		#endregion
 
 		private void FormDirectoryList_Load(object sender, EventArgs e)
         {
@@ -118,9 +111,9 @@ namespace HomeFinances
         {
 			string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
 
-			if (DC != null)
+			if (DirectoryControlItem != null)
             {
-				DC.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
+				DirectoryControlItem.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Uid));
 				this.Close();
 			}
             else
@@ -210,6 +203,22 @@ namespace HomeFinances
 
 				LoadRecords();
 			}
+		}
+
+        private void FormCostСlassifier_KeyDown(object sender, KeyEventArgs e)
+        {
+			MessageBox.Show(e.KeyCode.ToString());
+			
+        }
+
+        private void FormCostСlassifier_KeyPress(object sender, KeyPressEventArgs e)
+        {
+			MessageBox.Show(e.ToString());
+		}
+
+        private void FormCostСlassifier_KeyUp(object sender, KeyEventArgs e)
+        {
+			MessageBox.Show(e.KeyCode.ToString());
 		}
     }
 }

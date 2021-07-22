@@ -267,7 +267,7 @@ namespace HomeFinances
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormAddRecord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Новий запис";
+            this.Text = "Записи";
             this.Load += new System.EventHandler(this.FormAddRecord_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -149,7 +149,7 @@ namespace HomeFinances
             this.Controls.Add(this.panel1);
             this.Name = "FormContacts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormContacts";
+            this.Text = "Контакти";
             this.Load += new System.EventHandler(this.FormDirectoryList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -64,7 +64,6 @@ namespace HomeFinances
             this.Controls.Add(this.textBoxControl);
             this.Name = "DirectoryControl";
             this.Size = new System.Drawing.Size(240, 27);
-            this.Load += new System.EventHandler(this.DirectoryControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

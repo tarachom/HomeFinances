@@ -23,19 +23,35 @@ namespace HomeFinances
             InitializeComponent();
         }
 
+		/// <summary>
+		/// Форма списку
+		/// </summary>
         public FormCash OwnerForm { get; set; }
         
+		/// <summary>
+		/// Чи це новий
+		/// </summary>
         public Nullable<bool> IsNew { get; set; }
 
+		/// <summary>
+		/// Ід запису
+		/// </summary>
         public string Uid { get; set; }
 
+		/// <summary>
+		/// Обєкт запису
+		/// </summary>
         private Довідники.Каса_Objest каса_Objest { get; set; }
 
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
+		/// <param name="directoryPointerItem"></param>
 		public void CallBack_DirectoryControl_Open_FormCurrency(DirectoryPointer directoryPointerItem)
         {
 			FormCurrency formCurrency = new FormCurrency();
 			formCurrency.DirectoryPointerItem = directoryPointerItem;
-			formCurrency.DC = directoryControl1;
+			formCurrency.DirectoryControlItem = directoryControl1;
 			formCurrency.ShowDialog();
 		}
 
@@ -45,15 +61,15 @@ namespace HomeFinances
 			foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ТипВалюти"].Fields.Values)
 				comboBoxTypeCurrency.Items.Add((Перелічення.ТипВалюти)field.Value);
 
+			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCurrency;
+
 			if (IsNew.HasValue)
 			{
 				каса_Objest = new Довідники.Каса_Objest();
 
-				directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCurrency;
-
 				if (IsNew.Value)
 				{
-					this.Text = "Новий запис";
+					this.Text += " - Новий запис";
 
 					directoryControl1.DirectoryPointerItem = new Довідники.Валюта_Pointer();
 					comboBoxTypeCurrency.SelectedIndex = 0;
@@ -62,7 +78,7 @@ namespace HomeFinances
 				{
 					if (каса_Objest.Read(new UnigueID(Uid)))
 					{
-						this.Text = "Редагування запису - " + каса_Objest.Назва;
+						this.Text += " - Редагування запису - " + каса_Objest.Назва;
 
 						textBoxName.Text = каса_Objest.Назва;
 						directoryControl1.DirectoryPointerItem = new Довідники.Валюта_Pointer(каса_Objest.Валюта.UnigueID);
@@ -79,9 +95,7 @@ namespace HomeFinances
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
-				{
 					каса_Objest.New();
-				}
 
 				try
 				{

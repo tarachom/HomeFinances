@@ -23,28 +23,21 @@ namespace HomeFinances
             InitializeComponent();
         }
 
-		private DirectoryPointer mDirectoryPointerItem;
-		public DirectoryPointer DirectoryPointerItem
-		{
-			get
-			{
-				return mDirectoryPointerItem;
-			}
+		#region DirectoryControl Open Form
 
-			set
-			{
-				mDirectoryPointerItem = value;
+		/// <summary>
+		/// Ссилка на елемент довідника
+		/// </summary>
+		public DirectoryPointer DirectoryPointerItem { get; set; }
 
-				if (mDirectoryPointerItem != null)
-				{
+		/// <summary>
+		/// Контрол який викликав вибір
+		/// </summary>
+		public DirectoryControl DirectoryControlItem { get; set; }
 
-				}
-			}
-		}
+        #endregion
 
-		public DirectoryControl DC { get; set; }
-
-		private void FormDirectoryList_Load(object sender, EventArgs e)
+        private void FormCash_Load(object sender, EventArgs e)
         {
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -146,9 +139,9 @@ namespace HomeFinances
         {
 			string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
 
-			if (DC != null)
+			if (DirectoryControlItem != null)
             {
-				DC.DirectoryPointerItem = new Довідники.Каса_Pointer(new UnigueID(Uid));
+				DirectoryControlItem.DirectoryPointerItem = new Довідники.Каса_Pointer(new UnigueID(Uid));
 				this.Close();
 			}
             else

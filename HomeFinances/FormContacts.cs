@@ -23,26 +23,19 @@ namespace HomeFinances
             InitializeComponent();
         }
 
-		private DirectoryPointer mDirectoryPointerItemSelect;
-		public DirectoryPointer DirectoryPointerItemSelect
-		{
-			get
-			{
-				return mDirectoryPointerItemSelect;
-			}
+		#region DirectoryControl Open Form
 
-			set
-			{
-				mDirectoryPointerItemSelect = value;
+		/// <summary>
+		/// Ссилка на елемент довідника
+		/// </summary>
+		public DirectoryPointer DirectoryPointerItem { get; set; }
 
-				if (mDirectoryPointerItemSelect != null)
-				{
-					
-				}
-			}
-		}
+		/// <summary>
+		/// Контрол який викликав вибір
+		/// </summary>
+		public DirectoryControl DirectoryControlItem { get; set; }
 
-		public DirectoryControl DC { get; set; }
+		#endregion
 
 		private void FormDirectoryList_Load(object sender, EventArgs e)
         {
@@ -95,13 +88,13 @@ namespace HomeFinances
 					cur.Fields[Довідники.Контакти_Select.Сайт].ToString()*/
 					));
 
-				//if (DirectoryPointerItemSelect != null && selectRow == 0) //??
-				//	if (cur.UnigueID.ToString() == DirectoryPointerItemSelect.UnigueID.ToString())
-				//	{
-				//		dataGridViewRecords.Rows[0].Selected = false;
-				//		dataGridViewRecords.Rows[RecordsBindingList.Count - 1].Selected = true;
-				//	}
-			}
+                if (DirectoryPointerItem != null && selectRow == 0) //??
+                    if (cur.UnigueID.ToString() == DirectoryPointerItem.UnigueID.ToString())
+                    {
+                        dataGridViewRecords.Rows[0].Selected = false;
+                        dataGridViewRecords.Rows[RecordsBindingList.Count - 1].Selected = true;
+                    }
+            }
 
 			if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
 			{
@@ -133,9 +126,9 @@ namespace HomeFinances
         {
 			string Uid = dataGridViewRecords.Rows[e.RowIndex].Cells["ID"].Value.ToString();
 
-			if (DC != null)
+			if (DirectoryControlItem != null)
             {
-				DC.DirectoryPointerItem = new Довідники.Контакти_Pointer(new UnigueID(Uid));
+				DirectoryControlItem.DirectoryPointerItem = new Довідники.Контакти_Pointer(new UnigueID(Uid));
 				this.Close();
 			}
             else
@@ -191,6 +184,7 @@ namespace HomeFinances
 						контакти_Objest_Новий.Пошта = контакти_Objest.Пошта;
 						контакти_Objest_Новий.Скайп = контакти_Objest.Скайп;
 						контакти_Objest_Новий.Сайт = контакти_Objest.Сайт;
+						контакти_Objest_Новий.Опис = контакти_Objest.Опис;
 
 						контакти_Objest_Новий.Save();
 					}

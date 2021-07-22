@@ -127,7 +127,7 @@ namespace HomeFinances
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormAddCash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormAddCostСlassifier";
+            this.Text = "Каси";
             this.Load += new System.EventHandler(this.FormAddCash_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -186,7 +186,7 @@ namespace HomeFinances
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormAddContacts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormAddContacts";
+            this.Text = "Контакти";
             this.Load += new System.EventHandler(this.FormAddContacts_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

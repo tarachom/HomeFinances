@@ -23,12 +23,24 @@ namespace HomeFinances
             InitializeComponent();
         }
 
+		/// <summary>
+		/// Форма списку
+		/// </summary>
         public FormCurrency OwnerForm { get; set; }
         
+		/// <summary>
+		/// Чи це новий запис
+		/// </summary>
         public Nullable<bool> IsNew { get; set; }
 
+		/// <summary>
+		/// Ід запису
+		/// </summary>
         public string Uid { get; set; }
 
+		/// <summary>
+		/// Обєкт запису
+		/// </summary>
         private Довідники.Валюта_Objest валюта_Objest { get; set; }
 
         private void FormAddCostСlassifier_Load(object sender, EventArgs e)
@@ -39,7 +51,7 @@ namespace HomeFinances
 
 				if (IsNew.Value)
 				{
-					this.Text = "Новий запис";
+					this.Text += " - Новий запис";
 				}
 				else
 				{
@@ -48,7 +60,7 @@ namespace HomeFinances
 						textBoxName.Text = валюта_Objest.Назва;
 						textBoxCode.Text = валюта_Objest.Код;
 
-						this.Text = "Редагування запису - " + валюта_Objest.Назва;
+						this.Text += " - Редагування запису - " + валюта_Objest.Назва;
 					}
 					else
 						MessageBox.Show("Error read");
@@ -61,9 +73,7 @@ namespace HomeFinances
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
-				{
 					валюта_Objest.New();
-				}
 
 				try
 				{

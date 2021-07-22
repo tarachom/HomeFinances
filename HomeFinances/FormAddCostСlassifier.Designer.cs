@@ -103,7 +103,7 @@ namespace HomeFinances
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormAddCostСlassifier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormAddCostСlassifier";
+            this.Text = "Класифікатор витрат";
             this.Load += new System.EventHandler(this.FormAddCostСlassifier_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

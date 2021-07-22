@@ -28,27 +28,47 @@ namespace HomeFinances
 			this.Close();
 		}
 
+		/// <summary>
+		/// Форма списку
+		/// </summary>
 		public FormRecordFinance OwnerForm { get; set; }
 
+		/// <summary>
+		/// Чи це новий запис чи редагування існуючого
+		/// </summary>
 		public Nullable<bool> IsNew { get; set; }
 
+		/// <summary>
+		/// Ід запису
+		/// </summary>
 		public string Uid { get; set; }
 
+		/// <summary>
+		/// Обєкт запису
+		/// </summary>
 		private Довідники.Записи_Objest записи_Objest { get; set; }
 
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
+		/// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
 		public void CallBack_DirectoryControl_Open_FormCostСlassifier(DirectoryPointer directoryPointerItem)
 		{
 			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
 			formCostСlassifier.DirectoryPointerItem = directoryPointerItem;
-			formCostСlassifier.DC = directoryControl1;
+			formCostСlassifier.DirectoryControlItem = directoryControl1;
 			formCostСlassifier.ShowDialog();
 		}
 
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
+		/// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
 		public void CallBack_DirectoryControl_Open_FormCash(DirectoryPointer directoryPointerItem)
 		{
 			FormCash formCash = new FormCash();
 			formCash.DirectoryPointerItem = directoryPointerItem;
-			formCash.DC = directoryControl2;
+			formCash.DirectoryControlItem = directoryControl2;
 			formCash.ShowDialog();
 		}
 
@@ -58,15 +78,16 @@ namespace HomeFinances
 			foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ТипЗапису"].Fields.Values)
 				comboBoxTypeRecord.Items.Add((Перелічення.ТипЗапису)field.Value);
 
+			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
+			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
+
 			if (IsNew.HasValue)
 			{
 				записи_Objest = new Довідники.Записи_Objest();
-				directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
-				directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
-
+				
 				if (IsNew.Value)
 				{
-					this.Text = "Новий запис";
+					this.Text += " - Новий запис";
 
 					dateTimePickerRecord.Value = DateTime.Now;
 					maskedTextBoxTime.Text = DateTime.Now.TimeOfDay.ToString();
@@ -79,7 +100,7 @@ namespace HomeFinances
 				{
 					if (записи_Objest.Read(new UnigueID(Uid)))
 					{
-						this.Text = "Редагування запису - " + записи_Objest.Назва;
+						this.Text += " - Редагування запису - " + записи_Objest.Назва;
 
 						dateTimePickerRecord.Value = записи_Objest.ДатаЗапису;
 						maskedTextBoxTime.Text = записи_Objest.ДатаЗапису.TimeOfDay.ToString();
@@ -102,9 +123,7 @@ namespace HomeFinances
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
-				{
 					записи_Objest.New();
-				}
 
 				try
 				{

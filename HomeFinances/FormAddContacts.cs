@@ -23,12 +23,24 @@ namespace HomeFinances
             InitializeComponent();
         }
 
+		/// <summary>
+		/// Форма списку
+		/// </summary>
         public FormContacts OwnerForm { get; set; }
         
+		/// <summary>
+		/// Чи це новий
+		/// </summary>
         public Nullable<bool> IsNew { get; set; }
 
+		/// <summary>
+		/// Ід запису
+		/// </summary>
         public string Uid { get; set; }
 
+		/// <summary>
+		/// Обєкт запису
+		/// </summary>
         private Довідники.Контакти_Objest контакти_Objest { get; set; }
 
         private void FormAddContacts_Load(object sender, EventArgs e)
@@ -39,13 +51,13 @@ namespace HomeFinances
 
 				if (IsNew.Value)
 				{
-					this.Text = "Новий запис";
+					this.Text += " - Новий запис";
 				}
 				else
 				{
 					if (контакти_Objest.Read(new UnigueID(Uid)))
 					{
-						this.Text = "Редагування запису - " + контакти_Objest.Назва;
+						this.Text += " - Редагування запису - " + контакти_Objest.Назва;
 
 						textBoxName.Text = контакти_Objest.Назва;
 						textBoxPhone.Text = контакти_Objest.Телефон;
@@ -65,9 +77,7 @@ namespace HomeFinances
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
-				{
 					контакти_Objest.New();
-				}
 
 				try
 				{

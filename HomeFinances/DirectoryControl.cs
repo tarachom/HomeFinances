@@ -20,15 +20,19 @@ namespace HomeFinances
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
 		public Action<DirectoryPointer> CallBack { get; set; }
 
 		private DirectoryPointer mDirectoryPointerItem;
+
+		/// <summary>
+		/// Ссилка на елемент довідника
+		/// </summary>
 		public DirectoryPointer DirectoryPointerItem
 		{
-			get
-			{
-				return mDirectoryPointerItem;
-			}
+			get{return mDirectoryPointerItem;}
 
 			set
 			{
@@ -43,12 +47,8 @@ namespace HomeFinances
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			CallBack.Invoke(DirectoryPointerItem);
+			if (CallBack != null)
+				CallBack.Invoke(DirectoryPointerItem);
 		}
-
-        private void DirectoryControl_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
