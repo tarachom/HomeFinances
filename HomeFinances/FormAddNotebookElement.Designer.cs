@@ -1,7 +1,7 @@
 ﻿
 namespace HomeFinances
 {
-    partial class FormAddNotebookFolder
+    partial class FormAddNotebookElement
     {
         /// <summary>
         /// Required designer variable.
@@ -33,8 +33,8 @@ namespace HomeFinances
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -49,7 +49,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(88, 109);
+            this.buttonSave.Location = new System.Drawing.Point(84, 109);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 15;
@@ -59,7 +59,7 @@ namespace HomeFinances
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(88, 12);
+            this.textBoxName.Location = new System.Drawing.Point(84, 12);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(461, 20);
             this.textBoxName.TabIndex = 20;
@@ -67,35 +67,35 @@ namespace HomeFinances
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 15);
+            this.label2.Location = new System.Drawing.Point(30, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Назва:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Папка:";
+            // 
             // directoryControl1
             // 
             this.directoryControl1.CallBack = null;
             this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(88, 38);
+            this.directoryControl1.Location = new System.Drawing.Point(84, 38);
             this.directoryControl1.Name = "directoryControl1";
             this.directoryControl1.Size = new System.Drawing.Size(465, 27);
-            this.directoryControl1.TabIndex = 21;
+            this.directoryControl1.TabIndex = 23;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Папка:";
-            // 
-            // FormAddNotebookFolder
+            // FormAddNotebookElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 164);
+            this.ClientSize = new System.Drawing.Size(565, 150);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.directoryControl1);
             this.Controls.Add(this.textBoxName);
@@ -103,9 +103,9 @@ namespace HomeFinances
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FormAddNotebookFolder";
+            this.Name = "FormAddNotebookElement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Папка";
+            this.Text = "Елемент";
             this.Load += new System.EventHandler(this.FormAddNotebookFolder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -118,7 +118,7 @@ namespace HomeFinances
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label2;
-        private DirectoryControl directoryControl1;
         private System.Windows.Forms.Label label1;
+        private DirectoryControl directoryControl1;
     }
 }

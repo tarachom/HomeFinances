@@ -16,9 +16,9 @@ using Перелічення = НоваКонфігурація_1_0.Перелі
 
 namespace HomeFinances
 {
-    public partial class FormAddNotebookFolder : Form
+    public partial class FormAddNotebookElement : Form
     {
-        public FormAddNotebookFolder()
+        public FormAddNotebookElement()
         {
             InitializeComponent();
         }
@@ -41,14 +41,14 @@ namespace HomeFinances
 		/// <summary>
 		/// Обєкт запису
 		/// </summary>
-        private Довідники.Записник_Папки_Objest записник_Папки_Objest { get; set; }
+        private Довідники.Записник_Objest записник_Objest { get; set; }
 
 		/// <summary>
 		/// Зворотня функція для вибору із списку
 		/// </summary>
 		/// <param name="directoryPointerItem"></param>
 		public void CallBack_DirectoryControl_Open_FormNotebook(DirectoryPointer directoryPointerItem)
-        {
+		{
 			FormNotebook formNotebook = new FormNotebook();
 			formNotebook.DirectoryPointerItem = directoryPointerItem;
 			formNotebook.DirectoryControlItem = directoryControl1;
@@ -61,7 +61,7 @@ namespace HomeFinances
 
 			if (IsNew.HasValue)
 			{
-				записник_Папки_Objest = new Довідники.Записник_Папки_Objest();
+				записник_Objest = new Довідники.Записник_Objest();
 
 				if (IsNew.Value)
 				{
@@ -70,12 +70,12 @@ namespace HomeFinances
 				}
 				else
 				{
-					if (записник_Папки_Objest.Read(new UnigueID(Uid)))
+					if (записник_Objest.Read(new UnigueID(Uid)))
 					{
-						this.Text += " - Редагування запису - " + записник_Папки_Objest.Назва;
+						this.Text += " - Редагування запису - " + записник_Objest.Назва;
 
-						textBoxName.Text = записник_Папки_Objest.Назва;
-						directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(записник_Папки_Objest.Родич.UnigueID);
+						textBoxName.Text = записник_Objest.Назва;
+						directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(записник_Objest.Папка.UnigueID);
 					}
 					else
 						MessageBox.Show("Error read");
@@ -88,13 +88,13 @@ namespace HomeFinances
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
-					записник_Папки_Objest.New();
+					записник_Objest.New();
 
 				try
 				{
-					записник_Папки_Objest.Назва = textBoxName.Text;
-					записник_Папки_Objest.Родич = directoryControl1.DirectoryPointerItem != null ? (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem : new Довідники.Записник_Папки_Pointer();
-					записник_Папки_Objest.Save();
+					записник_Objest.Назва = textBoxName.Text;
+					записник_Objest.Папка = directoryControl1.DirectoryPointerItem != null ? (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem : new Довідники.Записник_Папки_Pointer();
+					записник_Objest.Save();
 				}
 				catch (Exception exp)
 				{

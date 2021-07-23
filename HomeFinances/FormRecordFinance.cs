@@ -134,7 +134,7 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
 
-			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
 
 			//Створення тимчасової таблиці
 			записи_Select.QuerySelect.CreateTempTable = true;

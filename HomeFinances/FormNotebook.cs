@@ -98,6 +98,7 @@ namespace HomeFinances
 					break;
 			}
 
+			//Групи
 			Довідники.Записник_Папки_Select записник_Папки_Select = new Довідники.Записник_Папки_Select();
 
 			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Назва);
@@ -126,6 +127,35 @@ namespace HomeFinances
 					}
 			}
 
+			//Елементи
+			Довідники.Записник_Select записник_Select = new Довідники.Записник_Select();
+
+			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Select.Назва);
+			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Select.Папка, Comparison.EQ, ParentFolder.UnigueID.UGuid));
+
+			записник_Select.QuerySelect.Order.Add(Довідники.Записник_Select.Назва, SelectOrder.ASC);
+
+			записник_Select.Select();
+
+			while (записник_Select.MoveNext())
+			{
+				Довідники.Записник_Pointer cur = записник_Select.Current;
+
+				RecordsBindingList.Add(new Записи(
+					cur.UnigueID.ToString(),
+					false,
+					false,
+					cur.Fields[Довідники.Записник_Select.Назва].ToString()
+					));
+
+				//if (DirectoryPointerItem != null && selectRow == 0) //??
+				//	if (cur.UnigueID.ToString() == DirectoryPointerItem.UnigueID.ToString())
+				//	{
+				//		dataGridViewRecords.Rows[0].Selected = false;
+				//		dataGridViewRecords.Rows[RecordsBindingList.Count - 1].Selected = true;
+				//	}
+			}
+
 			if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
 			{
 				dataGridViewRecords.Rows[0].Selected = false;
@@ -146,7 +176,6 @@ namespace HomeFinances
 			public bool IsFolder { get; set; }
 			public bool IsParentFolder { get; set; }
 			public string Назва { get; set; }
-
 		}
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -181,29 +210,60 @@ namespace HomeFinances
             }
         }
 
-        private void toolStripButtonAdd_Click(object sender, EventArgs e)
-        {
-            FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
+		private void toolStripButtonAddFolder_Click(object sender, EventArgs e)
+		{
+			FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
 			formAddNotebookFolder.IsNew = true;
 			formAddNotebookFolder.OwnerForm = this;
 			formAddNotebookFolder.ShowDialog();
-        }
 
-        private void toolStripButtonEdit_Click(object sender, EventArgs e)
+		}
+
+		private void toolStripButtonAddElement_Click(object sender, EventArgs e)
+		{
+			FormAddNotebookElement formAddNotebookElement = new FormAddNotebookElement();
+			formAddNotebookElement.IsNew = true;
+			formAddNotebookElement.OwnerForm = this;
+			formAddNotebookElement.ShowDialog();
+		}
+
+		private void toolStripButtonEditFolder_Click(object sender, EventArgs e)
         {
 			if (dataGridViewRecords.SelectedRows.Count > 0)
 			{
 				int RowIndex = dataGridViewRecords.SelectedRows[0].Index;
 
-				FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
-				formAddNotebookFolder.OwnerForm = this;
-				formAddNotebookFolder.IsNew = false;
-				formAddNotebookFolder.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
-				formAddNotebookFolder.ShowDialog();
-            }			
+				if ((bool)dataGridViewRecords.Rows[RowIndex].Cells["IsFolder"].Value == true && 
+					(bool)dataGridViewRecords.Rows[RowIndex].Cells["IsParentFolder"].Value == false)
+				{
+					FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
+					formAddNotebookFolder.OwnerForm = this;
+					formAddNotebookFolder.IsNew = false;
+					formAddNotebookFolder.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
+					formAddNotebookFolder.ShowDialog();
+				}
+            }
 		}
 
-        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+		private void toolStripButtonEditElement_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewRecords.SelectedRows.Count > 0)
+			{
+				int RowIndex = dataGridViewRecords.SelectedRows[0].Index;
+
+				if ((bool)dataGridViewRecords.Rows[RowIndex].Cells["IsFolder"].Value == false && 
+					(bool)dataGridViewRecords.Rows[RowIndex].Cells["IsParentFolder"].Value == false)
+				{
+					FormAddNotebookElement formAddNotebookElement = new FormAddNotebookElement();
+					formAddNotebookElement.OwnerForm = this;
+					formAddNotebookElement.IsNew = false;
+					formAddNotebookElement.Uid = dataGridViewRecords.Rows[RowIndex].Cells[0].Value.ToString();
+					formAddNotebookElement.ShowDialog();
+				}
+			}
+		}
+
+		private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
 			LoadRecords();
 		}
@@ -268,14 +328,23 @@ namespace HomeFinances
 			if (dataGridViewRecords.Columns[e.ColumnIndex].Name == "Folder")
             {
 				bool isFolder = (bool)dataGridViewRecords["IsFolder", e.RowIndex].Value;
+				bool isParentFolder = (bool)dataGridViewRecords["IsParentFolder", e.RowIndex].Value;
 
 				if (isFolder)
 				{
 					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\folder.png");
 				}
-				else
-					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\doc_offlice.png");
+				else if (isParentFolder)
+				{
+					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\layers.png");
+				}
+                else
+                {
+					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\application_form.png"); 
+				}
 			}
         }
+
+        
     }
 }
