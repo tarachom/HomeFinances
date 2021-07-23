@@ -74,8 +74,8 @@ namespace HomeFinances
 
 		public void LoadRecords()
 		{
-			int selectRow = dataGridViewRecords.SelectedRows.Count > 0 ?
-				dataGridViewRecords.SelectedRows[dataGridViewRecords.SelectedRows.Count - 1].Index : 0;
+			//int selectRow = dataGridViewRecords.SelectedRows.Count > 0 ?
+			//	dataGridViewRecords.SelectedRows[dataGridViewRecords.SelectedRows.Count - 1].Index : 0;
 
 			RecordsBindingList.Clear();
 
@@ -119,7 +119,7 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записник_Папки_Select.Назва].ToString()
 					));
 
-				if (DirectoryPointerItem != null && selectRow == 0) //??
+				if (DirectoryPointerItem != null) //??
 					if (cur.UnigueID.ToString() == DirectoryPointerItem.UnigueID.ToString())
 					{
 						dataGridViewRecords.Rows[0].Selected = false;
@@ -156,11 +156,11 @@ namespace HomeFinances
 				//	}
 			}
 
-			if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
-			{
-				dataGridViewRecords.Rows[0].Selected = false;
-				dataGridViewRecords.Rows[selectRow].Selected = true;
-			}
+			//if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
+			//{
+			//	dataGridViewRecords.Rows[0].Selected = false;
+			//	dataGridViewRecords.Rows[selectRow].Selected = true;
+			//}
 		}
 
 		private class Записи
