@@ -56,7 +56,8 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["ID"].Visible = false;
 			dataGridViewRecords.Columns["IsFolder"].Visible = false;
 			dataGridViewRecords.Columns["IsParentFolder"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = 300;
+			dataGridViewRecords.Columns["Назва"].Width = 500;
+			dataGridViewRecords.Columns["Дата"].Width = 120;
 
 			DataGridViewImageColumn dataGridViewImageColumn = new DataGridViewImageColumn();
 			dataGridViewImageColumn.Name = "Folder";
@@ -88,7 +89,8 @@ namespace HomeFinances
 					CopyParentFolder.UnigueID.ToString(),
 					false,
 					true,
-					CopyParentFolder.GetPresentation()
+					CopyParentFolder.GetPresentation(),
+					"" //Дата
 					));
 
 				CopyParentFolder = CopyParentFolder.GetDirectoryObject().Родич;
@@ -116,7 +118,8 @@ namespace HomeFinances
 					cur.UnigueID.ToString(),
 					true,
 					false,
-					cur.Fields[Довідники.Записник_Папки_Select.Назва].ToString()
+					cur.Fields[Довідники.Записник_Папки_Select.Назва].ToString(),
+					"" //Дата
 					));
 
 				if (DirectoryPointerItem != null) //??
@@ -131,6 +134,7 @@ namespace HomeFinances
 			Довідники.Записник_Select записник_Select = new Довідники.Записник_Select();
 
 			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Select.Назва);
+			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Select.Дата);
 			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Select.Папка, Comparison.EQ, ParentFolder.UnigueID.UGuid));
 
 			записник_Select.QuerySelect.Order.Add(Довідники.Записник_Select.Назва, SelectOrder.ASC);
@@ -145,7 +149,8 @@ namespace HomeFinances
 					cur.UnigueID.ToString(),
 					false,
 					false,
-					cur.Fields[Довідники.Записник_Select.Назва].ToString()
+					cur.Fields[Довідники.Записник_Select.Назва].ToString(),
+					cur.Fields[Довідники.Записник_Select.Дата].ToString()
 					));
 
 				//if (DirectoryPointerItem != null && selectRow == 0) //??
@@ -165,17 +170,19 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, bool _IsFolder, bool _IsParentFolder, string _Назва)
+			public Записи(string _id, bool _IsFolder, bool _IsParentFolder, string _Назва, string _Дата)
 			{
 				ID = _id;
 				Назва = _Назва;
 				IsFolder = _IsFolder;
 				IsParentFolder = _IsParentFolder;
+				Дата = _Дата;
 			}
 			public string ID { get; set; }
 			public bool IsFolder { get; set; }
 			public bool IsParentFolder { get; set; }
 			public string Назва { get; set; }
+			public string Дата { get; set; }
 		}
 
         private void dataGridViewRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -193,7 +200,6 @@ namespace HomeFinances
 				}
 				else
 				{
-					//toolStripButtonEdit_Click(this, null);
 					if (isFolder)
 					{
 						ParentFolder = new Довідники.Записник_Папки_Pointer(new UnigueID(Uid));
