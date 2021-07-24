@@ -222,7 +222,6 @@ namespace HomeFinances
 			formAddNotebookFolder.IsNew = true;
 			formAddNotebookFolder.OwnerForm = this;
 			formAddNotebookFolder.ShowDialog();
-
 		}
 
 		private void toolStripButtonAddElement_Click(object sender, EventArgs e)
