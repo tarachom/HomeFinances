@@ -498,7 +498,43 @@ namespace HomeFinances
 				записи_Objest.Save();
 			}
 
+			//5 - Контакти
+			XPathNodeIterator Довідник_Контакти_Записи = rootNode.Select("Довідник_Контакти/Запис");
+			while (Довідник_Контакти_Записи.MoveNext())
+			{
+				XPathNavigator current = Довідник_Контакти_Записи.Current;
 
+				string uid = current.SelectSingleNode("uid").Value;
+				string Назва = current.SelectSingleNode("Назва").Value;
+				string Телефон = current.SelectSingleNode("Телефон").Value;
+				string Сайт = current.SelectSingleNode("Сайт").Value;
+				string Пошта = current.SelectSingleNode("Пошта").Value;
+				string Опис = current.SelectSingleNode("Опис").Value;
+				string Скайп = current.SelectSingleNode("Скайп").Value;
+
+				Довідники.Контакти_Pointer контакти_Pointer = new Довідники.Контакти_Pointer(new UnigueID(uid));
+				Довідники.Контакти_Objest контакти_Objest = контакти_Pointer.GetDirectoryObject();
+				if (контакти_Objest != null)
+				{
+					//Збереження попередніх значень
+					контакти_Objest.ОбмінІсторія_TablePart.Records.Add(
+						new Довідники.Контакти_ОбмінІсторія_TablePart.Record(DateTime.Now, контакти_Objest.Serialize("Запис")));
+					контакти_Objest.ОбмінІсторія_TablePart.Save(true);
+				}
+				else
+				{
+					контакти_Objest = new Довідники.Контакти_Objest();
+					контакти_Objest.New();
+				}
+
+				контакти_Objest.Назва = Назва;
+				контакти_Objest.Телефон = Телефон;
+				контакти_Objest.Сайт = Сайт;
+				контакти_Objest.Пошта = Пошта;
+				контакти_Objest.Опис = Опис;
+				контакти_Objest.Скайп = Скайп;
+				контакти_Objest.Save();
+			}
 		}
 
 		private void toolStripMenuItemExport_Click(object sender, EventArgs e)

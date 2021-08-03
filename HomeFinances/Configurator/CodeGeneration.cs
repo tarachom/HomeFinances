@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 03.08.2021 11:15:54
+ * Дата конфігурації: 03.08.2021 12:00:23
  *
  */
 
@@ -1552,6 +1552,9 @@ namespace НоваКонфігурація_1_0.Довідники
             Опис = "";
             Скайп = "";
             
+            //Табличні частини
+            ОбмінІсторія_TablePart = new Контакти_ОбмінІсторія_TablePart(this);
+            
         }
         
         public bool Read(UnigueID uid)
@@ -1615,6 +1618,9 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Пошта { get; set; }
         public string Опис { get; set; }
         public string Скайп { get; set; }
+        
+        //Табличні частини
+        public Контакти_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -1693,6 +1699,94 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
+      
+    class Контакти_ОбмінІсторія_TablePart : DirectoryTablePart
+    {
+        public Контакти_ОбмінІсторія_TablePart(Контакти_Objest owner) : base(Config.Kernel, "tab_a14",
+             new string[] { "col_a1", "col_a2" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public Контакти_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Дата = (fieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a1"].ToString()) : DateTime.MinValue;
+                record.Значення = fieldValue["col_a2"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a1", record.Дата);
+                    fieldValue.Add("col_a2", record.Значення);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Дата = DateTime.MinValue;
+                Значення = "";
+                
+            }
+        
+            
+            public Record(
+                DateTime?  _Дата = null, string _Значення = "")
+            {
+                Дата = _Дата ?? DateTime.MinValue;
+                Значення = _Значення;
+                
+            }
+            public DateTime Дата { get; set; }
+            public string Значення { get; set; }
+            
+        }
+    }
       ///<summary>
     ///Список.
     ///</summary>
