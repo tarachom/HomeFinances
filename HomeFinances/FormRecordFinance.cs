@@ -497,6 +497,8 @@ namespace HomeFinances
 				записи_Objest.СсилкаНаСайт = СсилкаНаСайт;
 				записи_Objest.Save();
 			}
+
+
 		}
 
 		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
