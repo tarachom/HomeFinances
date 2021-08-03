@@ -535,6 +535,8 @@ namespace HomeFinances
 				контакти_Objest.Скайп = Скайп;
 				контакти_Objest.Save();
 			}
+
+
 		}
 
 		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
