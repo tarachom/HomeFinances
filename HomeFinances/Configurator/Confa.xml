@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>22.07.2021 21:49:34</DateTimeSave>
+  <DateTimeSave>03.08.2021 11:15:54</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -105,7 +105,32 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>ОбмінІсторія</Name>
+          <Table>tab_a13</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Дата</Name>
+              <NameInTable>col_a5</NameInTable>
+              <Type>datetime</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a6</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
       <Views>
         <View>
           <Name>Список</Name>
@@ -146,7 +171,31 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>ОбмінІсторія</Name>
+          <Table>tab_a10</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Дата</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>datetime</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a2</NameInTable>
+              <Type>string</Type>
+              <Desc>Формат ХМЛ</Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
       <Views>
         <View>
           <Name>Список</Name>
@@ -325,7 +374,31 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>ОбмінІсторія</Name>
+          <Table>tab_a12</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Дата</Name>
+              <NameInTable>col_a3</NameInTable>
+              <Type>datetime</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a4</NameInTable>
+              <Type>string</Type>
+              <Desc>ХМЛ</Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
       <Views>
         <View>
           <Name>Список</Name>
@@ -368,7 +441,31 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>ОбмінІсторія</Name>
+          <Table>tab_a11</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Дата</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>datetime</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a2</NameInTable>
+              <Type>string</Type>
+              <Desc>ХМЛ</Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
       <Views>
         <View>
           <Name>Список</Name>

@@ -121,6 +121,34 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_TabularParts>
+      <Name>ОбмінІсторія</Name>
+      <Table>tab_a13</Table>
+      <IsCreateOwner>yes</IsCreateOwner>
+      <IsExist>yes</IsExist>
+      <Control_Field>
+        <Name>Дата</Name>
+        <NameInTable>col_a5</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>datetime</ConfType>
+          <DataType>timestamp without time zone</DataType>
+          <UdtName>timestamp</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+      <Control_Field>
+        <Name>Значення</Name>
+        <NameInTable>col_a6</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -149,6 +177,34 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_TabularParts>
+      <Name>ОбмінІсторія</Name>
+      <Table>tab_a10</Table>
+      <IsCreateOwner>yes</IsCreateOwner>
+      <IsExist>yes</IsExist>
+      <Control_Field>
+        <Name>Дата</Name>
+        <NameInTable>col_a1</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>datetime</ConfType>
+          <DataType>timestamp without time zone</DataType>
+          <UdtName>timestamp</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+      <Control_Field>
+        <Name>Значення</Name>
+        <NameInTable>col_a2</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -294,6 +350,34 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_TabularParts>
+      <Name>ОбмінІсторія</Name>
+      <Table>tab_a12</Table>
+      <IsCreateOwner>yes</IsCreateOwner>
+      <IsExist>yes</IsExist>
+      <Control_Field>
+        <Name>Дата</Name>
+        <NameInTable>col_a3</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>datetime</ConfType>
+          <DataType>timestamp without time zone</DataType>
+          <UdtName>timestamp</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+      <Control_Field>
+        <Name>Значення</Name>
+        <NameInTable>col_a4</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -322,6 +406,34 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_TabularParts>
+      <Name>ОбмінІсторія</Name>
+      <Table>tab_a11</Table>
+      <IsCreateOwner>yes</IsCreateOwner>
+      <IsExist>yes</IsExist>
+      <Control_Field>
+        <Name>Дата</Name>
+        <NameInTable>col_a1</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>datetime</ConfType>
+          <DataType>timestamp without time zone</DataType>
+          <UdtName>timestamp</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+      <Control_Field>
+        <Name>Значення</Name>
+        <NameInTable>col_a2</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Xml;
+using System.Xml.XPath;
+
 using System.IO;
 
 using AccountingSoftware;
@@ -354,6 +356,149 @@ namespace HomeFinances
 			sw.Close();
 		}
 
+		private void Import()
+		{
+			XPathDocument xPathDoc = new XPathDocument("E:\\Вигрузка.xml");
+			XPathNavigator xPathDocNavigator = xPathDoc.CreateNavigator();
+
+			//Корінна вітка
+			XPathNavigator rootNode = xPathDocNavigator.SelectSingleNode("/ВигрузкаДаних");
+
+			//1 - КласифікаторВитрат
+			XPathNodeIterator КласифікаторВитрат_Записи = rootNode.Select("Довідник_КласифікаторВитрат/Запис");
+			while (КласифікаторВитрат_Записи.MoveNext())
+			{
+				XPathNavigator current = КласифікаторВитрат_Записи.Current;
+
+				string uid = current.SelectSingleNode("uid").Value;
+				string Назва = current.SelectSingleNode("Назва").Value;
+				string Код = current.SelectSingleNode("Код").Value;
+
+				Довідники.КласифікаторВитрат_Pointer класифікаторВитрат_Pointer = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(uid));
+				Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = класифікаторВитрат_Pointer.GetDirectoryObject();
+				if (класифікаторВитрат_Objest != null)
+				{
+					//Збереження попередніх значень
+					класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Records.Add(
+						new Довідники.КласифікаторВитрат_ОбмінІсторія_TablePart.Record(DateTime.Now, класифікаторВитрат_Objest.Serialize("Запис")));
+					класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Save(true);
+				}
+				else
+				{
+					класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
+					класифікаторВитрат_Objest.New();
+				}
+
+				класифікаторВитрат_Objest.Назва = Назва;
+				класифікаторВитрат_Objest.Код = Код;
+				класифікаторВитрат_Objest.Save();
+			}
+
+			//2 - Валюти
+			XPathNodeIterator Довідник_Валюти_Записи = rootNode.Select("Довідник_Валюти/Запис");
+			while (Довідник_Валюти_Записи.MoveNext())
+			{
+				XPathNavigator current = Довідник_Валюти_Записи.Current;
+
+				string uid = current.SelectSingleNode("uid").Value;
+				string Назва = current.SelectSingleNode("Назва").Value;
+				string Код = current.SelectSingleNode("Код").Value;
+
+				Довідники.Валюта_Pointer валюта_Pointer = new Довідники.Валюта_Pointer(new UnigueID(uid));
+				Довідники.Валюта_Objest валюта_Objest = валюта_Pointer.GetDirectoryObject();
+				if (валюта_Objest != null)
+				{
+					//Збереження попередніх значень
+					валюта_Objest.ОбмінІсторія_TablePart.Records.Add(
+						new Довідники.Валюта_ОбмінІсторія_TablePart.Record(DateTime.Now, валюта_Objest.Serialize("Запис")));
+					валюта_Objest.ОбмінІсторія_TablePart.Save(true);
+				}
+				else
+				{
+					валюта_Objest = new Довідники.Валюта_Objest();
+					валюта_Objest.New();
+				}
+
+				валюта_Objest.Назва = Назва;
+				валюта_Objest.Код = Код;
+				валюта_Objest.Save();
+			}
+
+			//3 - Каса
+			XPathNodeIterator Довідник_Каси_Записи = rootNode.Select("Довідник_Каси/Запис");
+			while (Довідник_Каси_Записи.MoveNext())
+			{
+				XPathNavigator current = Довідник_Каси_Записи.Current;
+
+				string uid = current.SelectSingleNode("uid").Value;
+				string Назва = current.SelectSingleNode("Назва").Value;
+				string Валюта = current.SelectSingleNode("Валюта").Value;
+				string ТипВалюти = current.SelectSingleNode("ТипВалюти").Value;
+
+				Довідники.Каса_Pointer каса_Pointer = new Довідники.Каса_Pointer(new UnigueID(uid));
+				Довідники.Каса_Objest каса_Objest = каса_Pointer.GetDirectoryObject();
+				if (каса_Objest != null)
+				{
+					//Збереження попередніх значень
+					каса_Objest.ОбмінІсторія_TablePart.Records.Add(
+						new Довідники.Каса_ОбмінІсторія_TablePart.Record(DateTime.Now, каса_Objest.Serialize("Запис")));
+					каса_Objest.ОбмінІсторія_TablePart.Save(true);
+				}
+				else
+				{
+					каса_Objest = new Довідники.Каса_Objest();
+					каса_Objest.New();
+				}
+
+				каса_Objest.Назва = Назва;
+				каса_Objest.Валюта = new Довідники.Валюта_Pointer(new UnigueID(Валюта));
+				каса_Objest.ТипВалюти = ((Перелічення.ТипВалюти)int.Parse(ТипВалюти));
+				каса_Objest.Save();
+			}
+
+			//4 - Записи
+			XPathNodeIterator Довідник_Записи_Записи = rootNode.Select("Довідник_Записи/Запис");
+			while (Довідник_Записи_Записи.MoveNext())
+			{
+				XPathNavigator current = Довідник_Записи_Записи.Current;
+
+				string uid = current.SelectSingleNode("uid").Value;
+				string Назва = current.SelectSingleNode("Назва").Value;
+				string ДатаЗапису = current.SelectSingleNode("ДатаЗапису").Value;
+				string Опис = current.SelectSingleNode("Опис").Value;
+				string ТипЗапису = current.SelectSingleNode("ТипЗапису").Value;
+				string Сума = current.SelectSingleNode("Сума").Value;
+				string Витрата = current.SelectSingleNode("Витрата").Value;
+				string Каса = current.SelectSingleNode("Каса").Value;
+				string СсилкаНаСайт = current.SelectSingleNode("СсилкаНаСайт").Value;
+
+				Довідники.Записи_Pointer записи_Pointer = new Довідники.Записи_Pointer(new UnigueID(uid));
+				Довідники.Записи_Objest записи_Objest = записи_Pointer.GetDirectoryObject();
+				if (записи_Objest != null)
+				{
+					//Збереження попередніх значень
+					записи_Objest.ОбмінІсторія_TablePart.Records.Add(
+						new Довідники.Записи_ОбмінІсторія_TablePart.Record(DateTime.Now, записи_Objest.Serialize("Запис")));
+					записи_Objest.ОбмінІсторія_TablePart.Save(true);
+				}
+				else
+				{
+					записи_Objest = new Довідники.Записи_Objest();
+					записи_Objest.New();
+				}
+
+				записи_Objest.Назва = Назва;
+				записи_Objest.ДатаЗапису = DateTime.Parse(ДатаЗапису);
+				записи_Objest.Опис = Опис;
+				записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)int.Parse(ТипЗапису);
+				записи_Objest.Сума = int.Parse(Сума);
+				записи_Objest.Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Витрата));
+				записи_Objest.Каса = new Довідники.Каса_Pointer(new UnigueID(Каса));
+				записи_Objest.СсилкаНаСайт = СсилкаНаСайт;
+				записи_Objest.Save();
+			}
+		}
+
 		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
         {
 			Export();
@@ -425,8 +570,8 @@ namespace HomeFinances
 
         private void toolStripMenuItemImport_Click(object sender, EventArgs e)
         {
-
-        }
+			Import();
+		}
 
 		private class Записи
 		{
