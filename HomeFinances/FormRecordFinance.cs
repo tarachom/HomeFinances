@@ -121,6 +121,25 @@ namespace HomeFinances
 
 		private BindingList<Записи> RecordsBindingList { get; set; }
 
+		private class Записи
+		{
+			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата)
+			{
+				ID = _id;
+				Назва = _Назва;
+				ДатаЗапису = _ДатаЗапису;
+				Сума = _Сума;
+				ТипЗапису = _ТипЗапису;
+				Витрата = _Витрата;
+			}
+			public string ID { get; set; }
+			public string Назва { get; set; }
+			public string ДатаЗапису { get; set; }
+			public string Сума { get; set; }
+			public string ТипЗапису { get; set; }
+			public string Витрата { get; set; }
+		}
+
 		public void LoadRecords()
 		{
 			int selectRow = dataGridViewRecords.SelectedRows.Count > 0 ?
@@ -205,7 +224,9 @@ namespace HomeFinances
 			}
 		}
 
-		private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+        #region ToolStrip Menu
+
+        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
 		{
 			LoadRecords();
 		}
@@ -278,7 +299,11 @@ namespace HomeFinances
 			}
 		}
 
-		private void Export()
+        #endregion
+
+        #region ImportExport
+
+        private void Export()
 		{
 			StreamWriter sw = new StreamWriter("E:\\Вигрузка.xml");
 			sw.AutoFlush = true;
@@ -539,8 +564,48 @@ namespace HomeFinances
 
 		}
 
-		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
+        #endregion
+
+        #region MENU
+
+        private void класифікаторВитратToolStripMenuItem_Click(object sender, EventArgs e)
         {
+			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
+			formCostСlassifier.Show();
+		}
+
+        private void контактиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormContacts formContacts = new FormContacts();
+			formContacts.Show();
+		}
+
+        private void валютиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormCurrency formCurrency = new FormCurrency();
+			formCurrency.Show();
+		}
+
+        private void касиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormCash formCash = new FormCash();
+			formCash.Show();
+		}
+
+        private void записникToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormNotebook formNotebook = new FormNotebook();
+			formNotebook.Show();
+		}
+
+        private void константиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormConstants formConstats = new FormConstants();
+			formConstats.Show();
+		}
+
+		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
+		{
 			Export();
 
 			/*
@@ -608,64 +673,12 @@ namespace HomeFinances
 			*/
 		}
 
-        private void toolStripMenuItemImport_Click(object sender, EventArgs e)
-        {
+		private void toolStripMenuItemImport_Click(object sender, EventArgs e)
+		{
 			Import();
 		}
 
-		private class Записи
-		{
-			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата)
-			{
-				ID = _id;
-				Назва = _Назва;
-				ДатаЗапису = _ДатаЗапису;
-				Сума = _Сума;
-				ТипЗапису = _ТипЗапису;
-				Витрата = _Витрата;
-			}
-			public string ID { get; set; }
-			public string Назва { get; set; }
-			public string ДатаЗапису { get; set; }
-			public string Сума { get; set; }
-			public string ТипЗапису { get; set; }
-			public string Витрата { get; set; }
-		}
+		#endregion
 
-        private void класифікаторВитратToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
-			formCostСlassifier.Show();
-		}
-
-        private void контактиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			FormContacts formContacts = new FormContacts();
-			formContacts.Show();
-		}
-
-        private void валютиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			FormCurrency formCurrency = new FormCurrency();
-			formCurrency.Show();
-		}
-
-        private void касиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			FormCash formCash = new FormCash();
-			formCash.Show();
-		}
-
-        private void записникToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			FormNotebook formNotebook = new FormNotebook();
-			formNotebook.Show();
-		}
-
-        private void константиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			FormConstants formConstats = new FormConstants();
-			formConstats.Show();
-		}
-    }
+	}
 }
