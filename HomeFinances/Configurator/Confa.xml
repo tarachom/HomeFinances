@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>03.08.2021 12:00:23</DateTimeSave>
+  <DateTimeSave>05.08.2021 12:59:33</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -254,7 +254,32 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>ОбмінІсторія</Name>
+          <Table>tab_a16</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Дата</Name>
+              <NameInTable>col_a3</NameInTable>
+              <Type>datetime</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a4</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
       <Views>
         <View>
           <Name>Список</Name>
@@ -609,7 +634,32 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>ОбмінІсторія</Name>
+          <Table>tab_a15</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Дата</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>datetime</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Значення</Name>
+              <NameInTable>col_a2</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
       <Views>
         <View>
           <Name>Список</Name>

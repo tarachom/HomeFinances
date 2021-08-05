@@ -47,7 +47,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(582, 363);
+            this.buttonClose.Location = new System.Drawing.Point(582, 435);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 16;
@@ -57,7 +57,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(66, 363);
+            this.buttonSave.Location = new System.Drawing.Point(66, 435);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 15;
@@ -67,7 +67,7 @@ namespace HomeFinances
             // 
             // textBoxSite
             // 
-            this.textBoxSite.Location = new System.Drawing.Point(67, 234);
+            this.textBoxSite.Location = new System.Drawing.Point(67, 174);
             this.textBoxSite.Name = "textBoxSite";
             this.textBoxSite.Size = new System.Drawing.Size(679, 20);
             this.textBoxSite.TabIndex = 18;
@@ -75,7 +75,7 @@ namespace HomeFinances
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 237);
+            this.label1.Location = new System.Drawing.Point(27, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 17;
@@ -102,6 +102,7 @@ namespace HomeFinances
             this.textBoxPhone.Location = new System.Drawing.Point(67, 32);
             this.textBoxPhone.Multiline = true;
             this.textBoxPhone.Name = "textBoxPhone";
+            this.textBoxPhone.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxPhone.Size = new System.Drawing.Size(679, 83);
             this.textBoxPhone.TabIndex = 22;
             // 
@@ -117,9 +118,8 @@ namespace HomeFinances
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(67, 121);
-            this.textBoxEmail.Multiline = true;
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(679, 83);
+            this.textBoxEmail.Size = new System.Drawing.Size(679, 20);
             this.textBoxEmail.TabIndex = 24;
             // 
             // label4
@@ -133,16 +133,17 @@ namespace HomeFinances
             // 
             // textBoxDesc
             // 
-            this.textBoxDesc.Location = new System.Drawing.Point(67, 260);
+            this.textBoxDesc.Location = new System.Drawing.Point(67, 200);
             this.textBoxDesc.Multiline = true;
             this.textBoxDesc.Name = "textBoxDesc";
-            this.textBoxDesc.Size = new System.Drawing.Size(679, 83);
+            this.textBoxDesc.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxDesc.Size = new System.Drawing.Size(679, 229);
             this.textBoxDesc.TabIndex = 26;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 263);
+            this.label5.Location = new System.Drawing.Point(27, 203);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 25;
@@ -150,7 +151,7 @@ namespace HomeFinances
             // 
             // textBoxSkype
             // 
-            this.textBoxSkype.Location = new System.Drawing.Point(67, 207);
+            this.textBoxSkype.Location = new System.Drawing.Point(67, 147);
             this.textBoxSkype.Name = "textBoxSkype";
             this.textBoxSkype.Size = new System.Drawing.Size(679, 20);
             this.textBoxSkype.TabIndex = 28;
@@ -158,7 +159,7 @@ namespace HomeFinances
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 210);
+            this.label6.Location = new System.Drawing.Point(21, 150);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 27;
@@ -168,7 +169,7 @@ namespace HomeFinances
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 405);
+            this.ClientSize = new System.Drawing.Size(758, 469);
             this.Controls.Add(this.textBoxSkype);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxDesc);

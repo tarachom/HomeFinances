@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 03.08.2021 12:00:23
+ * Дата конфігурації: 05.08.2021 12:59:33
  *
  */
 
@@ -47,13 +47,13 @@ namespace НоваКонфігурація_1_0
             Константи.ЗначенняПоЗамовчуванню.ReadAll();
             
         }
-        
     }
 }
 
 namespace НоваКонфігурація_1_0.Константи
 {
     
+	#region CONSTANTS BLOCK "Основний"
     static class Основний
     {
         public static void ReadAll()
@@ -63,7 +63,9 @@ namespace НоваКонфігурація_1_0.Константи
         
              
     }
+    #endregion
     
+	#region CONSTANTS BLOCK "ЗначенняПоЗамовчуванню"
     static class ЗначенняПоЗамовчуванню
     {
         public static void ReadAll()
@@ -106,6 +108,7 @@ namespace НоваКонфігурація_1_0.Константи
         }
              
     }
+    #endregion
     
 }
 
@@ -375,23 +378,8 @@ namespace НоваКонфігурація_1_0.Довідники
             
         }
     }
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Записи_Список_View : DirectoryView
-    {
-        public Записи_Список_View() : base(Config.Kernel, "tab_a02", 
-             new string[] { "col_a4", "col_a5" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "" },
-             "Довідник_Записи_Список")
-        {
-            
-        }
-        
-    }
       
-    
+   
     #endregion
     
     #region DIRECTORY "КласифікаторВитрат"
@@ -615,23 +603,8 @@ namespace НоваКонфігурація_1_0.Довідники
             
         }
     }
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class КласифікаторВитрат_Список_View : DirectoryView
-    {
-        public КласифікаторВитрат_Список_View() : base(Config.Kernel, "tab_a01", 
-             new string[] { "col_a1", "col_a2" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "string" },
-             "Довідник_КласифікаторВитрат_Список")
-        {
-            
-        }
-        
-    }
       
-    
+   
     #endregion
     
     #region DIRECTORY "Записник"
@@ -647,6 +620,9 @@ namespace НоваКонфігурація_1_0.Довідники
             Опис = "";
             Дата = DateTime.MinValue;
             Папка = new Довідники.Записник_Папки_Pointer();
+            
+            //Табличні частини
+            ОбмінІсторія_TablePart = new Записник_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -703,6 +679,9 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Опис { get; set; }
         public DateTime Дата { get; set; }
         public Довідники.Записник_Папки_Pointer Папка { get; set; }
+        
+        //Табличні частини
+        public Записник_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -779,23 +758,96 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Записник_Список_View : DirectoryView
+      
+    class Записник_ОбмінІсторія_TablePart : DirectoryTablePart
     {
-        public Записник_Список_View() : base(Config.Kernel, "tab_a03", 
-             new string[] { "col_a1", "col_a2" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "pointer" },
-             "Довідник_Записник_Список")
+        public Записник_ОбмінІсторія_TablePart(Записник_Objest owner) : base(Config.Kernel, "tab_a16",
+             new string[] { "col_a3", "col_a4" }) 
         {
+            if (owner == null) throw new Exception("owner null");
             
+            Owner = owner;
+            Records = new List<Record>();
         }
         
+        public Записник_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Дата = (fieldValue["col_a3"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a3"].ToString()) : DateTime.MinValue;
+                record.Значення = fieldValue["col_a4"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a3", record.Дата);
+                    fieldValue.Add("col_a4", record.Значення);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Дата = DateTime.MinValue;
+                Значення = "";
+                
+            }
+        
+            
+            public Record(
+                DateTime?  _Дата = null, string _Значення = "")
+            {
+                Дата = _Дата ?? DateTime.MinValue;
+                Значення = _Значення;
+                
+            }
+            public DateTime Дата { get; set; }
+            public string Значення { get; set; }
+            
+        }
     }
       
-    
+   
     #endregion
     
     #region DIRECTORY "Користувач"
@@ -1025,23 +1077,8 @@ namespace НоваКонфігурація_1_0.Довідники
             
         }
     }
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Користувач_Список_View : DirectoryView
-    {
-        public Користувач_Список_View() : base(Config.Kernel, "tab_a04", 
-             new string[] { "col_a1", "col_a2" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "string" },
-             "Довідник_Користувач_Список")
-        {
-            
-        }
-        
-    }
       
-    
+   
     #endregion
     
     #region DIRECTORY "Каса"
@@ -1277,23 +1314,8 @@ namespace НоваКонфігурація_1_0.Довідники
             
         }
     }
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Каса_Список_View : DirectoryView
-    {
-        public Каса_Список_View() : base(Config.Kernel, "tab_a05", 
-             new string[] { "col_a1", "col_a2" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "pointer" },
-             "Довідник_Каса_Список")
-        {
-            
-        }
-        
-    }
       
-    
+   
     #endregion
     
     #region DIRECTORY "Валюта"
@@ -1517,23 +1539,8 @@ namespace НоваКонфігурація_1_0.Довідники
             
         }
     }
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Валюта_Список_View : DirectoryView
-    {
-        public Валюта_Список_View() : base(Config.Kernel, "tab_a07", 
-             new string[] { "col_a3", "col_a4" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "string" },
-             "Довідник_Валюта_Список")
-        {
-            
-        }
-        
-    }
       
-    
+   
     #endregion
     
     #region DIRECTORY "Контакти"
@@ -1787,23 +1794,8 @@ namespace НоваКонфігурація_1_0.Довідники
             
         }
     }
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Контакти_Список_View : DirectoryView
-    {
-        public Контакти_Список_View() : base(Config.Kernel, "tab_a08", 
-             new string[] { "col_a1", "col_a2" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "" },
-             "Довідник_Контакти_Список")
-        {
-            
-        }
-        
-    }
       
-    
+   
     #endregion
     
     #region DIRECTORY "Записник_Папки"
@@ -1815,6 +1807,9 @@ namespace НоваКонфігурація_1_0.Довідники
         {
             Назва = "";
             Родич = new Довідники.Записник_Папки_Pointer();
+            
+            //Табличні частини
+            ОбмінІсторія_TablePart = new Записник_Папки_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -1863,6 +1858,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
         public string Назва { get; set; }
         public Довідники.Записник_Папки_Pointer Родич { get; set; }
+        
+        //Табличні частини
+        public Записник_Папки_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -1933,29 +1931,104 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-      ///<summary>
-    ///Список.
-    ///</summary>
-    class Записник_Папки_Список_View : DirectoryView
+      
+    class Записник_Папки_ОбмінІсторія_TablePart : DirectoryTablePart
     {
-        public Записник_Папки_Список_View() : base(Config.Kernel, "tab_a09", 
-             new string[] { "col_a1", "col_a2" },
-             new string[] { "Назва", "Код" },
-             new string[] { "string", "" },
-             "Довідник_Записник_Папки_Список")
+        public Записник_Папки_ОбмінІсторія_TablePart(Записник_Папки_Objest owner) : base(Config.Kernel, "tab_a15",
+             new string[] { "col_a1", "col_a2" }) 
         {
+            if (owner == null) throw new Exception("owner null");
             
+            Owner = owner;
+            Records = new List<Record>();
         }
         
+        public Записник_Папки_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Дата = (fieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a1"].ToString()) : DateTime.MinValue;
+                record.Значення = fieldValue["col_a2"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a1", record.Дата);
+                    fieldValue.Add("col_a2", record.Значення);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Дата = DateTime.MinValue;
+                Значення = "";
+                
+            }
+        
+            
+            public Record(
+                DateTime?  _Дата = null, string _Значення = "")
+            {
+                Дата = _Дата ?? DateTime.MinValue;
+                Значення = _Значення;
+                
+            }
+            public DateTime Дата { get; set; }
+            public string Значення { get; set; }
+            
+        }
     }
       
-    
+   
     #endregion
     
 }
 
 namespace НоваКонфігурація_1_0.Перелічення
 {
+    
+    #region ENUM "ТипЗапису"
     ///<summary>
     ///Тип запису - це поступлення фінансів або витрати фінансів.
     ///</summary>
@@ -1966,7 +2039,9 @@ namespace НоваКонфігурація_1_0.Перелічення
          Благодійність = 4,
          Замітка = 5
     }
+    #endregion
     
+    #region ENUM "ТипВалюти"
     ///<summary>
     ///Нал, безнал.
     ///</summary>
@@ -1975,7 +2050,7 @@ namespace НоваКонфігурація_1_0.Перелічення
          Готівка = 1,
          Карточка = 2
     }
-    
+    #endregion
     
 }
 
