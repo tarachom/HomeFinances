@@ -50,12 +50,15 @@ namespace HomeFinances
 
             directoryControl2.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(Константи.ЗначенняПоЗамовчуванню.ОсновнаСтаттяВитрат_Const.UnigueID);
             directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
+
+            textBoxCatalogFiles.Text = Константи.Основний.КаталогДляФайлів_Const;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             Константи.ЗначенняПоЗамовчуванню.ОсновнаКаса_Const = (Довідники.Каса_Pointer)directoryControl1.DirectoryPointerItem;
             Константи.ЗначенняПоЗамовчуванню.ОсновнаСтаттяВитрат_Const = (Довідники.КласифікаторВитрат_Pointer)directoryControl2.DirectoryPointerItem;
+            Константи.Основний.КаталогДляФайлів_Const = textBoxCatalogFiles.Text;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

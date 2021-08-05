@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 05.08.2021 12:59:33
+ * Дата конфігурації: 05.08.2021 16:14:03
  *
  */
 
@@ -59,8 +59,29 @@ namespace НоваКонфігурація_1_0.Константи
         public static void ReadAll()
         {
             
+            Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+            bool IsSelect = Config.Kernel.DataBase.SelectAllConstants("tab_constants",
+                 new string[] { "col_a3" }, fieldValue);
+            
+            if (IsSelect)
+            {
+                m_КаталогДляФайлів_Const = fieldValue["col_a3"].ToString();
+                
+            }
+			
         }
         
+        
+        static string m_КаталогДляФайлів_Const = "";
+        public static string КаталогДляФайлів_Const
+        {
+            get { return m_КаталогДляФайлів_Const; }
+            set
+            {
+                m_КаталогДляФайлів_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a3", m_КаталогДляФайлів_Const);
+            }
+        }
              
     }
     #endregion
@@ -623,6 +644,7 @@ namespace НоваКонфігурація_1_0.Довідники
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Записник_ОбмінІсторія_TablePart(this);
+            Файли_TablePart = new Записник_Файли_TablePart(this);
             
         }
         
@@ -682,6 +704,7 @@ namespace НоваКонфігурація_1_0.Довідники
         
         //Табличні частини
         public Записник_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
+        public Записник_Файли_TablePart Файли_TablePart { get; set; }
         
     }
     
@@ -843,6 +866,94 @@ namespace НоваКонфігурація_1_0.Довідники
             }
             public DateTime Дата { get; set; }
             public string Значення { get; set; }
+            
+        }
+    }
+      
+    class Записник_Файли_TablePart : DirectoryTablePart
+    {
+        public Записник_Файли_TablePart(Записник_Objest owner) : base(Config.Kernel, "tab_a17",
+             new string[] { "col_a1", "col_a2" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public Записник_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Назва = fieldValue["col_a1"].ToString();
+                record.НазваФайлуНаДиску = fieldValue["col_a2"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a1", record.Назва);
+                    fieldValue.Add("col_a2", record.НазваФайлуНаДиску);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Назва = "";
+                НазваФайлуНаДиску = "";
+                
+            }
+        
+            
+            public Record(
+                string _Назва = "", string _НазваФайлуНаДиску = "")
+            {
+                Назва = _Назва;
+                НазваФайлуНаДиску = _НазваФайлуНаДиску;
+                
+            }
+            public string Назва { get; set; }
+            public string НазваФайлуНаДиску { get; set; }
             
         }
     }

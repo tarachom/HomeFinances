@@ -192,6 +192,29 @@
     </Column>
   </Table>
   <Table>
+    <Name>tab_a17</Name>
+    <Column>
+      <Name>col_a1</Name>
+      <DataType>text</DataType>
+      <UdtName>text</UdtName>
+    </Column>
+    <Column>
+      <Name>col_a2</Name>
+      <DataType>text</DataType>
+      <UdtName>text</UdtName>
+    </Column>
+    <Column>
+      <Name>uid</Name>
+      <DataType>uuid</DataType>
+      <UdtName>uuid</UdtName>
+    </Column>
+    <Column>
+      <Name>owner</Name>
+      <DataType>uuid</DataType>
+      <UdtName>uuid</UdtName>
+    </Column>
+  </Table>
+  <Table>
     <Name>tab_a16</Name>
     <Column>
       <Name>owner</Name>
@@ -395,6 +418,11 @@
   </Table>
   <Table>
     <Name>tab_constants</Name>
+    <Column>
+      <Name>col_a3</Name>
+      <DataType>text</DataType>
+      <UdtName>text</UdtName>
+    </Column>
     <Column>
       <Name>col_a1</Name>
       <DataType>uuid</DataType>

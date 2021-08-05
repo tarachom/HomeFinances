@@ -59,6 +59,14 @@ namespace HomeFinances
         {
 			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormNotebook;
 
+			RecordsBindingList = new BindingList<Записи>();
+			dataGridViewFiles.DataSource = RecordsBindingList;
+
+			dataGridViewFiles.Columns["ID"].Visible = false;
+			dataGridViewFiles.Columns["Назва"].Width = 300;
+			dataGridViewFiles.Columns["НазваФайлуНаДиску"].Width = 300;
+			dataGridViewFiles.Columns["НазваФайлуНаДиску"].HeaderText = "Назва на диску";
+
 			if (IsNew.HasValue)
 			{
 				записник_Objest = new Довідники.Записник_Objest();
@@ -79,6 +87,11 @@ namespace HomeFinances
 						directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(записник_Objest.Папка.UnigueID);
 						dateTimePickerRecord.Value = записник_Objest.Дата == DateTime.MinValue ? DateTime.Now : записник_Objest.Дата;
 						textBoxDesc.Text = записник_Objest.Опис;
+
+						//записник_Objest.Файли_TablePart.Records.Add(new Довідники.Записник_Файли_TablePart.Record("one","one.xml"));
+						//записник_Objest.Файли_TablePart.Save(false);
+
+						LoadRecords();
 					}
 					else
 						MessageBox.Show("Error read");
@@ -118,5 +131,61 @@ namespace HomeFinances
 		{
 			this.Close();
 		}
+
+		#region TablePart FileList
+
+		private BindingList<Записи> RecordsBindingList { get; set; }
+
+		private class Записи
+		{
+			public Записи(string _id, string _Назва, string _НазваФайлуНаДиску)
+			{
+				ID = _id;
+				Назва = _Назва;
+				НазваФайлуНаДиску = _НазваФайлуНаДиску;
+			}
+			public string ID { get; set; }
+			public string Назва { get; set; }
+			public string НазваФайлуНаДиску { get; set; }
+		}
+
+		public void LoadRecords()
+        {
+			RecordsBindingList.Clear();
+
+			записник_Objest.Файли_TablePart.Read();
+			foreach(Довідники.Записник_Файли_TablePart.Record record in записник_Objest.Файли_TablePart.Records)
+            {
+                RecordsBindingList.Add(new Записи(
+					record.UID.ToString(),
+					record.Назва,
+					record.НазваФайлуНаДиску
+					));
+            }
+		}
+
+		private void toolStripButtonAdd_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void toolStripButtonEdit_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void toolStripButtonCopy_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void toolStripButtonDelete_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		#endregion
+
+
 	}
 }

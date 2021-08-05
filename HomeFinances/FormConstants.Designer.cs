@@ -35,6 +35,8 @@ namespace HomeFinances
             this.label2 = new System.Windows.Forms.Label();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxCatalogFiles = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -79,25 +81,43 @@ namespace HomeFinances
             // 
             this.directoryControl2.CallBack = null;
             this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(113, 45);
+            this.directoryControl2.Location = new System.Drawing.Point(127, 45);
             this.directoryControl2.Name = "directoryControl2";
-            this.directoryControl2.Size = new System.Drawing.Size(461, 27);
+            this.directoryControl2.Size = new System.Drawing.Size(584, 27);
             this.directoryControl2.TabIndex = 20;
             // 
             // directoryControl1
             // 
             this.directoryControl1.CallBack = null;
             this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(113, 12);
+            this.directoryControl1.Location = new System.Drawing.Point(127, 12);
             this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(461, 27);
+            this.directoryControl1.Size = new System.Drawing.Size(584, 27);
             this.directoryControl1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 85);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 13);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Каталог для файлів:";
+            // 
+            // textBoxCatalogFiles
+            // 
+            this.textBoxCatalogFiles.Location = new System.Drawing.Point(127, 82);
+            this.textBoxCatalogFiles.Name = "textBoxCatalogFiles";
+            this.textBoxCatalogFiles.Size = new System.Drawing.Size(584, 20);
+            this.textBoxCatalogFiles.TabIndex = 22;
             // 
             // FormConstants
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 281);
+            this.ClientSize = new System.Drawing.Size(723, 281);
+            this.Controls.Add(this.textBoxCatalogFiles);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.directoryControl2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonClose);
@@ -122,5 +142,7 @@ namespace HomeFinances
         private System.Windows.Forms.Button buttonSave;
         private DirectoryControl directoryControl2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxCatalogFiles;
     }
 }

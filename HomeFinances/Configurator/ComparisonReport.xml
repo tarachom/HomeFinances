@@ -6,6 +6,17 @@
     <Table>tab_constants</Table>
     <IsExist>yes</IsExist>
     <Control_Field>
+      <Name>КаталогДляФайлів</Name>
+      <NameInTable>col_a3</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
       <Name>ОсновнаКаса</Name>
       <NameInTable>col_a1</NameInTable>
       <IsExist>yes</IsExist>
@@ -274,6 +285,34 @@
       <Control_Field>
         <Name>Значення</Name>
         <NameInTable>col_a4</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+    </Control_TabularParts>
+    <Control_TabularParts>
+      <Name>Файли</Name>
+      <Table>tab_a17</Table>
+      <IsCreateOwner>yes</IsCreateOwner>
+      <IsExist>yes</IsExist>
+      <Control_Field>
+        <Name>Назва</Name>
+        <NameInTable>col_a1</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+      <Control_Field>
+        <Name>НазваФайлуНаДиску</Name>
+        <NameInTable>col_a2</NameInTable>
         <IsExist>yes</IsExist>
         <Type>
           <ConfType>string</ConfType>

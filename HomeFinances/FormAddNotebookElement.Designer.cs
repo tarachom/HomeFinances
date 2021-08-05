@@ -29,6 +29,7 @@ namespace HomeFinances
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddNotebookElement));
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -38,12 +39,21 @@ namespace HomeFinances
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerRecord = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewFiles = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonEdit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(385, 487);
+            this.buttonClose.Location = new System.Drawing.Point(723, 747);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 16;
@@ -53,7 +63,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(84, 487);
+            this.buttonSave.Location = new System.Drawing.Point(84, 747);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 15;
@@ -91,7 +101,7 @@ namespace HomeFinances
             this.textBoxDesc.Location = new System.Drawing.Point(84, 99);
             this.textBoxDesc.Multiline = true;
             this.textBoxDesc.Name = "textBoxDesc";
-            this.textBoxDesc.Size = new System.Drawing.Size(821, 367);
+            this.textBoxDesc.Size = new System.Drawing.Size(821, 343);
             this.textBoxDesc.TabIndex = 26;
             // 
             // label3
@@ -120,6 +130,27 @@ namespace HomeFinances
             this.label4.TabIndex = 27;
             this.label4.Text = "Дата:";
             // 
+            // dataGridViewFiles
+            // 
+            this.dataGridViewFiles.AllowUserToAddRows = false;
+            this.dataGridViewFiles.AllowUserToDeleteRows = false;
+            this.dataGridViewFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFiles.Location = new System.Drawing.Point(84, 481);
+            this.dataGridViewFiles.Name = "dataGridViewFiles";
+            this.dataGridViewFiles.ReadOnly = true;
+            this.dataGridViewFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewFiles.Size = new System.Drawing.Size(821, 246);
+            this.dataGridViewFiles.TabIndex = 29;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 481);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "Файли:";
+            // 
             // directoryControl1
             // 
             this.directoryControl1.CallBack = null;
@@ -129,11 +160,68 @@ namespace HomeFinances
             this.directoryControl1.Size = new System.Drawing.Size(465, 27);
             this.directoryControl1.TabIndex = 23;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonAdd,
+            this.toolStripButtonEdit,
+            this.toolStripButtonCopy,
+            this.toolStripButtonDelete});
+            this.toolStrip1.Location = new System.Drawing.Point(84, 453);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(296, 25);
+            this.toolStrip1.TabIndex = 31;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonAdd
+            // 
+            this.toolStripButtonAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAdd.Image")));
+            this.toolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAdd.Name = "toolStripButtonAdd";
+            this.toolStripButtonAdd.Size = new System.Drawing.Size(50, 22);
+            this.toolStripButtonAdd.Text = "Додати";
+            this.toolStripButtonAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
+            // 
+            // toolStripButtonEdit
+            // 
+            this.toolStripButtonEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonEdit.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEdit.Image")));
+            this.toolStripButtonEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonEdit.Name = "toolStripButtonEdit";
+            this.toolStripButtonEdit.Size = new System.Drawing.Size(71, 22);
+            this.toolStripButtonEdit.Text = "Редагувати";
+            this.toolStripButtonEdit.Click += new System.EventHandler(this.toolStripButtonEdit_Click);
+            // 
+            // toolStripButtonDelete
+            // 
+            this.toolStripButtonDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelete.Image")));
+            this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDelete.Name = "toolStripButtonDelete";
+            this.toolStripButtonDelete.Size = new System.Drawing.Size(63, 22);
+            this.toolStripButtonDelete.Text = "Видалити";
+            this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
+            // 
+            // toolStripButtonCopy
+            // 
+            this.toolStripButtonCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCopy.Image")));
+            this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCopy.Name = "toolStripButtonCopy";
+            this.toolStripButtonCopy.Size = new System.Drawing.Size(69, 22);
+            this.toolStripButtonCopy.Text = "Копіювати";
+            this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
+            // 
             // FormAddNotebookElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 528);
+            this.ClientSize = new System.Drawing.Size(917, 783);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dataGridViewFiles);
             this.Controls.Add(this.dateTimePickerRecord);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxDesc);
@@ -149,6 +237,9 @@ namespace HomeFinances
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Елемент";
             this.Load += new System.EventHandler(this.FormAddNotebookFolder_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +257,12 @@ namespace HomeFinances
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerRecord;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridViewFiles;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAdd;
+        private System.Windows.Forms.ToolStripButton toolStripButtonEdit;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDelete;
+        private System.Windows.Forms.ToolStripButton toolStripButtonCopy;
     }
 }
