@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 06.08.2021 17:15:22
+ * Дата конфігурації: 06.08.2021 17:34:29
  *
  */
 
@@ -2324,11 +2324,18 @@ namespace НоваКонфігурація_1_0.Довідники
     class Номенклатура_Objest : DirectoryObject
     {
         public Номенклатура_Objest() : base(Config.Kernel, "tab_a21",
-             new string[] { "col_a9", "col_b1", "col_a1" }) 
+             new string[] { "col_a9", "col_b1", "col_a1", "col_a2", "col_a3", "col_a4", "col_a5", "col_a6", "col_a7", "col_a8" }) 
         {
             Назва = "";
             Код = "";
             Папка = new Довідники.Номенклатура_Папки_Pointer();
+            ТипНоменклатури = 0;
+            Артикул = "";
+            ВидНоменклатури = new Довідники.ВидиНоменклатури_Pointer();
+            ОдиницяВиміру = new Довідники.УпаковкиОдиниціВиміру_Pointer();
+            ПовнаНазва = "";
+            Опис = "";
+            Виробник = new Довідники.Виробники_Pointer();
             
         }
         
@@ -2339,6 +2346,13 @@ namespace НоваКонфігурація_1_0.Довідники
                 Назва = base.FieldValue["col_a9"].ToString();
                 Код = base.FieldValue["col_b1"].ToString();
                 Папка = new Довідники.Номенклатура_Папки_Pointer(base.FieldValue["col_a1"]);
+                ТипНоменклатури = (base.FieldValue["col_a2"] != DBNull.Value) ? (Перелічення.ТипНоменклатури)base.FieldValue["col_a2"] : 0;
+                Артикул = base.FieldValue["col_a3"].ToString();
+                ВидНоменклатури = new Довідники.ВидиНоменклатури_Pointer(base.FieldValue["col_a4"]);
+                ОдиницяВиміру = new Довідники.УпаковкиОдиниціВиміру_Pointer(base.FieldValue["col_a5"]);
+                ПовнаНазва = base.FieldValue["col_a6"].ToString();
+                Опис = base.FieldValue["col_a7"].ToString();
+                Виробник = new Довідники.Виробники_Pointer(base.FieldValue["col_a8"]);
                 
                 BaseClear();
                 return true;
@@ -2352,6 +2366,13 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a9"] = Назва;
             base.FieldValue["col_b1"] = Код;
             base.FieldValue["col_a1"] = Папка.UnigueID.UGuid;
+            base.FieldValue["col_a2"] = (int)ТипНоменклатури;
+            base.FieldValue["col_a3"] = Артикул;
+            base.FieldValue["col_a4"] = ВидНоменклатури.UnigueID.UGuid;
+            base.FieldValue["col_a5"] = ОдиницяВиміру.UnigueID.UGuid;
+            base.FieldValue["col_a6"] = ПовнаНазва;
+            base.FieldValue["col_a7"] = Опис;
+            base.FieldValue["col_a8"] = Виробник.UnigueID.UGuid;
             
             BaseSave();
         }
@@ -2364,6 +2385,13 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
                "<Папка>" + Папка.ToString() + "</Папка>"  +
+               "<ТипНоменклатури>" + ((int)ТипНоменклатури).ToString() + "</ТипНоменклатури>"  +
+               "<Артикул>" + "<![CDATA[" + Артикул + "]]>" + "</Артикул>"  +
+               "<ВидНоменклатури>" + ВидНоменклатури.ToString() + "</ВидНоменклатури>"  +
+               "<ОдиницяВиміру>" + ОдиницяВиміру.ToString() + "</ОдиницяВиміру>"  +
+               "<ПовнаНазва>" + "<![CDATA[" + ПовнаНазва + "]]>" + "</ПовнаНазва>"  +
+               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "<Виробник>" + Виробник.ToString() + "</Виробник>"  +
                "</" + root + ">";
         }
 
@@ -2381,6 +2409,13 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Назва { get; set; }
         public string Код { get; set; }
         public Довідники.Номенклатура_Папки_Pointer Папка { get; set; }
+        public Перелічення.ТипНоменклатури ТипНоменклатури { get; set; }
+        public string Артикул { get; set; }
+        public Довідники.ВидиНоменклатури_Pointer ВидНоменклатури { get; set; }
+        public Довідники.УпаковкиОдиниціВиміру_Pointer ОдиницяВиміру { get; set; }
+        public string ПовнаНазва { get; set; }
+        public string Опис { get; set; }
+        public Довідники.Виробники_Pointer Виробник { get; set; }
         
     }
     
@@ -2420,12 +2455,19 @@ namespace НоваКонфігурація_1_0.Довідники
     class Номенклатура_Select : DirectorySelect, IDisposable
     {
         public Номенклатура_Select() : base(Config.Kernel, "tab_a21",
-            new string[] { "col_a9", "col_b1", "col_a1" },
-            new string[] { "Назва", "Код", "Папка" }) { }
+            new string[] { "col_a9", "col_b1", "col_a1", "col_a2", "col_a3", "col_a4", "col_a5", "col_a6", "col_a7", "col_a8" },
+            new string[] { "Назва", "Код", "Папка", "ТипНоменклатури", "Артикул", "ВидНоменклатури", "ОдиницяВиміру", "ПовнаНазва", "Опис", "Виробник" }) { }
         
         public const string Назва = "col_a9";
         public const string Код = "col_b1";
         public const string Папка = "col_a1";
+        public const string ТипНоменклатури = "col_a2";
+        public const string Артикул = "col_a3";
+        public const string ВидНоменклатури = "col_a4";
+        public const string ОдиницяВиміру = "col_a5";
+        public const string ПовнаНазва = "col_a6";
+        public const string Опис = "col_a7";
+        public const string Виробник = "col_a8";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -3342,6 +3384,399 @@ namespace НоваКонфігурація_1_0.Довідники
    
     #endregion
     
+    #region DIRECTORY "ВидиНоменклатури"
+    
+    class ВидиНоменклатури_Objest : DirectoryObject
+    {
+        public ВидиНоменклатури_Objest() : base(Config.Kernel, "tab_a50",
+             new string[] { "col_a7", "col_a8", "col_a9", "col_b1" }) 
+        {
+            Назва = "";
+            Код = "";
+            ТипНоменклатури = 0;
+            Опис = "";
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a7"].ToString();
+                Код = base.FieldValue["col_a8"].ToString();
+                ТипНоменклатури = (base.FieldValue["col_a9"] != DBNull.Value) ? (Перелічення.ТипНоменклатури)base.FieldValue["col_a9"] : 0;
+                Опис = base.FieldValue["col_b1"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a7"] = Назва;
+            base.FieldValue["col_a8"] = Код;
+            base.FieldValue["col_a9"] = (int)ТипНоменклатури;
+            base.FieldValue["col_b1"] = Опис;
+            
+            BaseSave();
+        }
+
+        public string Serialize(string root = "ВидиНоменклатури")
+        {
+            return 
+            "<" + root + ">" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
+               "<ТипНоменклатури>" + ((int)ТипНоменклатури).ToString() + "</ТипНоменклатури>"  +
+               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "</" + root + ">";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public ВидиНоменклатури_Pointer GetDirectoryPointer()
+        {
+            ВидиНоменклатури_Pointer directoryPointer = new ВидиНоменклатури_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public string Код { get; set; }
+        public Перелічення.ТипНоменклатури ТипНоменклатури { get; set; }
+        public string Опис { get; set; }
+        
+    }
+    
+    
+    class ВидиНоменклатури_Pointer : DirectoryPointer
+    {
+        public ВидиНоменклатури_Pointer(object uid = null) : base(Config.Kernel, "tab_a50")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public ВидиНоменклатури_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a50")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public ВидиНоменклатури_Objest GetDirectoryObject()
+        {
+            ВидиНоменклатури_Objest ВидиНоменклатуриObjestItem = new ВидиНоменклатури_Objest();
+            return ВидиНоменклатуриObjestItem.Read(base.UnigueID) ? ВидиНоменклатуриObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
+        }
+		
+        public ВидиНоменклатури_Pointer GetEmptyPointer()
+        {
+            return new ВидиНоменклатури_Pointer();
+        }
+    }
+    
+    
+    class ВидиНоменклатури_Select : DirectorySelect, IDisposable
+    {
+        public ВидиНоменклатури_Select() : base(Config.Kernel, "tab_a50",
+            new string[] { "col_a7", "col_a8", "col_a9", "col_b1" },
+            new string[] { "Назва", "Код", "ТипНоменклатури", "Опис" }) { }
+        
+        public const string Назва = "col_a7";
+        public const string Код = "col_a8";
+        public const string ТипНоменклатури = "col_a9";
+        public const string Опис = "col_b1";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new ВидиНоменклатури_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public ВидиНоменклатури_Pointer Current { get; private set; }
+        
+        public ВидиНоменклатури_Pointer FindByField(string name, object value)
+        {
+            ВидиНоменклатури_Pointer itemPointer = new ВидиНоменклатури_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<ВидиНоменклатури_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<ВидиНоменклатури_Pointer> directoryPointerList = new List<ВидиНоменклатури_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new ВидиНоменклатури_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      
+   
+    #endregion
+    
+    #region DIRECTORY "УпаковкиОдиниціВиміру"
+    
+    class УпаковкиОдиниціВиміру_Objest : DirectoryObject
+    {
+        public УпаковкиОдиниціВиміру_Objest() : base(Config.Kernel, "tab_a51",
+             new string[] { "col_b2" }) 
+        {
+            Назва = "";
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_b2"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_b2"] = Назва;
+            
+            BaseSave();
+        }
+
+        public string Serialize(string root = "УпаковкиОдиниціВиміру")
+        {
+            return 
+            "<" + root + ">" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "</" + root + ">";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public УпаковкиОдиниціВиміру_Pointer GetDirectoryPointer()
+        {
+            УпаковкиОдиниціВиміру_Pointer directoryPointer = new УпаковкиОдиниціВиміру_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        
+    }
+    
+    
+    class УпаковкиОдиниціВиміру_Pointer : DirectoryPointer
+    {
+        public УпаковкиОдиниціВиміру_Pointer(object uid = null) : base(Config.Kernel, "tab_a51")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public УпаковкиОдиниціВиміру_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a51")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public УпаковкиОдиниціВиміру_Objest GetDirectoryObject()
+        {
+            УпаковкиОдиниціВиміру_Objest УпаковкиОдиниціВиміруObjestItem = new УпаковкиОдиниціВиміру_Objest();
+            return УпаковкиОдиниціВиміруObjestItem.Read(base.UnigueID) ? УпаковкиОдиниціВиміруObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
+        }
+		
+        public УпаковкиОдиниціВиміру_Pointer GetEmptyPointer()
+        {
+            return new УпаковкиОдиниціВиміру_Pointer();
+        }
+    }
+    
+    
+    class УпаковкиОдиниціВиміру_Select : DirectorySelect, IDisposable
+    {
+        public УпаковкиОдиниціВиміру_Select() : base(Config.Kernel, "tab_a51",
+            new string[] { "col_b2" },
+            new string[] { "Назва" }) { }
+        
+        public const string Назва = "col_b2";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new УпаковкиОдиниціВиміру_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public УпаковкиОдиниціВиміру_Pointer Current { get; private set; }
+        
+        public УпаковкиОдиниціВиміру_Pointer FindByField(string name, object value)
+        {
+            УпаковкиОдиниціВиміру_Pointer itemPointer = new УпаковкиОдиниціВиміру_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<УпаковкиОдиниціВиміру_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<УпаковкиОдиниціВиміру_Pointer> directoryPointerList = new List<УпаковкиОдиниціВиміру_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new УпаковкиОдиниціВиміру_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      
+   
+    #endregion
+    
+    #region DIRECTORY "Виробники"
+    
+    class Виробники_Objest : DirectoryObject
+    {
+        public Виробники_Objest() : base(Config.Kernel, "tab_a52",
+             new string[] { "col_b4" }) 
+        {
+            Назва = "";
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_b4"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_b4"] = Назва;
+            
+            BaseSave();
+        }
+
+        public string Serialize(string root = "Виробники")
+        {
+            return 
+            "<" + root + ">" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "</" + root + ">";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public Виробники_Pointer GetDirectoryPointer()
+        {
+            Виробники_Pointer directoryPointer = new Виробники_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        
+    }
+    
+    
+    class Виробники_Pointer : DirectoryPointer
+    {
+        public Виробники_Pointer(object uid = null) : base(Config.Kernel, "tab_a52")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public Виробники_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a52")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public Виробники_Objest GetDirectoryObject()
+        {
+            Виробники_Objest ВиробникиObjestItem = new Виробники_Objest();
+            return ВиробникиObjestItem.Read(base.UnigueID) ? ВиробникиObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] {  }
+			);
+        }
+		
+        public Виробники_Pointer GetEmptyPointer()
+        {
+            return new Виробники_Pointer();
+        }
+    }
+    
+    
+    class Виробники_Select : DirectorySelect, IDisposable
+    {
+        public Виробники_Select() : base(Config.Kernel, "tab_a52",
+            new string[] { "col_b4" },
+            new string[] { "Назва" }) { }
+        
+        public const string Назва = "col_b4";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new Виробники_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public Виробники_Pointer Current { get; private set; }
+        
+        public Виробники_Pointer FindByField(string name, object value)
+        {
+            Виробники_Pointer itemPointer = new Виробники_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<Виробники_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<Виробники_Pointer> directoryPointerList = new List<Виробники_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new Виробники_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      
+   
+    #endregion
+    
 }
 
 namespace НоваКонфігурація_1_0.Перелічення
@@ -3368,6 +3803,16 @@ namespace НоваКонфігурація_1_0.Перелічення
     {
          Готівка = 1,
          Карточка = 2
+    }
+    #endregion
+    
+    #region ENUM "ТипНоменклатури"
+    
+    public enum ТипНоменклатури
+    {
+         Товар = 1,
+         Послуга = 2,
+         Робота = 3
     }
     #endregion
     
@@ -5280,6 +5725,199 @@ namespace НоваКонфігурація_1_0.Документи
             public int Кількість { get; set; }
             public decimal Сума { get; set; }
             public decimal Разом { get; set; }
+            
+        }
+    }
+      
+    
+    #endregion
+    
+    #region DOCUMENT "ВстановленняЦінНоменклатури"
+    
+    
+    class ВстановленняЦінНоменклатури_Objest : DocumentObject
+    {
+        public ВстановленняЦінНоменклатури_Objest() : base(Config.Kernel, "tab_a34",
+             new string[] { "col_a1", "col_a2", "col_a6" }) 
+        {
+            ДатаДок = DateTime.MinValue;
+            НомерДок = 0;
+            Коментар = "";
+            
+            //Табличні частини
+            Товари_TablePart = new ВстановленняЦінНоменклатури_Товари_TablePart(this);
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                ДатаДок = (base.FieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a1"].ToString()) : DateTime.MinValue;
+                НомерДок = (base.FieldValue["col_a2"] != DBNull.Value) ? (int)base.FieldValue["col_a2"] : 0;
+                Коментар = base.FieldValue["col_a6"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a1"] = ДатаДок;
+            base.FieldValue["col_a2"] = НомерДок;
+            base.FieldValue["col_a6"] = Коментар;
+            
+            BaseSave();
+        }
+        
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public ВстановленняЦінНоменклатури_Pointer GetDocumentPointer()
+        {
+            ВстановленняЦінНоменклатури_Pointer directoryPointer = new ВстановленняЦінНоменклатури_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public DateTime ДатаДок { get; set; }
+        public int НомерДок { get; set; }
+        public string Коментар { get; set; }
+        
+        //Табличні частини
+        public ВстановленняЦінНоменклатури_Товари_TablePart Товари_TablePart { get; set; }
+        
+    }
+    
+    
+    class ВстановленняЦінНоменклатури_Pointer : DocumentPointer
+    {
+        public ВстановленняЦінНоменклатури_Pointer(object uid = null) : base(Config.Kernel, "tab_a34")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public ВстановленняЦінНоменклатури_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a34")
+        {
+            base.Init(uid, fields);
+        } 
+        
+        public ВстановленняЦінНоменклатури_Objest GetDocumentObject()
+        {
+            ВстановленняЦінНоменклатури_Objest ВстановленняЦінНоменклатуриObjestItem = new ВстановленняЦінНоменклатури_Objest();
+            ВстановленняЦінНоменклатуриObjestItem.Read(base.UnigueID);
+            return ВстановленняЦінНоменклатуриObjestItem;
+        }
+    }
+    
+    
+    class ВстановленняЦінНоменклатури_Select : DocumentSelect, IDisposable
+    {
+        public ВстановленняЦінНоменклатури_Select() : base(Config.Kernel, "tab_a34") { }
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new ВстановленняЦінНоменклатури_Pointer(base.DocumentPointerPosition.UnigueID, base.DocumentPointerPosition.Fields); return true; } else { Current = null; return false; } }
+        
+        public ВстановленняЦінНоменклатури_Pointer Current { get; private set; }
+    }
+    
+      
+    class ВстановленняЦінНоменклатури_Товари_TablePart : DocumentTablePart
+    {
+        public ВстановленняЦінНоменклатури_Товари_TablePart(ВстановленняЦінНоменклатури_Objest owner) : base(Config.Kernel, "tab_a35",
+             new string[] { "col_a3", "col_a4", "col_a5" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public ВстановленняЦінНоменклатури_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Товар = new Довідники.Номенклатура_Pointer(fieldValue["col_a3"]);
+                record.ВидЦіни = new Довідники.ВидиЦін_Pointer(fieldValue["col_a4"]);
+                record.Ціна = (fieldValue["col_a5"] != DBNull.Value) ? (decimal)fieldValue["col_a5"] : 0;
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a3", record.Товар.UnigueID.UGuid);
+                    fieldValue.Add("col_a4", record.ВидЦіни.UnigueID.UGuid);
+                    fieldValue.Add("col_a5", record.Ціна);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DocumentTablePartRecord
+        {
+            public Record()
+            {
+                Товар = new Довідники.Номенклатура_Pointer();
+                ВидЦіни = new Довідники.ВидиЦін_Pointer();
+                Ціна = 0;
+                
+            }
+        
+            
+            public Record(
+                Довідники.Номенклатура_Pointer _Товар = null, Довідники.ВидиЦін_Pointer _ВидЦіни = null, decimal _Ціна = 0)
+            {
+                Товар = _Товар ?? new Довідники.Номенклатура_Pointer();
+                ВидЦіни = _ВидЦіни ?? new Довідники.ВидиЦін_Pointer();
+                Ціна = _Ціна;
+                
+            }
+            public Довідники.Номенклатура_Pointer Товар { get; set; }
+            public Довідники.ВидиЦін_Pointer ВидЦіни { get; set; }
+            public decimal Ціна { get; set; }
             
         }
     }

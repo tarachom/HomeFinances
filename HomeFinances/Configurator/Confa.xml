@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>06.08.2021 17:15:22</DateTimeSave>
+  <DateTimeSave>06.08.2021 17:34:29</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -827,6 +827,66 @@
           </Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
+        <Field>
+          <Name>ТипНоменклатури</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>enum</Type>
+          <Pointer>Перелічення.ТипНоменклатури</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Артикул</Name>
+          <NameInTable>col_a3</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>ВидНоменклатури</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.ВидиНоменклатури</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>ОдиницяВиміру</Name>
+          <NameInTable>col_a5</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.УпаковкиОдиниціВиміру</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>ПовнаНазва</Name>
+          <NameInTable>col_a6</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Опис</Name>
+          <NameInTable>col_a7</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Виробник</Name>
+          <NameInTable>col_a8</NameInTable>
+          <Type>pointer</Type>
+          <Pointer>Довідники.Виробники</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
       </Fields>
       <TabularParts />
       <Views>
@@ -1130,6 +1190,133 @@
         </View>
       </Views>
     </Directory>
+    <Directory>
+      <Name>ВидиНоменклатури</Name>
+      <Table>tab_a50</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a7</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Код</Name>
+          <NameInTable>col_a8</NameInTable>
+          <Type>string</Type>
+          <Desc>Код</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>ТипНоменклатури</Name>
+          <NameInTable>col_a9</NameInTable>
+          <Type>enum</Type>
+          <Pointer>Перелічення.ТипНоменклатури</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Опис</Name>
+          <NameInTable>col_b1</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a50</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_a7</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_a8</NameInTable>
+              <Type>string</Type>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>УпаковкиОдиниціВиміру</Name>
+      <Table>tab_a51</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_b2</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a51</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_b2</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_b3</NameInTable>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
+    <Directory>
+      <Name>Виробники</Name>
+      <Table>tab_a52</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_b4</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+      <Views>
+        <View>
+          <Name>Список</Name>
+          <Table>tab_a52</Table>
+          <Desc>Список</Desc>
+          <Fields>
+            <Field>
+              <Name>Назва</Name>
+              <NameInTable>col_b4</NameInTable>
+              <Type>string</Type>
+            </Field>
+            <Field>
+              <Name>Код</Name>
+              <NameInTable>col_b5</NameInTable>
+            </Field>
+          </Fields>
+        </View>
+      </Views>
+    </Directory>
   </Directories>
   <Enums>
     <Enum>
@@ -1176,6 +1363,32 @@
         <Field>
           <Name>Карточка</Name>
           <Value>2</Value>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+    </Enum>
+    <Enum>
+      <Name>ТипНоменклатури</Name>
+      <Desc>
+      </Desc>
+      <SerialNumber>3</SerialNumber>
+      <Fields>
+        <Field>
+          <Name>Товар</Name>
+          <Value>1</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Послуга</Name>
+          <Value>2</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Робота</Name>
+          <Value>3</Value>
           <Desc>
           </Desc>
         </Field>
@@ -2120,6 +2333,72 @@
             <Field>
               <Name>Разом</Name>
               <NameInTable>col_a1</NameInTable>
+              <Type>numeric</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
+    </Document>
+    <Document>
+      <Name>ВстановленняЦінНоменклатури</Name>
+      <Table>tab_a34</Table>
+      <Desc>
+      </Desc>
+      <Fields>
+        <Field>
+          <Name>ДатаДок</Name>
+          <NameInTable>col_a1</NameInTable>
+          <Type>datetime</Type>
+          <Desc>ДатаДок</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>НомерДок</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>integer</Type>
+          <Desc>НомерДок</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Коментар</Name>
+          <NameInTable>col_a6</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts>
+        <TablePart>
+          <Name>Товари</Name>
+          <Table>tab_a35</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Товар</Name>
+              <NameInTable>col_a3</NameInTable>
+              <Type>pointer</Type>
+              <Pointer>Довідники.Номенклатура</Pointer>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>ВидЦіни</Name>
+              <NameInTable>col_a4</NameInTable>
+              <Type>pointer</Type>
+              <Pointer>Довідники.ВидиЦін</Pointer>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Ціна</Name>
+              <NameInTable>col_a5</NameInTable>
               <Type>numeric</Type>
               <Desc>
               </Desc>
