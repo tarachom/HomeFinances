@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>06.08.2021 17:34:29</DateTimeSave>
+  <DateTimeSave>06.08.2021 21:01:34</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -175,24 +175,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a02</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a4</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a5</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>КласифікаторВитрат</Name>
@@ -240,25 +222,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a01</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Записник</Name>
@@ -348,26 +311,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a03</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>pointer</Type>
-              <Pointer>Довідники.Записник_Папки</Pointer>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Користувач</Name>
@@ -416,25 +359,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a04</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Каса</Name>
@@ -492,26 +416,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a05</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>pointer</Type>
-              <Pointer>Довідники.Валюта</Pointer>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Валюта</Name>
@@ -559,25 +463,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a07</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a3</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a4</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Контакти</Name>
@@ -659,24 +544,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a08</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Записник_Папки</Name>
@@ -728,24 +595,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a09</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Склади</Name>
@@ -778,25 +627,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a20</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a7</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a8</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Номенклатура</Name>
@@ -857,7 +687,7 @@
           <Name>ОдиницяВиміру</Name>
           <NameInTable>col_a5</NameInTable>
           <Type>pointer</Type>
-          <Pointer>Довідники.УпаковкиОдиниціВиміру</Pointer>
+          <Pointer>Довідники.ПакуванняОдиниціВиміру</Pointer>
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
@@ -889,25 +719,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a21</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a9</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_b1</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Контрагенти</Name>
@@ -940,25 +751,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a24</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_b9</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_c1</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Номенклатура_Папки</Name>
@@ -984,24 +776,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a27</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_c2</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_c3</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Контрагенти_Папки</Name>
@@ -1027,24 +801,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a28</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_c5</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_c6</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Склади_Папки</Name>
@@ -1070,24 +826,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a36</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_d5</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_d6</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Організації</Name>
@@ -1129,24 +867,6 @@
           </Fields>
         </TablePart>
       </TabularParts>
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a29</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>ВидиЦін</Name>
@@ -1171,24 +891,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a31</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a2</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>ВидиНоменклатури</Name>
@@ -1229,28 +931,9 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a50</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_a7</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_a8</NameInTable>
-              <Type>string</Type>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
-      <Name>УпаковкиОдиниціВиміру</Name>
+      <Name>ПакуванняОдиниціВиміру</Name>
       <Table>tab_a51</Table>
       <Desc>
       </Desc>
@@ -1264,24 +947,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a51</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_b2</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_b3</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
     <Directory>
       <Name>Виробники</Name>
@@ -1298,24 +963,6 @@
         </Field>
       </Fields>
       <TabularParts />
-      <Views>
-        <View>
-          <Name>Список</Name>
-          <Table>tab_a52</Table>
-          <Desc>Список</Desc>
-          <Fields>
-            <Field>
-              <Name>Назва</Name>
-              <NameInTable>col_b4</NameInTable>
-              <Type>string</Type>
-            </Field>
-            <Field>
-              <Name>Код</Name>
-              <NameInTable>col_b5</NameInTable>
-            </Field>
-          </Fields>
-        </View>
-      </Views>
     </Directory>
   </Directories>
   <Enums>

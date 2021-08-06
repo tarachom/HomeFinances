@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 06.08.2021 17:34:29
+ * Дата конфігурації: 06.08.2021 21:01:34
  *
  */
 
@@ -2332,7 +2332,7 @@ namespace НоваКонфігурація_1_0.Довідники
             ТипНоменклатури = 0;
             Артикул = "";
             ВидНоменклатури = new Довідники.ВидиНоменклатури_Pointer();
-            ОдиницяВиміру = new Довідники.УпаковкиОдиниціВиміру_Pointer();
+            ОдиницяВиміру = new Довідники.ПакуванняОдиниціВиміру_Pointer();
             ПовнаНазва = "";
             Опис = "";
             Виробник = new Довідники.Виробники_Pointer();
@@ -2349,7 +2349,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 ТипНоменклатури = (base.FieldValue["col_a2"] != DBNull.Value) ? (Перелічення.ТипНоменклатури)base.FieldValue["col_a2"] : 0;
                 Артикул = base.FieldValue["col_a3"].ToString();
                 ВидНоменклатури = new Довідники.ВидиНоменклатури_Pointer(base.FieldValue["col_a4"]);
-                ОдиницяВиміру = new Довідники.УпаковкиОдиниціВиміру_Pointer(base.FieldValue["col_a5"]);
+                ОдиницяВиміру = new Довідники.ПакуванняОдиниціВиміру_Pointer(base.FieldValue["col_a5"]);
                 ПовнаНазва = base.FieldValue["col_a6"].ToString();
                 Опис = base.FieldValue["col_a7"].ToString();
                 Виробник = new Довідники.Виробники_Pointer(base.FieldValue["col_a8"]);
@@ -2412,7 +2412,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Перелічення.ТипНоменклатури ТипНоменклатури { get; set; }
         public string Артикул { get; set; }
         public Довідники.ВидиНоменклатури_Pointer ВидНоменклатури { get; set; }
-        public Довідники.УпаковкиОдиниціВиміру_Pointer ОдиницяВиміру { get; set; }
+        public Довідники.ПакуванняОдиниціВиміру_Pointer ОдиницяВиміру { get; set; }
         public string ПовнаНазва { get; set; }
         public string Опис { get; set; }
         public Довідники.Виробники_Pointer Виробник { get; set; }
@@ -3527,11 +3527,11 @@ namespace НоваКонфігурація_1_0.Довідники
    
     #endregion
     
-    #region DIRECTORY "УпаковкиОдиниціВиміру"
+    #region DIRECTORY "ПакуванняОдиниціВиміру"
     
-    class УпаковкиОдиниціВиміру_Objest : DirectoryObject
+    class ПакуванняОдиниціВиміру_Objest : DirectoryObject
     {
-        public УпаковкиОдиниціВиміру_Objest() : base(Config.Kernel, "tab_a51",
+        public ПакуванняОдиниціВиміру_Objest() : base(Config.Kernel, "tab_a51",
              new string[] { "col_b2" }) 
         {
             Назва = "";
@@ -3558,7 +3558,7 @@ namespace НоваКонфігурація_1_0.Довідники
             BaseSave();
         }
 
-        public string Serialize(string root = "УпаковкиОдиниціВиміру")
+        public string Serialize(string root = "ПакуванняОдиниціВиміру")
         {
             return 
             "<" + root + ">" +
@@ -3572,9 +3572,9 @@ namespace НоваКонфігурація_1_0.Довідники
             base.BaseDelete();
         }
         
-        public УпаковкиОдиниціВиміру_Pointer GetDirectoryPointer()
+        public ПакуванняОдиниціВиміру_Pointer GetDirectoryPointer()
         {
-            УпаковкиОдиниціВиміру_Pointer directoryPointer = new УпаковкиОдиниціВиміру_Pointer(UnigueID.UGuid);
+            ПакуванняОдиниціВиміру_Pointer directoryPointer = new ПакуванняОдиниціВиміру_Pointer(UnigueID.UGuid);
             return directoryPointer;
         }
         
@@ -3583,22 +3583,22 @@ namespace НоваКонфігурація_1_0.Довідники
     }
     
     
-    class УпаковкиОдиниціВиміру_Pointer : DirectoryPointer
+    class ПакуванняОдиниціВиміру_Pointer : DirectoryPointer
     {
-        public УпаковкиОдиниціВиміру_Pointer(object uid = null) : base(Config.Kernel, "tab_a51")
+        public ПакуванняОдиниціВиміру_Pointer(object uid = null) : base(Config.Kernel, "tab_a51")
         {
             base.Init(new UnigueID(uid), null);
         }
         
-        public УпаковкиОдиниціВиміру_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a51")
+        public ПакуванняОдиниціВиміру_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a51")
         {
             base.Init(uid, fields);
         }
         
-        public УпаковкиОдиниціВиміру_Objest GetDirectoryObject()
+        public ПакуванняОдиниціВиміру_Objest GetDirectoryObject()
         {
-            УпаковкиОдиниціВиміру_Objest УпаковкиОдиниціВиміруObjestItem = new УпаковкиОдиниціВиміру_Objest();
-            return УпаковкиОдиниціВиміруObjestItem.Read(base.UnigueID) ? УпаковкиОдиниціВиміруObjestItem : null;
+            ПакуванняОдиниціВиміру_Objest ПакуванняОдиниціВиміруObjestItem = new ПакуванняОдиниціВиміру_Objest();
+            return ПакуванняОдиниціВиміруObjestItem.Read(base.UnigueID) ? ПакуванняОдиниціВиміруObjestItem : null;
         }
 		
 		public string GetPresentation()
@@ -3608,16 +3608,16 @@ namespace НоваКонфігурація_1_0.Довідники
 			);
         }
 		
-        public УпаковкиОдиниціВиміру_Pointer GetEmptyPointer()
+        public ПакуванняОдиниціВиміру_Pointer GetEmptyPointer()
         {
-            return new УпаковкиОдиниціВиміру_Pointer();
+            return new ПакуванняОдиниціВиміру_Pointer();
         }
     }
     
     
-    class УпаковкиОдиниціВиміру_Select : DirectorySelect, IDisposable
+    class ПакуванняОдиниціВиміру_Select : DirectorySelect, IDisposable
     {
-        public УпаковкиОдиниціВиміру_Select() : base(Config.Kernel, "tab_a51",
+        public ПакуванняОдиниціВиміру_Select() : base(Config.Kernel, "tab_a51",
             new string[] { "col_b2" },
             new string[] { "Назва" }) { }
         
@@ -3627,23 +3627,23 @@ namespace НоваКонфігурація_1_0.Довідники
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
         
-        public bool MoveNext() { if (MoveToPosition()) { Current = new УпаковкиОдиниціВиміру_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+        public bool MoveNext() { if (MoveToPosition()) { Current = new ПакуванняОдиниціВиміру_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
 
-        public УпаковкиОдиниціВиміру_Pointer Current { get; private set; }
+        public ПакуванняОдиниціВиміру_Pointer Current { get; private set; }
         
-        public УпаковкиОдиниціВиміру_Pointer FindByField(string name, object value)
+        public ПакуванняОдиниціВиміру_Pointer FindByField(string name, object value)
         {
-            УпаковкиОдиниціВиміру_Pointer itemPointer = new УпаковкиОдиниціВиміру_Pointer();
+            ПакуванняОдиниціВиміру_Pointer itemPointer = new ПакуванняОдиниціВиміру_Pointer();
             DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
             if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
             return itemPointer;
         }
         
-        public List<УпаковкиОдиниціВиміру_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        public List<ПакуванняОдиниціВиміру_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
         {
-            List<УпаковкиОдиниціВиміру_Pointer> directoryPointerList = new List<УпаковкиОдиниціВиміру_Pointer>();
+            List<ПакуванняОдиниціВиміру_Pointer> directoryPointerList = new List<ПакуванняОдиниціВиміру_Pointer>();
             foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
-                directoryPointerList.Add(new УпаковкиОдиниціВиміру_Pointer(directoryPointer.UnigueID));
+                directoryPointerList.Add(new ПакуванняОдиниціВиміру_Pointer(directoryPointer.UnigueID));
             return directoryPointerList;
         }
     }

@@ -1105,7 +1105,7 @@
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
-    <Name>УпаковкиОдиниціВиміру</Name>
+    <Name>ПакуванняОдиниціВиміру</Name>
     <Table>tab_a51</Table>
     <IsExist>yes</IsExist>
     <Control_Field>
