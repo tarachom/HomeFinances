@@ -62,8 +62,20 @@ namespace HomeFinances
 
 			dateTimePickerStart.Value = start.AddDays(-7);
 			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
-			
-			
+
+			//Заповнення елементів перелічення
+			comboBoxTypeRecord.Items.Add(new NameValue<int>("- Всі -", 0));
+			comboBoxTypeRecord.SelectedIndex = 0;
+
+			foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ТипЗапису"].Fields.Values)
+				comboBoxTypeRecord.Items.Add(new NameValue<int>(field.Name, field.Value));
+
+			//Стаття витрат
+			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
+
+			//Каса
+			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
+
 			//GRID
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -152,7 +164,35 @@ namespace HomeFinances
 			public string Витрата { get; set; }
 		}
 
-		public void LoadRecords()
+        #region Call_Back
+
+        /// <summary>
+        /// Зворотня функція для вибору із списку
+        /// </summary>
+        /// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
+        public void CallBack_DirectoryControl_Open_FormCostСlassifier(DirectoryPointer directoryPointerItem)
+		{
+			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
+			formCostСlassifier.DirectoryPointerItem = directoryPointerItem;
+			formCostСlassifier.DirectoryControlItem = directoryControl1;
+			formCostСlassifier.ShowDialog();
+		}
+
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
+		/// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
+		public void CallBack_DirectoryControl_Open_FormCash(DirectoryPointer directoryPointerItem)
+		{
+			FormCash formCash = new FormCash();
+			formCash.DirectoryPointerItem = directoryPointerItem;
+			formCash.DirectoryControlItem = directoryControl2;
+			formCash.ShowDialog();
+		}
+
+        #endregion
+
+        public void LoadRecords()
 		{
 			int selectRow = dataGridViewRecords.SelectedRows.Count > 0 ?
 				dataGridViewRecords.SelectedRows[dataGridViewRecords.SelectedRows.Count - 1].Index : 0;
@@ -173,6 +213,17 @@ namespace HomeFinances
 			//записи_Select.QuerySelect.Where.Add(
 			//    new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.BETWEEN,
 			//    "'" + dateTimePickerStart.Value.ToString("dd.MM.yyyy") + "' AND '" + dateTimePickerStop.Value.ToString("dd.MM.yyyy") + "'", true));
+
+			NameValue<int> типЗаписуФільтер = (NameValue<int>)comboBoxTypeRecord.SelectedItem;
+
+			if (!(типЗаписуФільтер.Value == 0))
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.ТипЗапису, Comparison.EQ, типЗаписуФільтер.Value));
+
+			if (directoryControl1.DirectoryPointerItem != null && !directoryControl1.DirectoryPointerItem.IsEmpty())
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Витрата, Comparison.EQ, directoryControl1.DirectoryPointerItem.UnigueID.UGuid));
+
+			if (directoryControl2.DirectoryPointerItem != null && !directoryControl2.DirectoryPointerItem.IsEmpty())
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Каса, Comparison.EQ, directoryControl2.DirectoryPointerItem.UnigueID.UGuid));
 
 			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
 

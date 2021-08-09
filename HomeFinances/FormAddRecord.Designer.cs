@@ -44,12 +44,12 @@ namespace HomeFinances
             this.maskedTextBoxTime = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBoxUrlLink = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonOpenBrouser = new System.Windows.Forms.Button();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label9 = new System.Windows.Forms.Label();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
+            this.textBoxUrlLink = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -185,17 +185,10 @@ namespace HomeFinances
             this.label7.TabIndex = 18;
             this.label7.Text = "Час:";
             // 
-            // textBoxUrlLink
-            // 
-            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 315);
-            this.textBoxUrlLink.Name = "textBoxUrlLink";
-            this.textBoxUrlLink.Size = new System.Drawing.Size(589, 20);
-            this.textBoxUrlLink.TabIndex = 20;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 318);
+            this.label8.Location = new System.Drawing.Point(11, 351);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(88, 13);
             this.label8.TabIndex = 19;
@@ -203,7 +196,7 @@ namespace HomeFinances
             // 
             // buttonOpenBrouser
             // 
-            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 313);
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 346);
             this.buttonOpenBrouser.Name = "buttonOpenBrouser";
             this.buttonOpenBrouser.Size = new System.Drawing.Size(33, 23);
             this.buttonOpenBrouser.TabIndex = 21;
@@ -223,7 +216,7 @@ namespace HomeFinances
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 348);
+            this.label9.Location = new System.Drawing.Point(12, 322);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 23;
@@ -233,16 +226,23 @@ namespace HomeFinances
             // 
             this.directoryControl2.CallBack = null;
             this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(99, 341);
+            this.directoryControl2.Location = new System.Drawing.Point(99, 315);
             this.directoryControl2.Name = "directoryControl2";
             this.directoryControl2.Size = new System.Drawing.Size(453, 27);
             this.directoryControl2.TabIndex = 22;
+            // 
+            // textBoxUrlLink
+            // 
+            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 348);
+            this.textBoxUrlLink.Name = "textBoxUrlLink";
+            this.textBoxUrlLink.Size = new System.Drawing.Size(589, 20);
+            this.textBoxUrlLink.TabIndex = 20;
             // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 428);
+            this.ClientSize = new System.Drawing.Size(739, 431);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.directoryControl2);
             this.Controls.Add(this.buttonOpenBrouser);
@@ -292,10 +292,10 @@ namespace HomeFinances
         private System.Windows.Forms.MaskedTextBox maskedTextBoxTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxUrlLink;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonOpenBrouser;
         private System.Windows.Forms.Label label9;
         private DirectoryControl directoryControl2;
+        private System.Windows.Forms.TextBox textBoxUrlLink;
     }
 }

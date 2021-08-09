@@ -31,12 +31,18 @@ namespace HomeFinances
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecordFinance));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePickerStop = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePickerStop = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,10 +63,13 @@ namespace HomeFinances
             this.касиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directoryControl2 = new HomeFinances.DirectoryControl();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).BeginInit();
             this.panel1.SuspendLayout();
@@ -76,73 +85,136 @@ namespace HomeFinances
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.buttonRefresh);
-            this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.dateTimePickerStop);
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.dateTimePickerStart);
+            this.splitContainer1.Panel1.Controls.Add(this.panel3);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1MinSize = 400;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(856, 503);
-            this.splitContainer1.SplitterDistance = 401;
+            this.splitContainer1.Size = new System.Drawing.Size(1061, 579);
+            this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.directoryControl2);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.directoryControl1);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.comboBoxTypeRecord);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.dateTimePickerStart);
+            this.panel3.Controls.Add(this.buttonRefresh);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.dateTimePickerStop);
+            this.panel3.Location = new System.Drawing.Point(3, 39);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(394, 195);
+            this.panel3.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 104);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Каса:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Стаття витрат:";
+            // 
+            // comboBoxTypeRecord
+            // 
+            this.comboBoxTypeRecord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTypeRecord.FormattingEnabled = true;
+            this.comboBoxTypeRecord.Location = new System.Drawing.Point(96, 38);
+            this.comboBoxTypeRecord.Name = "comboBoxTypeRecord";
+            this.comboBoxTypeRecord.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxTypeRecord.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 41);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Тип:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Період:";
+            // 
+            // dateTimePickerStart
+            // 
+            this.dateTimePickerStart.Location = new System.Drawing.Point(96, 6);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(81, 20);
+            this.dateTimePickerStart.TabIndex = 0;
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(319, 9);
+            this.buttonRefresh.Location = new System.Drawing.Point(96, 146);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(56, 23);
+            this.buttonRefresh.Size = new System.Drawing.Size(215, 23);
             this.buttonRefresh.TabIndex = 5;
             this.buttonRefresh.Text = "Обновити";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Період вибірки:";
-            // 
-            // dateTimePickerStop
-            // 
-            this.dateTimePickerStop.Location = new System.Drawing.Point(235, 12);
-            this.dateTimePickerStop.Name = "dateTimePickerStop";
-            this.dateTimePickerStop.Size = new System.Drawing.Size(78, 20);
-            this.dateTimePickerStop.TabIndex = 3;
-            this.dateTimePickerStop.Value = new System.DateTime(2021, 8, 9, 23, 59, 0, 0);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(79, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "з";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(210, 18);
+            this.label2.Location = new System.Drawing.Point(181, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "по";
             // 
-            // label1
+            // dateTimePickerStop
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(98, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "від";
+            this.dateTimePickerStop.Location = new System.Drawing.Point(206, 6);
+            this.dateTimePickerStop.Name = "dateTimePickerStop";
+            this.dateTimePickerStop.Size = new System.Drawing.Size(78, 20);
+            this.dateTimePickerStop.TabIndex = 3;
+            this.dateTimePickerStop.Value = new System.DateTime(2021, 8, 9, 23, 59, 0, 0);
             // 
-            // dateTimePickerStart
+            // label4
             // 
-            this.dateTimePickerStart.Location = new System.Drawing.Point(125, 12);
-            this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(81, 20);
-            this.dateTimePickerStart.TabIndex = 0;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(96, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 24);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Фільтр";
             // 
             // panel2
             // 
@@ -150,7 +222,7 @@ namespace HomeFinances
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(451, 475);
+            this.panel2.Size = new System.Drawing.Size(657, 551);
             this.panel2.TabIndex = 2;
             // 
             // dataGridViewRecords
@@ -162,7 +234,7 @@ namespace HomeFinances
             this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.ReadOnly = true;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(451, 475);
+            this.dataGridViewRecords.Size = new System.Drawing.Size(657, 551);
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
             // 
@@ -172,7 +244,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(451, 28);
+            this.panel1.Size = new System.Drawing.Size(657, 28);
             this.panel1.TabIndex = 1;
             // 
             // toolStripRecords
@@ -186,7 +258,7 @@ namespace HomeFinances
             this.toolStripDropDownButton1});
             this.toolStripRecords.Location = new System.Drawing.Point(0, 0);
             this.toolStripRecords.Name = "toolStripRecords";
-            this.toolStripRecords.Size = new System.Drawing.Size(451, 25);
+            this.toolStripRecords.Size = new System.Drawing.Size(657, 25);
             this.toolStripRecords.TabIndex = 0;
             this.toolStripRecords.Text = "toolStrip1";
             // 
@@ -267,7 +339,7 @@ namespace HomeFinances
             this.довідникиToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
-            this.menuStripTop.Size = new System.Drawing.Size(856, 24);
+            this.menuStripTop.Size = new System.Drawing.Size(1061, 24);
             this.menuStripTop.TabIndex = 1;
             this.menuStripTop.Text = "menuStripTop";
             // 
@@ -326,11 +398,29 @@ namespace HomeFinances
             this.константиToolStripMenuItem.Text = "Константи";
             this.константиToolStripMenuItem.Click += new System.EventHandler(this.константиToolStripMenuItem_Click);
             // 
+            // directoryControl2
+            // 
+            this.directoryControl2.CallBack = null;
+            this.directoryControl2.DirectoryPointerItem = null;
+            this.directoryControl2.Location = new System.Drawing.Point(96, 100);
+            this.directoryControl2.Name = "directoryControl2";
+            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl2.TabIndex = 11;
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.CallBack = null;
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(96, 67);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl1.TabIndex = 9;
+            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 527);
+            this.ClientSize = new System.Drawing.Size(1061, 603);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStripTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -345,6 +435,8 @@ namespace HomeFinances
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -387,6 +479,14 @@ namespace HomeFinances
         private System.Windows.Forms.DateTimePicker dateTimePickerStart;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxTypeRecord;
+        private System.Windows.Forms.Label label5;
+        private DirectoryControl directoryControl1;
+        private System.Windows.Forms.Label label6;
+        private DirectoryControl directoryControl2;
+        private System.Windows.Forms.Label label7;
     }
 }
 
