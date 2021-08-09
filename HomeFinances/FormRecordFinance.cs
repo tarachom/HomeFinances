@@ -30,7 +30,10 @@ namespace HomeFinances
 
 		private void FormRecordFinance_Load(object sender, EventArgs e)
 		{
-			string pathToConfa = @"E:\Project\HomeFinaces\HomeFinances\Configurator\Confa.xml";
+			this.splitContainer1.SplitterDistance = 400;
+
+            #region Confa
+            string pathToConfa = @"E:\Project\HomeFinaces\HomeFinances\Configurator\Confa.xml";
 
 			Exception exception = null;
 
@@ -51,8 +54,17 @@ namespace HomeFinances
 			}
 
 			Конфа.Config.ReadAllConstants();
+            #endregion
 
 
+            //Параметри в лівій панелі
+            DateTime start = DateTime.Today;
+
+			dateTimePickerStart.Value = start.AddDays(-7);
+			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
+			
+			
+			//GRID
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 			RecordsBindingList = new BindingList<Записи>();
@@ -154,6 +166,13 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
+
+            записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
+            записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
+
+			//записи_Select.QuerySelect.Where.Add(
+			//    new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.BETWEEN,
+			//    "'" + dateTimePickerStart.Value.ToString("dd.MM.yyyy") + "' AND '" + dateTimePickerStop.Value.ToString("dd.MM.yyyy") + "'", true));
 
 			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
 
@@ -678,7 +697,11 @@ namespace HomeFinances
 			Import();
 		}
 
-		#endregion
+        #endregion
 
-	}
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+			LoadRecords();
+		}
+    }
 }
