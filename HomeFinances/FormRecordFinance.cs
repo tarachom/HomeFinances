@@ -32,31 +32,6 @@ namespace HomeFinances
 		{
 			this.splitContainer1.SplitterDistance = 400;
 
-            #region Confa
-            string pathToConfa = @"E:\Project\HomeFinaces\HomeFinances\Configurator\Confa.xml";
-
-			Exception exception = null;
-
-			Конфа.Config.Kernel = new Kernel();
-
-			//Підключення до бази даних
-			bool flag = Конфа.Config.Kernel.Open2(pathToConfa,
-					"localhost",
-					"postgres",
-					"1",
-					5433,
-					"home_finances", out exception);
-
-			if (exception != null)
-			{
-				MessageBox.Show(exception.Message);
-				return;
-			}
-
-			Конфа.Config.ReadAllConstants();
-            #endregion
-
-
             //Параметри в лівій панелі
             DateTime start = DateTime.Today;
 
@@ -754,5 +729,10 @@ namespace HomeFinances
         {
 			LoadRecords();
 		}
+
+        private void FormRecordFinance_FormClosing(object sender, FormClosingEventArgs e)
+        {
+			Application.Exit();
+        }
     }
 }

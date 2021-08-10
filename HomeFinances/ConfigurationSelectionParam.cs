@@ -101,7 +101,7 @@ namespace HomeFinances
 
 		private void buttonConnect_Click(object sender, EventArgs e)
 		{
-			Exception exception = null;
+			//Exception exception = null;
 
 			UpdateItemConfigurationParam();
 
@@ -119,7 +119,7 @@ namespace HomeFinances
 
 		private void buttonTryConnect_Click(object sender, EventArgs e)
 		{
-			Exception exception = null;
+			//Exception exception = null;
 
 			UpdateItemConfigurationParam();
 

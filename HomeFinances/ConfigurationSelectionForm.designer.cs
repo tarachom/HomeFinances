@@ -38,10 +38,12 @@
             // 
             // listBoxConfiguration
             // 
+            this.listBoxConfiguration.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBoxConfiguration.FormattingEnabled = true;
+            this.listBoxConfiguration.ItemHeight = 19;
             this.listBoxConfiguration.Location = new System.Drawing.Point(12, 12);
             this.listBoxConfiguration.Name = "listBoxConfiguration";
-            this.listBoxConfiguration.Size = new System.Drawing.Size(502, 277);
+            this.listBoxConfiguration.Size = new System.Drawing.Size(502, 270);
             this.listBoxConfiguration.TabIndex = 0;
             this.listBoxConfiguration.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxConfiguration_MouseDoubleClick);
             // 

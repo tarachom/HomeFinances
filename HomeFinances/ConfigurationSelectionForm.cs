@@ -247,26 +247,11 @@ namespace HomeFinances
 
 				Конфа.Config.ReadAllConstants();
 
-				//Exception exception = null;
-
-				//Program.Kernel = new Kernel();
-
-				//bool flag = Program.Kernel.Open2(
-				//	itemConfigurationParam.ConfigurationPath,
-
-				//	itemConfigurationParam.DataBaseServer,
-				//	itemConfigurationParam.DataBaseLogin,
-				//	itemConfigurationParam.DataBasePassword,
-				//	itemConfigurationParam.DataBasePort,
-				//	itemConfigurationParam.DataBaseBaseName, 
-
-				//	out exception);
-
-				////FormConfiguration formConfiguration = new FormConfiguration();
-				////formConfiguration.Show();
-
-				//this.DialogResult = DialogResult.OK;
-				//this.Hide();
+				FormRecordFinance formRecordFinance = new FormRecordFinance();
+				formRecordFinance.Show();
+				
+				this.DialogResult = DialogResult.OK;
+				this.Hide();
 			}
 		}
 
