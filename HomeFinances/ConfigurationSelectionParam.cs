@@ -32,6 +32,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccountingSoftware;
+using Конфа = НоваКонфігурація_1_0;
 
 namespace HomeFinances
 {
@@ -60,7 +61,6 @@ namespace HomeFinances
 				if (ItemConfigurationParam != null)
 				{
 					textBoxConfName.Text = ItemConfigurationParam.ConfigurationName;
-					textBoxPathToFile.Text = ItemConfigurationParam.ConfigurationPath;
 				}
 				else
 					new Exception("ItemConfigurationParam null");
@@ -76,8 +76,6 @@ namespace HomeFinances
 		private void UpdateItemConfigurationParam()
 		{
 			ItemConfigurationParam.ConfigurationName = textBoxConfName.Text;
-			ItemConfigurationParam.ConfigurationPath = textBoxPathToFile.Text;
-
 			ItemConfigurationParam.DataBaseServer = textBoxPostgreSQLServer.Text;
 			ItemConfigurationParam.DataBaseLogin = textBoxPostgreSQLLogin.Text;
 			ItemConfigurationParam.DataBasePassword = textBoxPostgreSQLPassword.Text;
@@ -119,19 +117,26 @@ namespace HomeFinances
 
 		private void buttonTryConnect_Click(object sender, EventArgs e)
 		{
-			//Exception exception = null;
-
 			UpdateItemConfigurationParam();
 
-			//Program.Kernel = new Kernel();
+			Конфа.Config.Kernel = new Kernel();
 
-			//bool flag = Program.Kernel.TryConnectToServer(
-			//	ItemConfigurationParam.DataBaseServer,
-			//	ItemConfigurationParam.DataBaseLogin,
-			//	ItemConfigurationParam.DataBasePassword,
-			//	ItemConfigurationParam.DataBasePort, out exception);
+			Exception exception = null;
 
-			//MessageBox.Show(flag.ToString());
-		}
+			bool flag = Конфа.Config.Kernel.TryConnectToServer(
+                ItemConfigurationParam.DataBaseServer,
+                ItemConfigurationParam.DataBaseLogin,
+                ItemConfigurationParam.DataBasePassword,
+                ItemConfigurationParam.DataBasePort, out exception);
+
+			if (flag)
+            {
+				MessageBox.Show("ОК. Є підключення!");
+			}
+            else
+            {
+				MessageBox.Show("Помилка! " + (exception != null ? exception.Message : ""));
+			}
+        }
 	}
 }

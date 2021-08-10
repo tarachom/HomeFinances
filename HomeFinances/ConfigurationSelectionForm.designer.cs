@@ -69,7 +69,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(520, 258);
+            this.buttonDelete.Location = new System.Drawing.Point(520, 252);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(97, 30);
             this.buttonDelete.TabIndex = 4;
@@ -91,7 +91,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 300);
+            this.ClientSize = new System.Drawing.Size(623, 292);
             this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonOpenConf);

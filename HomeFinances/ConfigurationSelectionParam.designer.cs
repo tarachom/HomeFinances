@@ -29,11 +29,11 @@
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationSelectionParam));
-            this.textBoxPathToFile = new System.Windows.Forms.TextBox();
-            this.labelPathToFile = new System.Windows.Forms.Label();
             this.labelPostgreSQLServer = new System.Windows.Forms.Label();
             this.textBoxPostgreSQLServer = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonConnect = new System.Windows.Forms.Button();
+            this.buttonTryConnect = new System.Windows.Forms.Button();
             this.textBoxPostgreSQLPort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPostgreSQLDataBase = new System.Windows.Forms.TextBox();
@@ -46,31 +46,13 @@
             this.labelConfName = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.buttonConnect = new System.Windows.Forms.Button();
-            this.buttonTryConnect = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // textBoxPathToFile
-            // 
-            this.textBoxPathToFile.Location = new System.Drawing.Point(99, 46);
-            this.textBoxPathToFile.Name = "textBoxPathToFile";
-            this.textBoxPathToFile.Size = new System.Drawing.Size(507, 20);
-            this.textBoxPathToFile.TabIndex = 1;
-            // 
-            // labelPathToFile
-            // 
-            this.labelPathToFile.AutoSize = true;
-            this.labelPathToFile.Location = new System.Drawing.Point(14, 49);
-            this.labelPathToFile.Name = "labelPathToFile";
-            this.labelPathToFile.Size = new System.Drawing.Size(85, 13);
-            this.labelPathToFile.TabIndex = 1;
-            this.labelPathToFile.Text = "Шлях до файлу:";
             // 
             // labelPostgreSQLServer
             // 
             this.labelPostgreSQLServer.AutoSize = true;
-            this.labelPostgreSQLServer.Location = new System.Drawing.Point(12, 22);
+            this.labelPostgreSQLServer.Location = new System.Drawing.Point(12, 25);
             this.labelPostgreSQLServer.Name = "labelPostgreSQLServer";
             this.labelPostgreSQLServer.Size = new System.Drawing.Size(47, 13);
             this.labelPostgreSQLServer.TabIndex = 3;
@@ -78,13 +60,15 @@
             // 
             // textBoxPostgreSQLServer
             // 
-            this.textBoxPostgreSQLServer.Location = new System.Drawing.Point(82, 19);
+            this.textBoxPostgreSQLServer.Location = new System.Drawing.Point(82, 22);
             this.textBoxPostgreSQLServer.Name = "textBoxPostgreSQLServer";
             this.textBoxPostgreSQLServer.Size = new System.Drawing.Size(257, 20);
             this.textBoxPostgreSQLServer.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonConnect);
+            this.groupBox1.Controls.Add(this.buttonTryConnect);
             this.groupBox1.Controls.Add(this.textBoxPostgreSQLPort);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxPostgreSQLDataBase);
@@ -95,16 +79,36 @@
             this.groupBox1.Controls.Add(this.labelPostgreSQLLogin);
             this.groupBox1.Controls.Add(this.textBoxPostgreSQLServer);
             this.groupBox1.Controls.Add(this.labelPostgreSQLServer);
-            this.groupBox1.Location = new System.Drawing.Point(17, 84);
+            this.groupBox1.Location = new System.Drawing.Point(12, 59);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(426, 156);
+            this.groupBox1.Size = new System.Drawing.Size(594, 159);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "База даних PostgreSQL";
             // 
+            // buttonConnect
+            // 
+            this.buttonConnect.Location = new System.Drawing.Point(431, 119);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(157, 28);
+            this.buttonConnect.TabIndex = 9;
+            this.buttonConnect.Text = "Створити базу даних";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
+            // 
+            // buttonTryConnect
+            // 
+            this.buttonTryConnect.Location = new System.Drawing.Point(431, 22);
+            this.buttonTryConnect.Name = "buttonTryConnect";
+            this.buttonTryConnect.Size = new System.Drawing.Size(157, 28);
+            this.buttonTryConnect.TabIndex = 10;
+            this.buttonTryConnect.Text = "Перевірити підключення";
+            this.buttonTryConnect.UseVisualStyleBackColor = true;
+            this.buttonTryConnect.Click += new System.EventHandler(this.buttonTryConnect_Click);
+            // 
             // textBoxPostgreSQLPort
             // 
-            this.textBoxPostgreSQLPort.Location = new System.Drawing.Point(82, 97);
+            this.textBoxPostgreSQLPort.Location = new System.Drawing.Point(82, 100);
             this.textBoxPostgreSQLPort.Name = "textBoxPostgreSQLPort";
             this.textBoxPostgreSQLPort.Size = new System.Drawing.Size(257, 20);
             this.textBoxPostgreSQLPort.TabIndex = 8;
@@ -112,7 +116,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 100);
+            this.label1.Location = new System.Drawing.Point(12, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 9;
@@ -120,7 +124,7 @@
             // 
             // textBoxPostgreSQLDataBase
             // 
-            this.textBoxPostgreSQLDataBase.Location = new System.Drawing.Point(82, 124);
+            this.textBoxPostgreSQLDataBase.Location = new System.Drawing.Point(82, 127);
             this.textBoxPostgreSQLDataBase.Name = "textBoxPostgreSQLDataBase";
             this.textBoxPostgreSQLDataBase.Size = new System.Drawing.Size(257, 20);
             this.textBoxPostgreSQLDataBase.TabIndex = 3;
@@ -128,7 +132,7 @@
             // labelPostgreSQLDataBase
             // 
             this.labelPostgreSQLDataBase.AutoSize = true;
-            this.labelPostgreSQLDataBase.Location = new System.Drawing.Point(12, 127);
+            this.labelPostgreSQLDataBase.Location = new System.Drawing.Point(12, 130);
             this.labelPostgreSQLDataBase.Name = "labelPostgreSQLDataBase";
             this.labelPostgreSQLDataBase.Size = new System.Drawing.Size(67, 13);
             this.labelPostgreSQLDataBase.TabIndex = 7;
@@ -136,7 +140,7 @@
             // 
             // textBoxPostgreSQLPassword
             // 
-            this.textBoxPostgreSQLPassword.Location = new System.Drawing.Point(82, 71);
+            this.textBoxPostgreSQLPassword.Location = new System.Drawing.Point(82, 74);
             this.textBoxPostgreSQLPassword.Name = "textBoxPostgreSQLPassword";
             this.textBoxPostgreSQLPassword.Size = new System.Drawing.Size(257, 20);
             this.textBoxPostgreSQLPassword.TabIndex = 2;
@@ -144,7 +148,7 @@
             // labelPostgreSQLPassword
             // 
             this.labelPostgreSQLPassword.AutoSize = true;
-            this.labelPostgreSQLPassword.Location = new System.Drawing.Point(12, 74);
+            this.labelPostgreSQLPassword.Location = new System.Drawing.Point(12, 77);
             this.labelPostgreSQLPassword.Name = "labelPostgreSQLPassword";
             this.labelPostgreSQLPassword.Size = new System.Drawing.Size(48, 13);
             this.labelPostgreSQLPassword.TabIndex = 7;
@@ -152,7 +156,7 @@
             // 
             // textBoxPostgreSQLLogin
             // 
-            this.textBoxPostgreSQLLogin.Location = new System.Drawing.Point(82, 45);
+            this.textBoxPostgreSQLLogin.Location = new System.Drawing.Point(82, 48);
             this.textBoxPostgreSQLLogin.Name = "textBoxPostgreSQLLogin";
             this.textBoxPostgreSQLLogin.Size = new System.Drawing.Size(257, 20);
             this.textBoxPostgreSQLLogin.TabIndex = 1;
@@ -160,7 +164,7 @@
             // labelPostgreSQLLogin
             // 
             this.labelPostgreSQLLogin.AutoSize = true;
-            this.labelPostgreSQLLogin.Location = new System.Drawing.Point(12, 48);
+            this.labelPostgreSQLLogin.Location = new System.Drawing.Point(12, 51);
             this.labelPostgreSQLLogin.Name = "labelPostgreSQLLogin";
             this.labelPostgreSQLLogin.Size = new System.Drawing.Size(37, 13);
             this.labelPostgreSQLLogin.TabIndex = 5;
@@ -168,9 +172,9 @@
             // 
             // textBoxConfName
             // 
-            this.textBoxConfName.Location = new System.Drawing.Point(99, 20);
+            this.textBoxConfName.Location = new System.Drawing.Point(94, 20);
             this.textBoxConfName.Name = "textBoxConfName";
-            this.textBoxConfName.Size = new System.Drawing.Size(507, 20);
+            this.textBoxConfName.Size = new System.Drawing.Size(512, 20);
             this.textBoxConfName.TabIndex = 0;
             // 
             // labelConfName
@@ -184,7 +188,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(17, 274);
+            this.buttonOK.Location = new System.Drawing.Point(12, 235);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(110, 28);
             this.buttonOK.TabIndex = 3;
@@ -194,7 +198,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(496, 274);
+            this.buttonClose.Location = new System.Drawing.Point(496, 235);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(110, 28);
             this.buttonClose.TabIndex = 8;
@@ -202,47 +206,23 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // buttonConnect
-            // 
-            this.buttonConnect.Location = new System.Drawing.Point(449, 211);
-            this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.Size = new System.Drawing.Size(157, 28);
-            this.buttonConnect.TabIndex = 9;
-            this.buttonConnect.Text = "Створити базу даних";
-            this.buttonConnect.UseVisualStyleBackColor = true;
-            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
-            // 
-            // buttonTryConnect
-            // 
-            this.buttonTryConnect.Location = new System.Drawing.Point(449, 91);
-            this.buttonTryConnect.Name = "buttonTryConnect";
-            this.buttonTryConnect.Size = new System.Drawing.Size(157, 28);
-            this.buttonTryConnect.TabIndex = 10;
-            this.buttonTryConnect.Text = "Перевірити підключення";
-            this.buttonTryConnect.UseVisualStyleBackColor = true;
-            this.buttonTryConnect.Click += new System.EventHandler(this.buttonTryConnect_Click);
-            // 
             // ConfigurationSelectionParam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 315);
-            this.Controls.Add(this.buttonTryConnect);
-            this.Controls.Add(this.buttonConnect);
+            this.ClientSize = new System.Drawing.Size(613, 275);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.textBoxConfName);
             this.Controls.Add(this.labelConfName);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.labelPathToFile);
-            this.Controls.Add(this.textBoxPathToFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigurationSelectionParam";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Параметри конфігурації";
+            this.Text = "Параметри";
             this.Load += new System.EventHandler(this.ConfigurationSelectionParam_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -252,9 +232,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.TextBox textBoxPathToFile;
-		private System.Windows.Forms.Label labelPathToFile;
 		private System.Windows.Forms.Label labelPostgreSQLServer;
 		private System.Windows.Forms.TextBox textBoxPostgreSQLServer;
 		private System.Windows.Forms.GroupBox groupBox1;

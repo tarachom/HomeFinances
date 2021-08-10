@@ -21,7 +21,6 @@ limitations under the License.
 Сайт:     accounting.org.ua
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -44,13 +43,34 @@ namespace HomeFinances
 
 		private string PathToXML { get; set; }
 
+		private string PathToConfXML { get; set; }
+
 		private List<ConfigurationParam> ListConfigurationParam { get; set; }
+
+		private void ConfigurationSelectionForm_Load(object sender, EventArgs e)
+		{
+			string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+			PathToXML = Path.GetDirectoryName(assemblyLocation) + "\\ConfigurationParam.xml";
+
+#if DEBUG
+			//Конфігурація береться із папки Configurator
+			PathToConfXML = Path.GetFullPath(Path.GetDirectoryName(assemblyLocation) + "\\..\\..\\Configurator\\Confa.xml");
+#else
+			//Конфігурація знаходиться в тому самому каталозі що і програма
+			PathToConfXML = Path.GetDirectoryName(assemblyLocation) + "\\Confa.xml";
+#endif
+
+			LoadConfigurationParamFromXML();
+
+			Fill_listBoxConfiguration();
+		}
 
 		private void LoadConfigurationParamFromXML()
 		{
 			ListConfigurationParam.Clear();
 
-			if (File.Exists(PathToXML)) 
+			if (File.Exists(PathToXML))
 			{
 				XPathDocument xPathDoc = new XPathDocument(PathToXML);
 				XPathNavigator xPathDocNavigator = xPathDoc.CreateNavigator();
@@ -64,7 +84,6 @@ namespace HomeFinances
 
 					ItemConfigurationParam.ConfigurationKey = currentNode.SelectSingleNode("Key").Value;
 					ItemConfigurationParam.ConfigurationName = currentNode.SelectSingleNode("Name").Value;
-					ItemConfigurationParam.ConfigurationPath = currentNode.SelectSingleNode("Path").Value;
 					ItemConfigurationParam.DataBaseServer = currentNode.SelectSingleNode("Server").Value;
 					ItemConfigurationParam.DataBasePort = int.Parse(currentNode.SelectSingleNode("Port").Value);
 					ItemConfigurationParam.DataBaseLogin = currentNode.SelectSingleNode("Login").Value;
@@ -97,10 +116,6 @@ namespace HomeFinances
 				nodeName.InnerText = ItemConfigurationParam.ConfigurationName;
 				configurationNode.AppendChild(nodeName);
 
-				XmlElement nodePath = xmlConfParamDocument.CreateElement("Path");
-				nodePath.InnerText = ItemConfigurationParam.ConfigurationPath;
-				configurationNode.AppendChild(nodePath);
-
 				XmlElement nodeServer = xmlConfParamDocument.CreateElement("Server");
 				nodeServer.InnerText = ItemConfigurationParam.DataBaseServer;
 				configurationNode.AppendChild(nodeServer);
@@ -128,24 +143,18 @@ namespace HomeFinances
 		private void Fill_listBoxConfiguration()
 		{
 			listBoxConfiguration.Items.Clear();
-			
+
 			foreach (ConfigurationParam ItemConfigurationParam in ListConfigurationParam)
 				listBoxConfiguration.Items.Add(ItemConfigurationParam);
+
+			if (listBoxConfiguration.Items.Count > 0)
+				listBoxConfiguration.SelectedIndex = 0;
 		}
 
-		private void ConfigurationSelectionForm_Load(object sender, EventArgs e)
-		{
-			PathToXML = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\ConfigurationParam.xml";
-
-            LoadConfigurationParamFromXML();
-
-			Fill_listBoxConfiguration();
-		}
-
-        #region CallBack
+		#region CallBack
 
 		void CallBack_Update(ConfigurationParam itemConfigurationParam, bool isNew)
-        {
+		{
 			if (isNew)
 			{
 				ListConfigurationParam.Add(itemConfigurationParam);
@@ -154,11 +163,10 @@ namespace HomeFinances
 			else
 			{
 				foreach (ConfigurationParam ItemConfigurationParam in ListConfigurationParam)
-                {
+				{
 					if (ItemConfigurationParam.ConfigurationKey == itemConfigurationParam.ConfigurationKey)
 					{
 						ItemConfigurationParam.ConfigurationName = itemConfigurationParam.ConfigurationName;
-						ItemConfigurationParam.ConfigurationPath = itemConfigurationParam.ConfigurationPath;
 						ItemConfigurationParam.DataBaseServer = itemConfigurationParam.DataBaseServer;
 						ItemConfigurationParam.DataBaseLogin = itemConfigurationParam.DataBaseLogin;
 						ItemConfigurationParam.DataBasePassword = itemConfigurationParam.DataBasePassword;
@@ -168,7 +176,7 @@ namespace HomeFinances
 						SaveConfigurationParamFromXML();
 						break;
 					}
-                }
+				}
 			}
 
 			LoadConfigurationParamFromXML();
@@ -203,25 +211,28 @@ namespace HomeFinances
 		{
 			if (listBoxConfiguration.SelectedItem != null)
 			{
-				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
-
-				foreach (ConfigurationParam ItemConfigurationParam in ListConfigurationParam)
+				if (MessageBox.Show("Видалити?", "Видалити?", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					if (ItemConfigurationParam.ConfigurationKey == itemConfigurationParam.ConfigurationKey)
-					{
-						ListConfigurationParam.Remove(ItemConfigurationParam);
-						
-						SaveConfigurationParamFromXML();
-						Fill_listBoxConfiguration();
+					ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
 
-						break;
+					foreach (ConfigurationParam ItemConfigurationParam in ListConfigurationParam)
+					{
+						if (ItemConfigurationParam.ConfigurationKey == itemConfigurationParam.ConfigurationKey)
+						{
+							ListConfigurationParam.Remove(ItemConfigurationParam);
+
+							SaveConfigurationParamFromXML();
+							Fill_listBoxConfiguration();
+
+							break;
+						}
 					}
 				}
 			}
 		}
 
-        private void buttonOpenConf_Click(object sender, EventArgs e)
-        {
+		private void buttonOpenConf_Click(object sender, EventArgs e)
+		{
 			if (listBoxConfiguration.SelectedItem != null)
 			{
 				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
@@ -232,7 +243,7 @@ namespace HomeFinances
 
 				//Підключення до бази даних
 				bool flag = Конфа.Config.Kernel.Open2(
-					    itemConfigurationParam.ConfigurationPath,
+						PathToConfXML,
 						itemConfigurationParam.DataBaseServer,
 						itemConfigurationParam.DataBaseLogin,
 						itemConfigurationParam.DataBasePassword,
@@ -249,14 +260,14 @@ namespace HomeFinances
 
 				FormRecordFinance formRecordFinance = new FormRecordFinance();
 				formRecordFinance.Show();
-				
+
 				this.DialogResult = DialogResult.OK;
 				this.Hide();
 			}
 		}
 
-        private void buttonCopy_Click(object sender, EventArgs e)
-        {
+		private void buttonCopy_Click(object sender, EventArgs e)
+		{
 			if (listBoxConfiguration.SelectedItem != null)
 			{
 				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
@@ -267,5 +278,5 @@ namespace HomeFinances
 				Fill_listBoxConfiguration();
 			}
 		}
-    }
+	}
 }

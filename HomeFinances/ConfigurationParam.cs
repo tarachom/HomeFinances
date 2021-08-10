@@ -15,8 +15,6 @@ namespace HomeFinances
 
 		public string ConfigurationName { get; set; }
 
-		public string ConfigurationPath { get; set; }
-
 		public string DataBaseServer { get; set; }
 
 		public int DataBasePort { get; set; }
@@ -36,8 +34,7 @@ namespace HomeFinances
         {
 			ConfigurationParam configurationParam = new ConfigurationParam();
 			configurationParam.ConfigurationKey = Guid.NewGuid().ToString();
-			configurationParam.ConfigurationName = ConfigurationName;
-			configurationParam.ConfigurationPath = ConfigurationPath;
+			configurationParam.ConfigurationName = "Копія - " + ConfigurationName;
 			configurationParam.DataBaseServer = DataBaseServer;
 			configurationParam.DataBaseLogin = DataBaseLogin;
 			configurationParam.DataBasePassword = DataBasePassword;
