@@ -52,6 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationParam.cs" />
+    <Compile Include="ConfigurationSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationSelectionForm.designer.cs">
+      <DependentUpon>ConfigurationSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationSelectionParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationSelectionParam.designer.cs">
+      <DependentUpon>ConfigurationSelectionParam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Configurator\CodeGeneration.cs" />
     <Compile Include="DirectoryControl.cs">
       <SubType>UserControl</SubType>
@@ -145,6 +158,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConfigurationSelectionForm.resx">
+      <DependentUpon>ConfigurationSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationSelectionParam.resx">
+      <DependentUpon>ConfigurationSelectionParam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DirectoryControl.resx">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </EmbeddedResource>
