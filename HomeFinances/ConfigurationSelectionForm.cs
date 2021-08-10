@@ -45,6 +45,8 @@ namespace HomeFinances
 
 		private string PathToConfXML { get; set; }
 
+		private string PathToSQLXML { get; set; }
+
 		private List<ConfigurationParam> ListConfigurationParam { get; set; }
 
 		private void ConfigurationSelectionForm_Load(object sender, EventArgs e)
@@ -52,6 +54,7 @@ namespace HomeFinances
 			string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
 			PathToXML = Path.GetDirectoryName(assemblyLocation) + "\\ConfigurationParam.xml";
+			PathToSQLXML = Path.GetDirectoryName(assemblyLocation) + "\\Sql.xml";
 
 #if DEBUG
 			//Конфігурація береться із папки Configurator
@@ -254,6 +257,18 @@ namespace HomeFinances
 				{
 					MessageBox.Show(exception.Message);
 					return;
+				}
+
+				//Read SQL
+				List<string> SqlList = Configuration.ListComparisonSql(PathToSQLXML);
+
+				if (SqlList.Count != 0)
+				{
+					//Execute
+					foreach (string sqlText in SqlList)
+					{
+						int resultSQL = Конфа.Config.Kernel.DataBase.ExecuteSQL(sqlText);
+					}
 				}
 
 				Конфа.Config.ReadAllConstants();

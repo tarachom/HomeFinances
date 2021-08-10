@@ -1,2 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root />
+<root>
+  <info>Створити таблицю Константи (tab_constants)</info>
+  <sql>CREATE TABLE tab_constants (uid uuid NOT NULL,  "col_a3" text,  "col_a1" uuid,  "col_a2" uuid,  "col_a4" uuid,  "col_a5" uuid,  "col_a6" uuid,  "col_a7" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Записи (tab_a02)</info>
+  <sql>CREATE TABLE tab_a02 (uid uuid NOT NULL,  "col_a7" text,  "col_a6" timestamp without time zone,  "col_a8" text,  "col_a9" integer,  "col_b1" integer,  "col_a1" uuid,  "col_a2" uuid,  "col_a4" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a13)</info>
+  <sql>CREATE TABLE tab_a13 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a5" timestamp without time zone, "col_a6" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a13 (owner);</sql>
+  <info>Створити таблицю КласифікаторВитрат (tab_a01)</info>
+  <sql>CREATE TABLE tab_a01 (uid uuid NOT NULL,  "col_a1" text,  "col_a2" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a10)</info>
+  <sql>CREATE TABLE tab_a10 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a10 (owner);</sql>
+  <info>Створити таблицю Записник (tab_a03)</info>
+  <sql>CREATE TABLE tab_a03 (uid uuid NOT NULL,  "col_a1" text,  "col_a4" text,  "col_a3" timestamp without time zone,  "col_a2" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a16)</info>
+  <sql>CREATE TABLE tab_a16 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a3" timestamp without time zone, "col_a4" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a16 (owner);</sql>
+  <info>Створити таблицю Файли (tab_a17)</info>
+  <sql>CREATE TABLE tab_a17 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" text, "col_a2" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a17 (owner);</sql>
+  <info>Створити таблицю Користувач (tab_a04)</info>
+  <sql>CREATE TABLE tab_a04 (uid uuid NOT NULL,  "col_a1" text,  "col_a2" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю НалаштуванняФормиЗаписиФінансів (tab_a06)</info>
+  <sql>CREATE TABLE tab_a06 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a5" text, "col_a6" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a06 (owner);</sql>
+  <info>Створити таблицю Каса (tab_a05)</info>
+  <sql>CREATE TABLE tab_a05 (uid uuid NOT NULL,  "col_a1" text,  "col_a2" uuid,  "col_a3" integer, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a12)</info>
+  <sql>CREATE TABLE tab_a12 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a3" timestamp without time zone, "col_a4" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a12 (owner);</sql>
+  <info>Створити таблицю Валюта (tab_a07)</info>
+  <sql>CREATE TABLE tab_a07 (uid uuid NOT NULL,  "col_a3" text,  "col_a4" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a11)</info>
+  <sql>CREATE TABLE tab_a11 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a11 (owner);</sql>
+  <info>Створити таблицю Контакти (tab_a08)</info>
+  <sql>CREATE TABLE tab_a08 (uid uuid NOT NULL,  "col_a4" text,  "col_a3" text,  "col_a5" text,  "col_a6" text,  "col_a7" text,  "col_a1" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a14)</info>
+  <sql>CREATE TABLE tab_a14 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a14 (owner);</sql>
+  <info>Створити таблицю Записник_Папки (tab_a09)</info>
+  <sql>CREATE TABLE tab_a09 (uid uuid NOT NULL,  "col_a1" text,  "col_a3" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ОбмінІсторія (tab_a15)</info>
+  <sql>CREATE TABLE tab_a15 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a15 (owner);</sql>
+  <info>Створити таблицю Склади (tab_a20)</info>
+  <sql>CREATE TABLE tab_a20 (uid uuid NOT NULL,  "col_a7" text,  "col_a8" text,  "col_a1" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Номенклатура (tab_a21)</info>
+  <sql>CREATE TABLE tab_a21 (uid uuid NOT NULL,  "col_a9" text,  "col_b1" text,  "col_a1" uuid,  "col_a2" integer,  "col_a3" text,  "col_a4" uuid,  "col_a5" uuid,  "col_a6" text,  "col_a7" text,  "col_a8" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Контрагенти (tab_a24)</info>
+  <sql>CREATE TABLE tab_a24 (uid uuid NOT NULL,  "col_b9" text,  "col_c1" text,  "col_a1" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Номенклатура_Папки (tab_a27)</info>
+  <sql>CREATE TABLE tab_a27 (uid uuid NOT NULL,  "col_c2" text,  "col_c4" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Контрагенти_Папки (tab_a28)</info>
+  <sql>CREATE TABLE tab_a28 (uid uuid NOT NULL,  "col_c5" text,  "col_c7" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Склади_Папки (tab_a36)</info>
+  <sql>CREATE TABLE tab_a36 (uid uuid NOT NULL,  "col_d5" text,  "col_d7" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Організації (tab_a29)</info>
+  <sql>CREATE TABLE tab_a29 (uid uuid NOT NULL,  "col_a1" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Контакти (tab_a32)</info>
+  <sql>CREATE TABLE tab_a32 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a5" text, "col_a6" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a32 (owner);</sql>
+  <info>Створити таблицю ВидиЦін (tab_a31)</info>
+  <sql>CREATE TABLE tab_a31 (uid uuid NOT NULL,  "col_a1" text,  "col_a3" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ВидиНоменклатури (tab_a50)</info>
+  <sql>CREATE TABLE tab_a50 (uid uuid NOT NULL,  "col_a7" text,  "col_a8" text,  "col_a9" integer,  "col_b1" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ПакуванняОдиниціВиміру (tab_a51)</info>
+  <sql>CREATE TABLE tab_a51 (uid uuid NOT NULL,  "col_b2" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Виробники (tab_a52)</info>
+  <sql>CREATE TABLE tab_a52 (uid uuid NOT NULL,  "col_b4" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Інвентаризація (tab_a18)</info>
+  <sql>CREATE TABLE tab_a18 (uid uuid NOT NULL,  "col_a1" timestamp without time zone,  "col_a2" integer,  "col_a6" uuid,  "col_a3" uuid,  "col_a4" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a19)</info>
+  <sql>CREATE TABLE tab_a19 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a3" uuid, "col_a4" integer, "col_a5" text, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a19 (owner);</sql>
+  <info>Створити таблицю ПоступленняТоварівПослуг (tab_a22)</info>
+  <sql>CREATE TABLE tab_a22 (uid uuid NOT NULL,  "col_b2" timestamp without time zone,  "col_b3" integer,  "col_b7" uuid,  "col_b8" uuid,  "col_a1" uuid,  "col_a2" text,  "col_a3" numeric, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a23)</info>
+  <sql>CREATE TABLE tab_a23 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, "col_b6" numeric, "col_a1" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a23 (owner);</sql>
+  <info>Створити таблицю РеалізаціяТоварівПослуг (tab_a25)</info>
+  <sql>CREATE TABLE tab_a25 (uid uuid NOT NULL,  "col_b2" timestamp without time zone,  "col_b3" integer,  "col_b7" uuid,  "col_b8" uuid,  "col_a1" uuid,  "col_a2" text,  "col_a3" numeric, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a26)</info>
+  <sql>CREATE TABLE tab_a26 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, "col_b6" numeric, "col_a1" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a26 (owner);</sql>
+  <info>Створити таблицю ПрихіднийКасовийОрдер (tab_a37)</info>
+  <sql>CREATE TABLE tab_a37 (uid uuid NOT NULL,  "col_d8" timestamp without time zone,  "col_d9" integer,  "col_e1" uuid,  "col_e2" numeric,  "col_e3" uuid,  "col_a1" uuid,  "col_a2" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю РозхіднийКасовийОрдер (tab_a38)</info>
+  <sql>CREATE TABLE tab_a38 (uid uuid NOT NULL,  "col_d8" timestamp without time zone,  "col_d9" integer,  "col_e1" uuid,  "col_e2" numeric,  "col_e3" uuid,  "col_a1" uuid,  "col_a2" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ПереміщенняТоварів (tab_a40)</info>
+  <sql>CREATE TABLE tab_a40 (uid uuid NOT NULL,  "col_a7" timestamp without time zone,  "col_a8" integer,  "col_a9" uuid,  "col_b1" uuid,  "col_b2" text,  "col_b3" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a41)</info>
+  <sql>CREATE TABLE tab_a41 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a41 (owner);</sql>
+  <info>Створити таблицю ПоверненняТоварівВідКлієнта (tab_a42)</info>
+  <sql>CREATE TABLE tab_a42 (uid uuid NOT NULL,  "col_b2" timestamp without time zone,  "col_b3" integer,  "col_b7" uuid,  "col_b8" uuid,  "col_a1" uuid,  "col_a2" text,  "col_a3" numeric, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a43)</info>
+  <sql>CREATE TABLE tab_a43 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, "col_b6" numeric, "col_a1" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a43 (owner);</sql>
+  <info>Створити таблицю ПоверненняТоварівПостачальнику (tab_a44)</info>
+  <sql>CREATE TABLE tab_a44 (uid uuid NOT NULL,  "col_b2" timestamp without time zone,  "col_b3" integer,  "col_b7" uuid,  "col_b8" uuid,  "col_a1" uuid,  "col_a2" text,  "col_a3" numeric, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a45)</info>
+  <sql>CREATE TABLE tab_a45 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, "col_b6" numeric, "col_a1" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a45 (owner);</sql>
+  <info>Створити таблицю ЗамовленняПостачальнику (tab_a46)</info>
+  <sql>CREATE TABLE tab_a46 (uid uuid NOT NULL,  "col_b2" timestamp without time zone,  "col_b3" integer,  "col_b7" uuid,  "col_b8" uuid,  "col_a1" uuid,  "col_a2" text,  "col_a3" numeric, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a47)</info>
+  <sql>CREATE TABLE tab_a47 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, "col_b6" numeric, "col_a1" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a47 (owner);</sql>
+  <info>Створити таблицю ЗамовленняКлієнта (tab_a48)</info>
+  <sql>CREATE TABLE tab_a48 (uid uuid NOT NULL,  "col_b2" timestamp without time zone,  "col_b3" integer,  "col_b7" uuid,  "col_b8" uuid,  "col_a1" uuid,  "col_a2" text,  "col_a3" numeric, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a49)</info>
+  <sql>CREATE TABLE tab_a49 (uid uuid NOT NULL, owner uuid NOT NULL, "col_b4" uuid, "col_b5" integer, "col_b6" numeric, "col_a1" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a49 (owner);</sql>
+  <info>Створити таблицю ВстановленняЦінНоменклатури (tab_a34)</info>
+  <sql>CREATE TABLE tab_a34 (uid uuid NOT NULL,  "col_a1" timestamp without time zone,  "col_a2" integer,  "col_a6" text, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю Товари (tab_a35)</info>
+  <sql>CREATE TABLE tab_a35 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a3" uuid, "col_a4" uuid, "col_a5" numeric, PRIMARY KEY(uid));</sql>
+  <sql>CREATE INDEX ON tab_a35 (owner);</sql>
+  <info>Створити таблицю ЦіниНоменклатури (tab_a33)</info>
+  <sql>CREATE TABLE tab_a33 (uid uuid NOT NULL,  "col_a4" uuid,  "col_a5" uuid,  "col_a6" text,  "col_a7" uuid, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ЗалишкиТоварів (tab_a30)</info>
+  <sql>CREATE TABLE tab_a30 (uid uuid NOT NULL,  "col_d2" uuid,  "col_d3" uuid,  "col_d4" integer, PRIMARY KEY(uid));</sql>
+  <info>Створити таблицю ЗалишкиГрошей (tab_a39)</info>
+  <sql>CREATE TABLE tab_a39 (uid uuid NOT NULL,  "col_e4" uuid,  "col_e6" numeric, PRIMARY KEY(uid));</sql>
+</root>

@@ -21,15 +21,9 @@ limitations under the License.
 Сайт:     accounting.org.ua
 */
 
-
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using AccountingSoftware;
 using Конфа = НоваКонфігурація_1_0;
@@ -99,20 +93,27 @@ namespace HomeFinances
 
 		private void buttonConnect_Click(object sender, EventArgs e)
 		{
-			//Exception exception = null;
-
 			UpdateItemConfigurationParam();
 
-			//Program.Kernel = new Kernel();
+			Конфа.Config.Kernel = new Kernel();
 
-			//bool flag =  Program.Kernel.CreateDatabaseIfNotExist(
-			//	ItemConfigurationParam.DataBaseServer,
-			//	ItemConfigurationParam.DataBaseLogin,
-			//	ItemConfigurationParam.DataBasePassword,
-			//	ItemConfigurationParam.DataBasePort,
-			//	ItemConfigurationParam.DataBaseBaseName, out exception);
+			Exception exception = null;
 
-			//MessageBox.Show(flag.ToString());
+			bool flag = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
+				ItemConfigurationParam.DataBaseServer,
+				ItemConfigurationParam.DataBaseLogin,
+				ItemConfigurationParam.DataBasePassword,
+				ItemConfigurationParam.DataBasePort,
+				ItemConfigurationParam.DataBaseBaseName, out exception);
+
+			if (flag)
+			{
+				MessageBox.Show("ОК. База створена!");				    
+			}
+			else
+			{
+				MessageBox.Show("Помилка! " + (exception != null ? exception.Message : ""));
+			}
 		}
 
 		private void buttonTryConnect_Click(object sender, EventArgs e)
