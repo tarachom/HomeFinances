@@ -45,10 +45,8 @@ namespace HomeFinances
 			foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ТипЗапису"].Fields.Values)
 				comboBoxTypeRecord.Items.Add(new NameValue<int>(field.Name, field.Value));
 
-			//Стаття витрат
+			//Стаття витрат, Каса
 			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
-
-			//Каса
 			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
 
 			//GRID
@@ -74,6 +72,7 @@ namespace HomeFinances
 			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Font = new Font("Arial", 11);
 
 			dataGridViewRecords.Columns["Витрата"].Width = 200;
+			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
 			//Користувач
 			//Записи налаштувань користувача

@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>10.08.2021 18:11:42</DateTimeSave>
+  <DateTimeSave>11.08.2021 17:06:15</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -179,8 +179,7 @@
     <Directory>
       <Name>КласифікаторВитрат</Name>
       <Table>tab_a01</Table>
-      <Desc>
-      </Desc>
+      <Desc>Статті витрат</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -420,8 +419,7 @@
     <Directory>
       <Name>Валюта</Name>
       <Table>tab_a07</Table>
-      <Desc>
-      </Desc>
+      <Desc>Валюта</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -517,6 +515,13 @@
           </Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
+        <Field>
+          <Name>Фото</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>string</Type>
+          <Desc>Зарезервовано під фотографію</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
       </Fields>
       <TabularParts>
         <TablePart>
@@ -548,8 +553,7 @@
     <Directory>
       <Name>Записник_Папки</Name>
       <Table>tab_a09</Table>
-      <Desc>
-      </Desc>
+      <Desc>Іжрархія для довідника Записник</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -599,8 +603,7 @@
     <Directory>
       <Name>Склади</Name>
       <Table>tab_a20</Table>
-      <Desc>
-      </Desc>
+      <Desc>Список складів</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -631,8 +634,7 @@
     <Directory>
       <Name>Номенклатура</Name>
       <Table>tab_a21</Table>
-      <Desc>
-      </Desc>
+      <Desc>Список номенклатури</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -718,13 +720,37 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>Фотографії</Name>
+          <Table>tab_a54</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Фото</Name>
+              <NameInTable>col_a5</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Опис</Name>
+              <NameInTable>col_a1</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
     </Directory>
     <Directory>
       <Name>Контрагенти</Name>
       <Table>tab_a24</Table>
-      <Desc>
-      </Desc>
+      <Desc>Список контрагентів</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -750,7 +776,48 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts />
+      <TabularParts>
+        <TablePart>
+          <Name>Контакти</Name>
+          <Table>tab_a55</Table>
+          <Desc>
+          </Desc>
+          <Fields>
+            <Field>
+              <Name>Адреса</Name>
+              <NameInTable>col_a6</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Телефон</Name>
+              <NameInTable>col_a7</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Емайл</Name>
+              <NameInTable>col_a8</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Опис</Name>
+              <NameInTable>col_a9</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+          </Fields>
+        </TablePart>
+      </TabularParts>
     </Directory>
     <Directory>
       <Name>Номенклатура_Папки</Name>
@@ -780,8 +847,7 @@
     <Directory>
       <Name>Контрагенти_Папки</Name>
       <Table>tab_a28</Table>
-      <Desc>
-      </Desc>
+      <Desc>Ієрарахія для довідника Контрагенти</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -805,8 +871,7 @@
     <Directory>
       <Name>Склади_Папки</Name>
       <Table>tab_a36</Table>
-      <Desc>
-      </Desc>
+      <Desc>Ієрархія для довідника Склади</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -830,8 +895,7 @@
     <Directory>
       <Name>Організації</Name>
       <Table>tab_a29</Table>
-      <Desc>
-      </Desc>
+      <Desc>Список Організацій</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -849,16 +913,24 @@
           </Desc>
           <Fields>
             <Field>
-              <Name>Тип</Name>
-              <NameInTable>col_a5</NameInTable>
+              <Name>Адреса</Name>
+              <NameInTable>col_a1</NameInTable>
               <Type>string</Type>
               <Desc>
               </Desc>
               <IsPresentation>0</IsPresentation>
             </Field>
             <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a6</NameInTable>
+              <Name>Телефон</Name>
+              <NameInTable>col_a2</NameInTable>
+              <Type>string</Type>
+              <Desc>
+              </Desc>
+              <IsPresentation>0</IsPresentation>
+            </Field>
+            <Field>
+              <Name>Емайл</Name>
+              <NameInTable>col_a3</NameInTable>
               <Type>string</Type>
               <Desc>
               </Desc>
@@ -895,8 +967,7 @@
     <Directory>
       <Name>ВидиНоменклатури</Name>
       <Table>tab_a50</Table>
-      <Desc>
-      </Desc>
+      <Desc>Види Номенклатури</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -935,8 +1006,7 @@
     <Directory>
       <Name>ПакуванняОдиниціВиміру</Name>
       <Table>tab_a51</Table>
-      <Desc>
-      </Desc>
+      <Desc>Одиниці виміру</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -951,14 +1021,46 @@
     <Directory>
       <Name>Виробники</Name>
       <Table>tab_a52</Table>
-      <Desc>
-      </Desc>
+      <Desc>Список Виробників</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
           <NameInTable>col_b4</NameInTable>
           <Type>string</Type>
           <Desc>Назва</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+      </Fields>
+      <TabularParts />
+    </Directory>
+    <Directory>
+      <Name>КалендарПеріодичнихЗавдань</Name>
+      <Table>tab_a53</Table>
+      <Desc>Список періодичних завдань. 
+Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць.</Desc>
+      <Fields>
+        <Field>
+          <Name>Назва</Name>
+          <NameInTable>col_a1</NameInTable>
+          <Type>string</Type>
+          <Desc>Назва</Desc>
+          <IsPresentation>1</IsPresentation>
+        </Field>
+        <Field>
+          <Name>ПеріодВиконання</Name>
+          <NameInTable>col_a3</NameInTable>
+          <Type>enum</Type>
+          <Pointer>Перелічення.ПеріодиВиконанняЗавдань</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Опис</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Type>string</Type>
+          <Desc>
+          </Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
@@ -1036,6 +1138,49 @@
         <Field>
           <Name>Робота</Name>
           <Value>3</Value>
+          <Desc>
+          </Desc>
+        </Field>
+      </Fields>
+    </Enum>
+    <Enum>
+      <Name>ПеріодиВиконанняЗавдань</Name>
+      <Desc>Для довідника КалендарПеріодичнихЗавдань</Desc>
+      <SerialNumber>7</SerialNumber>
+      <Fields>
+        <Field>
+          <Name>День</Name>
+          <Value>2</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Тиждень</Name>
+          <Value>3</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Місяць</Name>
+          <Value>4</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Квартал</Name>
+          <Value>5</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Півроку</Name>
+          <Value>6</Value>
+          <Desc>
+          </Desc>
+        </Field>
+        <Field>
+          <Name>Рік</Name>
+          <Value>7</Value>
           <Desc>
           </Desc>
         </Field>

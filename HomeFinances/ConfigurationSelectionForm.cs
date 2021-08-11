@@ -244,8 +244,22 @@ namespace HomeFinances
 
 				Конфа.Config.Kernel = new Kernel();
 
+				//Створення бази даних
+				bool flagCreateDatabase = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
+						itemConfigurationParam.DataBaseServer,
+						itemConfigurationParam.DataBaseLogin,
+						itemConfigurationParam.DataBasePassword,
+						itemConfigurationParam.DataBasePort,
+						itemConfigurationParam.DataBaseBaseName, out exception);
+
+				if (exception != null)
+				{
+					MessageBox.Show(exception.Message);
+					return;
+				}
+
 				//Підключення до бази даних
-				bool flag = Конфа.Config.Kernel.Open2(
+				bool flagOpen2 = Конфа.Config.Kernel.Open2(
 						PathToConfXML,
 						itemConfigurationParam.DataBaseServer,
 						itemConfigurationParam.DataBaseLogin,

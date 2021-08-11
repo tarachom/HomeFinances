@@ -217,6 +217,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -233,6 +234,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="homefinances.ico" />
+    <None Include="Resources\bookmark_folder.png" />
+    <None Include="Resources\page_white_delete.png" />
+    <None Include="Resources\page_copy.png" />
+    <None Include="Resources\page.png" />
+    <None Include="Resources\layers.png" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\drawer.png" />
+    <None Include="Resources\cog.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\blog.png" />
+    <None Include="Resources\page_refresh.png" />
+    <None Include="Resources\doc_text_image.png" />
+    <None Include="Resources\coins.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

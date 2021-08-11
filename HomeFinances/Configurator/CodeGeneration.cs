@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 10.08.2021 18:11:42
+ * Дата конфігурації: 11.08.2021 17:06:15
  *
  */
 
@@ -452,7 +452,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "КласифікаторВитрат"
-    
+    ///<summary>
+    ///Статті витрат.
+    ///</summary>
     class КласифікаторВитрат_Objest : DirectoryObject
     {
         public КласифікаторВитрат_Objest() : base(Config.Kernel, "tab_a01",
@@ -517,7 +519,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Статті витрат.
+    ///</summary>
     class КласифікаторВитрат_Pointer : DirectoryPointer
     {
         public КласифікаторВитрат_Pointer(object uid = null) : base(Config.Kernel, "tab_a01")
@@ -549,7 +553,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Статті витрат.
+    ///</summary>
     class КласифікаторВитрат_Select : DirectorySelect, IDisposable
     {
         public КласифікаторВитрат_Select() : base(Config.Kernel, "tab_a01",
@@ -1478,7 +1484,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Валюта"
-    
+    ///<summary>
+    ///Валюта.
+    ///</summary>
     class Валюта_Objest : DirectoryObject
     {
         public Валюта_Objest() : base(Config.Kernel, "tab_a07",
@@ -1543,7 +1551,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Валюта.
+    ///</summary>
     class Валюта_Pointer : DirectoryPointer
     {
         public Валюта_Pointer(object uid = null) : base(Config.Kernel, "tab_a07")
@@ -1575,7 +1585,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Валюта.
+    ///</summary>
     class Валюта_Select : DirectorySelect, IDisposable
     {
         public Валюта_Select() : base(Config.Kernel, "tab_a07",
@@ -1709,7 +1721,7 @@ namespace НоваКонфігурація_1_0.Довідники
     class Контакти_Objest : DirectoryObject
     {
         public Контакти_Objest() : base(Config.Kernel, "tab_a08",
-             new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1" }) 
+             new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1", "col_a2" }) 
         {
             Телефон = "";
             Назва = "";
@@ -1717,6 +1729,7 @@ namespace НоваКонфігурація_1_0.Довідники
             Пошта = "";
             Опис = "";
             Скайп = "";
+            Фото = "";
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Контакти_ОбмінІсторія_TablePart(this);
@@ -1733,6 +1746,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Пошта = base.FieldValue["col_a6"].ToString();
                 Опис = base.FieldValue["col_a7"].ToString();
                 Скайп = base.FieldValue["col_a1"].ToString();
+                Фото = base.FieldValue["col_a2"].ToString();
                 
                 BaseClear();
                 return true;
@@ -1749,6 +1763,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a6"] = Пошта;
             base.FieldValue["col_a7"] = Опис;
             base.FieldValue["col_a1"] = Скайп;
+            base.FieldValue["col_a2"] = Фото;
             
             BaseSave();
         }
@@ -1764,6 +1779,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Пошта>" + "<![CDATA[" + Пошта + "]]>" + "</Пошта>"  +
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
                "<Скайп>" + "<![CDATA[" + Скайп + "]]>" + "</Скайп>"  +
+               "<Фото>" + "<![CDATA[" + Фото + "]]>" + "</Фото>"  +
                "</" + root + ">";
         }
 
@@ -1784,6 +1800,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Пошта { get; set; }
         public string Опис { get; set; }
         public string Скайп { get; set; }
+        public string Фото { get; set; }
         
         //Табличні частини
         public Контакти_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
@@ -1830,8 +1847,8 @@ namespace НоваКонфігурація_1_0.Довідники
     class Контакти_Select : DirectorySelect, IDisposable
     {
         public Контакти_Select() : base(Config.Kernel, "tab_a08",
-            new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1" },
-            new string[] { "Телефон", "Назва", "Сайт", "Пошта", "Опис", "Скайп" }) { }
+            new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1", "col_a2" },
+            new string[] { "Телефон", "Назва", "Сайт", "Пошта", "Опис", "Скайп", "Фото" }) { }
         
         public const string Телефон = "col_a4";
         public const string Назва = "col_a3";
@@ -1839,6 +1856,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public const string Пошта = "col_a6";
         public const string Опис = "col_a7";
         public const string Скайп = "col_a1";
+        public const string Фото = "col_a2";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -1958,7 +1976,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Записник_Папки"
-    
+    ///<summary>
+    ///Іжрархія для довідника Записник.
+    ///</summary>
     class Записник_Папки_Objest : DirectoryObject
     {
         public Записник_Папки_Objest() : base(Config.Kernel, "tab_a09",
@@ -2023,7 +2043,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Іжрархія для довідника Записник.
+    ///</summary>
     class Записник_Папки_Pointer : DirectoryPointer
     {
         public Записник_Папки_Pointer(object uid = null) : base(Config.Kernel, "tab_a09")
@@ -2055,7 +2077,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Іжрархія для довідника Записник.
+    ///</summary>
     class Записник_Папки_Select : DirectorySelect, IDisposable
     {
         public Записник_Папки_Select() : base(Config.Kernel, "tab_a09",
@@ -2183,7 +2207,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Склади"
-    
+    ///<summary>
+    ///Список складів.
+    ///</summary>
     class Склади_Objest : DirectoryObject
     {
         public Склади_Objest() : base(Config.Kernel, "tab_a20",
@@ -2247,7 +2273,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Список складів.
+    ///</summary>
     class Склади_Pointer : DirectoryPointer
     {
         public Склади_Pointer(object uid = null) : base(Config.Kernel, "tab_a20")
@@ -2279,7 +2307,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Список складів.
+    ///</summary>
     class Склади_Select : DirectorySelect, IDisposable
     {
         public Склади_Select() : base(Config.Kernel, "tab_a20",
@@ -2320,7 +2350,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Номенклатура"
-    
+    ///<summary>
+    ///Список номенклатури.
+    ///</summary>
     class Номенклатура_Objest : DirectoryObject
     {
         public Номенклатура_Objest() : base(Config.Kernel, "tab_a21",
@@ -2336,6 +2368,9 @@ namespace НоваКонфігурація_1_0.Довідники
             ПовнаНазва = "";
             Опис = "";
             Виробник = new Довідники.Виробники_Pointer();
+            
+            //Табличні частини
+            Фотографії_TablePart = new Номенклатура_Фотографії_TablePart(this);
             
         }
         
@@ -2417,9 +2452,14 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Опис { get; set; }
         public Довідники.Виробники_Pointer Виробник { get; set; }
         
+        //Табличні частини
+        public Номенклатура_Фотографії_TablePart Фотографії_TablePart { get; set; }
+        
     }
     
-    
+    ///<summary>
+    ///Список номенклатури.
+    ///</summary>
     class Номенклатура_Pointer : DirectoryPointer
     {
         public Номенклатура_Pointer(object uid = null) : base(Config.Kernel, "tab_a21")
@@ -2451,7 +2491,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Список номенклатури.
+    ///</summary>
     class Номенклатура_Select : DirectorySelect, IDisposable
     {
         public Номенклатура_Select() : base(Config.Kernel, "tab_a21",
@@ -2495,11 +2537,101 @@ namespace НоваКонфігурація_1_0.Довідники
     }
     
       
+    class Номенклатура_Фотографії_TablePart : DirectoryTablePart
+    {
+        public Номенклатура_Фотографії_TablePart(Номенклатура_Objest owner) : base(Config.Kernel, "tab_a54",
+             new string[] { "col_a5", "col_a1" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public Номенклатура_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Фото = fieldValue["col_a5"].ToString();
+                record.Опис = fieldValue["col_a1"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a5", record.Фото);
+                    fieldValue.Add("col_a1", record.Опис);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Фото = "";
+                Опис = "";
+                
+            }
+        
+            
+            public Record(
+                string _Фото = "", string _Опис = "")
+            {
+                Фото = _Фото;
+                Опис = _Опис;
+                
+            }
+            public string Фото { get; set; }
+            public string Опис { get; set; }
+            
+        }
+    }
+      
    
     #endregion
     
     #region DIRECTORY "Контрагенти"
-    
+    ///<summary>
+    ///Список контрагентів.
+    ///</summary>
     class Контрагенти_Objest : DirectoryObject
     {
         public Контрагенти_Objest() : base(Config.Kernel, "tab_a24",
@@ -2508,6 +2640,9 @@ namespace НоваКонфігурація_1_0.Довідники
             Назва = "";
             Код = "";
             Папка = new Довідники.Контрагенти_Папки_Pointer();
+            
+            //Табличні частини
+            Контакти_TablePart = new Контрагенти_Контакти_TablePart(this);
             
         }
         
@@ -2561,9 +2696,14 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Код { get; set; }
         public Довідники.Контрагенти_Папки_Pointer Папка { get; set; }
         
+        //Табличні частини
+        public Контрагенти_Контакти_TablePart Контакти_TablePart { get; set; }
+        
     }
     
-    
+    ///<summary>
+    ///Список контрагентів.
+    ///</summary>
     class Контрагенти_Pointer : DirectoryPointer
     {
         public Контрагенти_Pointer(object uid = null) : base(Config.Kernel, "tab_a24")
@@ -2595,7 +2735,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Список контрагентів.
+    ///</summary>
     class Контрагенти_Select : DirectorySelect, IDisposable
     {
         public Контрагенти_Select() : base(Config.Kernel, "tab_a24",
@@ -2631,6 +2773,104 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
+      
+    class Контрагенти_Контакти_TablePart : DirectoryTablePart
+    {
+        public Контрагенти_Контакти_TablePart(Контрагенти_Objest owner) : base(Config.Kernel, "tab_a55",
+             new string[] { "col_a6", "col_a7", "col_a8", "col_a9" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public Контрагенти_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.Адреса = fieldValue["col_a6"].ToString();
+                record.Телефон = fieldValue["col_a7"].ToString();
+                record.Емайл = fieldValue["col_a8"].ToString();
+                record.Опис = fieldValue["col_a9"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a6", record.Адреса);
+                    fieldValue.Add("col_a7", record.Телефон);
+                    fieldValue.Add("col_a8", record.Емайл);
+                    fieldValue.Add("col_a9", record.Опис);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                Адреса = "";
+                Телефон = "";
+                Емайл = "";
+                Опис = "";
+                
+            }
+        
+            
+            public Record(
+                string _Адреса = "", string _Телефон = "", string _Емайл = "", string _Опис = "")
+            {
+                Адреса = _Адреса;
+                Телефон = _Телефон;
+                Емайл = _Емайл;
+                Опис = _Опис;
+                
+            }
+            public string Адреса { get; set; }
+            public string Телефон { get; set; }
+            public string Емайл { get; set; }
+            public string Опис { get; set; }
+            
+        }
+    }
       
    
     #endregion
@@ -2767,7 +3007,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Контрагенти_Папки"
-    
+    ///<summary>
+    ///Ієрарахія для довідника Контрагенти.
+    ///</summary>
     class Контрагенти_Папки_Objest : DirectoryObject
     {
         public Контрагенти_Папки_Objest() : base(Config.Kernel, "tab_a28",
@@ -2826,7 +3068,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Ієрарахія для довідника Контрагенти.
+    ///</summary>
     class Контрагенти_Папки_Pointer : DirectoryPointer
     {
         public Контрагенти_Папки_Pointer(object uid = null) : base(Config.Kernel, "tab_a28")
@@ -2858,7 +3102,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Ієрарахія для довідника Контрагенти.
+    ///</summary>
     class Контрагенти_Папки_Select : DirectorySelect, IDisposable
     {
         public Контрагенти_Папки_Select() : base(Config.Kernel, "tab_a28",
@@ -2898,7 +3144,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Склади_Папки"
-    
+    ///<summary>
+    ///Ієрархія для довідника Склади.
+    ///</summary>
     class Склади_Папки_Objest : DirectoryObject
     {
         public Склади_Папки_Objest() : base(Config.Kernel, "tab_a36",
@@ -2957,7 +3205,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Ієрархія для довідника Склади.
+    ///</summary>
     class Склади_Папки_Pointer : DirectoryPointer
     {
         public Склади_Папки_Pointer(object uid = null) : base(Config.Kernel, "tab_a36")
@@ -2989,7 +3239,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Ієрархія для довідника Склади.
+    ///</summary>
     class Склади_Папки_Select : DirectorySelect, IDisposable
     {
         public Склади_Папки_Select() : base(Config.Kernel, "tab_a36",
@@ -3029,7 +3281,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Організації"
-    
+    ///<summary>
+    ///Список Організацій.
+    ///</summary>
     class Організації_Objest : DirectoryObject
     {
         public Організації_Objest() : base(Config.Kernel, "tab_a29",
@@ -3089,7 +3343,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Список Організацій.
+    ///</summary>
     class Організації_Pointer : DirectoryPointer
     {
         public Організації_Pointer(object uid = null) : base(Config.Kernel, "tab_a29")
@@ -3121,7 +3377,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Список Організацій.
+    ///</summary>
     class Організації_Select : DirectorySelect, IDisposable
     {
         public Організації_Select() : base(Config.Kernel, "tab_a29",
@@ -3159,7 +3417,7 @@ namespace НоваКонфігурація_1_0.Довідники
     class Організації_Контакти_TablePart : DirectoryTablePart
     {
         public Організації_Контакти_TablePart(Організації_Objest owner) : base(Config.Kernel, "tab_a32",
-             new string[] { "col_a5", "col_a6" }) 
+             new string[] { "col_a1", "col_a2", "col_a3" }) 
         {
             if (owner == null) throw new Exception("owner null");
             
@@ -3181,8 +3439,9 @@ namespace НоваКонфігурація_1_0.Довідники
                 Record record = new Record();
                 record.UID = (Guid)fieldValue["uid"];
                 
-                record.Тип = fieldValue["col_a5"].ToString();
-                record.Значення = fieldValue["col_a6"].ToString();
+                record.Адреса = fieldValue["col_a1"].ToString();
+                record.Телефон = fieldValue["col_a2"].ToString();
+                record.Емайл = fieldValue["col_a3"].ToString();
                 
                 Records.Add(record);
             }
@@ -3203,8 +3462,9 @@ namespace НоваКонфігурація_1_0.Довідники
                 {
                     Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                    fieldValue.Add("col_a5", record.Тип);
-                    fieldValue.Add("col_a6", record.Значення);
+                    fieldValue.Add("col_a1", record.Адреса);
+                    fieldValue.Add("col_a2", record.Телефон);
+                    fieldValue.Add("col_a3", record.Емайл);
                     
                     base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
                 }
@@ -3225,21 +3485,24 @@ namespace НоваКонфігурація_1_0.Довідники
         {
             public Record()
             {
-                Тип = "";
-                Значення = "";
+                Адреса = "";
+                Телефон = "";
+                Емайл = "";
                 
             }
         
             
             public Record(
-                string _Тип = "", string _Значення = "")
+                string _Адреса = "", string _Телефон = "", string _Емайл = "")
             {
-                Тип = _Тип;
-                Значення = _Значення;
+                Адреса = _Адреса;
+                Телефон = _Телефон;
+                Емайл = _Емайл;
                 
             }
-            public string Тип { get; set; }
-            public string Значення { get; set; }
+            public string Адреса { get; set; }
+            public string Телефон { get; set; }
+            public string Емайл { get; set; }
             
         }
     }
@@ -3385,7 +3648,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "ВидиНоменклатури"
-    
+    ///<summary>
+    ///Види Номенклатури.
+    ///</summary>
     class ВидиНоменклатури_Objest : DirectoryObject
     {
         public ВидиНоменклатури_Objest() : base(Config.Kernel, "tab_a50",
@@ -3454,7 +3719,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Види Номенклатури.
+    ///</summary>
     class ВидиНоменклатури_Pointer : DirectoryPointer
     {
         public ВидиНоменклатури_Pointer(object uid = null) : base(Config.Kernel, "tab_a50")
@@ -3486,7 +3753,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Види Номенклатури.
+    ///</summary>
     class ВидиНоменклатури_Select : DirectorySelect, IDisposable
     {
         public ВидиНоменклатури_Select() : base(Config.Kernel, "tab_a50",
@@ -3528,7 +3797,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "ПакуванняОдиниціВиміру"
-    
+    ///<summary>
+    ///Одиниці виміру.
+    ///</summary>
     class ПакуванняОдиниціВиміру_Objest : DirectoryObject
     {
         public ПакуванняОдиниціВиміру_Objest() : base(Config.Kernel, "tab_a51",
@@ -3582,7 +3853,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Одиниці виміру.
+    ///</summary>
     class ПакуванняОдиниціВиміру_Pointer : DirectoryPointer
     {
         public ПакуванняОдиниціВиміру_Pointer(object uid = null) : base(Config.Kernel, "tab_a51")
@@ -3614,7 +3887,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Одиниці виміру.
+    ///</summary>
     class ПакуванняОдиниціВиміру_Select : DirectorySelect, IDisposable
     {
         public ПакуванняОдиниціВиміру_Select() : base(Config.Kernel, "tab_a51",
@@ -3653,7 +3928,9 @@ namespace НоваКонфігурація_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Виробники"
-    
+    ///<summary>
+    ///Список Виробників.
+    ///</summary>
     class Виробники_Objest : DirectoryObject
     {
         public Виробники_Objest() : base(Config.Kernel, "tab_a52",
@@ -3707,7 +3984,9 @@ namespace НоваКонфігурація_1_0.Довідники
         
     }
     
-    
+    ///<summary>
+    ///Список Виробників.
+    ///</summary>
     class Виробники_Pointer : DirectoryPointer
     {
         public Виробники_Pointer(object uid = null) : base(Config.Kernel, "tab_a52")
@@ -3739,7 +4018,9 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-    
+    ///<summary>
+    ///Список Виробників.
+    ///</summary>
     class Виробники_Select : DirectorySelect, IDisposable
     {
         public Виробники_Select() : base(Config.Kernel, "tab_a52",
@@ -3769,6 +4050,149 @@ namespace НоваКонфігурація_1_0.Довідники
             List<Виробники_Pointer> directoryPointerList = new List<Виробники_Pointer>();
             foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
                 directoryPointerList.Add(new Виробники_Pointer(directoryPointer.UnigueID));
+            return directoryPointerList;
+        }
+    }
+    
+      
+   
+    #endregion
+    
+    #region DIRECTORY "КалендарПеріодичнихЗавдань"
+    ///<summary>
+    ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
+    ///</summary>
+    class КалендарПеріодичнихЗавдань_Objest : DirectoryObject
+    {
+        public КалендарПеріодичнихЗавдань_Objest() : base(Config.Kernel, "tab_a53",
+             new string[] { "col_a1", "col_a3", "col_a4" }) 
+        {
+            Назва = "";
+            ПеріодВиконання = 0;
+            Опис = "";
+            
+        }
+        
+        public bool Read(UnigueID uid)
+        {
+            if (BaseRead(uid))
+            {
+                Назва = base.FieldValue["col_a1"].ToString();
+                ПеріодВиконання = (base.FieldValue["col_a3"] != DBNull.Value) ? (Перелічення.ПеріодиВиконанняЗавдань)base.FieldValue["col_a3"] : 0;
+                Опис = base.FieldValue["col_a4"].ToString();
+                
+                BaseClear();
+                return true;
+            }
+            else
+                return false;
+        }
+        
+        public void Save()
+        {
+            base.FieldValue["col_a1"] = Назва;
+            base.FieldValue["col_a3"] = (int)ПеріодВиконання;
+            base.FieldValue["col_a4"] = Опис;
+            
+            BaseSave();
+        }
+
+        public string Serialize(string root = "КалендарПеріодичнихЗавдань")
+        {
+            return 
+            "<" + root + ">" +
+               "<uid>" + base.UnigueID.ToString() + "</uid>" +
+               "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
+               "<ПеріодВиконання>" + ((int)ПеріодВиконання).ToString() + "</ПеріодВиконання>"  +
+               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "</" + root + ">";
+        }
+
+        public void Delete()
+        {
+            base.BaseDelete();
+        }
+        
+        public КалендарПеріодичнихЗавдань_Pointer GetDirectoryPointer()
+        {
+            КалендарПеріодичнихЗавдань_Pointer directoryPointer = new КалендарПеріодичнихЗавдань_Pointer(UnigueID.UGuid);
+            return directoryPointer;
+        }
+        
+        public string Назва { get; set; }
+        public Перелічення.ПеріодиВиконанняЗавдань ПеріодВиконання { get; set; }
+        public string Опис { get; set; }
+        
+    }
+    
+    ///<summary>
+    ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
+    ///</summary>
+    class КалендарПеріодичнихЗавдань_Pointer : DirectoryPointer
+    {
+        public КалендарПеріодичнихЗавдань_Pointer(object uid = null) : base(Config.Kernel, "tab_a53")
+        {
+            base.Init(new UnigueID(uid), null);
+        }
+        
+        public КалендарПеріодичнихЗавдань_Pointer(UnigueID uid, Dictionary<string, object> fields = null) : base(Config.Kernel, "tab_a53")
+        {
+            base.Init(uid, fields);
+        }
+        
+        public КалендарПеріодичнихЗавдань_Objest GetDirectoryObject()
+        {
+            КалендарПеріодичнихЗавдань_Objest КалендарПеріодичнихЗавданьObjestItem = new КалендарПеріодичнихЗавдань_Objest();
+            return КалендарПеріодичнихЗавданьObjestItem.Read(base.UnigueID) ? КалендарПеріодичнихЗавданьObjestItem : null;
+        }
+		
+		public string GetPresentation()
+        {
+		    return base.BasePresentation(
+			    new string[] { "col_a1" }
+			);
+        }
+		
+        public КалендарПеріодичнихЗавдань_Pointer GetEmptyPointer()
+        {
+            return new КалендарПеріодичнихЗавдань_Pointer();
+        }
+    }
+    
+    ///<summary>
+    ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
+    ///</summary>
+    class КалендарПеріодичнихЗавдань_Select : DirectorySelect, IDisposable
+    {
+        public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53",
+            new string[] { "col_a1", "col_a3", "col_a4" },
+            new string[] { "Назва", "ПеріодВиконання", "Опис" }) { }
+        
+        public const string Назва = "col_a1";
+        public const string ПеріодВиконання = "col_a3";
+        public const string Опис = "col_a4";
+        
+        public bool Select() { return base.BaseSelect(); }
+        
+        public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
+        
+        public bool MoveNext() { if (MoveToPosition()) { Current = new КалендарПеріодичнихЗавдань_Pointer(base.DirectoryPointerPosition.UnigueID, base.DirectoryPointerPosition.Fields); return true; } else { Current = null; return false; } }
+
+        public КалендарПеріодичнихЗавдань_Pointer Current { get; private set; }
+        
+        public КалендарПеріодичнихЗавдань_Pointer FindByField(string name, object value)
+        {
+            КалендарПеріодичнихЗавдань_Pointer itemPointer = new КалендарПеріодичнихЗавдань_Pointer();
+            DirectoryPointer directoryPointer = base.BaseFindByField(name, value);
+            if (!directoryPointer.IsEmpty()) itemPointer.Init(directoryPointer.UnigueID);
+            return itemPointer;
+        }
+        
+        public List<КалендарПеріодичнихЗавдань_Pointer> FindListByField(string name, object value, int limit = 0, int offset = 0)
+        {
+            List<КалендарПеріодичнихЗавдань_Pointer> directoryPointerList = new List<КалендарПеріодичнихЗавдань_Pointer>();
+            foreach (DirectoryPointer directoryPointer in base.BaseFindListByField(name, value, limit, offset)) 
+                directoryPointerList.Add(new КалендарПеріодичнихЗавдань_Pointer(directoryPointer.UnigueID));
             return directoryPointerList;
         }
     }
@@ -3813,6 +4237,21 @@ namespace НоваКонфігурація_1_0.Перелічення
          Товар = 1,
          Послуга = 2,
          Робота = 3
+    }
+    #endregion
+    
+    #region ENUM "ПеріодиВиконанняЗавдань"
+    ///<summary>
+    ///Для довідника КалендарПеріодичнихЗавдань.
+    ///</summary>
+    public enum ПеріодиВиконанняЗавдань
+    {
+         День = 2,
+         Тиждень = 3,
+         Місяць = 4,
+         Квартал = 5,
+         Півроку = 6,
+         Рік = 7
     }
     #endregion
     

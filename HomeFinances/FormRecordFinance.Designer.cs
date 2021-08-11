@@ -47,15 +47,15 @@ namespace HomeFinances
             this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripRecords = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItemExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemImport = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.контактиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -252,8 +252,8 @@ namespace HomeFinances
             this.toolStripRecords.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonAdd,
             this.toolStripButtonRefresh,
-            this.toolStripButtonDelete,
             this.toolStripButtonCopy,
+            this.toolStripButtonDelete,
             this.toolStripSeparator1,
             this.toolStripDropDownButton1});
             this.toolStripRecords.Location = new System.Drawing.Point(0, 0);
@@ -262,50 +262,56 @@ namespace HomeFinances
             this.toolStripRecords.TabIndex = 0;
             this.toolStripRecords.Text = "toolStrip1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // menuStripTop
+            // 
+            this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.довідникиToolStripMenuItem});
+            this.menuStripTop.Location = new System.Drawing.Point(0, 0);
+            this.menuStripTop.Name = "menuStripTop";
+            this.menuStripTop.Size = new System.Drawing.Size(1061, 24);
+            this.menuStripTop.TabIndex = 1;
+            this.menuStripTop.Text = "menuStripTop";
+            // 
             // toolStripButtonAdd
             // 
-            this.toolStripButtonAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAdd.Image")));
+            this.toolStripButtonAdd.Image = global::HomeFinances.Properties.Resources.page;
             this.toolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAdd.Name = "toolStripButtonAdd";
-            this.toolStripButtonAdd.Size = new System.Drawing.Size(50, 22);
+            this.toolStripButtonAdd.Size = new System.Drawing.Size(66, 22);
             this.toolStripButtonAdd.Text = "Додати";
             this.toolStripButtonAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // toolStripButtonRefresh
             // 
-            this.toolStripButtonRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefresh.Image")));
+            this.toolStripButtonRefresh.Image = global::HomeFinances.Properties.Resources.page_refresh;
             this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
-            this.toolStripButtonRefresh.Size = new System.Drawing.Size(66, 22);
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(82, 22);
             this.toolStripButtonRefresh.Text = "Обновити";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
             // 
             // toolStripButtonDelete
             // 
-            this.toolStripButtonDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelete.Image")));
+            this.toolStripButtonDelete.Image = global::HomeFinances.Properties.Resources.page_white_delete;
             this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonDelete.Name = "toolStripButtonDelete";
-            this.toolStripButtonDelete.Size = new System.Drawing.Size(63, 22);
+            this.toolStripButtonDelete.Size = new System.Drawing.Size(79, 22);
             this.toolStripButtonDelete.Text = "Видалити";
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
             // toolStripButtonCopy
             // 
-            this.toolStripButtonCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCopy.Image")));
+            this.toolStripButtonCopy.Image = global::HomeFinances.Properties.Resources.page_copy;
             this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCopy.Name = "toolStripButtonCopy";
-            this.toolStripButtonCopy.Size = new System.Drawing.Size(69, 22);
+            this.toolStripButtonCopy.Size = new System.Drawing.Size(85, 22);
             this.toolStripButtonCopy.Text = "Копіювати";
             this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripDropDownButton1
             // 
@@ -333,16 +339,6 @@ namespace HomeFinances
             this.toolStripMenuItemImport.Text = "Загрузити";
             this.toolStripMenuItemImport.Click += new System.EventHandler(this.toolStripMenuItemImport_Click);
             // 
-            // menuStripTop
-            // 
-            this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.довідникиToolStripMenuItem});
-            this.menuStripTop.Location = new System.Drawing.Point(0, 0);
-            this.menuStripTop.Name = "menuStripTop";
-            this.menuStripTop.Size = new System.Drawing.Size(1061, 24);
-            this.menuStripTop.TabIndex = 1;
-            this.menuStripTop.Text = "menuStripTop";
-            // 
             // довідникиToolStripMenuItem
             // 
             this.довідникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -352,49 +348,56 @@ namespace HomeFinances
             this.касиToolStripMenuItem,
             this.записникToolStripMenuItem,
             this.константиToolStripMenuItem});
+            this.довідникиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.blog;
             this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
-            this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.довідникиToolStripMenuItem.Text = "Довідники";
             // 
             // класифікаторВитратToolStripMenuItem
             // 
+            this.класифікаторВитратToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.report;
             this.класифікаторВитратToolStripMenuItem.Name = "класифікаторВитратToolStripMenuItem";
-            this.класифікаторВитратToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.класифікаторВитратToolStripMenuItem.Text = "Класифікатор витрат";
+            this.класифікаторВитратToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.класифікаторВитратToolStripMenuItem.Text = "Статті витрат";
             this.класифікаторВитратToolStripMenuItem.Click += new System.EventHandler(this.класифікаторВитратToolStripMenuItem_Click);
             // 
             // контактиToolStripMenuItem
             // 
+            this.контактиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.user;
             this.контактиToolStripMenuItem.Name = "контактиToolStripMenuItem";
-            this.контактиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.контактиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.контактиToolStripMenuItem.Text = "Контакти";
             this.контактиToolStripMenuItem.Click += new System.EventHandler(this.контактиToolStripMenuItem_Click);
             // 
             // валютиToolStripMenuItem
             // 
+            this.валютиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.coins;
             this.валютиToolStripMenuItem.Name = "валютиToolStripMenuItem";
-            this.валютиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.валютиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.валютиToolStripMenuItem.Text = "Валюти";
             this.валютиToolStripMenuItem.Click += new System.EventHandler(this.валютиToolStripMenuItem_Click);
             // 
             // касиToolStripMenuItem
             // 
+            this.касиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.drawer;
             this.касиToolStripMenuItem.Name = "касиToolStripMenuItem";
-            this.касиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.касиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.касиToolStripMenuItem.Text = "Каси";
             this.касиToolStripMenuItem.Click += new System.EventHandler(this.касиToolStripMenuItem_Click);
             // 
             // записникToolStripMenuItem
             // 
+            this.записникToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.doc_text_image;
             this.записникToolStripMenuItem.Name = "записникToolStripMenuItem";
-            this.записникToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.записникToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.записникToolStripMenuItem.Text = "Записник";
             this.записникToolStripMenuItem.Click += new System.EventHandler(this.записникToolStripMenuItem_Click);
             // 
             // константиToolStripMenuItem
             // 
+            this.константиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.cog;
             this.константиToolStripMenuItem.Name = "константиToolStripMenuItem";
-            this.константиToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.константиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.константиToolStripMenuItem.Text = "Константи";
             this.константиToolStripMenuItem.Click += new System.EventHandler(this.константиToolStripMenuItem_Click);
             // 
