@@ -134,16 +134,16 @@ namespace HomeFinances
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
             // 
-            // FormCash
+            // FormPeriodicTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 407);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "FormCash";
+            this.Name = "FormPeriodicTasks";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Каси";
+            this.Text = "Періодичні завдання";
             this.Load += new System.EventHandler(this.FormPeriodicTasks_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
