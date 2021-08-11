@@ -722,9 +722,15 @@ namespace HomeFinances
 			Import();
 		}
 
-        #endregion
+		private void періодичніЗавданняToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FormPeriodicTasks formPeriodicTasks = new FormPeriodicTasks();
+			formPeriodicTasks.Show();
+		}
 
-        private void buttonRefresh_Click(object sender, EventArgs e)
+		#endregion
+
+		private void buttonRefresh_Click(object sender, EventArgs e)
         {
 			LoadRecords();
 		}
@@ -733,5 +739,7 @@ namespace HomeFinances
         {
 			Application.Exit();
         }
+
+        
     }
 }

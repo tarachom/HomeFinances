@@ -32,7 +32,9 @@ namespace HomeFinances
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecordFinance));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.label7 = new System.Windows.Forms.Label();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,15 +49,15 @@ namespace HomeFinances
             this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripRecords = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItemExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.контактиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,8 +65,7 @@ namespace HomeFinances
             this.касиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.directoryControl2 = new HomeFinances.DirectoryControl();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -118,6 +119,15 @@ namespace HomeFinances
             this.panel3.Size = new System.Drawing.Size(394, 195);
             this.panel3.TabIndex = 7;
             // 
+            // directoryControl2
+            // 
+            this.directoryControl2.CallBack = null;
+            this.directoryControl2.DirectoryPointerItem = null;
+            this.directoryControl2.Location = new System.Drawing.Point(96, 100);
+            this.directoryControl2.Name = "directoryControl2";
+            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl2.TabIndex = 11;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -126,6 +136,15 @@ namespace HomeFinances
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Каса:";
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.CallBack = null;
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(96, 67);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl1.TabIndex = 9;
             // 
             // label6
             // 
@@ -262,21 +281,6 @@ namespace HomeFinances
             this.toolStripRecords.TabIndex = 0;
             this.toolStripRecords.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // menuStripTop
-            // 
-            this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.довідникиToolStripMenuItem});
-            this.menuStripTop.Location = new System.Drawing.Point(0, 0);
-            this.menuStripTop.Name = "menuStripTop";
-            this.menuStripTop.Size = new System.Drawing.Size(1061, 24);
-            this.menuStripTop.TabIndex = 1;
-            this.menuStripTop.Text = "menuStripTop";
-            // 
             // toolStripButtonAdd
             // 
             this.toolStripButtonAdd.Image = global::HomeFinances.Properties.Resources.page;
@@ -295,6 +299,15 @@ namespace HomeFinances
             this.toolStripButtonRefresh.Text = "Обновити";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
             // 
+            // toolStripButtonCopy
+            // 
+            this.toolStripButtonCopy.Image = global::HomeFinances.Properties.Resources.page_copy;
+            this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCopy.Name = "toolStripButtonCopy";
+            this.toolStripButtonCopy.Size = new System.Drawing.Size(85, 22);
+            this.toolStripButtonCopy.Text = "Копіювати";
+            this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
+            // 
             // toolStripButtonDelete
             // 
             this.toolStripButtonDelete.Image = global::HomeFinances.Properties.Resources.page_white_delete;
@@ -304,14 +317,10 @@ namespace HomeFinances
             this.toolStripButtonDelete.Text = "Видалити";
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
-            // toolStripButtonCopy
+            // toolStripSeparator1
             // 
-            this.toolStripButtonCopy.Image = global::HomeFinances.Properties.Resources.page_copy;
-            this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCopy.Name = "toolStripButtonCopy";
-            this.toolStripButtonCopy.Size = new System.Drawing.Size(85, 22);
-            this.toolStripButtonCopy.Text = "Копіювати";
-            this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripDropDownButton1
             // 
@@ -339,6 +348,16 @@ namespace HomeFinances
             this.toolStripMenuItemImport.Text = "Загрузити";
             this.toolStripMenuItemImport.Click += new System.EventHandler(this.toolStripMenuItemImport_Click);
             // 
+            // menuStripTop
+            // 
+            this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.довідникиToolStripMenuItem});
+            this.menuStripTop.Location = new System.Drawing.Point(0, 0);
+            this.menuStripTop.Name = "menuStripTop";
+            this.menuStripTop.Size = new System.Drawing.Size(1061, 24);
+            this.menuStripTop.TabIndex = 1;
+            this.menuStripTop.Text = "menuStripTop";
+            // 
             // довідникиToolStripMenuItem
             // 
             this.довідникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -347,7 +366,8 @@ namespace HomeFinances
             this.валютиToolStripMenuItem,
             this.касиToolStripMenuItem,
             this.записникToolStripMenuItem,
-            this.константиToolStripMenuItem});
+            this.константиToolStripMenuItem,
+            this.періодичніЗавданняToolStripMenuItem});
             this.довідникиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.blog;
             this.довідникиToolStripMenuItem.Name = "довідникиToolStripMenuItem";
             this.довідникиToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
@@ -357,7 +377,7 @@ namespace HomeFinances
             // 
             this.класифікаторВитратToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.report;
             this.класифікаторВитратToolStripMenuItem.Name = "класифікаторВитратToolStripMenuItem";
-            this.класифікаторВитратToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.класифікаторВитратToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.класифікаторВитратToolStripMenuItem.Text = "Статті витрат";
             this.класифікаторВитратToolStripMenuItem.Click += new System.EventHandler(this.класифікаторВитратToolStripMenuItem_Click);
             // 
@@ -365,7 +385,7 @@ namespace HomeFinances
             // 
             this.контактиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.user;
             this.контактиToolStripMenuItem.Name = "контактиToolStripMenuItem";
-            this.контактиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.контактиToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.контактиToolStripMenuItem.Text = "Контакти";
             this.контактиToolStripMenuItem.Click += new System.EventHandler(this.контактиToolStripMenuItem_Click);
             // 
@@ -373,7 +393,7 @@ namespace HomeFinances
             // 
             this.валютиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.coins;
             this.валютиToolStripMenuItem.Name = "валютиToolStripMenuItem";
-            this.валютиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.валютиToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.валютиToolStripMenuItem.Text = "Валюти";
             this.валютиToolStripMenuItem.Click += new System.EventHandler(this.валютиToolStripMenuItem_Click);
             // 
@@ -381,7 +401,7 @@ namespace HomeFinances
             // 
             this.касиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.drawer;
             this.касиToolStripMenuItem.Name = "касиToolStripMenuItem";
-            this.касиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.касиToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.касиToolStripMenuItem.Text = "Каси";
             this.касиToolStripMenuItem.Click += new System.EventHandler(this.касиToolStripMenuItem_Click);
             // 
@@ -389,7 +409,7 @@ namespace HomeFinances
             // 
             this.записникToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.doc_text_image;
             this.записникToolStripMenuItem.Name = "записникToolStripMenuItem";
-            this.записникToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.записникToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.записникToolStripMenuItem.Text = "Записник";
             this.записникToolStripMenuItem.Click += new System.EventHandler(this.записникToolStripMenuItem_Click);
             // 
@@ -397,27 +417,16 @@ namespace HomeFinances
             // 
             this.константиToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.cog;
             this.константиToolStripMenuItem.Name = "константиToolStripMenuItem";
-            this.константиToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.константиToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.константиToolStripMenuItem.Text = "Константи";
             this.константиToolStripMenuItem.Click += new System.EventHandler(this.константиToolStripMenuItem_Click);
             // 
-            // directoryControl2
+            // періодичніЗавданняToolStripMenuItem
             // 
-            this.directoryControl2.CallBack = null;
-            this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(96, 100);
-            this.directoryControl2.Name = "directoryControl2";
-            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl2.TabIndex = 11;
-            // 
-            // directoryControl1
-            // 
-            this.directoryControl1.CallBack = null;
-            this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(96, 67);
-            this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl1.TabIndex = 9;
+            this.періодичніЗавданняToolStripMenuItem.Name = "періодичніЗавданняToolStripMenuItem";
+            this.періодичніЗавданняToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.періодичніЗавданняToolStripMenuItem.Text = "Періодичні завдання";
+            this.періодичніЗавданняToolStripMenuItem.Click += new System.EventHandler(this.періодичніЗавданняToolStripMenuItem_Click);
             // 
             // FormRecordFinance
             // 
@@ -491,6 +500,7 @@ namespace HomeFinances
         private System.Windows.Forms.Label label6;
         private DirectoryControl directoryControl2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem періодичніЗавданняToolStripMenuItem;
     }
 }
 

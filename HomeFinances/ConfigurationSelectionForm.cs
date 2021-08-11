@@ -273,7 +273,7 @@ namespace HomeFinances
 					return;
 				}
 
-				//Read SQL
+				//Read SQL !!! переробити
 				List<string> SqlList = Configuration.ListComparisonSql(PathToSQLXML);
 
 				if (SqlList.Count != 0)
