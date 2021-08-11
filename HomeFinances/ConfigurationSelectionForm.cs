@@ -273,6 +273,7 @@ namespace HomeFinances
 					return;
 				}
 
+				/*
 				//Read SQL !!! переробити
 				List<string> SqlList = Configuration.ListComparisonSql(PathToSQLXML);
 
@@ -284,6 +285,7 @@ namespace HomeFinances
 						int resultSQL = Конфа.Config.Kernel.DataBase.ExecuteSQL(sqlText);
 					}
 				}
+				*/
 
 				Конфа.Config.ReadAllConstants();
 
