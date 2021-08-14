@@ -51,9 +51,12 @@ namespace HomeFinances
 		private void FormRecordFinance_Load(object sender, EventArgs e)
 		{
 			this.splitContainer1.SplitterDistance = 400;
+			
+			this.записникToolStripMenuItem.Visible = false;
+			this.періодичніЗавданняToolStripMenuItem.Visible = false;
 
-            //Параметри в лівій панелі
-            DateTime start = DateTime.Today;
+			//Параметри в лівій панелі
+			DateTime start = DateTime.Today;
 
 			dateTimePickerStart.Value = start.AddDays(-7);
 			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);

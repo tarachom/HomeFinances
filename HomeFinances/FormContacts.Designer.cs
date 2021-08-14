@@ -50,7 +50,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(971, 29);
+            this.panel1.Size = new System.Drawing.Size(875, 29);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -63,7 +63,7 @@ namespace HomeFinances
             this.toolStripButtonDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(971, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(875, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -118,7 +118,7 @@ namespace HomeFinances
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(971, 720);
+            this.panel2.Size = new System.Drawing.Size(875, 720);
             this.panel2.TabIndex = 2;
             // 
             // dataGridViewRecords
@@ -130,7 +130,7 @@ namespace HomeFinances
             this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.ReadOnly = true;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(971, 720);
+            this.dataGridViewRecords.Size = new System.Drawing.Size(875, 720);
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
             // 
@@ -138,7 +138,7 @@ namespace HomeFinances
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 749);
+            this.ClientSize = new System.Drawing.Size(875, 749);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FormContacts";

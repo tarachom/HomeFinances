@@ -103,6 +103,7 @@ namespace HomeFinances
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 21;
             this.label3.Text = "Каталог для файлів:";
+            this.label3.Visible = false;
             // 
             // textBoxCatalogFiles
             // 
@@ -110,6 +111,7 @@ namespace HomeFinances
             this.textBoxCatalogFiles.Name = "textBoxCatalogFiles";
             this.textBoxCatalogFiles.Size = new System.Drawing.Size(584, 20);
             this.textBoxCatalogFiles.TabIndex = 22;
+            this.textBoxCatalogFiles.Visible = false;
             // 
             // FormConstants
             // 
