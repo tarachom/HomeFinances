@@ -196,7 +196,7 @@ namespace HomeFinances
 			{
 				залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
 			}
-			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
+			else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
             {
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();

@@ -67,7 +67,7 @@ namespace HomeFinances
             // 
             this.textBoxName.Location = new System.Drawing.Point(60, 35);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(667, 20);
+            this.textBoxName.Size = new System.Drawing.Size(915, 20);
             this.textBoxName.TabIndex = 1;
             // 
             // textBoxOpys
@@ -75,7 +75,7 @@ namespace HomeFinances
             this.textBoxOpys.Location = new System.Drawing.Point(60, 61);
             this.textBoxOpys.Multiline = true;
             this.textBoxOpys.Name = "textBoxOpys";
-            this.textBoxOpys.Size = new System.Drawing.Size(667, 162);
+            this.textBoxOpys.Size = new System.Drawing.Size(915, 112);
             this.textBoxOpys.TabIndex = 3;
             // 
             // label2
@@ -106,7 +106,7 @@ namespace HomeFinances
             // 
             // maskedTextBoxSuma
             // 
-            this.maskedTextBoxSuma.Location = new System.Drawing.Point(60, 256);
+            this.maskedTextBoxSuma.Location = new System.Drawing.Point(60, 206);
             this.maskedTextBoxSuma.Mask = "00000";
             this.maskedTextBoxSuma.Name = "maskedTextBoxSuma";
             this.maskedTextBoxSuma.Size = new System.Drawing.Size(100, 20);
@@ -116,7 +116,7 @@ namespace HomeFinances
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 259);
+            this.label5.Location = new System.Drawing.Point(12, 209);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 10;
@@ -125,7 +125,7 @@ namespace HomeFinances
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 232);
+            this.label4.Location = new System.Drawing.Point(12, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 11;
@@ -135,14 +135,14 @@ namespace HomeFinances
             // 
             this.comboBoxTypeRecord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTypeRecord.FormattingEnabled = true;
-            this.comboBoxTypeRecord.Location = new System.Drawing.Point(60, 229);
+            this.comboBoxTypeRecord.Location = new System.Drawing.Point(60, 179);
             this.comboBoxTypeRecord.Name = "comboBoxTypeRecord";
             this.comboBoxTypeRecord.Size = new System.Drawing.Size(164, 21);
             this.comboBoxTypeRecord.TabIndex = 12;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(60, 432);
+            this.buttonSave.Location = new System.Drawing.Point(12, 385);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -152,7 +152,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(563, 432);
+            this.buttonClose.Location = new System.Drawing.Point(269, 385);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -172,7 +172,7 @@ namespace HomeFinances
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 289);
+            this.label6.Location = new System.Drawing.Point(12, 272);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 13);
             this.label6.TabIndex = 17;
@@ -190,7 +190,7 @@ namespace HomeFinances
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 390);
+            this.label8.Location = new System.Drawing.Point(11, 301);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(88, 13);
             this.label8.TabIndex = 19;
@@ -198,7 +198,7 @@ namespace HomeFinances
             // 
             // buttonOpenBrouser
             // 
-            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 385);
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 296);
             this.buttonOpenBrouser.Name = "buttonOpenBrouser";
             this.buttonOpenBrouser.Size = new System.Drawing.Size(33, 23);
             this.buttonOpenBrouser.TabIndex = 21;
@@ -210,7 +210,7 @@ namespace HomeFinances
             // 
             this.directoryControl1.CallBack = null;
             this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(99, 282);
+            this.directoryControl1.Location = new System.Drawing.Point(99, 265);
             this.directoryControl1.Name = "directoryControl1";
             this.directoryControl1.Size = new System.Drawing.Size(453, 27);
             this.directoryControl1.TabIndex = 15;
@@ -218,7 +218,7 @@ namespace HomeFinances
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 322);
+            this.label9.Location = new System.Drawing.Point(12, 239);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 23;
@@ -228,14 +228,14 @@ namespace HomeFinances
             // 
             this.directoryControl2.CallBack = null;
             this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(99, 315);
+            this.directoryControl2.Location = new System.Drawing.Point(60, 232);
             this.directoryControl2.Name = "directoryControl2";
-            this.directoryControl2.Size = new System.Drawing.Size(453, 27);
+            this.directoryControl2.Size = new System.Drawing.Size(416, 27);
             this.directoryControl2.TabIndex = 22;
             // 
             // textBoxUrlLink
             // 
-            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 387);
+            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 298);
             this.textBoxUrlLink.Name = "textBoxUrlLink";
             this.textBoxUrlLink.Size = new System.Drawing.Size(589, 20);
             this.textBoxUrlLink.TabIndex = 20;
@@ -243,26 +243,26 @@ namespace HomeFinances
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 355);
+            this.label10.Location = new System.Drawing.Point(482, 239);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.Size = new System.Drawing.Size(120, 13);
             this.label10.TabIndex = 25;
-            this.label10.Text = "Каса 2:";
+            this.label10.Text = "--> Каса переміщення:";
             // 
             // directoryControl3
             // 
             this.directoryControl3.CallBack = null;
             this.directoryControl3.DirectoryPointerItem = null;
-            this.directoryControl3.Location = new System.Drawing.Point(99, 348);
+            this.directoryControl3.Location = new System.Drawing.Point(605, 232);
             this.directoryControl3.Name = "directoryControl3";
-            this.directoryControl3.Size = new System.Drawing.Size(453, 27);
+            this.directoryControl3.Size = new System.Drawing.Size(370, 27);
             this.directoryControl3.TabIndex = 24;
             // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 480);
+            this.ClientSize = new System.Drawing.Size(989, 420);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.directoryControl3);
             this.Controls.Add(this.label9);
