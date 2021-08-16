@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 16.08.2021 16:13:14
+ * Дата конфігурації: 16.08.2021 16:40:33
  *
  */
 
@@ -143,7 +143,7 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записи_Objest : DirectoryObject
     {
         public Записи_Objest() : base(Config.Kernel, "tab_a02",
-             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4" }) 
+             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3" }) 
         {
             Назва = "";
             ДатаЗапису = DateTime.MinValue;
@@ -153,6 +153,7 @@ namespace НоваКонфігурація_1_0.Довідники
             Витрата = new Довідники.КласифікаторВитрат_Pointer();
             Каса = new Довідники.Каса_Pointer();
             СсилкаНаСайт = "";
+            КасаПереміщення = new Довідники.Каса_Pointer();
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Записи_ОбмінІсторія_TablePart(this);
@@ -171,6 +172,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Витрата = new Довідники.КласифікаторВитрат_Pointer(base.FieldValue["col_a1"]);
                 Каса = new Довідники.Каса_Pointer(base.FieldValue["col_a2"]);
                 СсилкаНаСайт = base.FieldValue["col_a4"].ToString();
+                КасаПереміщення = new Довідники.Каса_Pointer(base.FieldValue["col_a3"]);
                 
                 BaseClear();
                 return true;
@@ -189,6 +191,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a1"] = Витрата.UnigueID.UGuid;
             base.FieldValue["col_a2"] = Каса.UnigueID.UGuid;
             base.FieldValue["col_a4"] = СсилкаНаСайт;
+            base.FieldValue["col_a3"] = КасаПереміщення.UnigueID.UGuid;
             
             BaseSave();
         }
@@ -206,6 +209,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Витрата>" + Витрата.ToString() + "</Витрата>"  +
                "<Каса>" + Каса.ToString() + "</Каса>"  +
                "<СсилкаНаСайт>" + "<![CDATA[" + СсилкаНаСайт + "]]>" + "</СсилкаНаСайт>"  +
+               "<КасаПереміщення>" + КасаПереміщення.ToString() + "</КасаПереміщення>"  +
                "</" + root + ">";
         }
 
@@ -228,6 +232,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Довідники.КласифікаторВитрат_Pointer Витрата { get; set; }
         public Довідники.Каса_Pointer Каса { get; set; }
         public string СсилкаНаСайт { get; set; }
+        public Довідники.Каса_Pointer КасаПереміщення { get; set; }
         
         //Табличні частини
         public Записи_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
@@ -274,8 +279,8 @@ namespace НоваКонфігурація_1_0.Довідники
     class Записи_Select : DirectorySelect, IDisposable
     {
         public Записи_Select() : base(Config.Kernel, "tab_a02",
-            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4" },
-            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса", "СсилкаНаСайт" }) { }
+            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3" },
+            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса", "СсилкаНаСайт", "КасаПереміщення" }) { }
         
         public const string Назва = "col_a7";
         public const string ДатаЗапису = "col_a6";
@@ -285,6 +290,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public const string Витрата = "col_a1";
         public const string Каса = "col_a2";
         public const string СсилкаНаСайт = "col_a4";
+        public const string КасаПереміщення = "col_a3";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -2498,15 +2504,14 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
             base.BaseClear();
         }
         
-        public void Save() 
+        public void Save(Guid owner) 
         {
             if (Records.Count > 0)
             {
                 base.BaseBeginTransaction();
-
+                base.BaseDelete(owner);
                 foreach (Record record in Records)
                 {
-                    base.BaseDelete(record.Owner);
                     Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
                     fieldValue.Add("col_a1", record.Каса.UnigueID.UGuid);
@@ -2518,14 +2523,14 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
                 base.BaseCommitTransaction();
             }
         }
-        /*
-        public void Delete()
+
+        public void Delete(Guid owner)
         {
             base.BaseBeginTransaction();
-            base.BaseDelete();
+            base.BaseDelete(owner);
             base.BaseCommitTransaction();
         }
-        */
+
         public SelectFilter Filter { get; set; }
         
         

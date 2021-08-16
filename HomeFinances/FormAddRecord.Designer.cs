@@ -50,6 +50,8 @@ namespace HomeFinances
             this.label9 = new System.Windows.Forms.Label();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.textBoxUrlLink = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.directoryControl3 = new HomeFinances.DirectoryControl();
             this.SuspendLayout();
             // 
             // label1
@@ -140,7 +142,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(60, 393);
+            this.buttonSave.Location = new System.Drawing.Point(60, 432);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -150,7 +152,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(563, 393);
+            this.buttonClose.Location = new System.Drawing.Point(563, 432);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -188,7 +190,7 @@ namespace HomeFinances
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 351);
+            this.label8.Location = new System.Drawing.Point(11, 390);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(88, 13);
             this.label8.TabIndex = 19;
@@ -196,7 +198,7 @@ namespace HomeFinances
             // 
             // buttonOpenBrouser
             // 
-            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 346);
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 385);
             this.buttonOpenBrouser.Name = "buttonOpenBrouser";
             this.buttonOpenBrouser.Size = new System.Drawing.Size(33, 23);
             this.buttonOpenBrouser.TabIndex = 21;
@@ -233,16 +235,36 @@ namespace HomeFinances
             // 
             // textBoxUrlLink
             // 
-            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 348);
+            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 387);
             this.textBoxUrlLink.Name = "textBoxUrlLink";
             this.textBoxUrlLink.Size = new System.Drawing.Size(589, 20);
             this.textBoxUrlLink.TabIndex = 20;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(12, 355);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Каса 2:";
+            // 
+            // directoryControl3
+            // 
+            this.directoryControl3.CallBack = null;
+            this.directoryControl3.DirectoryPointerItem = null;
+            this.directoryControl3.Location = new System.Drawing.Point(99, 348);
+            this.directoryControl3.Name = "directoryControl3";
+            this.directoryControl3.Size = new System.Drawing.Size(453, 27);
+            this.directoryControl3.TabIndex = 24;
             // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 431);
+            this.ClientSize = new System.Drawing.Size(739, 480);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.directoryControl3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.directoryControl2);
             this.Controls.Add(this.buttonOpenBrouser);
@@ -297,5 +319,7 @@ namespace HomeFinances
         private System.Windows.Forms.Label label9;
         private DirectoryControl directoryControl2;
         private System.Windows.Forms.TextBox textBoxUrlLink;
+        private System.Windows.Forms.Label label10;
+        private DirectoryControl directoryControl3;
     }
 }

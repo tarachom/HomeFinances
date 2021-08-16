@@ -86,6 +86,14 @@ namespace HomeFinances
 			formCash.ShowDialog();
 		}
 
+		public void CallBack_DirectoryControl_Open_FormCash_Back(DirectoryPointer directoryPointerItem)
+		{
+			FormCash formCash = new FormCash();
+			formCash.DirectoryPointerItem = directoryPointerItem;
+			formCash.DirectoryControlItem = directoryControl3;
+			formCash.ShowDialog();
+		}
+
 		private void FormAddRecord_Load(object sender, EventArgs e)
 		{
 			//Заповнення елементів перелічення
@@ -94,6 +102,7 @@ namespace HomeFinances
 
 			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
 			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
+			directoryControl3.CallBack = CallBack_DirectoryControl_Open_FormCash_Back;
 
 			if (IsNew.HasValue)
 			{
@@ -109,6 +118,7 @@ namespace HomeFinances
 					maskedTextBoxSuma.Text = "0";
 					directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer();
 					directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer();
+					directoryControl3.DirectoryPointerItem = new Довідники.Каса_Pointer();
 
 					//Константи
 					directoryControl1.DirectoryPointerItem = Константи.ЗначенняПоЗамовчуванню.ОсновнаСтаттяВитрат_Const;
@@ -129,6 +139,7 @@ namespace HomeFinances
 						directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
 						textBoxUrlLink.Text = записи_Objest.СсилкаНаСайт;
 						directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.Каса.UnigueID);
+						directoryControl3.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.КасаПереміщення.UnigueID);
 					}
 					else
 						MessageBox.Show("Error read");
@@ -158,6 +169,7 @@ namespace HomeFinances
 					записи_Objest.Витрата = (Довідники.КласифікаторВитрат_Pointer)directoryControl1.DirectoryPointerItem;
 					записи_Objest.СсилкаНаСайт = textBoxUrlLink.Text;
 					записи_Objest.Каса = (Довідники.Каса_Pointer)directoryControl2.DirectoryPointerItem;
+					записи_Objest.КасаПереміщення = (Довідники.Каса_Pointer)directoryControl3.DirectoryPointerItem;
 
 					записи_Objest.Save();
 
@@ -180,21 +192,45 @@ namespace HomeFinances
         {
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 
-			РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Замітка)
+			{
+				залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
+			}
+			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
+            {
+				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
-			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Витрати ||
-				записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
-				record.Income = false;
-			else if(записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
-				record.Income = true;
+				record1.Income = true;
+				record2.Income = false;
 
-			record.Owner = записи_Objest.UnigueID.UGuid;
+				record1.Owner = record2.Owner = записи_Objest.UnigueID.UGuid;
 
-			record.Каса = записи_Objest.Каса;
-			record.Сума = записи_Objest.Сума;
+				record1.Каса = записи_Objest.Каса;
+				record2.Каса = записи_Objest.КасаПереміщення;
 
-			залишкиКоштів_RecordsSet.Records.Add(record);
-			залишкиКоштів_RecordsSet.Save();
+				record1.Сума = record2.Сума = записи_Objest.Сума;
+
+				залишкиКоштів_RecordsSet.Records.Add(record1);
+				залишкиКоштів_RecordsSet.Records.Add(record2);
+				залишкиКоштів_RecordsSet.Save(записи_Objest.UnigueID.UGuid);
+			}
+            else
+            {
+				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+
+				if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Витрати || записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
+					record.Income = false;
+				else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
+					record.Income = true;
+
+				record.Owner = записи_Objest.UnigueID.UGuid;
+				record.Каса = записи_Objest.Каса;
+				record.Сума = записи_Objest.Сума;
+
+				залишкиКоштів_RecordsSet.Records.Add(record);
+				залишкиКоштів_RecordsSet.Save(записи_Objest.UnigueID.UGuid);
+			}	
 		}
 
 

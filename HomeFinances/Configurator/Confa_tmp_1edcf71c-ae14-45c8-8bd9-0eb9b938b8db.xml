@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>16.08.2021 16:40:33</DateTimeSave>
+  <DateTimeSave>16.08.2021 16:35:42</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -110,14 +110,6 @@
           <NameInTable>col_a4</NameInTable>
           <Type>string</Type>
           <Desc>Привязка запису до сторінки в інтернеті</Desc>
-          <IsPresentation>0</IsPresentation>
-        </Field>
-        <Field>
-          <Name>КасаПереміщення</Name>
-          <NameInTable>col_a3</NameInTable>
-          <Type>pointer</Type>
-          <Pointer>Довідники.Каса</Pointer>
-          <Desc>Каса куди переміщаються гроші</Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
