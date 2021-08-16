@@ -419,6 +419,11 @@
       <UdtName>uuid</UdtName>
     </Column>
     <Column>
+      <Name>period</Name>
+      <DataType>timestamp without time zone</DataType>
+      <UdtName>timestamp</UdtName>
+    </Column>
+    <Column>
       <Name>income</Name>
       <DataType>boolean</DataType>
       <UdtName>bool</UdtName>

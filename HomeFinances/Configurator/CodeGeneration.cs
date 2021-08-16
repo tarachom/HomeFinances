@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 16.08.2021 17:13:11
+ * Дата конфігурації: 16.08.2021 21:46:40
  *
  */
 
@@ -2499,6 +2499,7 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
             {
                 Record record = new Record();
                 record.UID = (Guid)fieldValue["uid"];
+				record.Period = DateTime.Parse(fieldValue["period"].ToString());
                 record.Income = (bool)fieldValue["income"];
                 record.Owner = (Guid)fieldValue["owner"];
                 record.Каса = new Довідники.Каса_Pointer(fieldValue["col_a1"]);
@@ -2510,7 +2511,7 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
             base.BaseClear();
         }
         
-        public void Save(Guid owner) 
+        public void Save(DateTime period, Guid owner) 
         {
             if (Records.Count > 0)
             {
@@ -2523,7 +2524,7 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
                     fieldValue.Add("col_a1", record.Каса.UnigueID.UGuid);
                     fieldValue.Add("col_a2", record.Сума);
                     
-                    base.BaseSave(record.UID, record.Income, record.Owner, fieldValue);
+                    base.BaseSave(record.UID, period, record.Income, record.Owner, fieldValue);
                 }
                 
                 base.BaseCommitTransaction();

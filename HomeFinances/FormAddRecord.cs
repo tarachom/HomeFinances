@@ -201,8 +201,8 @@ namespace HomeFinances
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
-				record1.Income = true;
-				record2.Income = false;
+				record1.Income = false;
+				record2.Income = true;
 
 				record1.Owner = record2.Owner = записи_Objest.UnigueID.UGuid;
 
@@ -213,7 +213,7 @@ namespace HomeFinances
 
 				залишкиКоштів_RecordsSet.Records.Add(record1);
 				залишкиКоштів_RecordsSet.Records.Add(record2);
-				залишкиКоштів_RecordsSet.Save(записи_Objest.UnigueID.UGuid);
+				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
 			}
             else
             {
@@ -229,7 +229,7 @@ namespace HomeFinances
 				record.Сума = записи_Objest.Сума;
 
 				залишкиКоштів_RecordsSet.Records.Add(record);
-				залишкиКоштів_RecordsSet.Save(записи_Objest.UnigueID.UGuid);
+				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
 			}	
 		}
 
