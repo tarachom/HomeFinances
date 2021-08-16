@@ -98,13 +98,14 @@ namespace HomeFinances
 			Конфа.Config.Kernel = new Kernel();
 
 			Exception exception = null;
+			bool IsExistsDatabase = false;
 
 			bool flag = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
 				ItemConfigurationParam.DataBaseServer,
 				ItemConfigurationParam.DataBaseLogin,
 				ItemConfigurationParam.DataBasePassword,
 				ItemConfigurationParam.DataBasePort,
-				ItemConfigurationParam.DataBaseBaseName, out exception);
+				ItemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
 
 			if (flag)
 			{

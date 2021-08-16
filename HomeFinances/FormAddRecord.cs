@@ -26,6 +26,7 @@ using Конфа = НоваКонфігурація_1_0;
 using Константи = НоваКонфігурація_1_0.Константи;
 using Довідники = НоваКонфігурація_1_0.Довідники;
 using Перелічення = НоваКонфігурація_1_0.Перелічення;
+using РегістриНакопичення = НоваКонфігурація_1_0.РегістриНакопичення;
 
 namespace HomeFinances
 {
@@ -173,7 +174,29 @@ namespace HomeFinances
 			}
 		}
 
-        private void buttonOpenBrouser_Click(object sender, EventArgs e)
+		private void WriteRegisterAccumulation()
+        {
+			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+
+			РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+
+			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Витрати ||
+				записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
+				record.Income = false;
+			else if(записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
+				record.Income = true;
+
+			record.Owner = записи_Objest.UnigueID.UGuid;
+
+			record.Каса = записи_Objest.Каса;
+			record.Сума = записи_Objest.Сума;
+
+			залишкиКоштів_RecordsSet.Records.Add(record);
+			залишкиКоштів_RecordsSet.Save();
+		}
+
+
+		private void buttonOpenBrouser_Click(object sender, EventArgs e)
         {
 			System.Diagnostics.Process.Start("firefox.exe", textBoxUrlLink.Text);
 		}

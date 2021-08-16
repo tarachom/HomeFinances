@@ -241,6 +241,7 @@ namespace HomeFinances
 				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
 
 				Exception exception = null;
+				bool IsExistsDatabase = false;
 
 				Конфа.Config.Kernel = new Kernel();
 
@@ -250,7 +251,7 @@ namespace HomeFinances
 						itemConfigurationParam.DataBaseLogin,
 						itemConfigurationParam.DataBasePassword,
 						itemConfigurationParam.DataBasePort,
-						itemConfigurationParam.DataBaseBaseName, out exception);
+						itemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
 
 				if (exception != null)
 				{
@@ -273,21 +274,44 @@ namespace HomeFinances
 					return;
 				}
 
-				/*
-				//Read SQL !!! переробити
-				List<string> SqlList = Configuration.ListComparisonSql(PathToSQLXML);
+                //string[] sqlCreate = new string[] {
+                //    "CREATE TABLE IF NOT EXISTS tab_constants(uid uuid NOT NULL,  \"col_a3\" text,  \"col_a1\" uuid,  \"col_a2\" uuid, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a02(uid uuid NOT NULL,  \"col_a7\" text,  \"col_a6\" timestamp without time zone,  \"col_a8\" text,  \"col_a9\" integer,  \"col_b1\" integer,  \"col_a1\" uuid,  \"col_a2\" uuid,  \"col_a4\" text, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a13(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a5\" timestamp without time zone, \"col_a6\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a13(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a01(uid uuid NOT NULL,  \"col_a1\" text,  \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a10(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a1\" timestamp without time zone, \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a10(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a03(uid uuid NOT NULL,  \"col_a1\" text,  \"col_a4\" text,  \"col_a3\" timestamp without time zone,  \"col_a2\" uuid, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a16(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a3\" timestamp without time zone, \"col_a4\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a16(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a17(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a1\" text, \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a17(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a04(uid uuid NOT NULL,  \"col_a1\" text,  \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a06(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a5\" text, \"col_a6\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a06(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a05(uid uuid NOT NULL,  \"col_a1\" text,  \"col_a2\" uuid,  \"col_a3\" integer, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a12(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a3\" timestamp without time zone, \"col_a4\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a12(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a07(uid uuid NOT NULL,  \"col_a3\" text,  \"col_a4\" text, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a11(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a1\" timestamp without time zone, \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a11(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a08(uid uuid NOT NULL,  \"col_a4\" text,  \"col_a3\" text,  \"col_a5\" text,  \"col_a6\" text,  \"col_a7\" text,  \"col_a1\" text,  \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a14(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a1\" timestamp without time zone, \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a14(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a09(uid uuid NOT NULL,  \"col_a1\" text,  \"col_a3\" uuid, PRIMARY KEY(uid));",
+                //    "CREATE TABLE IF NOT EXISTS tab_a15(uid uuid NOT NULL, owner uuid NOT NULL, \"col_a1\" timestamp without time zone, \"col_a2\" text, PRIMARY KEY(uid));",
+                //    "CREATE INDEX ON tab_a15(owner);",
+                //    "CREATE TABLE IF NOT EXISTS tab_a53(uid uuid NOT NULL,  \"col_a1\" text,  \"col_a3\" integer,  \"col_a4\" text, PRIMARY KEY(uid));"
+                //};
 
-				if (SqlList.Count != 0)
-				{
-					//Execute
-					foreach (string sqlText in SqlList)
-					{
-						int resultSQL = Конфа.Config.Kernel.DataBase.ExecuteSQL(sqlText);
-					}
-				}
-				*/
+                //foreach (string sqlItem in sqlCreate)
+                //{
+                //    int resultSQL = Конфа.Config.Kernel.DataBase.ExecuteSQL(sqlItem);
+                //    Console.WriteLine(sqlItem);
+                //}
 
-				Конфа.Config.ReadAllConstants();
+                Конфа.Config.ReadAllConstants();
 
 				FormRecordFinance formRecordFinance = new FormRecordFinance();
 				formRecordFinance.Show();
