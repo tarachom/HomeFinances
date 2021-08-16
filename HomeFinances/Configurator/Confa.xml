@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>16.08.2021 16:40:33</DateTimeSave>
+  <DateTimeSave>16.08.2021 17:13:11</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -118,6 +118,14 @@
           <Type>pointer</Type>
           <Pointer>Довідники.Каса</Pointer>
           <Desc>Каса куди переміщаються гроші</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Проведений</Name>
+          <NameInTable>col_a5</NameInTable>
+          <Type>boolean</Type>
+          <Desc>
+          </Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>

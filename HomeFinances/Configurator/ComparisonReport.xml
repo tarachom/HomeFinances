@@ -143,6 +143,17 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_Field>
+      <Name>Проведений</Name>
+      <NameInTable>col_a5</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>boolean</ConfType>
+        <DataType>boolean</DataType>
+        <UdtName>bool</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
     <Control_TabularParts>
       <Name>ОбмінІсторія</Name>
       <Table>tab_a13</Table>
