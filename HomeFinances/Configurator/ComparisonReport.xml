@@ -707,6 +707,23 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_TabularParts>
+      <Name>ee</Name>
+      <Table>tab_a18</Table>
+      <IsCreateOwner>yes</IsCreateOwner>
+      <IsExist>yes</IsExist>
+      <Control_Field>
+        <Name>ee</Name>
+        <NameInTable>col_a1</NameInTable>
+        <IsExist>yes</IsExist>
+        <Type>
+          <ConfType>string</ConfType>
+          <DataType>text</DataType>
+          <UdtName>text</UdtName>
+          <Coincide>yes</Coincide>
+        </Type>
+      </Control_Field>
+    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>RegisterAccumulation</Type>
@@ -716,17 +733,6 @@
     <Control_Field>
       <Name>Каса</Name>
       <NameInTable>col_a1</NameInTable>
-      <IsExist>yes</IsExist>
-      <Type>
-        <ConfType>pointer</ConfType>
-        <DataType>uuid</DataType>
-        <UdtName>uuid</UdtName>
-        <Coincide>yes</Coincide>
-      </Type>
-    </Control_Field>
-    <Control_Field>
-      <Name>Запис</Name>
-      <NameInTable>col_a3</NameInTable>
       <IsExist>yes</IsExist>
       <Type>
         <ConfType>pointer</ConfType>

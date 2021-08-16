@@ -160,6 +160,8 @@ namespace HomeFinances
 					записи_Objest.Каса = (Довідники.Каса_Pointer)directoryControl2.DirectoryPointerItem;
 
 					записи_Objest.Save();
+
+					WriteRegisterAccumulation();
 				}
 				catch (Exception exp)
 				{

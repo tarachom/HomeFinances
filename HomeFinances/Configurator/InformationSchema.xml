@@ -424,14 +424,27 @@
       <UdtName>uuid</UdtName>
     </Column>
     <Column>
-      <Name>col_a3</Name>
+      <Name>col_a2</Name>
+      <DataType>numeric</DataType>
+      <UdtName>numeric</UdtName>
+    </Column>
+  </Table>
+  <Table>
+    <Name>tab_a18</Name>
+    <Column>
+      <Name>uid</Name>
       <DataType>uuid</DataType>
       <UdtName>uuid</UdtName>
     </Column>
     <Column>
-      <Name>col_a2</Name>
-      <DataType>numeric</DataType>
-      <UdtName>numeric</UdtName>
+      <Name>owner</Name>
+      <DataType>uuid</DataType>
+      <UdtName>uuid</UdtName>
+    </Column>
+    <Column>
+      <Name>col_a1</Name>
+      <DataType>text</DataType>
+      <UdtName>text</UdtName>
     </Column>
   </Table>
   <Table>

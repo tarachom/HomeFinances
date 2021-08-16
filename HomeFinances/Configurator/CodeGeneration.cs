@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 16.08.2021 13:34:22
+ * Дата конфігурації: 16.08.2021 15:38:51
  *
  */
 
@@ -2171,6 +2171,9 @@ namespace НоваКонфігурація_1_0.Довідники
             ПеріодВиконання = 0;
             Опис = "";
             
+            //Табличні частини
+            ee_TablePart = new КалендарПеріодичнихЗавдань_ee_TablePart(this);
+            
         }
         
         public bool Read(UnigueID uid)
@@ -2222,6 +2225,9 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Назва { get; set; }
         public Перелічення.ПеріодиВиконанняЗавдань ПеріодВиконання { get; set; }
         public string Опис { get; set; }
+        
+        //Табличні частини
+        public КалендарПеріодичнихЗавдань_ee_TablePart ee_TablePart { get; set; }
         
     }
     
@@ -2298,6 +2304,89 @@ namespace НоваКонфігурація_1_0.Довідники
     }
     
       
+    class КалендарПеріодичнихЗавдань_ee_TablePart : DirectoryTablePart
+    {
+        public КалендарПеріодичнихЗавдань_ee_TablePart(КалендарПеріодичнихЗавдань_Objest owner) : base(Config.Kernel, "tab_a18",
+             new string[] { "col_a1" }) 
+        {
+            if (owner == null) throw new Exception("owner null");
+            
+            Owner = owner;
+            Records = new List<Record>();
+        }
+        
+        public КалендарПеріодичнихЗавдань_Objest Owner { get; private set; }
+        
+        public List<Record> Records { get; set; }
+        
+        public void Read()
+        {
+            Records.Clear();
+            base.BaseRead(Owner.UnigueID);
+
+            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
+            {
+                Record record = new Record();
+                record.UID = (Guid)fieldValue["uid"];
+                
+                record.ee = fieldValue["col_a1"].ToString();
+                
+                Records.Add(record);
+            }
+            
+            base.BaseClear();
+        }
+        
+        public void Save(bool clear_all_before_save /*= true*/) 
+        {
+            if (Records.Count > 0)
+            {
+                base.BaseBeginTransaction();
+                
+                if (clear_all_before_save)
+                    base.BaseDelete(Owner.UnigueID);
+
+                foreach (Record record in Records)
+                {
+                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+
+                    fieldValue.Add("col_a1", record.ee);
+                    
+                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
+                }
+                
+                base.BaseCommitTransaction();
+            }
+        }
+        
+        public void Delete()
+        {
+            base.BaseBeginTransaction();
+            base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
+        }
+        
+        
+        public class Record : DirectoryTablePartRecord
+        {
+            public Record()
+            {
+                ee = "";
+                
+            }
+        
+            
+            public Record(
+                string _ee = "")
+            {
+                ee = _ee;
+                
+            }
+            public string ee { get; set; }
+            
+        }
+    }
+      
    
     #endregion
     
@@ -2372,7 +2461,7 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
     class ЗалишкиКоштів_RecordsSet : RegisterAccumulationRecordsSet
     {
         public ЗалишкиКоштів_RecordsSet() : base(Config.Kernel, "tab_a19",
-             new string[] { "col_a1", "col_a3", "col_a2" }) 
+             new string[] { "col_a1", "col_a2" }) 
         {
             Records = new List<Record>();
             Filter = new SelectFilter();
@@ -2384,24 +2473,11 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
         {
             Records.Clear();
             
-            bool isExistPreceding = false;
+            
             if (Filter.Каса != null)
             {
                 base.BaseFilter.Add(new Where("col_a1", Comparison.EQ, Filter.Каса.ToString(), false));
                 
-                isExistPreceding = true;
-                
-            }
-            
-            if (Filter.Запис != null)
-            {
-                if (isExistPreceding)
-                    base.BaseFilter.Add(new Where(Comparison.AND, "col_a3", Comparison.EQ, Filter.Запис.ToString(), false));
-                else
-                {
-                    base.BaseFilter.Add(new Where("col_a3", Comparison.EQ, Filter.Запис.ToString(), false));
-                    isExistPreceding = true; 
-                }
             }
             
 
@@ -2414,7 +2490,6 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
                 record.Income = (bool)fieldValue["income"];
                 record.Owner = (Guid)fieldValue["owner"];
                 record.Каса = new Довідники.Каса_Pointer(fieldValue["col_a1"]);
-                record.Запис = new Довідники.Записи_Pointer(fieldValue["col_a3"]);
                 record.Сума = (fieldValue["col_a2"] != DBNull.Value) ? (decimal)fieldValue["col_a2"] : 0;
                 
                 Records.Add(record);
@@ -2423,21 +2498,18 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
             base.BaseClear();
         }
         
-        public void Save(bool clear_all_before_save = true) 
+        public void Save() 
         {
             if (Records.Count > 0)
             {
                 base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete();
 
                 foreach (Record record in Records)
                 {
+                    base.BaseDelete(record.Owner);
                     Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                    fieldValue.Add("col_a1", record.Каса.ToString());
-                    fieldValue.Add("col_a3", record.Запис.ToString());
+                    fieldValue.Add("col_a1", record.Каса.UnigueID.UGuid);
                     fieldValue.Add("col_a2", record.Сума);
                     
                     base.BaseSave(record.UID, record.Income, record.Owner, fieldValue);
@@ -2446,14 +2518,14 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
                 base.BaseCommitTransaction();
             }
         }
-        
+        /*
         public void Delete()
         {
             base.BaseBeginTransaction();
             base.BaseDelete();
             base.BaseCommitTransaction();
         }
-        
+        */
         public SelectFilter Filter { get; set; }
         
         
@@ -2462,12 +2534,10 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
             public Record()
             {
                 Каса = new Довідники.Каса_Pointer();
-                Запис = new Довідники.Записи_Pointer();
                 Сума = 0;
                 
             }
             public Довідники.Каса_Pointer Каса { get; set; }
-            public Довідники.Записи_Pointer Запис { get; set; }
             public decimal Сума { get; set; }
             
         }
@@ -2477,12 +2547,10 @@ namespace НоваКонфігурація_1_0.РегістриНакопиче�
             public SelectFilter()
             {
                  Каса = null;
-                 Запис = null;
                  
             }
         
             public Довідники.Каса_Pointer Каса { get; set; }
-            public Довідники.Записи_Pointer Запис { get; set; }
             
         }
     }
