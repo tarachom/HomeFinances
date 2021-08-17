@@ -62,6 +62,9 @@ namespace HomeFinances
 			dateTimePickerStart.Value = start.AddDays(-7);
 			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
 
+			dateTimePickerStartBalance.Value = start.AddDays(-7);
+			dateTimePickerStopBalance.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
+
 			//Заповнення елементів перелічення
 			comboBoxTypeRecord.Items.Add(new NameValue<int>("- Всі -", 0));
 			comboBoxTypeRecord.SelectedIndex = 0;
@@ -749,9 +752,14 @@ namespace HomeFinances
 				FROM 
                     {Регістр_ЗалишкиКоштів} AS ЗалишкиКоштів
                     LEFT JOIN {КасаТаб} AS КасаТаб ON ЗалишкиКоштів.{КасаІд} = КасаТаб.uid
-                    LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб.Валюта} = ВалютаТаб.uid
-				GROUP BY КасаІд, КасаНазва, ВалютаКод
-                ORDER BY КасаНазва";
+                    LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб.Валюта} = ВалютаТаб.uid 
+                ";
+
+			if (checkBoxUsePeriod.Checked)
+				query += @"WHERE ЗалишкиКоштів.period >= @ДатаСтарт AND ЗалишкиКоштів.period <= @ДатаСтоп ";
+
+			query += @"GROUP BY КасаІд, КасаНазва, ВалютаКод
+                       ORDER BY КасаНазва";
 
 			Dictionary<string, string> param = new Dictionary<string, string>();
 			param.Add("Регістр_ЗалишкиКоштів", Conf.RegistersAccumulation["ЗалишкиКоштів"].Table);
@@ -763,12 +771,19 @@ namespace HomeFinances
 			param.Add("ВалютаТаб", Conf.Directories["Валюта"].Table);
 			param.Add("ВалютаКод", Conf.Directories["Валюта"].Fields["Код"].NameInTable);
 
+			Dictionary<string, object> paramSQL = new Dictionary<string, object>();
+			if (checkBoxUsePeriod.Checked)
+			{
+				paramSQL.Add("ДатаСтарт", dateTimePickerStartBalance.Value);
+				paramSQL.Add("ДатаСтоп", dateTimePickerStopBalance.Value);
+			}
+
 			query = ReplaceQuery(query, param);
 
 			string[] columnsName;
 			List<object[]> listRow;
 
-			Конфа.Config.Kernel.DataBase.SelectRequest(query, null, out columnsName, out listRow);
+			Конфа.Config.Kernel.DataBase.SelectRequest(query, paramSQL, out columnsName, out listRow);
 
 			string result = "";
 
