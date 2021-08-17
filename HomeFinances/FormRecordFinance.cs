@@ -97,7 +97,7 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["Витрата"].Width = 200;
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
-			dataGridViewRecords.Columns["Проведено"].Width = 50;
+			dataGridViewRecords.Columns["Проведено"].Width = 60;
 
 			//Користувач
 			//Записи налаштувань користувача
