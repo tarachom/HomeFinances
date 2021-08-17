@@ -274,7 +274,7 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
 					ВитратаПредставлення,
-					(bool)cur.Fields[Довідники.Записи_Select.Проведено]
+					cur.Fields[Довідники.Записи_Select.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Select.Проведено] : false
 					));
 			}
 

@@ -186,7 +186,7 @@ namespace HomeFinances
             // 
             this.dateTimePickerStart.Location = new System.Drawing.Point(96, 6);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(81, 20);
+            this.dateTimePickerStart.Size = new System.Drawing.Size(106, 20);
             this.dateTimePickerStart.TabIndex = 0;
             // 
             // buttonRefresh
@@ -211,7 +211,7 @@ namespace HomeFinances
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(181, 12);
+            this.label2.Location = new System.Drawing.Point(208, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 2;
@@ -219,9 +219,9 @@ namespace HomeFinances
             // 
             // dateTimePickerStop
             // 
-            this.dateTimePickerStop.Location = new System.Drawing.Point(206, 6);
+            this.dateTimePickerStop.Location = new System.Drawing.Point(233, 6);
             this.dateTimePickerStop.Name = "dateTimePickerStop";
-            this.dateTimePickerStop.Size = new System.Drawing.Size(78, 20);
+            this.dateTimePickerStop.Size = new System.Drawing.Size(106, 20);
             this.dateTimePickerStop.TabIndex = 3;
             this.dateTimePickerStop.Value = new System.DateTime(2021, 8, 9, 23, 59, 0, 0);
             // 
