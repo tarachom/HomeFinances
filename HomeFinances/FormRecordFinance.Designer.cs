@@ -452,6 +452,7 @@ namespace HomeFinances
             // 
             this.labelCalculateBalance.AutoSize = true;
             this.labelCalculateBalance.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCalculateBalance.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.labelCalculateBalance.Location = new System.Drawing.Point(7, 129);
             this.labelCalculateBalance.Name = "labelCalculateBalance";
             this.labelCalculateBalance.Size = new System.Drawing.Size(200, 18);
