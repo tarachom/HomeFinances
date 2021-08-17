@@ -66,6 +66,7 @@ namespace HomeFinances
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonCalculateBalance = new System.Windows.Forms.Button();
+            this.labelCalculateBalance = new System.Windows.Forms.Label();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -418,21 +419,32 @@ namespace HomeFinances
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.labelCalculateBalance);
             this.panel4.Controls.Add(this.buttonCalculateBalance);
             this.panel4.Location = new System.Drawing.Point(5, 240);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(392, 213);
+            this.panel4.Size = new System.Drawing.Size(392, 298);
             this.panel4.TabIndex = 2;
             // 
             // buttonCalculateBalance
             // 
-            this.buttonCalculateBalance.Location = new System.Drawing.Point(95, 177);
+            this.buttonCalculateBalance.Location = new System.Drawing.Point(10, 3);
             this.buttonCalculateBalance.Name = "buttonCalculateBalance";
-            this.buttonCalculateBalance.Size = new System.Drawing.Size(215, 23);
+            this.buttonCalculateBalance.Size = new System.Drawing.Size(201, 23);
             this.buttonCalculateBalance.TabIndex = 12;
-            this.buttonCalculateBalance.Text = "Порахувати залишки";
+            this.buttonCalculateBalance.Text = "Порахувати залишки по касах";
             this.buttonCalculateBalance.UseVisualStyleBackColor = true;
             this.buttonCalculateBalance.Click += new System.EventHandler(this.buttonCalculateBalance_Click);
+            // 
+            // labelCalculateBalance
+            // 
+            this.labelCalculateBalance.AutoSize = true;
+            this.labelCalculateBalance.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCalculateBalance.Location = new System.Drawing.Point(7, 29);
+            this.labelCalculateBalance.Name = "labelCalculateBalance";
+            this.labelCalculateBalance.Size = new System.Drawing.Size(175, 15);
+            this.labelCalculateBalance.TabIndex = 13;
+            this.labelCalculateBalance.Text = "Calculate balance result";
             // 
             // directoryControl2
             // 
@@ -483,6 +495,7 @@ namespace HomeFinances
             this.menuStripTop.ResumeLayout(false);
             this.menuStripTop.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,6 +541,7 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripMenuItem періодичніЗавданняToolStripMenuItem;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button buttonCalculateBalance;
+        private System.Windows.Forms.Label labelCalculateBalance;
     }
 }
 

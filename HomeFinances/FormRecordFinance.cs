@@ -73,6 +73,9 @@ namespace HomeFinances
 			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
 			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
 
+			//Обчислення залишків по касах
+			labelCalculateBalance.Text = "";
+
 			//GRID
 			dataGridViewRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -738,15 +741,27 @@ namespace HomeFinances
 			Configuration Conf = Конфа.Config.Kernel.Conf;
 
 			string query = @"
-				SELECT @Каса as Каса, 
-				sum(CASE WHEN income = true THEN @Сума ELSE -@Сума END) as Сума
-				FROM @Регістр_ЗалишкиКоштів
-				GROUP BY @Каса; ";
+				SELECT 
+                    ЗалишкиКоштів.{КасаІд} AS КасаІд, 
+                    КасаТаб.{КасаНазва} AS КасаНазва,
+				    sum(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{Сума} ELSE -ЗалишкиКоштів.{Сума} END) AS Сума,
+                    ВалютаТаб.{ВалютаКод} AS ВалютаКод
+				FROM 
+                    {Регістр_ЗалишкиКоштів} AS ЗалишкиКоштів
+                    LEFT JOIN {КасаТаб} AS КасаТаб ON ЗалишкиКоштів.{КасаІд} = КасаТаб.uid
+                    LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб.Валюта} = ВалютаТаб.uid
+				GROUP BY КасаІд, КасаНазва, ВалютаКод
+                ORDER BY КасаНазва";
 
 			Dictionary<string, string> param = new Dictionary<string, string>();
 			param.Add("Регістр_ЗалишкиКоштів", Conf.RegistersAccumulation["ЗалишкиКоштів"].Table);
-			param.Add("Каса", Conf.RegistersAccumulation["ЗалишкиКоштів"].DimensionFields["Каса"].NameInTable);
+			param.Add("КасаІд", Conf.RegistersAccumulation["ЗалишкиКоштів"].DimensionFields["Каса"].NameInTable);
 			param.Add("Сума", Conf.RegistersAccumulation["ЗалишкиКоштів"].ResourcesFields["Сума"].NameInTable);
+			param.Add("КасаТаб", Conf.Directories["Каса"].Table);
+			param.Add("КасаНазва", Conf.Directories["Каса"].Fields["Назва"].NameInTable);
+			param.Add("КасаТаб.Валюта", Conf.Directories["Каса"].Fields["Валюта"].NameInTable);
+			param.Add("ВалютаТаб", Conf.Directories["Валюта"].Table);
+			param.Add("ВалютаКод", Conf.Directories["Валюта"].Fields["Код"].NameInTable);
 
 			query = ReplaceQuery(query, param);
 
@@ -755,7 +770,14 @@ namespace HomeFinances
 
 			Конфа.Config.Kernel.DataBase.SelectRequest(query, null, out columnsName, out listRow);
 
+			string result = "";
 
+			foreach(object[] o in listRow)
+            {
+				result += (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " + o[2].ToString() + " " + o[3].ToString() + "\n\r";
+			}
+
+			labelCalculateBalance.Text = result;
 		}
 
 		private string ReplaceQuery(string query, Dictionary<string,string> param)
@@ -764,7 +786,7 @@ namespace HomeFinances
 
 			if (param != null)
 				foreach (KeyValuePair<string, string> paramItem in param)
-					copy_query = copy_query.Replace("@" + paramItem.Key, paramItem.Value);
+					copy_query = copy_query.Replace("{" + paramItem.Key + "}", paramItem.Value);
 
 			return copy_query;
 

@@ -144,17 +144,17 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(185, 385);
+            this.buttonSave.Location = new System.Drawing.Point(182, 385);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
-            this.buttonSave.Text = "Зберегти без проведення";
+            this.buttonSave.Text = "Зберегти";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(811, 385);
+            this.buttonClose.Location = new System.Drawing.Point(438, 385);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -262,7 +262,7 @@ namespace HomeFinances
             // 
             // buttonSaveAndSpend
             // 
-            this.buttonSaveAndSpend.Location = new System.Drawing.Point(15, 385);
+            this.buttonSaveAndSpend.Location = new System.Drawing.Point(12, 385);
             this.buttonSaveAndSpend.Name = "buttonSaveAndSpend";
             this.buttonSaveAndSpend.Size = new System.Drawing.Size(164, 23);
             this.buttonSaveAndSpend.TabIndex = 26;
