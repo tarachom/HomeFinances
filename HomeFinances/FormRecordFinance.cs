@@ -97,6 +97,8 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["Витрата"].Width = 200;
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
+			dataGridViewRecords.Columns["Проведено"].Width = 50;
+
 			//Користувач
 			//Записи налаштувань користувача
 
@@ -144,7 +146,7 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата)
+			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата, bool _Проведено)
 			{
 				ID = _id;
 				Назва = _Назва;
@@ -152,6 +154,7 @@ namespace HomeFinances
 				Сума = _Сума;
 				ТипЗапису = _ТипЗапису;
 				Витрата = _Витрата;
+				Проведено = _Проведено;
 			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
@@ -159,6 +162,7 @@ namespace HomeFinances
 			public string Сума { get; set; }
 			public string ТипЗапису { get; set; }
 			public string Витрата { get; set; }
+			public bool Проведено { get; set; }
 		}
 
         #region Call_Back
@@ -203,8 +207,9 @@ namespace HomeFinances
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
 			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
+			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Проведено);
 
-            записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
+			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
             записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
 
 			//записи_Select.QuerySelect.Where.Add(
@@ -268,7 +273,8 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
-					ВитратаПредставлення
+					ВитратаПредставлення,
+					(bool)cur.Fields[Довідники.Записи_Select.Проведено]
 					));
 			}
 

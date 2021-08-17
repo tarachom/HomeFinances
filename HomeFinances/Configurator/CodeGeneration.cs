@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 16.08.2021 21:46:40
+ * Дата конфігурації: 17.08.2021 07:36:19
  *
  */
 
@@ -154,7 +154,7 @@ namespace НоваКонфігурація_1_0.Довідники
             Каса = new Довідники.Каса_Pointer();
             СсилкаНаСайт = "";
             КасаПереміщення = new Довідники.Каса_Pointer();
-            Проведений = false;
+            Проведено = false;
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Записи_ОбмінІсторія_TablePart(this);
@@ -174,7 +174,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Каса = new Довідники.Каса_Pointer(base.FieldValue["col_a2"]);
                 СсилкаНаСайт = base.FieldValue["col_a4"].ToString();
                 КасаПереміщення = new Довідники.Каса_Pointer(base.FieldValue["col_a3"]);
-                Проведений = (base.FieldValue["col_a5"] != DBNull.Value) ? bool.Parse(base.FieldValue["col_a5"].ToString()) : false;
+                Проведено = (base.FieldValue["col_a5"] != DBNull.Value) ? bool.Parse(base.FieldValue["col_a5"].ToString()) : false;
                 
                 BaseClear();
                 return true;
@@ -194,7 +194,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a2"] = Каса.UnigueID.UGuid;
             base.FieldValue["col_a4"] = СсилкаНаСайт;
             base.FieldValue["col_a3"] = КасаПереміщення.UnigueID.UGuid;
-            base.FieldValue["col_a5"] = Проведений;
+            base.FieldValue["col_a5"] = Проведено;
             
             BaseSave();
         }
@@ -213,7 +213,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Каса>" + Каса.ToString() + "</Каса>"  +
                "<СсилкаНаСайт>" + "<![CDATA[" + СсилкаНаСайт + "]]>" + "</СсилкаНаСайт>"  +
                "<КасаПереміщення>" + КасаПереміщення.ToString() + "</КасаПереміщення>"  +
-               "<Проведений>" + (Проведений == true ? "1" : "0") + "</Проведений>"  +
+               "<Проведено>" + (Проведено == true ? "1" : "0") + "</Проведено>"  +
                "</" + root + ">";
         }
 
@@ -237,7 +237,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public Довідники.Каса_Pointer Каса { get; set; }
         public string СсилкаНаСайт { get; set; }
         public Довідники.Каса_Pointer КасаПереміщення { get; set; }
-        public bool Проведений { get; set; }
+        public bool Проведено { get; set; }
         
         //Табличні частини
         public Записи_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
@@ -285,7 +285,7 @@ namespace НоваКонфігурація_1_0.Довідники
     {
         public Записи_Select() : base(Config.Kernel, "tab_a02",
             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3", "col_a5" },
-            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса", "СсилкаНаСайт", "КасаПереміщення", "Проведений" }) { }
+            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса", "СсилкаНаСайт", "КасаПереміщення", "Проведено" }) { }
         
         public const string Назва = "col_a7";
         public const string ДатаЗапису = "col_a6";
@@ -296,7 +296,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public const string Каса = "col_a2";
         public const string СсилкаНаСайт = "col_a4";
         public const string КасаПереміщення = "col_a3";
-        public const string Проведений = "col_a5";
+        public const string Проведено = "col_a5";
         
         public bool Select() { return base.BaseSelect(); }
         

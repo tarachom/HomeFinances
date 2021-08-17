@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>16.08.2021 21:46:40</DateTimeSave>
+  <DateTimeSave>17.08.2021 07:36:19</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -121,7 +121,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
         <Field>
-          <Name>Проведений</Name>
+          <Name>Проведено</Name>
           <NameInTable>col_a5</NameInTable>
           <Type>boolean</Type>
           <Desc>

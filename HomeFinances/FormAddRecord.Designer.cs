@@ -52,6 +52,8 @@ namespace HomeFinances
             this.textBoxUrlLink = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.directoryControl3 = new HomeFinances.DirectoryControl();
+            this.buttonSaveAndSpend = new System.Windows.Forms.Button();
+            this.labelStateSpend = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -142,17 +144,17 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(12, 385);
+            this.buttonSave.Location = new System.Drawing.Point(185, 385);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
-            this.buttonSave.Text = "Зберегти";
+            this.buttonSave.Text = "Зберегти без проведення";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(269, 385);
+            this.buttonClose.Location = new System.Drawing.Point(811, 385);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -258,11 +260,32 @@ namespace HomeFinances
             this.directoryControl3.Size = new System.Drawing.Size(370, 27);
             this.directoryControl3.TabIndex = 24;
             // 
+            // buttonSaveAndSpend
+            // 
+            this.buttonSaveAndSpend.Location = new System.Drawing.Point(15, 385);
+            this.buttonSaveAndSpend.Name = "buttonSaveAndSpend";
+            this.buttonSaveAndSpend.Size = new System.Drawing.Size(164, 23);
+            this.buttonSaveAndSpend.TabIndex = 26;
+            this.buttonSaveAndSpend.Text = "Зберегти і провести";
+            this.buttonSaveAndSpend.UseVisualStyleBackColor = true;
+            this.buttonSaveAndSpend.Click += new System.EventHandler(this.buttonSaveAndSpend_Click);
+            // 
+            // labelStateSpend
+            // 
+            this.labelStateSpend.AutoSize = true;
+            this.labelStateSpend.Location = new System.Drawing.Point(408, 15);
+            this.labelStateSpend.Name = "labelStateSpend";
+            this.labelStateSpend.Size = new System.Drawing.Size(79, 13);
+            this.labelStateSpend.TabIndex = 27;
+            this.labelStateSpend.Text = "<проведений>";
+            // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 420);
+            this.Controls.Add(this.labelStateSpend);
+            this.Controls.Add(this.buttonSaveAndSpend);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.directoryControl3);
             this.Controls.Add(this.label9);
@@ -321,5 +344,7 @@ namespace HomeFinances
         private System.Windows.Forms.TextBox textBoxUrlLink;
         private System.Windows.Forms.Label label10;
         private DirectoryControl directoryControl3;
+        private System.Windows.Forms.Button buttonSaveAndSpend;
+        private System.Windows.Forms.Label labelStateSpend;
     }
 }

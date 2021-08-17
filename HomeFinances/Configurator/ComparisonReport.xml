@@ -144,7 +144,7 @@
       </Type>
     </Control_Field>
     <Control_Field>
-      <Name>Проведений</Name>
+      <Name>Проведено</Name>
       <NameInTable>col_a5</NameInTable>
       <IsExist>yes</IsExist>
       <Type>

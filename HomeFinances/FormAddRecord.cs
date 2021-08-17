@@ -140,15 +140,33 @@ namespace HomeFinances
 						textBoxUrlLink.Text = записи_Objest.СсилкаНаСайт;
 						directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.Каса.UnigueID);
 						directoryControl3.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.КасаПереміщення.UnigueID);
+						записи_Objest.Проведено = записи_Objest.Проведено;
 					}
 					else
 						MessageBox.Show("Error read");
 				}
+
+				labelStateSpend.Text = записи_Objest.Проведено ? "проведено" : "не проведено";
 			}
+		}
+
+		private void buttonSaveAndSpend_Click(object sender, EventArgs e)
+		{
+			Save(true);
 		}
 
 		private void buttonSave_Click(object sender, EventArgs e)
 		{
+			Save(false);
+		}
+
+		private void buttonOpenBrouser_Click(object sender, EventArgs e)
+        {
+			System.Diagnostics.Process.Start("firefox.exe", textBoxUrlLink.Text);
+		}
+
+		private void Save(bool Spend)
+        {
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
@@ -171,9 +189,14 @@ namespace HomeFinances
 					записи_Objest.Каса = (Довідники.Каса_Pointer)directoryControl2.DirectoryPointerItem;
 					записи_Objest.КасаПереміщення = (Довідники.Каса_Pointer)directoryControl3.DirectoryPointerItem;
 
+					записи_Objest.Проведено = Spend;
+
 					записи_Objest.Save();
 
-					WriteRegisterAccumulation();
+					if (Spend)
+						WriteRegisterAccumulation();
+					else
+						ClearRegisterAccumulation();
 				}
 				catch (Exception exp)
 				{
@@ -188,8 +211,14 @@ namespace HomeFinances
 			}
 		}
 
-		private void WriteRegisterAccumulation()
+		private void ClearRegisterAccumulation()
         {
+			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+			залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
+		}
+
+		private void WriteRegisterAccumulation()
+		{
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 
 			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Замітка)
@@ -197,7 +226,7 @@ namespace HomeFinances
 				залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
 			}
 			else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
-            {
+			{
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
@@ -215,8 +244,8 @@ namespace HomeFinances
 				залишкиКоштів_RecordsSet.Records.Add(record2);
 				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
 			}
-            else
-            {
+			else
+			{
 				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
 				if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Витрати || записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
@@ -230,13 +259,9 @@ namespace HomeFinances
 
 				залишкиКоштів_RecordsSet.Records.Add(record);
 				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
-			}	
+			}
 		}
 
-
-		private void buttonOpenBrouser_Click(object sender, EventArgs e)
-        {
-			System.Diagnostics.Process.Start("firefox.exe", textBoxUrlLink.Text);
-		}
+       
     }
 }
