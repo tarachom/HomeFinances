@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>17.08.2021 07:36:19</DateTimeSave>
+  <DateTimeSave>17.08.2021 09:01:49</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -611,24 +611,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ee</Name>
-          <Table>tab_a18</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>ee</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
     </Directory>
   </Directories>
   <Enums>

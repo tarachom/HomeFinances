@@ -38,6 +38,7 @@ using Конфа = НоваКонфігурація_1_0;
 using Константи = НоваКонфігурація_1_0.Константи;
 using Довідники = НоваКонфігурація_1_0.Довідники;
 using Перелічення = НоваКонфігурація_1_0.Перелічення;
+using РегістриНакопичення = НоваКонфігурація_1_0.РегістриНакопичення;
 
 namespace HomeFinances
 {
@@ -98,46 +99,6 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
 			dataGridViewRecords.Columns["Проведено"].Width = 60;
-
-			//Користувач
-			//Записи налаштувань користувача
-
-			/*
-			Довідники.Користувач_Select користувач = new Довідники.Користувач_Select();
-			Довідники.Користувач_Pointer користувач_Ссилка = користувач.FindByField(Довідники.Користувач_Select.Код, "1");
-			
-			if (користувач_Ссилка.IsEmpty())
-            {
-				Довідники.Користувач_Objest користувач_НовийЗапис = new Довідники.Користувач_Objest();
-				користувач_НовийЗапис.New();
-				користувач_НовийЗапис.Код = "1";
-				користувач_НовийЗапис.Назва = "Основний";
-				користувач_НовийЗапис.Save();
-
-				користувач_Ссилка = користувач_НовийЗапис.GetDirectoryPointer();
-			}
-
-			Довідники.Користувач_Objest користувач_Обєкт = користувач_Ссилка.GetDirectoryObject();
-			користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Read();
-
-			if (користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records.Count > 0)
-			{
-				foreach (Довідники.Користувач_НалаштуванняФормиЗаписиФінансів_TablePart.Record record in
-					користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records)
-				{
-					if (record.Ключ == "НазваФорми")
-					{
-
-					}
-				}
-			}
-			else
-			{
-				користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Records.Add(
-					new Довідники.Користувач_НалаштуванняФормиЗаписиФінансів_TablePart.Record("НазваФорми", "Назва форми"));
-				користувач_Обєкт.НалаштуванняФормиЗаписиФінансів_TablePart.Save(true);
-			}
-			*/
 
 			LoadRecords();		
 		}
@@ -325,6 +286,9 @@ namespace HomeFinances
 					Довідники.Записи_Objest записи_Objest = new Довідники.Записи_Objest();
 					if (записи_Objest.Read(new UnigueID(uid)))
 					{
+						РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+						залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
+
 						записи_Objest.Delete();
 					}
 					else
@@ -769,6 +733,41 @@ namespace HomeFinances
 			Application.Exit();
         }
 
-        
+        private void buttonCalculateBalance_Click(object sender, EventArgs e)
+        {
+			Configuration Conf = Конфа.Config.Kernel.Conf;
+
+			string query = @"
+				SELECT @Каса as Каса, 
+				sum(CASE WHEN income = true THEN @Сума ELSE -@Сума END) as Сума
+				FROM @Регістр_ЗалишкиКоштів
+				GROUP BY @Каса; ";
+
+			Dictionary<string, string> param = new Dictionary<string, string>();
+			param.Add("Регістр_ЗалишкиКоштів", Conf.RegistersAccumulation["ЗалишкиКоштів"].Table);
+			param.Add("Каса", Conf.RegistersAccumulation["ЗалишкиКоштів"].DimensionFields["Каса"].NameInTable);
+			param.Add("Сума", Conf.RegistersAccumulation["ЗалишкиКоштів"].ResourcesFields["Сума"].NameInTable);
+
+			query = ReplaceQuery(query, param);
+
+			string[] columnsName;
+			List<object[]> listRow;
+
+			Конфа.Config.Kernel.DataBase.SelectRequest(query, null, out columnsName, out listRow);
+
+
+		}
+
+		private string ReplaceQuery(string query, Dictionary<string,string> param)
+        {
+			string copy_query = query;
+
+			if (param != null)
+				foreach (KeyValuePair<string, string> paramItem in param)
+					copy_query = copy_query.Replace("@" + paramItem.Key, paramItem.Value);
+
+			return copy_query;
+
+		}
     }
 }

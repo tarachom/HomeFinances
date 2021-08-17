@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 17.08.2021 07:36:19
+ * Дата конфігурації: 17.08.2021 09:01:49
  *
  */
 
@@ -2183,9 +2183,6 @@ namespace НоваКонфігурація_1_0.Довідники
             ПеріодВиконання = 0;
             Опис = "";
             
-            //Табличні частини
-            ee_TablePart = new КалендарПеріодичнихЗавдань_ee_TablePart(this);
-            
         }
         
         public bool Read(UnigueID uid)
@@ -2237,9 +2234,6 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Назва { get; set; }
         public Перелічення.ПеріодиВиконанняЗавдань ПеріодВиконання { get; set; }
         public string Опис { get; set; }
-        
-        //Табличні частини
-        public КалендарПеріодичнихЗавдань_ee_TablePart ee_TablePart { get; set; }
         
     }
     
@@ -2315,89 +2309,6 @@ namespace НоваКонфігурація_1_0.Довідники
         }
     }
     
-      
-    class КалендарПеріодичнихЗавдань_ee_TablePart : DirectoryTablePart
-    {
-        public КалендарПеріодичнихЗавдань_ee_TablePart(КалендарПеріодичнихЗавдань_Objest owner) : base(Config.Kernel, "tab_a18",
-             new string[] { "col_a1" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public КалендарПеріодичнихЗавдань_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.ee = fieldValue["col_a1"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            if (Records.Count > 0)
-            {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
-
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a1", record.ee);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
-                
-                base.BaseCommitTransaction();
-            }
-        }
-        
-        public void Delete()
-        {
-            base.BaseBeginTransaction();
-            base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                ee = "";
-                
-            }
-        
-            
-            public Record(
-                string _ee = "")
-            {
-                ee = _ee;
-                
-            }
-            public string ee { get; set; }
-            
-        }
-    }
       
    
     #endregion
