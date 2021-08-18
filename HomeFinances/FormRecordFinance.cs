@@ -62,9 +62,6 @@ namespace HomeFinances
 			dateTimePickerStart.Value = start.AddDays(-7);
 			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
 
-			dateTimePickerStartBalance.Value = start.AddDays(-7);
-			dateTimePickerStopBalance.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
-
 			//Заповнення елементів перелічення
 			comboBoxTypeRecord.Items.Add(new NameValue<int>("- Всі -", 0));
 			comboBoxTypeRecord.SelectedIndex = 0;
@@ -168,13 +165,14 @@ namespace HomeFinances
 			RecordsBindingList.Clear();
 
 			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
-
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ДатаЗапису);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Назва);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Проведено);
+			записи_Select.QuerySelect.Field.AddRange(new string[] {
+				Довідники.Записи_Select.ДатаЗапису,
+				Довідники.Записи_Select.Назва,
+				Довідники.Записи_Select.Сума,
+				Довідники.Записи_Select.ТипЗапису,
+				Довідники.Записи_Select.Витрата,
+				Довідники.Записи_Select.Проведено
+			});
 
 			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
             записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
@@ -224,12 +222,7 @@ namespace HomeFinances
 				Довідники.Записи_Pointer cur = записи_Select.Current;
 
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
-				string типЗаписуПредставлення = типЗапису.ToString(); 
-				/*(
-					типЗапису == Перелічення.ТипЗапису.Поступлення ? "+" :
-					типЗапису == Перелічення.ТипЗапису.Витрати ? "-" :
-					типЗапису == Перелічення.ТипЗапису.Замітка ? "*" :
-					типЗапису == Перелічення.ТипЗапису.Благодійність ? "." : "");*/
+				string типЗаписуПредставлення = типЗапису.ToString();
 
 				Довідники.КласифікаторВитрат_Pointer Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(cur.Fields[Довідники.Записи_Select.Витрата].ToString()));
 				string ВитратаПредставлення = (!Витрата.IsEmpty() && dictionaryCostСlassifier.ContainsKey(Витрата.UnigueID.ToString())) ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : "";
@@ -753,13 +746,8 @@ namespace HomeFinances
                     {Регістр_ЗалишкиКоштів} AS ЗалишкиКоштів
                     LEFT JOIN {КасаТаб} AS КасаТаб ON ЗалишкиКоштів.{КасаІд} = КасаТаб.uid
                     LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб.Валюта} = ВалютаТаб.uid 
-                ";
-
-			if (checkBoxUsePeriod.Checked)
-				query += @"WHERE ЗалишкиКоштів.period >= @ДатаСтарт AND ЗалишкиКоштів.period <= @ДатаСтоп ";
-
-			query += @"GROUP BY КасаІд, КасаНазва, ВалютаКод
-                       ORDER BY КасаНазва";
+			    GROUP BY КасаІд, КасаНазва, ВалютаКод
+                ORDER BY КасаНазва";
 
 			Dictionary<string, string> param = new Dictionary<string, string>();
 			param.Add("Регістр_ЗалишкиКоштів", Conf.RegistersAccumulation["ЗалишкиКоштів"].Table);
@@ -771,19 +759,12 @@ namespace HomeFinances
 			param.Add("ВалютаТаб", Conf.Directories["Валюта"].Table);
 			param.Add("ВалютаКод", Conf.Directories["Валюта"].Fields["Код"].NameInTable);
 
-			Dictionary<string, object> paramSQL = new Dictionary<string, object>();
-			if (checkBoxUsePeriod.Checked)
-			{
-				paramSQL.Add("ДатаСтарт", dateTimePickerStartBalance.Value);
-				paramSQL.Add("ДатаСтоп", dateTimePickerStopBalance.Value);
-			}
-
 			query = ReplaceQuery(query, param);
 
 			string[] columnsName;
 			List<object[]> listRow;
 
-			Конфа.Config.Kernel.DataBase.SelectRequest(query, paramSQL, out columnsName, out listRow);
+			Конфа.Config.Kernel.DataBase.SelectRequest(query, null, out columnsName, out listRow);
 
 			string result = "";
 
