@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 17.08.2021 09:01:49
+ * Дата конфігурації: 17.08.2021 16:56:35
  *
  */
 
@@ -2177,11 +2177,12 @@ namespace НоваКонфігурація_1_0.Довідники
     class КалендарПеріодичнихЗавдань_Objest : DirectoryObject
     {
         public КалендарПеріодичнихЗавдань_Objest() : base(Config.Kernel, "tab_a53",
-             new string[] { "col_a1", "col_a3", "col_a4" }) 
+             new string[] { "col_a1", "col_a3", "col_a4", "col_a2" }) 
         {
             Назва = "";
             ПеріодВиконання = 0;
             Опис = "";
+            Старт = DateTime.MinValue;
             
         }
         
@@ -2192,6 +2193,7 @@ namespace НоваКонфігурація_1_0.Довідники
                 Назва = base.FieldValue["col_a1"].ToString();
                 ПеріодВиконання = (base.FieldValue["col_a3"] != DBNull.Value) ? (Перелічення.ПеріодиВиконанняЗавдань)base.FieldValue["col_a3"] : 0;
                 Опис = base.FieldValue["col_a4"].ToString();
+                Старт = (base.FieldValue["col_a2"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a2"].ToString()) : DateTime.MinValue;
                 
                 BaseClear();
                 return true;
@@ -2205,6 +2207,7 @@ namespace НоваКонфігурація_1_0.Довідники
             base.FieldValue["col_a1"] = Назва;
             base.FieldValue["col_a3"] = (int)ПеріодВиконання;
             base.FieldValue["col_a4"] = Опис;
+            base.FieldValue["col_a2"] = Старт;
             
             BaseSave();
         }
@@ -2217,6 +2220,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<ПеріодВиконання>" + ((int)ПеріодВиконання).ToString() + "</ПеріодВиконання>"  +
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "<Старт>" + Старт.ToString() + "</Старт>"  +
                "</" + root + ">";
         }
 
@@ -2234,6 +2238,7 @@ namespace НоваКонфігурація_1_0.Довідники
         public string Назва { get; set; }
         public Перелічення.ПеріодиВиконанняЗавдань ПеріодВиконання { get; set; }
         public string Опис { get; set; }
+        public DateTime Старт { get; set; }
         
     }
     
@@ -2277,12 +2282,13 @@ namespace НоваКонфігурація_1_0.Довідники
     class КалендарПеріодичнихЗавдань_Select : DirectorySelect, IDisposable
     {
         public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53",
-            new string[] { "col_a1", "col_a3", "col_a4" },
-            new string[] { "Назва", "ПеріодВиконання", "Опис" }) { }
+            new string[] { "col_a1", "col_a3", "col_a4", "col_a2" },
+            new string[] { "Назва", "ПеріодВиконання", "Опис", "Старт" }) { }
         
         public const string Назва = "col_a1";
         public const string ПеріодВиконання = "col_a3";
         public const string Опис = "col_a4";
+        public const string Старт = "col_a2";
         
         public bool Select() { return base.BaseSelect(); }
         

@@ -53,8 +53,8 @@ namespace HomeFinances
 		{
 			this.splitContainer1.SplitterDistance = 400;
 			
-			this.записникToolStripMenuItem.Visible = false;
-			this.періодичніЗавданняToolStripMenuItem.Visible = false;
+			//this.записникToolStripMenuItem.Visible = false;
+			//this.періодичніЗавданняToolStripMenuItem.Visible = false;
 
 			//Параметри в лівій панелі
 			DateTime start = DateTime.Today;
@@ -104,7 +104,7 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["Витрата"].Width = 200;
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
-			dataGridViewRecords.Columns["Проведено"].Width = 60;
+			dataGridViewRecords.Columns["Проведено"].Width = 65;
 
 			LoadRecords();		
 		}
