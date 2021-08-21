@@ -736,7 +736,16 @@ namespace HomeFinances
         {
 			Configuration Conf = Конфа.Config.Kernel.Conf;
 
-			string query = @"
+			string КасаІд = Conf.RegistersAccumulation["ЗалишкиКоштів"].DimensionFields["Каса"].NameInTable;
+			string КасаНазва = Conf.Directories["Каса"].Fields["Назва"].NameInTable;
+			string Сума = Conf.RegistersAccumulation["ЗалишкиКоштів"].ResourcesFields["Сума"].NameInTable;
+			string ВалютаКод = Conf.Directories["Валюта"].Fields["Код"].NameInTable;
+			string Регістр_ЗалишкиКоштів = Conf.RegistersAccumulation["ЗалишкиКоштів"].Table;
+			string КасаТаб = Conf.Directories["Каса"].Table;
+			string ВалютаТаб = Conf.Directories["Валюта"].Table;
+			string КасаТаб_Валюта = Conf.Directories["Каса"].Fields["Валюта"].NameInTable;
+
+			string query = $@"
 				SELECT 
                     ЗалишкиКоштів.{КасаІд} AS КасаІд, 
                     КасаТаб.{КасаНазва} AS КасаНазва,
@@ -745,21 +754,9 @@ namespace HomeFinances
 				FROM 
                     {Регістр_ЗалишкиКоштів} AS ЗалишкиКоштів
                     LEFT JOIN {КасаТаб} AS КасаТаб ON ЗалишкиКоштів.{КасаІд} = КасаТаб.uid
-                    LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб.Валюта} = ВалютаТаб.uid 
+                    LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб_Валюта} = ВалютаТаб.uid 
 			    GROUP BY КасаІд, КасаНазва, ВалютаКод
                 ORDER BY КасаНазва";
-
-			Dictionary<string, string> param = new Dictionary<string, string>();
-			param.Add("Регістр_ЗалишкиКоштів", Conf.RegistersAccumulation["ЗалишкиКоштів"].Table);
-			param.Add("КасаІд", Conf.RegistersAccumulation["ЗалишкиКоштів"].DimensionFields["Каса"].NameInTable);
-			param.Add("Сума", Conf.RegistersAccumulation["ЗалишкиКоштів"].ResourcesFields["Сума"].NameInTable);
-			param.Add("КасаТаб", Conf.Directories["Каса"].Table);
-			param.Add("КасаНазва", Conf.Directories["Каса"].Fields["Назва"].NameInTable);
-			param.Add("КасаТаб.Валюта", Conf.Directories["Каса"].Fields["Валюта"].NameInTable);
-			param.Add("ВалютаТаб", Conf.Directories["Валюта"].Table);
-			param.Add("ВалютаКод", Conf.Directories["Валюта"].Fields["Код"].NameInTable);
-
-			query = ReplaceQuery(query, param);
 
 			string[] columnsName;
 			List<object[]> listRow;
@@ -776,16 +773,16 @@ namespace HomeFinances
 			labelCalculateBalance.Text = result;
 		}
 
-		private string ReplaceQuery(string query, Dictionary<string,string> param)
-        {
-			string copy_query = query;
+		//private string ReplaceQuery(string query, Dictionary<string,string> param)
+  //      {
+		//	string copy_query = query;
 
-			if (param != null)
-				foreach (KeyValuePair<string, string> paramItem in param)
-					copy_query = copy_query.Replace("{" + paramItem.Key + "}", paramItem.Value);
+		//	if (param != null)
+		//		foreach (KeyValuePair<string, string> paramItem in param)
+		//			copy_query = copy_query.Replace("{" + paramItem.Key + "}", paramItem.Value);
 
-			return copy_query;
+		//	return copy_query;
 
-		}
+		//}
     }
 }
