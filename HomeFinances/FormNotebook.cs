@@ -127,7 +127,7 @@ namespace HomeFinances
 			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Дата);
 			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Select.Родич, Comparison.EQ, ParentFolder.UnigueID.UGuid));
 
-			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Select.Дата, SelectOrder.ASC);
+			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Select.Дата, SelectOrder.DESC);
 
 			записник_Папки_Select.Select();
 
@@ -158,7 +158,7 @@ namespace HomeFinances
 			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Select.Дата);
 			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Select.Папка, Comparison.EQ, ParentFolder.UnigueID.UGuid));
 
-			записник_Select.QuerySelect.Order.Add(Довідники.Записник_Select.Назва, SelectOrder.ASC);
+			записник_Select.QuerySelect.Order.Add(Довідники.Записник_Select.Дата, SelectOrder.DESC);
 
 			записник_Select.Select();
 
