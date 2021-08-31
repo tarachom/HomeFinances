@@ -76,10 +76,10 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["ID"].Visible = false;
 			dataGridViewRecords.Columns["IsFolder"].Visible = false;
 			dataGridViewRecords.Columns["IsParentFolder"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = 500;
-			dataGridViewRecords.Columns["Дата"].Width = 120;
 
 			DataGridViewImageColumn dataGridViewImageColumn = new DataGridViewImageColumn();
+			dataGridViewRecords.Columns["Назва"].Width = 500;
+			dataGridViewRecords.Columns["Дата"].Width = 120;
 			dataGridViewImageColumn.Name = "Folder";
 			dataGridViewImageColumn.HeaderText = "...";
 			dataGridViewImageColumn.DisplayIndex = 1;
