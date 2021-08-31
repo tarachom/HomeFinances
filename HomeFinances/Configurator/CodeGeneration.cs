@@ -27,7 +27,7 @@ limitations under the License.
  * Конфігурації "Нова конфігурація"
  * Автор 
   
- * Дата конфігурації: 17.08.2021 16:56:35
+ * Дата конфігурації: 31.08.2021 15:56:11
  *
  */
 
@@ -1941,15 +1941,16 @@ namespace НоваКонфігурація_1_0.Довідники
     
     #region DIRECTORY "Записник_Папки"
     ///<summary>
-    ///Іжрархія для довідника Записник.
+    ///Ієрархія для довідника Записник.
     ///</summary>
     class Записник_Папки_Objest : DirectoryObject
     {
         public Записник_Папки_Objest() : base(Config.Kernel, "tab_a09",
-             new string[] { "col_a1", "col_a3" }) 
+             new string[] { "col_a1", "col_a3", "col_a2" }) 
         {
             Назва = "";
             Родич = new Довідники.Записник_Папки_Pointer();
+            Дата = DateTime.MinValue;
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Записник_Папки_ОбмінІсторія_TablePart(this);
@@ -1962,6 +1963,7 @@ namespace НоваКонфігурація_1_0.Довідники
             {
                 Назва = base.FieldValue["col_a1"].ToString();
                 Родич = new Довідники.Записник_Папки_Pointer(base.FieldValue["col_a3"]);
+                Дата = (base.FieldValue["col_a2"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a2"].ToString()) : DateTime.MinValue;
                 
                 BaseClear();
                 return true;
@@ -1974,6 +1976,7 @@ namespace НоваКонфігурація_1_0.Довідники
         {
             base.FieldValue["col_a1"] = Назва;
             base.FieldValue["col_a3"] = Родич.UnigueID.UGuid;
+            base.FieldValue["col_a2"] = Дата;
             
             BaseSave();
         }
@@ -1985,6 +1988,7 @@ namespace НоваКонфігурація_1_0.Довідники
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Родич>" + Родич.ToString() + "</Родич>"  +
+               "<Дата>" + Дата.ToString() + "</Дата>"  +
                "</" + root + ">";
         }
 
@@ -2001,6 +2005,7 @@ namespace НоваКонфігурація_1_0.Довідники
         
         public string Назва { get; set; }
         public Довідники.Записник_Папки_Pointer Родич { get; set; }
+        public DateTime Дата { get; set; }
         
         //Табличні частини
         public Записник_Папки_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
@@ -2008,7 +2013,7 @@ namespace НоваКонфігурація_1_0.Довідники
     }
     
     ///<summary>
-    ///Іжрархія для довідника Записник.
+    ///Ієрархія для довідника Записник.
     ///</summary>
     class Записник_Папки_Pointer : DirectoryPointer
     {
@@ -2042,16 +2047,17 @@ namespace НоваКонфігурація_1_0.Довідники
     }
     
     ///<summary>
-    ///Іжрархія для довідника Записник.
+    ///Ієрархія для довідника Записник.
     ///</summary>
     class Записник_Папки_Select : DirectorySelect, IDisposable
     {
         public Записник_Папки_Select() : base(Config.Kernel, "tab_a09",
-            new string[] { "col_a1", "col_a3" },
-            new string[] { "Назва", "Родич" }) { }
+            new string[] { "col_a1", "col_a3", "col_a2" },
+            new string[] { "Назва", "Родич", "Дата" }) { }
         
         public const string Назва = "col_a1";
         public const string Родич = "col_a3";
+        public const string Дата = "col_a2";
         
         public bool Select() { return base.BaseSelect(); }
         

@@ -4,7 +4,7 @@
   <NameSpace>НоваКонфігурація_1_0</NameSpace>
   <Author>
   </Author>
-  <DateTimeSave>17.08.2021 16:56:35</DateTimeSave>
+  <DateTimeSave>31.08.2021 15:56:11</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -533,7 +533,7 @@
     <Directory>
       <Name>Записник_Папки</Name>
       <Table>tab_a09</Table>
-      <Desc>Іжрархія для довідника Записник</Desc>
+      <Desc>Ієрархія для довідника Записник</Desc>
       <Fields>
         <Field>
           <Name>Назва</Name>
@@ -548,6 +548,14 @@
           <NameInTable>col_a3</NameInTable>
           <Type>pointer</Type>
           <Pointer>Довідники.Записник_Папки</Pointer>
+          <Desc>
+          </Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>Дата</Name>
+          <NameInTable>col_a2</NameInTable>
+          <Type>datetime</Type>
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>

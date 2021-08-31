@@ -87,6 +87,7 @@ namespace HomeFinances
 				{
 					this.Text += " - Новий запис";
 					directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer();
+					dateTimePickerRecord.Value = DateTime.Now;
 				}
 				else
 				{
@@ -96,6 +97,7 @@ namespace HomeFinances
 
 						textBoxName.Text = записник_Папки_Objest.Назва;
 						directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(записник_Папки_Objest.Родич.UnigueID);
+						dateTimePickerRecord.Value = записник_Папки_Objest.Дата == DateTime.MinValue ? DateTime.Now : записник_Папки_Objest.Дата;
 					}
 					else
 						MessageBox.Show("Error read");
@@ -114,6 +116,7 @@ namespace HomeFinances
 				{
 					записник_Папки_Objest.Назва = textBoxName.Text;
 					записник_Папки_Objest.Родич = directoryControl1.DirectoryPointerItem != null ? (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem : new Довідники.Записник_Папки_Pointer();
+					записник_Папки_Objest.Дата = dateTimePickerRecord.Value;
 					записник_Папки_Objest.Save();
 				}
 				catch (Exception exp)

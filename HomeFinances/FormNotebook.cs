@@ -124,9 +124,10 @@ namespace HomeFinances
 			Довідники.Записник_Папки_Select записник_Папки_Select = new Довідники.Записник_Папки_Select();
 
 			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Назва);
+			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Дата);
 			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Select.Родич, Comparison.EQ, ParentFolder.UnigueID.UGuid));
 
-			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Select.Назва, SelectOrder.ASC);
+			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Select.Дата, SelectOrder.ASC);
 
 			записник_Папки_Select.Select();
 
@@ -139,7 +140,7 @@ namespace HomeFinances
 					true,
 					false,
 					cur.Fields[Довідники.Записник_Папки_Select.Назва].ToString(),
-					"" //Дата
+					cur.Fields[Довідники.Записник_Папки_Select.Дата].ToString()
 					));
 
 				if (DirectoryPointerItem != null) //??
