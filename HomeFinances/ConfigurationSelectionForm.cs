@@ -331,6 +331,7 @@ namespace HomeFinances
                 Конфа.Config.ReadAllConstants();
 
 				FormRecordFinance formRecordFinance = new FormRecordFinance();
+				formRecordFinance.OpenDataBaseName = " - " + itemConfigurationParam.ConfigurationName;
 				formRecordFinance.Show();
 
 				this.DialogResult = DialogResult.OK;

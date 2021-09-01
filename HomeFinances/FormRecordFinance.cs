@@ -49,10 +49,13 @@ namespace HomeFinances
 			InitializeComponent();
 		}
 
+		public string OpenDataBaseName { get; set; }
+
 		private void FormRecordFinance_Load(object sender, EventArgs e)
 		{
 			this.splitContainer1.SplitterDistance = 400;
-			
+			this.Text += OpenDataBaseName;
+
 			//this.записникToolStripMenuItem.Visible = false;
 			//this.періодичніЗавданняToolStripMenuItem.Visible = false;
 
@@ -341,7 +344,20 @@ namespace HomeFinances
 
         private void Export()
 		{
-			StreamWriter sw = new StreamWriter("E:\\Вигрузка.xml");
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.FileName = "HomeFinances_Export_" + DateTime.Now.ToString("dd_MM_yyyy") + ".xml";
+			saveFileDialog.Filter = "XML|*.xml";
+			saveFileDialog.Title = "Файл для вигрузки даних";
+			saveFileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+
+			string fileExport = "";
+
+			if (!(saveFileDialog.ShowDialog() == DialogResult.OK))
+				return;
+			else
+				fileExport = saveFileDialog.FileName;
+
+			StreamWriter sw = new StreamWriter(fileExport);
 			sw.AutoFlush = true;
 
 			sw.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -415,11 +431,25 @@ namespace HomeFinances
 			sw.WriteLine("</ВигрузкаДаних>");
 
 			sw.Close();
+
+			MessageBox.Show("ГОТОВО!\n\nДані вигружені у файл: " + fileExport, "Повідомлення",  MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void Import()
 		{
-			XPathDocument xPathDoc = new XPathDocument("E:\\Вигрузка.xml");
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "XML|*.xml";
+			openFileDialog.Title = "Файл для загрузки даних";
+			openFileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+
+			string fileImport = "";
+
+			if (!(openFileDialog.ShowDialog() == DialogResult.OK))
+				return;
+			else
+				fileImport = openFileDialog.FileName;
+
+			XPathDocument xPathDoc = new XPathDocument(fileImport);
 			XPathNavigator xPathDocNavigator = xPathDoc.CreateNavigator();
 
 			//Корінна вітка
@@ -447,7 +477,7 @@ namespace HomeFinances
 				else
 				{
 					класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
-					класифікаторВитрат_Objest.New();
+					класифікаторВитрат_Objest.New(класифікаторВитрат_Pointer.UnigueID);
 				}
 
 				класифікаторВитрат_Objest.Назва = Назва;
@@ -477,7 +507,7 @@ namespace HomeFinances
 				else
 				{
 					валюта_Objest = new Довідники.Валюта_Objest();
-					валюта_Objest.New();
+					валюта_Objest.New(валюта_Pointer.UnigueID);
 				}
 
 				валюта_Objest.Назва = Назва;
@@ -508,7 +538,7 @@ namespace HomeFinances
 				else
 				{
 					каса_Objest = new Довідники.Каса_Objest();
-					каса_Objest.New();
+					каса_Objest.New(каса_Pointer.UnigueID);
 				}
 
 				каса_Objest.Назва = Назва;
@@ -532,6 +562,7 @@ namespace HomeFinances
 				string Витрата = current.SelectSingleNode("Витрата").Value;
 				string Каса = current.SelectSingleNode("Каса").Value;
 				string СсилкаНаСайт = current.SelectSingleNode("СсилкаНаСайт").Value;
+				string Проведено = current.SelectSingleNode("Проведено").Value;
 
 				Довідники.Записи_Pointer записи_Pointer = new Довідники.Записи_Pointer(new UnigueID(uid));
 				Довідники.Записи_Objest записи_Objest = записи_Pointer.GetDirectoryObject();
@@ -545,7 +576,7 @@ namespace HomeFinances
 				else
 				{
 					записи_Objest = new Довідники.Записи_Objest();
-					записи_Objest.New();
+					записи_Objest.New(записи_Pointer.UnigueID);
 				}
 
 				записи_Objest.Назва = Назва;
@@ -556,6 +587,7 @@ namespace HomeFinances
 				записи_Objest.Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Витрата));
 				записи_Objest.Каса = new Довідники.Каса_Pointer(new UnigueID(Каса));
 				записи_Objest.СсилкаНаСайт = СсилкаНаСайт;
+				//записи_Objest.Проведено = false; // !!! Проводки потрібно доробити
 				записи_Objest.Save();
 			}
 
@@ -585,7 +617,7 @@ namespace HomeFinances
 				else
 				{
 					контакти_Objest = new Довідники.Контакти_Objest();
-					контакти_Objest.New();
+					контакти_Objest.New(контакти_Pointer.UnigueID);
 				}
 
 				контакти_Objest.Назва = Назва;
@@ -597,7 +629,9 @@ namespace HomeFinances
 				контакти_Objest.Save();
 			}
 
+			LoadRecords();
 
+			MessageBox.Show("ГОТОВО!\n\nДані завантажені", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
         #endregion
