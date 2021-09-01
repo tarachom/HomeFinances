@@ -275,4 +275,21 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Geckofx45.45.0.34\build\Geckofx45.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.45.0.34\build\Geckofx45.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+set conf_folder_code=E:\Project\AccountingSoftware_29_05_21\Configurator
+set conf_folder=%25conf_folder_code%25\bin\Release
+
+set hf_folder=$(TargetDir)
+
+copy %25conf_folder%25\Configurator.exe                       %25hf_folder%25\Configurator.exe
+copy %25conf_folder%25\Configurator.pdb                      %25hf_folder%25\Configurator.pdb
+copy %25conf_folder%25\Configurator.exe.config           %25hf_folder%25\Configurator.exe.config
+
+copy %25conf_folder_code%25\Comparison.xslt                                     %25hf_folder%25\Comparison.xslt
+copy %25conf_folder_code%25\ComparisonReportAnalize.xslt             %25hf_folder%25\ComparisonReportAnalize.xslt
+
+copy $(ProjectDir)\bin\Debug\ConfigurationParam.xml %25hf_folder%25\ConfigurationParam.xml
+copy $(ProjectDir)\Configurator\Confa.xml %25hf_folder%25\Confa.xml</PostBuildEvent>
+  </PropertyGroup>
 </Project>

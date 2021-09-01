@@ -51,7 +51,7 @@ namespace HomeFinances
 
 		private void ConfigurationSelectionForm_Load(object sender, EventArgs e)
 		{
-			string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+			string assemblyLocation = Application.ExecutablePath;
 
 			PathToXML = Path.GetDirectoryName(assemblyLocation) + "\\ConfigurationParam.xml";
 			PathToSQLXML = Path.GetDirectoryName(assemblyLocation) + "\\Sql.xml";
@@ -333,12 +333,25 @@ namespace HomeFinances
 				Fill_listBoxConfiguration();
 			}
 		}
-	}
 
-	/// <summary>
-	/// Елемент списку баз даних користувача
-	/// </summary>
-	public class ConfigurationParam
+		private void buttonOpenConfigurator_Click(object sender, EventArgs e)
+		{
+			if (listBoxConfiguration.SelectedItem != null)
+			{
+				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
+#if DEBUG
+				System.Diagnostics.Process.Start(@"E:\Project\AccountingSoftware_29_05_21\Configurator\bin\Debug\Configurator.exe", itemConfigurationParam.ConfigurationKey); 
+#else
+				System.Diagnostics.Process.Start("Configurator.exe", itemConfigurationParam.ConfigurationKey);
+#endif
+			}
+		}
+    }
+
+    /// <summary>
+    /// Елемент списку баз даних користувача
+    /// </summary>
+    public class ConfigurationParam
 	{
 		public ConfigurationParam()
 		{
