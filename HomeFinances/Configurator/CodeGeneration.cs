@@ -24,10 +24,9 @@ limitations under the License.
   
 /*
  *
- * Конфігурації "Нова конфігурація"
- * Автор 
-  
- * Дата конфігурації: 01.09.2021 12:52:44
+ * Конфігурації "Домашні фінанси 1.0"
+ * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
+ * Дата конфігурації: 01.09.2021 15:52:45
  *
  */
 
@@ -35,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using AccountingSoftware;
 
-namespace НоваКонфігурація_1_0
+namespace HomeFinances_1_0
 {
     static class Config
     {
@@ -50,7 +49,7 @@ namespace НоваКонфігурація_1_0
     }
 }
 
-namespace НоваКонфігурація_1_0.Константи
+namespace HomeFinances_1_0.Константи
 {
     
 	#region CONSTANTS BLOCK "Основний"
@@ -133,7 +132,7 @@ namespace НоваКонфігурація_1_0.Константи
     
 }
 
-namespace НоваКонфігурація_1_0.Довідники
+namespace HomeFinances_1_0.Довідники
 {
     
     #region DIRECTORY "Записи"
@@ -2327,7 +2326,7 @@ namespace НоваКонфігурація_1_0.Довідники
     
 }
 
-namespace НоваКонфігурація_1_0.Перелічення
+namespace HomeFinances_1_0.Перелічення
 {
     
     #region ENUM "ТипЗапису"
@@ -2372,22 +2371,22 @@ namespace НоваКонфігурація_1_0.Перелічення
     
 }
 
-namespace НоваКонфігурація_1_0.Документи
+namespace HomeFinances_1_0.Документи
 {
     
 }
 
-namespace НоваКонфігурація_1_0.Журнали
+namespace HomeFinances_1_0.Журнали
 {
 
 }
 
-namespace НоваКонфігурація_1_0.РегістриВідомостей
+namespace HomeFinances_1_0.РегістриВідомостей
 {
     
 }
 
-namespace НоваКонфігурація_1_0.РегістриНакопичення
+namespace HomeFinances_1_0.РегістриНакопичення
 {
     
     #region REGISTER "ЗалишкиКоштів"

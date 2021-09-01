@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
-  <Name>Нова конфігурація</Name>
-  <NameSpace>НоваКонфігурація_1_0</NameSpace>
-  <Author>
-  </Author>
-  <DateTimeSave>01.09.2021 12:52:44</DateTimeSave>
+  <Name>Домашні фінанси 1.0</Name>
+  <NameSpace>HomeFinances_1_0</NameSpace>
+  <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
+  <DateTimeSave>01.09.2021 15:52:45</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>

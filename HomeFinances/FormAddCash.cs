@@ -29,10 +29,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AccountingSoftware;
-using Конфа = НоваКонфігурація_1_0;
-using Константи = НоваКонфігурація_1_0.Константи;
-using Довідники = НоваКонфігурація_1_0.Довідники;
-using Перелічення = НоваКонфігурація_1_0.Перелічення;
+using Конфа = HomeFinances_1_0;
+using Константи = HomeFinances_1_0.Константи;
+using Довідники = HomeFinances_1_0.Довідники;
+using Перелічення = HomeFinances_1_0.Перелічення;
 
 namespace HomeFinances
 {

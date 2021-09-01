@@ -28,7 +28,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.XPath;
 using AccountingSoftware;
-using Конфа = НоваКонфігурація_1_0;
+using Конфа = HomeFinances_1_0;
 
 namespace HomeFinances
 {
