@@ -287,7 +287,7 @@ copy %25conf_folder%25\Configurator.pdb                      %25hf_folder%25\Con
 copy %25conf_folder%25\Configurator.exe.config           %25hf_folder%25\Configurator.exe.config
 
 copy %25conf_folder_code%25\Comparison.xslt                                     %25hf_folder%25\Comparison.xslt
-copy %25conf_folder_code%25\ComparisonReportAnalize.xslt             %25hf_folder%25\ComparisonReportAnalize.xslt
+copy %25conf_folder_code%25\ComparisonAnalize.xslt             %25hf_folder%25\ComparisonAnalize.xslt
 
 copy $(ProjectDir)\bin\Debug\ConfigurationParam.xml %25hf_folder%25\ConfigurationParam.xml
 copy $(ProjectDir)\Configurator\Confa.xml %25hf_folder%25\Confa.xml</PostBuildEvent>

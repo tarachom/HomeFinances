@@ -285,6 +285,7 @@ namespace HomeFinances
             // 
             this.dataGridViewRecords.AllowUserToAddRows = false;
             this.dataGridViewRecords.AllowUserToDeleteRows = false;
+            this.dataGridViewRecords.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRecords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);

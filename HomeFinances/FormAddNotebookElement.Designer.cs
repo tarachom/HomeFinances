@@ -45,8 +45,8 @@ namespace HomeFinances
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEdit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -134,6 +134,7 @@ namespace HomeFinances
             // 
             this.dataGridViewFiles.AllowUserToAddRows = false;
             this.dataGridViewFiles.AllowUserToDeleteRows = false;
+            this.dataGridViewFiles.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFiles.Location = new System.Drawing.Point(84, 481);
             this.dataGridViewFiles.Name = "dataGridViewFiles";
@@ -170,7 +171,7 @@ namespace HomeFinances
             this.toolStripButtonDelete});
             this.toolStrip1.Location = new System.Drawing.Point(84, 453);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(296, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(265, 25);
             this.toolStrip1.TabIndex = 31;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -194,16 +195,6 @@ namespace HomeFinances
             this.toolStripButtonEdit.Text = "Редагувати";
             this.toolStripButtonEdit.Click += new System.EventHandler(this.toolStripButtonEdit_Click);
             // 
-            // toolStripButtonDelete
-            // 
-            this.toolStripButtonDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelete.Image")));
-            this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonDelete.Name = "toolStripButtonDelete";
-            this.toolStripButtonDelete.Size = new System.Drawing.Size(63, 22);
-            this.toolStripButtonDelete.Text = "Видалити";
-            this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
-            // 
             // toolStripButtonCopy
             // 
             this.toolStripButtonCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -213,6 +204,16 @@ namespace HomeFinances
             this.toolStripButtonCopy.Size = new System.Drawing.Size(69, 22);
             this.toolStripButtonCopy.Text = "Копіювати";
             this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
+            // 
+            // toolStripButtonDelete
+            // 
+            this.toolStripButtonDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelete.Image")));
+            this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDelete.Name = "toolStripButtonDelete";
+            this.toolStripButtonDelete.Size = new System.Drawing.Size(63, 22);
+            this.toolStripButtonDelete.Text = "Видалити";
+            this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
             // FormAddNotebookElement
             // 
