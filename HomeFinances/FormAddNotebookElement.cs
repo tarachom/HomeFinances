@@ -58,10 +58,12 @@ namespace HomeFinances
 		/// </summary>
         public string Uid { get; set; }
 
+		public UnigueID DefaultParentFolderUnigueID { get; set; }
+
 		/// <summary>
 		/// Обєкт запису
 		/// </summary>
-        private Довідники.Записник_Objest записник_Objest { get; set; }
+		private Довідники.Записник_Objest записник_Objest { get; set; }
 
 		/// <summary>
 		/// Зворотня функція для вибору із списку
@@ -94,7 +96,8 @@ namespace HomeFinances
 				if (IsNew.Value)
 				{
 					this.Text += " - Новий запис";
-					directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer();
+					directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(DefaultParentFolderUnigueID);
+
 					dateTimePickerRecord.Value = DateTime.Now;
 				}
 				else
@@ -107,6 +110,7 @@ namespace HomeFinances
 						directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(записник_Objest.Папка.UnigueID);
 						dateTimePickerRecord.Value = записник_Objest.Дата == DateTime.MinValue ? DateTime.Now : записник_Objest.Дата;
 						textBoxDesc.Text = записник_Objest.Опис;
+						textBoxSite.Text = записник_Objest.Сайт;
 
 						//записник_Objest.Файли_TablePart.Records.Add(new Довідники.Записник_Файли_TablePart.Record("one","one.xml"));
 						//записник_Objest.Файли_TablePart.Save(false);
@@ -132,6 +136,7 @@ namespace HomeFinances
 					записник_Objest.Папка = directoryControl1.DirectoryPointerItem != null ? (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem : new Довідники.Записник_Папки_Pointer();
 					записник_Objest.Дата = dateTimePickerRecord.Value;
 					записник_Objest.Опис = textBoxDesc.Text;
+					записник_Objest.Сайт = textBoxSite.Text;
 					записник_Objest.Save();
 				}
 				catch (Exception exp)
@@ -204,8 +209,12 @@ namespace HomeFinances
 
 		}
 
-		#endregion
 
+        #endregion
 
-	}
+        private void buttonOpenBrouser_Click(object sender, EventArgs e)
+        {
+			System.Diagnostics.Process.Start("firefox.exe", textBoxSite.Text);
+		}
+    }
 }

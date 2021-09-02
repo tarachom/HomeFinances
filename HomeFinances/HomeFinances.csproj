@@ -253,6 +253,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="homefinances.ico" />
+    <None Include="Resources\data.png" />
+    <None Include="Resources\money.png" />
+    <None Include="Resources\note.png" />
+    <None Include="Resources\page_2.png" />
+    <None Include="Resources\textfield.png" />
+    <None Include="Resources\folder2.ico" />
+    <None Include="Resources\folder.bmp" />
+    <None Include="Resources\books.ico" />
+    <None Include="Resources\images.ico" />
+    <None Include="Resources\photo_album.png" />
+    <None Include="Resources\page_white_text.png" />
     <None Include="Resources\bookmark_folder.png" />
     <None Include="Resources\page_white_delete.png" />
     <None Include="Resources\page_copy.png" />

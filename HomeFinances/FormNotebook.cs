@@ -57,6 +57,8 @@ namespace HomeFinances
 
 		#endregion
 
+		private Довідники.Записник_Папки_Pointer ParentFolder { get; set; }
+
 		private void FormNotebook_Load(object sender, EventArgs e)
         {
 			ParentFolder = new Довідники.Записник_Папки_Pointer();
@@ -78,8 +80,8 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["IsParentFolder"].Visible = false;
 
 			DataGridViewImageColumn dataGridViewImageColumn = new DataGridViewImageColumn();
-			dataGridViewRecords.Columns["Назва"].Width = 500;
-			dataGridViewRecords.Columns["Дата"].Width = 120;
+			dataGridViewRecords.Columns["Назва"].Width = 800;
+			dataGridViewRecords.Columns["Дата"].Width = 200;
 			dataGridViewImageColumn.Name = "Folder";
 			dataGridViewImageColumn.HeaderText = "...";
 			dataGridViewImageColumn.DisplayIndex = 1;
@@ -91,7 +93,6 @@ namespace HomeFinances
 
 		private BindingList<Записи> RecordsBindingList { get; set; }
 
-		private Довідники.Записник_Папки_Pointer ParentFolder { get; set; }
 
 		public void LoadRecords()
 		{
@@ -233,6 +234,15 @@ namespace HomeFinances
 						ParentFolder = записник_Папки_Pointer.GetDirectoryObject().Родич;
 						LoadRecords();
 					}
+
+					if (!isFolder && !isParentFolder)
+                    {
+						FormAddNotebookElement formAddNotebookElement = new FormAddNotebookElement();
+						formAddNotebookElement.OwnerForm = this;
+						formAddNotebookElement.IsNew = false;
+						formAddNotebookElement.Uid = Uid;
+						formAddNotebookElement.ShowDialog();
+					}
 				}
             }
         }
@@ -242,6 +252,7 @@ namespace HomeFinances
 			FormAddNotebookFolder formAddNotebookFolder = new FormAddNotebookFolder();
 			formAddNotebookFolder.IsNew = true;
 			formAddNotebookFolder.OwnerForm = this;
+			formAddNotebookFolder.DefaultParentFolderUnigueID = ParentFolder.UnigueID;
 			formAddNotebookFolder.ShowDialog();
 		}
 
@@ -250,6 +261,7 @@ namespace HomeFinances
 			FormAddNotebookElement formAddNotebookElement = new FormAddNotebookElement();
 			formAddNotebookElement.IsNew = true;
 			formAddNotebookElement.OwnerForm = this;
+			formAddNotebookElement.DefaultParentFolderUnigueID = ParentFolder.UnigueID;
 			formAddNotebookElement.ShowDialog();
 		}
 
@@ -323,25 +335,33 @@ namespace HomeFinances
 			}
 		}
 
-        private void toolStripButtonDelete_Click(object sender, EventArgs e)
-        {
+		private void toolStripButtonDelete_Click(object sender, EventArgs e)
+		{
 			if (dataGridViewRecords.SelectedRows.Count != 0 &&
-				MessageBox.Show("Видалити записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				MessageBox.Show("Видалити папки?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
 				{
 					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
-					string uid = row.Cells[0].Value.ToString();
 
-					Довідники.Записник_Папки_Objest записник_Папки_Objest = new Довідники.Записник_Папки_Objest();
-					if (записник_Папки_Objest.Read(new UnigueID(uid)))
+					string uid = row.Cells[0].Value.ToString();
+					bool isFolder = (bool)row.Cells["IsFolder"].Value;
+					bool isParentFolder = (bool)row.Cells["IsParentFolder"].Value;
+
+					if (isFolder == true && isParentFolder == false)
 					{
-						записник_Папки_Objest.Delete();
-					}
-					else
-					{
-						MessageBox.Show("Error read");
-						break;
+						Довідники.Записник_Папки_Objest записник_Папки_Objest = new Довідники.Записник_Папки_Objest();
+						if (записник_Папки_Objest.Read(new UnigueID(uid)))
+						{
+							//рекурсивно
+
+							записник_Папки_Objest.Delete();
+						}
+						else
+						{
+							MessageBox.Show("Error read");
+							break;
+						}
 					}
 				}
 
@@ -358,19 +378,52 @@ namespace HomeFinances
 
 				if (isFolder)
 				{
-					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\folder.png");
+					e.Value = HomeFinances.Properties.Resources.folder2;
+					dataGridViewRecords.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
 				}
 				else if (isParentFolder)
 				{
-					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\layers.png");
+					e.Value = HomeFinances.Properties.Resources.folder2;
+					//e.CellStyle.BackColor = ;
+					dataGridViewRecords.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray;
 				}
                 else
                 {
-					e.Value = Image.FromFile(@"C:\Users\Administrator\Desktop\2\application_form.png"); 
+					e.Value = Properties.Resources.page_white_text; 
 				}
 			}
         }
 
-        
+        private void toolStripButtonDeleteElement_Click(object sender, EventArgs e)
+        {
+			if (dataGridViewRecords.SelectedRows.Count != 0 &&
+				MessageBox.Show("Видалити записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
+				{
+					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
+
+					string uid = row.Cells[0].Value.ToString();
+					bool isFolder = (bool)row.Cells["IsFolder"].Value;
+					bool isParentFolder = (bool)row.Cells["IsParentFolder"].Value;
+
+					if (isFolder == false && isParentFolder == false)
+					{
+						Довідники.Записник_Objest записник_Objest = new Довідники.Записник_Objest();
+						if (записник_Objest.Read(new UnigueID(uid)))
+						{
+							записник_Objest.Delete();
+						}
+						else
+						{
+							MessageBox.Show("Error read");
+							break;
+						}
+					}
+				}
+
+				LoadRecords();
+			}
+		}
     }
 }

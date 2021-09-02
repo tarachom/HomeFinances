@@ -58,10 +58,12 @@ namespace HomeFinances
 		/// </summary>
         public string Uid { get; set; }
 
+		public UnigueID DefaultParentFolderUnigueID { get; set; }
+
 		/// <summary>
 		/// Обєкт запису
 		/// </summary>
-        private Довідники.Записник_Папки_Objest записник_Папки_Objest { get; set; }
+		private Довідники.Записник_Папки_Objest записник_Папки_Objest { get; set; }
 
 		/// <summary>
 		/// Зворотня функція для вибору із списку
@@ -86,7 +88,7 @@ namespace HomeFinances
 				if (IsNew.Value)
 				{
 					this.Text += " - Новий запис";
-					directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer();
+					directoryControl1.DirectoryPointerItem = new Довідники.Записник_Папки_Pointer(DefaultParentFolderUnigueID);
 					dateTimePickerRecord.Value = DateTime.Now;
 				}
 				else

@@ -29,19 +29,21 @@ namespace HomeFinances
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNotebook));
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.toolStripButtonAddFolder = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEditFolder = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonAddElement = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEditElement = new System.Windows.Forms.ToolStripButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
+            this.toolStripButtonDeleteElement = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -54,7 +56,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(962, 29);
+            this.panel1.Size = new System.Drawing.Size(1127, 29);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -67,12 +69,51 @@ namespace HomeFinances
             this.toolStripButtonDelete,
             this.toolStripSeparator1,
             this.toolStripButtonAddElement,
-            this.toolStripButtonEditElement});
+            this.toolStripButtonEditElement,
+            this.toolStripButtonDeleteElement});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(962, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1127, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dataGridViewRecords);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 29);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1127, 637);
+            this.panel2.TabIndex = 2;
+            // 
+            // dataGridViewRecords
+            // 
+            this.dataGridViewRecords.AllowUserToAddRows = false;
+            this.dataGridViewRecords.AllowUserToDeleteRows = false;
+            this.dataGridViewRecords.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridViewRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewRecords.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewRecords.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewRecords.Name = "dataGridViewRecords";
+            this.dataGridViewRecords.ReadOnly = true;
+            this.dataGridViewRecords.RowHeadersVisible = false;
+            this.dataGridViewRecords.Size = new System.Drawing.Size(1127, 637);
+            this.dataGridViewRecords.TabIndex = 0;
+            this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
+            this.dataGridViewRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewRecords_CellFormatting);
             // 
             // toolStripButtonAddFolder
             // 
@@ -120,11 +161,6 @@ namespace HomeFinances
             this.toolStripButtonDelete.Text = "Видалити";
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripButtonAddElement
             // 
             this.toolStripButtonAddElement.Image = global::HomeFinances.Properties.Resources.page;
@@ -143,35 +179,20 @@ namespace HomeFinances
             this.toolStripButtonEditElement.Text = "Редагувати елемент";
             this.toolStripButtonEditElement.Click += new System.EventHandler(this.toolStripButtonEditElement_Click);
             // 
-            // panel2
+            // toolStripButtonDeleteElement
             // 
-            this.panel2.Controls.Add(this.dataGridViewRecords);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 29);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(962, 536);
-            this.panel2.TabIndex = 2;
-            // 
-            // dataGridViewRecords
-            // 
-            this.dataGridViewRecords.AllowUserToAddRows = false;
-            this.dataGridViewRecords.AllowUserToDeleteRows = false;
-            this.dataGridViewRecords.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridViewRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRecords.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewRecords.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewRecords.Name = "dataGridViewRecords";
-            this.dataGridViewRecords.ReadOnly = true;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(962, 536);
-            this.dataGridViewRecords.TabIndex = 0;
-            this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
-            this.dataGridViewRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewRecords_CellFormatting);
+            this.toolStripButtonDeleteElement.Image = global::HomeFinances.Properties.Resources.page_white_delete;
+            this.toolStripButtonDeleteElement.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDeleteElement.Name = "toolStripButtonDeleteElement";
+            this.toolStripButtonDeleteElement.Size = new System.Drawing.Size(128, 22);
+            this.toolStripButtonDeleteElement.Text = "Видалити елемент";
+            this.toolStripButtonDeleteElement.Click += new System.EventHandler(this.toolStripButtonDeleteElement_Click);
             // 
             // FormNotebook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 565);
+            this.ClientSize = new System.Drawing.Size(1127, 666);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FormNotebook";
@@ -202,5 +223,6 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButtonAddElement;
         private System.Windows.Forms.ToolStripButton toolStripButtonEditElement;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDeleteElement;
     }
 }

@@ -288,6 +288,17 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_Field>
+      <Name>Сайт</Name>
+      <NameInTable>col_a5</NameInTable>
+      <IsExist>no</IsExist>
+      <FieldCreate>
+        <Name>Сайт</Name>
+        <NameInTable>col_a5</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+      </FieldCreate>
+    </Control_Field>
     <Control_TabularParts>
       <Name>ОбмінІсторія</Name>
       <Table>tab_a16</Table>

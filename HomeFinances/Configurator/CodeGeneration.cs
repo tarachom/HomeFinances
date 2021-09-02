@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 01.09.2021 16:41:04
+ * Дата конфігурації: 02.09.2021 13:10:37
  *
  */
 
@@ -652,12 +652,13 @@ namespace HomeFinances_1_0.Довідники
     class Записник_Objest : DirectoryObject
     {
         public Записник_Objest() : base(Config.Kernel, "tab_a03",
-             new string[] { "col_a1", "col_a4", "col_a3", "col_a2" }) 
+             new string[] { "col_a1", "col_a4", "col_a3", "col_a2", "col_a5" }) 
         {
             Назва = "";
             Опис = "";
             Дата = DateTime.MinValue;
             Папка = new Довідники.Записник_Папки_Pointer();
+            Сайт = "";
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Записник_ОбмінІсторія_TablePart(this);
@@ -673,6 +674,7 @@ namespace HomeFinances_1_0.Довідники
                 Опис = base.FieldValue["col_a4"].ToString();
                 Дата = (base.FieldValue["col_a3"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a3"].ToString()) : DateTime.MinValue;
                 Папка = new Довідники.Записник_Папки_Pointer(base.FieldValue["col_a2"]);
+                Сайт = base.FieldValue["col_a5"].ToString();
                 
                 BaseClear();
                 return true;
@@ -687,6 +689,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a4"] = Опис;
             base.FieldValue["col_a3"] = Дата;
             base.FieldValue["col_a2"] = Папка.UnigueID.UGuid;
+            base.FieldValue["col_a5"] = Сайт;
             
             BaseSave();
         }
@@ -700,6 +703,7 @@ namespace HomeFinances_1_0.Довідники
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
                "<Дата>" + Дата.ToString() + "</Дата>"  +
                "<Папка>" + Папка.ToString() + "</Папка>"  +
+               "<Сайт>" + "<![CDATA[" + Сайт + "]]>" + "</Сайт>"  +
                "</" + root + ">";
         }
 
@@ -718,6 +722,7 @@ namespace HomeFinances_1_0.Довідники
         public string Опис { get; set; }
         public DateTime Дата { get; set; }
         public Довідники.Записник_Папки_Pointer Папка { get; set; }
+        public string Сайт { get; set; }
         
         //Табличні частини
         public Записник_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
@@ -765,13 +770,14 @@ namespace HomeFinances_1_0.Довідники
     class Записник_Select : DirectorySelect, IDisposable
     {
         public Записник_Select() : base(Config.Kernel, "tab_a03",
-            new string[] { "col_a1", "col_a4", "col_a3", "col_a2" },
-            new string[] { "Назва", "Опис", "Дата", "Папка" }) { }
+            new string[] { "col_a1", "col_a4", "col_a3", "col_a2", "col_a5" },
+            new string[] { "Назва", "Опис", "Дата", "Папка", "Сайт" }) { }
         
         public const string Назва = "col_a1";
         public const string Опис = "col_a4";
         public const string Дата = "col_a3";
         public const string Папка = "col_a2";
+        public const string Сайт = "col_a5";
         
         public bool Select() { return base.BaseSelect(); }
         

@@ -64,6 +64,7 @@ namespace HomeFinances
 			RecordsBindingList = new BindingList<Записи>();
 			dataGridViewRecords.DataSource = RecordsBindingList;
 
+			dataGridViewRecords.Columns.Add(new DataGridViewImageColumn() { Name = "Image", HeaderText = "", Width = 30, DisplayIndex = 0, Image = HomeFinances.Properties.Resources.doc_text_image });
 			dataGridViewRecords.Columns["ID"].Visible = false;
 			dataGridViewRecords.Columns["Назва"].Width = 300;
 			dataGridViewRecords.Columns["Код"].Width = 130;

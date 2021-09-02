@@ -85,6 +85,8 @@ namespace HomeFinances
 			RecordsBindingList = new BindingList<Записи>();
 			dataGridViewRecords.DataSource = RecordsBindingList;
 
+			dataGridViewRecords.Columns.Add(new DataGridViewImageColumn() {Name = "Image", HeaderText = "", Width = 30, DisplayIndex = 0, Image = HomeFinances.Properties.Resources.doc_text_image });
+
 			dataGridViewRecords.Columns["ID"].Visible = false;
 			dataGridViewRecords.Columns["Назва"].Width = 500;
 
@@ -97,7 +99,7 @@ namespace HomeFinances
 
 			dataGridViewRecords.Columns["ТипЗапису"].HeaderText = "Тип";
 			dataGridViewRecords.Columns["ТипЗапису"].Width = 80;
-			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 0;
+			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 2;
 			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Font = new Font("Arial", 11);
 
@@ -105,6 +107,8 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
 			dataGridViewRecords.Columns["Проведено"].Width = 65;
+
+			
 
 			LoadRecords();		
 		}

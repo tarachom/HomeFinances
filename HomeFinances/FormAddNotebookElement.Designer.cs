@@ -47,6 +47,9 @@ namespace HomeFinances
             this.toolStripButtonEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
+            this.textBoxSite = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonOpenBrouser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -136,17 +139,17 @@ namespace HomeFinances
             this.dataGridViewFiles.AllowUserToDeleteRows = false;
             this.dataGridViewFiles.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFiles.Location = new System.Drawing.Point(84, 481);
+            this.dataGridViewFiles.Location = new System.Drawing.Point(84, 515);
             this.dataGridViewFiles.Name = "dataGridViewFiles";
             this.dataGridViewFiles.ReadOnly = true;
             this.dataGridViewFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFiles.Size = new System.Drawing.Size(821, 246);
+            this.dataGridViewFiles.Size = new System.Drawing.Size(821, 226);
             this.dataGridViewFiles.TabIndex = 29;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 481);
+            this.label5.Location = new System.Drawing.Point(27, 515);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 30;
@@ -169,7 +172,7 @@ namespace HomeFinances
             this.toolStripButtonEdit,
             this.toolStripButtonCopy,
             this.toolStripButtonDelete});
-            this.toolStrip1.Location = new System.Drawing.Point(84, 453);
+            this.toolStrip1.Location = new System.Drawing.Point(84, 487);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(265, 25);
             this.toolStrip1.TabIndex = 31;
@@ -215,11 +218,40 @@ namespace HomeFinances
             this.toolStripButtonDelete.Text = "Видалити";
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
+            // textBoxSite
+            // 
+            this.textBoxSite.Location = new System.Drawing.Point(84, 448);
+            this.textBoxSite.Name = "textBoxSite";
+            this.textBoxSite.Size = new System.Drawing.Size(782, 20);
+            this.textBoxSite.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(30, 451);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Сайт:";
+            // 
+            // buttonOpenBrouser
+            // 
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(872, 446);
+            this.buttonOpenBrouser.Name = "buttonOpenBrouser";
+            this.buttonOpenBrouser.Size = new System.Drawing.Size(33, 23);
+            this.buttonOpenBrouser.TabIndex = 34;
+            this.buttonOpenBrouser.Text = "...";
+            this.buttonOpenBrouser.UseVisualStyleBackColor = true;
+            this.buttonOpenBrouser.Click += new System.EventHandler(this.buttonOpenBrouser_Click);
+            // 
             // FormAddNotebookElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 783);
+            this.Controls.Add(this.buttonOpenBrouser);
+            this.Controls.Add(this.textBoxSite);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridViewFiles);
@@ -265,5 +297,8 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripButton toolStripButtonEdit;
         private System.Windows.Forms.ToolStripButton toolStripButtonDelete;
         private System.Windows.Forms.ToolStripButton toolStripButtonCopy;
+        private System.Windows.Forms.TextBox textBoxSite;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonOpenBrouser;
     }
 }
