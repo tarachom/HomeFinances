@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>02.09.2021 13:10:37</DateTimeSave>
+  <DateTimeSave>03.09.2021 16:50:57</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -40,6 +40,29 @@
           </Desc>
           <Type>pointer</Type>
           <Pointer>Довідники.КласифікаторВитрат</Pointer>
+          <TabularParts />
+        </Constant>
+      </Constants>
+    </ConstantsBlock>
+    <ConstantsBlock>
+      <Name>ВигрузкаТаЗагрузкаДаних</Name>
+      <Desc>
+      </Desc>
+      <Constants>
+        <Constant>
+          <Name>ПапкаДляВигрузкиДаних</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>string</Type>
+          <TabularParts />
+        </Constant>
+        <Constant>
+          <Name>ПапкаДляЗагрузкиДаних</Name>
+          <NameInTable>col_a5</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>string</Type>
           <TabularParts />
         </Constant>
       </Constants>

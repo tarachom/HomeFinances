@@ -1,5 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <info>Додати колонку Сайт (col_a5, тип text)  в таблицю Записник (tab_a03)</info>
-  <sql>ALTER TABLE tab_a03 ADD COLUMN "col_a5" text;</sql>
-</root>
+<root />

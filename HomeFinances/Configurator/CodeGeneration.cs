@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 02.09.2021 13:10:37
+ * Дата конфігурації: 03.09.2021 16:50:57
  *
  */
 
@@ -44,6 +44,7 @@ namespace HomeFinances_1_0
         {
             Константи.Основний.ReadAll();
             Константи.ЗначенняПоЗамовчуванню.ReadAll();
+            Константи.ВигрузкаТаЗагрузкаДаних.ReadAll();
             
         }
     }
@@ -124,6 +125,51 @@ namespace HomeFinances_1_0.Константи
             {
                 m_ОсновнаСтаттяВитрат_Const = value;
                 Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a2", m_ОсновнаСтаттяВитрат_Const.UnigueID.UGuid);
+            }
+        }
+             
+    }
+    #endregion
+    
+	#region CONSTANTS BLOCK "ВигрузкаТаЗагрузкаДаних"
+    static class ВигрузкаТаЗагрузкаДаних
+    {
+        public static void ReadAll()
+        {
+            
+            Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+            bool IsSelect = Config.Kernel.DataBase.SelectAllConstants("tab_constants",
+                 new string[] { "col_a4", "col_a5" }, fieldValue);
+            
+            if (IsSelect)
+            {
+                m_ПапкаДляВигрузкиДаних_Const = fieldValue["col_a4"].ToString();
+                m_ПапкаДляЗагрузкиДаних_Const = fieldValue["col_a5"].ToString();
+                
+            }
+			
+        }
+        
+        
+        static string m_ПапкаДляВигрузкиДаних_Const = "";
+        public static string ПапкаДляВигрузкиДаних_Const
+        {
+            get { return m_ПапкаДляВигрузкиДаних_Const; }
+            set
+            {
+                m_ПапкаДляВигрузкиДаних_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a4", m_ПапкаДляВигрузкиДаних_Const);
+            }
+        }
+        
+        static string m_ПапкаДляЗагрузкиДаних_Const = "";
+        public static string ПапкаДляЗагрузкиДаних_Const
+        {
+            get { return m_ПапкаДляЗагрузкиДаних_Const; }
+            set
+            {
+                m_ПапкаДляЗагрузкиДаних_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a5", m_ПапкаДляЗагрузкиДаних_Const);
             }
         }
              

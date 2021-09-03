@@ -28,6 +28,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO;
+
 using AccountingSoftware;
 using Конфа = HomeFinances_1_0;
 using Константи = HomeFinances_1_0.Константи;
@@ -72,6 +74,8 @@ namespace HomeFinances
             directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
 
             textBoxCatalogFiles.Text = Константи.Основний.КаталогДляФайлів_Const;
+            textBoxExportFolder.Text = Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const;
+            textBoxImportFolder.Text = Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -79,11 +83,46 @@ namespace HomeFinances
             Константи.ЗначенняПоЗамовчуванню.ОсновнаКаса_Const = (Довідники.Каса_Pointer)directoryControl1.DirectoryPointerItem;
             Константи.ЗначенняПоЗамовчуванню.ОсновнаСтаттяВитрат_Const = (Довідники.КласифікаторВитрат_Pointer)directoryControl2.DirectoryPointerItem;
             Константи.Основний.КаталогДляФайлів_Const = textBoxCatalogFiles.Text;
+            Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const = textBoxExportFolder.Text;
+            Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const = textBoxImportFolder.Text;
+
+            this.Close();
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonExportFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.SelectedPath = Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const;
+            folderBrowserDialog.ShowNewFolderButton = true;
+            folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            
+            DialogResult dialogResult = folderBrowserDialog.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                textBoxExportFolder.Text = folderBrowserDialog.SelectedPath;
+            }
+
+        }
+
+        private void buttonImportFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.SelectedPath = Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const;
+            folderBrowserDialog.ShowNewFolderButton = true;
+            folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
+
+            DialogResult dialogResult = folderBrowserDialog.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                textBoxImportFolder.Text = folderBrowserDialog.SelectedPath;
+            }
         }
     }
 }

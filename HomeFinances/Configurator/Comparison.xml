@@ -38,6 +38,28 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_Field>
+      <Name>ПапкаДляВигрузкиДаних</Name>
+      <NameInTable>col_a4</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>ПапкаДляЗагрузкиДаних</Name>
+      <NameInTable>col_a5</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -291,13 +313,13 @@
     <Control_Field>
       <Name>Сайт</Name>
       <NameInTable>col_a5</NameInTable>
-      <IsExist>no</IsExist>
-      <FieldCreate>
-        <Name>Сайт</Name>
-        <NameInTable>col_a5</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
         <ConfType>string</ConfType>
         <DataType>text</DataType>
-      </FieldCreate>
+        <UdtName>text</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
     </Control_Field>
     <Control_TabularParts>
       <Name>ОбмінІсторія</Name>

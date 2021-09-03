@@ -352,14 +352,20 @@ namespace HomeFinances
 			saveFileDialog.FileName = "HomeFinances_Export_" + DateTime.Now.ToString("dd_MM_yyyy") + ".xml";
 			saveFileDialog.Filter = "XML|*.xml";
 			saveFileDialog.Title = "Файл для вигрузки даних";
-			saveFileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+			saveFileDialog.InitialDirectory =
+				(!String.IsNullOrEmpty(Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const) ?
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const : Environment.SpecialFolder.Desktop.ToString());
 
 			string fileExport = "";
 
 			if (!(saveFileDialog.ShowDialog() == DialogResult.OK))
 				return;
 			else
+			{
 				fileExport = saveFileDialog.FileName;
+
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const = Path.GetDirectoryName(fileExport);
+			}
 
 			StreamWriter sw = new StreamWriter(fileExport);
 			sw.AutoFlush = true;
@@ -444,14 +450,19 @@ namespace HomeFinances
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			openFileDialog.Filter = "XML|*.xml";
 			openFileDialog.Title = "Файл для загрузки даних";
-			openFileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+			openFileDialog.InitialDirectory =
+				(!String.IsNullOrEmpty(Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const) ?
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const : Environment.SpecialFolder.Desktop.ToString());
 
 			string fileImport = "";
 
 			if (!(openFileDialog.ShowDialog() == DialogResult.OK))
 				return;
 			else
+			{
 				fileImport = openFileDialog.FileName;
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const = Path.GetDirectoryName(fileImport);
+			}
 
 			XPathDocument xPathDoc = new XPathDocument(fileImport);
 			XPathNavigator xPathDocNavigator = xPathDoc.CreateNavigator();
