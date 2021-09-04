@@ -261,7 +261,5 @@ namespace HomeFinances
 				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
 			}
 		}
-
-       
     }
 }
