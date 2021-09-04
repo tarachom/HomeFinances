@@ -163,10 +163,11 @@
     <Compile Include="FormRecordFinance.Designer.cs">
       <DependentUpon>FormRecordFinance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Запис\FormAddRecord.cs">
+    <Compile Include="Запис\Register.cs" />
+    <Compile Include="FormAddRecord.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Запис\FormAddRecord.Designer.cs">
+    <Compile Include="FormAddRecord.Designer.cs">
       <DependentUpon>FormAddRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -225,7 +226,7 @@
     <EmbeddedResource Include="FormRecordFinance.resx">
       <DependentUpon>FormRecordFinance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Запис\FormAddRecord.resx">
+    <EmbeddedResource Include="FormAddRecord.resx">
       <DependentUpon>FormAddRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
