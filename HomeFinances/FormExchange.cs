@@ -509,7 +509,5 @@ namespace HomeFinances
 		}
 
         #endregion
-
-        
     }
 }

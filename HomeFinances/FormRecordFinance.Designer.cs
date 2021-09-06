@@ -35,9 +35,7 @@ namespace HomeFinances
             this.labelCalculateBalance = new System.Windows.Forms.Label();
             this.buttonCalculateBalance = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.label7 = new System.Windows.Forms.Label();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,7 +56,6 @@ namespace HomeFinances
             this.toolStripButtonSpend = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +65,9 @@ namespace HomeFinances
             this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directoryControl2 = new HomeFinances.DirectoryControl();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -155,15 +155,6 @@ namespace HomeFinances
             this.panel3.Size = new System.Drawing.Size(394, 195);
             this.panel3.TabIndex = 7;
             // 
-            // directoryControl2
-            // 
-            this.directoryControl2.CallBack = null;
-            this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(96, 100);
-            this.directoryControl2.Name = "directoryControl2";
-            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl2.TabIndex = 11;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -172,15 +163,6 @@ namespace HomeFinances
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Каса:";
-            // 
-            // directoryControl1
-            // 
-            this.directoryControl1.CallBack = null;
-            this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(96, 67);
-            this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl1.TabIndex = 9;
             // 
             // label6
             // 
@@ -372,16 +354,6 @@ namespace HomeFinances
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(55, 22);
-            this.toolStripDropDownButton1.Text = "Обмін";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
-            // 
             // menuStripTop
             // 
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -463,6 +435,33 @@ namespace HomeFinances
             this.періодичніЗавданняToolStripMenuItem.Text = "Періодичні завдання";
             this.періодичніЗавданняToolStripMenuItem.Click += new System.EventHandler(this.періодичніЗавданняToolStripMenuItem_Click);
             // 
+            // directoryControl2
+            // 
+            this.directoryControl2.CallBack = null;
+            this.directoryControl2.DirectoryPointerItem = null;
+            this.directoryControl2.Location = new System.Drawing.Point(96, 100);
+            this.directoryControl2.Name = "directoryControl2";
+            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl2.TabIndex = 11;
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.CallBack = null;
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(96, 67);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl1.TabIndex = 9;
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.Image = global::HomeFinances.Properties.Resources.layers;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
+            this.toolStripDropDownButton1.Text = "Обмін";
+            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
+            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,7 +512,6 @@ namespace HomeFinances
 		private System.Windows.Forms.ToolStripButton toolStripButtonAdd;
 		private System.Windows.Forms.ToolStripButton toolStripButtonCopy;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem довідникиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem класифікаторВитратToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem контактиToolStripMenuItem;
@@ -540,6 +538,7 @@ namespace HomeFinances
         private System.Windows.Forms.Button buttonCalculateBalance;
         private System.Windows.Forms.Label labelCalculateBalance;
         private System.Windows.Forms.ToolStripButton toolStripButtonSpend;
+        private System.Windows.Forms.ToolStripButton toolStripDropDownButton1;
     }
 }
 

@@ -66,7 +66,7 @@ namespace HomeFinances
             this.panel1.Controls.Add(this.richTextBoxInfo);
             this.panel1.Location = new System.Drawing.Point(0, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(854, 421);
+            this.panel1.Size = new System.Drawing.Size(625, 577);
             this.panel1.TabIndex = 2;
             // 
             // panel2
@@ -78,7 +78,7 @@ namespace HomeFinances
             this.panel2.Controls.Add(this.buttonImport);
             this.panel2.Location = new System.Drawing.Point(0, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(854, 39);
+            this.panel2.Size = new System.Drawing.Size(625, 39);
             this.panel2.TabIndex = 3;
             // 
             // richTextBoxInfo
@@ -90,7 +90,7 @@ namespace HomeFinances
             this.richTextBoxInfo.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxInfo.Name = "richTextBoxInfo";
             this.richTextBoxInfo.ReadOnly = true;
-            this.richTextBoxInfo.Size = new System.Drawing.Size(854, 421);
+            this.richTextBoxInfo.Size = new System.Drawing.Size(625, 577);
             this.richTextBoxInfo.TabIndex = 0;
             this.richTextBoxInfo.Text = "";
             // 
@@ -109,7 +109,7 @@ namespace HomeFinances
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 486);
+            this.ClientSize = new System.Drawing.Size(627, 638);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
