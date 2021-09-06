@@ -41,17 +41,19 @@ using Перелічення = HomeFinances_1_0.Перелічення;
 
 namespace HomeFinances
 {
-    public partial class FormExchange : Form
-    {
-        public FormExchange()
-        {
-            InitializeComponent();
-        }
+	public partial class FormExchange : Form
+	{
+		public FormExchange()
+		{
+			InitializeComponent();
+		}
 
 		private void FormExchange_Load(object sender, EventArgs e)
-        {
-			
+		{
+
 		}
+
+		private bool Stop { get; set; }
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
@@ -75,8 +77,14 @@ namespace HomeFinances
 				buttonExport.Enabled = false;
 				buttonImport.Enabled = false;
 
+				richTextBoxInfo.Text = "";
+
+				Stop = false;
+
 				Thread thread = new Thread(new ParameterizedThreadStart(Export));
 				thread.Start(fileExport);
+
+				buttonAbort.Enabled = true;
 			}
 		}
 
@@ -101,9 +109,27 @@ namespace HomeFinances
 				buttonExport.Enabled = false;
 				buttonImport.Enabled = false;
 
+				richTextBoxInfo.Text = "";
+
+				Stop = false;
+
 				Thread thread = new Thread(new ParameterizedThreadStart(Import));
 				thread.Start(fileImport);
+
+				buttonAbort.Enabled = true;
 			}
+		}
+
+		private void buttonAbort_Click(object sender, EventArgs e)
+		{
+			Stop = true;
+
+			buttonExport.Enabled = true;
+			buttonImport.Enabled = true;
+
+			buttonAbort.Enabled = false;
+
+			ApendLine("ЗУПИНЕНО");
 		}
 
 		private void ApendLine(string text)
@@ -142,6 +168,12 @@ namespace HomeFinances
 			{
 				sw.WriteLine(класифікаторВитрат_Select.Current.GetDirectoryObject().Serialize("Запис"));
 				ApendLine(класифікаторВитрат_Select.Current.UnigueID.UGuid.ToString());
+
+				if (Stop)
+				{
+					sw.Close();
+					return;
+				}
 			}
 
 			sw.WriteLine("</Довідник_КласифікаторВитрат>");
@@ -158,6 +190,12 @@ namespace HomeFinances
 			{
 				sw.WriteLine(записи_Select.Current.GetDirectoryObject().Serialize("Запис"));
 				ApendLine(записи_Select.Current.UnigueID.UGuid.ToString());
+
+				if (Stop)
+				{
+					sw.Close();
+					return;
+				}
 			}
 
 			sw.WriteLine("</Довідник_Записи>");
@@ -174,6 +212,12 @@ namespace HomeFinances
 			{
 				sw.WriteLine(контакти_Select.Current.GetDirectoryObject().Serialize("Запис"));
 				ApendLine(контакти_Select.Current.UnigueID.UGuid.ToString());
+
+				if (Stop)
+				{
+					sw.Close();
+					return;
+				}
 			}
 
 			sw.WriteLine("</Довідник_Контакти>");
@@ -190,6 +234,12 @@ namespace HomeFinances
 			{
 				sw.WriteLine(валюта_Select.Current.GetDirectoryObject().Serialize("Запис"));
 				ApendLine(валюта_Select.Current.UnigueID.UGuid.ToString());
+
+				if (Stop)
+				{
+					sw.Close();
+					return;
+				}
 			}
 
 			sw.WriteLine("</Довідник_Валюти>");
@@ -206,6 +256,12 @@ namespace HomeFinances
 			{
 				sw.WriteLine(каса_Select.Current.GetDirectoryObject().Serialize("Запис"));
 				ApendLine(каса_Select.Current.UnigueID.UGuid.ToString());
+
+				if (Stop)
+				{
+					sw.Close();
+					return;
+				}
 			}
 
 			sw.WriteLine("</Довідник_Каси>");
@@ -220,217 +276,240 @@ namespace HomeFinances
 
 			buttonExport.Invoke(new Action(() => buttonExport.Enabled = true));
 			buttonImport.Invoke(new Action(() => buttonImport.Enabled = true));
+			buttonImport.Invoke(new Action(() => buttonAbort.Enabled = false));
 		}
 
 		private void Import(object fileImport)
 		{
-			XPathDocument xPathDoc = new XPathDocument(fileImport.ToString());
-			XPathNavigator xPathDocNavigator = xPathDoc.CreateNavigator();
-
-			//Корінна вітка
-			XPathNavigator rootNode = xPathDocNavigator.SelectSingleNode("/ВигрузкаДаних");
-
-			ApendLine("Довідники:");
-			
-			ApendLine("-> КласифікаторВитрат");
-			//1 - КласифікаторВитрат
-			XPathNodeIterator КласифікаторВитрат_Записи = rootNode.Select("Довідник_КласифікаторВитрат/Запис");
-			while (КласифікаторВитрат_Записи.MoveNext())
+			try
 			{
-				XPathNavigator current = КласифікаторВитрат_Записи.Current;
 
-				string uid = current.SelectSingleNode("uid").Value;
-				string Назва = current.SelectSingleNode("Назва").Value;
-				string Код = current.SelectSingleNode("Код").Value;
+				XPathDocument xPathDoc = new XPathDocument(fileImport.ToString());
+				XPathNavigator xPathDocNavigator = xPathDoc.CreateNavigator();
 
-				ApendLine(uid);
+				//Корінна вітка
+				XPathNavigator rootNode = xPathDocNavigator.SelectSingleNode("/ВигрузкаДаних");
 
-				Довідники.КласифікаторВитрат_Pointer класифікаторВитрат_Pointer = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(uid));
-				Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = класифікаторВитрат_Pointer.GetDirectoryObject();
-				if (класифікаторВитрат_Objest != null)
+				ApendLine("Довідники:");
+
+				ApendLine("-> КласифікаторВитрат");
+				//1 - КласифікаторВитрат
+				XPathNodeIterator КласифікаторВитрат_Записи = rootNode.Select("Довідник_КласифікаторВитрат/Запис");
+				while (КласифікаторВитрат_Записи.MoveNext())
 				{
-					//Збереження попередніх значень
-					класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Records.Add(
-						new Довідники.КласифікаторВитрат_ОбмінІсторія_TablePart.Record(DateTime.Now, класифікаторВитрат_Objest.Serialize("Запис")));
-					класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Save(true);
-				}
-				else
-				{
-					класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
-					класифікаторВитрат_Objest.New(класифікаторВитрат_Pointer.UnigueID);
+					if (Stop) return;
+
+					XPathNavigator current = КласифікаторВитрат_Записи.Current;
+
+					string uid = current.SelectSingleNode("uid").Value;
+					string Назва = current.SelectSingleNode("Назва").Value;
+					string Код = current.SelectSingleNode("Код").Value;
+
+					ApendLine(uid);
+
+
+					Довідники.КласифікаторВитрат_Pointer класифікаторВитрат_Pointer = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(uid));
+					Довідники.КласифікаторВитрат_Objest класифікаторВитрат_Objest = класифікаторВитрат_Pointer.GetDirectoryObject();
+					if (класифікаторВитрат_Objest != null)
+					{
+						//Збереження попередніх значень
+						класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Records.Add(
+							new Довідники.КласифікаторВитрат_ОбмінІсторія_TablePart.Record(DateTime.Now, класифікаторВитрат_Objest.Serialize("Запис")));
+						класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Save(true);
+					}
+					else
+					{
+						класифікаторВитрат_Objest = new Довідники.КласифікаторВитрат_Objest();
+						класифікаторВитрат_Objest.New(класифікаторВитрат_Pointer.UnigueID);
+					}
+
+					класифікаторВитрат_Objest.Назва = Назва;
+					класифікаторВитрат_Objest.Код = Код;
+					класифікаторВитрат_Objest.Save();
 				}
 
-				класифікаторВитрат_Objest.Назва = Назва;
-				класифікаторВитрат_Objest.Код = Код;
-				класифікаторВитрат_Objest.Save();
+				ApendLine("-> Валюти");
+				//2 - Валюти
+				XPathNodeIterator Довідник_Валюти_Записи = rootNode.Select("Довідник_Валюти/Запис");
+				while (Довідник_Валюти_Записи.MoveNext())
+				{
+					if (Stop) return;
+
+					XPathNavigator current = Довідник_Валюти_Записи.Current;
+
+					string uid = current.SelectSingleNode("uid").Value;
+					string Назва = current.SelectSingleNode("Назва").Value;
+					string Код = current.SelectSingleNode("Код").Value;
+
+					ApendLine(uid);
+
+					Довідники.Валюта_Pointer валюта_Pointer = new Довідники.Валюта_Pointer(new UnigueID(uid));
+					Довідники.Валюта_Objest валюта_Objest = валюта_Pointer.GetDirectoryObject();
+					if (валюта_Objest != null)
+					{
+						//Збереження попередніх значень
+						валюта_Objest.ОбмінІсторія_TablePart.Records.Add(
+							new Довідники.Валюта_ОбмінІсторія_TablePart.Record(DateTime.Now, валюта_Objest.Serialize("Запис")));
+						валюта_Objest.ОбмінІсторія_TablePart.Save(true);
+					}
+					else
+					{
+						валюта_Objest = new Довідники.Валюта_Objest();
+						валюта_Objest.New(валюта_Pointer.UnigueID);
+					}
+
+					валюта_Objest.Назва = Назва;
+					валюта_Objest.Код = Код;
+					валюта_Objest.Save();
+				}
+
+				ApendLine("-> Каса");
+				//3 - Каса
+				XPathNodeIterator Довідник_Каси_Записи = rootNode.Select("Довідник_Каси/Запис");
+				while (Довідник_Каси_Записи.MoveNext())
+				{
+					if (Stop) return;
+
+					XPathNavigator current = Довідник_Каси_Записи.Current;
+
+					string uid = current.SelectSingleNode("uid").Value;
+					string Назва = current.SelectSingleNode("Назва").Value;
+					string Валюта = current.SelectSingleNode("Валюта").Value;
+					string ТипВалюти = current.SelectSingleNode("ТипВалюти").Value;
+
+					ApendLine(uid);
+
+					Довідники.Каса_Pointer каса_Pointer = new Довідники.Каса_Pointer(new UnigueID(uid));
+					Довідники.Каса_Objest каса_Objest = каса_Pointer.GetDirectoryObject();
+					if (каса_Objest != null)
+					{
+						//Збереження попередніх значень
+						каса_Objest.ОбмінІсторія_TablePart.Records.Add(
+							new Довідники.Каса_ОбмінІсторія_TablePart.Record(DateTime.Now, каса_Objest.Serialize("Запис")));
+						каса_Objest.ОбмінІсторія_TablePart.Save(true);
+					}
+					else
+					{
+						каса_Objest = new Довідники.Каса_Objest();
+						каса_Objest.New(каса_Pointer.UnigueID);
+					}
+
+					каса_Objest.Назва = Назва;
+					каса_Objest.Валюта = new Довідники.Валюта_Pointer(new UnigueID(Валюта));
+					каса_Objest.ТипВалюти = ((Перелічення.ТипВалюти)int.Parse(ТипВалюти));
+					каса_Objest.Save();
+				}
+
+				ApendLine("-> Записи");
+				//4 - Записи
+				XPathNodeIterator Довідник_Записи_Записи = rootNode.Select("Довідник_Записи/Запис");
+				while (Довідник_Записи_Записи.MoveNext())
+				{
+					if (Stop) return;
+
+					XPathNavigator current = Довідник_Записи_Записи.Current;
+
+					string uid = current.SelectSingleNode("uid").Value;
+					string Назва = current.SelectSingleNode("Назва").Value;
+					string ДатаЗапису = current.SelectSingleNode("ДатаЗапису").Value;
+					string Опис = current.SelectSingleNode("Опис").Value;
+					string ТипЗапису = current.SelectSingleNode("ТипЗапису").Value;
+					string Сума = current.SelectSingleNode("Сума").Value;
+					string Витрата = current.SelectSingleNode("Витрата").Value;
+					string Каса = current.SelectSingleNode("Каса").Value;
+					string КасаПереміщення = current.SelectSingleNode("КасаПереміщення").Value;
+					string СсилкаНаСайт = current.SelectSingleNode("СсилкаНаСайт").Value;
+					string Проведено = current.SelectSingleNode("Проведено").Value;
+
+					ApendLine(uid);
+
+					Довідники.Записи_Pointer записи_Pointer = new Довідники.Записи_Pointer(new UnigueID(uid));
+					Довідники.Записи_Objest записи_Objest = записи_Pointer.GetDirectoryObject();
+					if (записи_Objest != null)
+					{
+						//Збереження попередніх значень
+						записи_Objest.ОбмінІсторія_TablePart.Records.Add(
+							new Довідники.Записи_ОбмінІсторія_TablePart.Record(DateTime.Now, записи_Objest.Serialize("Запис")));
+						записи_Objest.ОбмінІсторія_TablePart.Save(true);
+					}
+					else
+					{
+						записи_Objest = new Довідники.Записи_Objest();
+						записи_Objest.New(записи_Pointer.UnigueID);
+					}
+
+					записи_Objest.Назва = Назва;
+					записи_Objest.ДатаЗапису = DateTime.Parse(ДатаЗапису);
+					записи_Objest.Опис = Опис;
+					записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)int.Parse(ТипЗапису);
+					записи_Objest.Сума = int.Parse(Сума);
+					записи_Objest.Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Витрата));
+					записи_Objest.Каса = new Довідники.Каса_Pointer(new UnigueID(Каса));
+					записи_Objest.КасаПереміщення = new Довідники.Каса_Pointer(new UnigueID(КасаПереміщення));
+					записи_Objest.СсилкаНаСайт = СсилкаНаСайт;
+					записи_Objest.Проведено = Проведено == "1" ? true : false;
+					записи_Objest.Save();
+				}
+
+				ApendLine("-> Контакти");
+				//5 - Контакти
+				XPathNodeIterator Довідник_Контакти_Записи = rootNode.Select("Довідник_Контакти/Запис");
+				while (Довідник_Контакти_Записи.MoveNext())
+				{
+					if (Stop) return;
+
+					XPathNavigator current = Довідник_Контакти_Записи.Current;
+
+					string uid = current.SelectSingleNode("uid").Value;
+					string Назва = current.SelectSingleNode("Назва").Value;
+					string Телефон = current.SelectSingleNode("Телефон").Value;
+					string Сайт = current.SelectSingleNode("Сайт").Value;
+					string Пошта = current.SelectSingleNode("Пошта").Value;
+					string Опис = current.SelectSingleNode("Опис").Value;
+					string Скайп = current.SelectSingleNode("Скайп").Value;
+
+					ApendLine(uid);
+
+					Довідники.Контакти_Pointer контакти_Pointer = new Довідники.Контакти_Pointer(new UnigueID(uid));
+					Довідники.Контакти_Objest контакти_Objest = контакти_Pointer.GetDirectoryObject();
+					if (контакти_Objest != null)
+					{
+						//Збереження попередніх значень
+						контакти_Objest.ОбмінІсторія_TablePart.Records.Add(
+							new Довідники.Контакти_ОбмінІсторія_TablePart.Record(DateTime.Now, контакти_Objest.Serialize("Запис")));
+						контакти_Objest.ОбмінІсторія_TablePart.Save(true);
+					}
+					else
+					{
+						контакти_Objest = new Довідники.Контакти_Objest();
+						контакти_Objest.New(контакти_Pointer.UnigueID);
+					}
+
+					контакти_Objest.Назва = Назва;
+					контакти_Objest.Телефон = Телефон;
+					контакти_Objest.Сайт = Сайт;
+					контакти_Objest.Пошта = Пошта;
+					контакти_Objest.Опис = Опис;
+					контакти_Objest.Скайп = Скайп;
+					контакти_Objest.Save();
+				}
+
+				ApendLine("");
+				ApendLine("ГОТОВО");
+				ApendLine("Дані завантажені");
 			}
-
-			ApendLine("-> Валюти");
-			//2 - Валюти
-			XPathNodeIterator Довідник_Валюти_Записи = rootNode.Select("Довідник_Валюти/Запис");
-			while (Довідник_Валюти_Записи.MoveNext())
-			{
-				XPathNavigator current = Довідник_Валюти_Записи.Current;
-
-				string uid = current.SelectSingleNode("uid").Value;
-				string Назва = current.SelectSingleNode("Назва").Value;
-				string Код = current.SelectSingleNode("Код").Value;
-
-				ApendLine(uid);
-
-				Довідники.Валюта_Pointer валюта_Pointer = new Довідники.Валюта_Pointer(new UnigueID(uid));
-				Довідники.Валюта_Objest валюта_Objest = валюта_Pointer.GetDirectoryObject();
-				if (валюта_Objest != null)
-				{
-					//Збереження попередніх значень
-					валюта_Objest.ОбмінІсторія_TablePart.Records.Add(
-						new Довідники.Валюта_ОбмінІсторія_TablePart.Record(DateTime.Now, валюта_Objest.Serialize("Запис")));
-					валюта_Objest.ОбмінІсторія_TablePart.Save(true);
-				}
-				else
-				{
-					валюта_Objest = new Довідники.Валюта_Objest();
-					валюта_Objest.New(валюта_Pointer.UnigueID);
-				}
-
-				валюта_Objest.Назва = Назва;
-				валюта_Objest.Код = Код;
-				валюта_Objest.Save();
+			catch(Exception ex)
+            {
+				ApendLine("ПОМИЛКА: " + ex.Message);
 			}
-
-			ApendLine("-> Каса");
-			//3 - Каса
-			XPathNodeIterator Довідник_Каси_Записи = rootNode.Select("Довідник_Каси/Запис");
-			while (Довідник_Каси_Записи.MoveNext())
-			{
-				XPathNavigator current = Довідник_Каси_Записи.Current;
-
-				string uid = current.SelectSingleNode("uid").Value;
-				string Назва = current.SelectSingleNode("Назва").Value;
-				string Валюта = current.SelectSingleNode("Валюта").Value;
-				string ТипВалюти = current.SelectSingleNode("ТипВалюти").Value;
-
-				ApendLine(uid);
-
-				Довідники.Каса_Pointer каса_Pointer = new Довідники.Каса_Pointer(new UnigueID(uid));
-				Довідники.Каса_Objest каса_Objest = каса_Pointer.GetDirectoryObject();
-				if (каса_Objest != null)
-				{
-					//Збереження попередніх значень
-					каса_Objest.ОбмінІсторія_TablePart.Records.Add(
-						new Довідники.Каса_ОбмінІсторія_TablePart.Record(DateTime.Now, каса_Objest.Serialize("Запис")));
-					каса_Objest.ОбмінІсторія_TablePart.Save(true);
-				}
-				else
-				{
-					каса_Objest = new Довідники.Каса_Objest();
-					каса_Objest.New(каса_Pointer.UnigueID);
-				}
-
-				каса_Objest.Назва = Назва;
-				каса_Objest.Валюта = new Довідники.Валюта_Pointer(new UnigueID(Валюта));
-				каса_Objest.ТипВалюти = ((Перелічення.ТипВалюти)int.Parse(ТипВалюти));
-				каса_Objest.Save();
-			}
-
-			ApendLine("-> Записи");
-			//4 - Записи
-			XPathNodeIterator Довідник_Записи_Записи = rootNode.Select("Довідник_Записи/Запис");
-			while (Довідник_Записи_Записи.MoveNext())
-			{
-				XPathNavigator current = Довідник_Записи_Записи.Current;
-
-				string uid = current.SelectSingleNode("uid").Value;
-				string Назва = current.SelectSingleNode("Назва").Value;
-				string ДатаЗапису = current.SelectSingleNode("ДатаЗапису").Value;
-				string Опис = current.SelectSingleNode("Опис").Value;
-				string ТипЗапису = current.SelectSingleNode("ТипЗапису").Value;
-				string Сума = current.SelectSingleNode("Сума").Value;
-				string Витрата = current.SelectSingleNode("Витрата").Value;
-				string Каса = current.SelectSingleNode("Каса").Value;
-				string КасаПереміщення = current.SelectSingleNode("КасаПереміщення").Value;
-				string СсилкаНаСайт = current.SelectSingleNode("СсилкаНаСайт").Value;
-				string Проведено = current.SelectSingleNode("Проведено").Value;
-
-				ApendLine(uid);
-
-				Довідники.Записи_Pointer записи_Pointer = new Довідники.Записи_Pointer(new UnigueID(uid));
-				Довідники.Записи_Objest записи_Objest = записи_Pointer.GetDirectoryObject();
-				if (записи_Objest != null)
-				{
-					//Збереження попередніх значень
-					записи_Objest.ОбмінІсторія_TablePart.Records.Add(
-						new Довідники.Записи_ОбмінІсторія_TablePart.Record(DateTime.Now, записи_Objest.Serialize("Запис")));
-					записи_Objest.ОбмінІсторія_TablePart.Save(true);
-				}
-				else
-				{
-					записи_Objest = new Довідники.Записи_Objest();
-					записи_Objest.New(записи_Pointer.UnigueID);
-				}
-
-				записи_Objest.Назва = Назва;
-				записи_Objest.ДатаЗапису = DateTime.Parse(ДатаЗапису);
-				записи_Objest.Опис = Опис;
-				записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)int.Parse(ТипЗапису);
-				записи_Objest.Сума = int.Parse(Сума);
-				записи_Objest.Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Витрата));
-				записи_Objest.Каса = new Довідники.Каса_Pointer(new UnigueID(Каса));
-				записи_Objest.КасаПереміщення = new Довідники.Каса_Pointer(new UnigueID(КасаПереміщення));
-				записи_Objest.СсилкаНаСайт = СсилкаНаСайт;
-				записи_Objest.Проведено = Проведено == "1" ? true : false;
-				записи_Objest.Save();
-			}
-
-			ApendLine("-> Контакти");
-			//5 - Контакти
-			XPathNodeIterator Довідник_Контакти_Записи = rootNode.Select("Довідник_Контакти/Запис");
-			while (Довідник_Контакти_Записи.MoveNext())
-			{
-				XPathNavigator current = Довідник_Контакти_Записи.Current;
-
-				string uid = current.SelectSingleNode("uid").Value;
-				string Назва = current.SelectSingleNode("Назва").Value;
-				string Телефон = current.SelectSingleNode("Телефон").Value;
-				string Сайт = current.SelectSingleNode("Сайт").Value;
-				string Пошта = current.SelectSingleNode("Пошта").Value;
-				string Опис = current.SelectSingleNode("Опис").Value;
-				string Скайп = current.SelectSingleNode("Скайп").Value;
-
-				ApendLine(uid);
-
-				Довідники.Контакти_Pointer контакти_Pointer = new Довідники.Контакти_Pointer(new UnigueID(uid));
-				Довідники.Контакти_Objest контакти_Objest = контакти_Pointer.GetDirectoryObject();
-				if (контакти_Objest != null)
-				{
-					//Збереження попередніх значень
-					контакти_Objest.ОбмінІсторія_TablePart.Records.Add(
-						new Довідники.Контакти_ОбмінІсторія_TablePart.Record(DateTime.Now, контакти_Objest.Serialize("Запис")));
-					контакти_Objest.ОбмінІсторія_TablePart.Save(true);
-				}
-				else
-				{
-					контакти_Objest = new Довідники.Контакти_Objest();
-					контакти_Objest.New(контакти_Pointer.UnigueID);
-				}
-
-				контакти_Objest.Назва = Назва;
-				контакти_Objest.Телефон = Телефон;
-				контакти_Objest.Сайт = Сайт;
-				контакти_Objest.Пошта = Пошта;
-				контакти_Objest.Опис = Опис;
-				контакти_Objest.Скайп = Скайп;
-				контакти_Objest.Save();
-			}
-
-			ApendLine("");
-			ApendLine("ГОТОВО");
-			ApendLine("Дані завантажені");
 
 			buttonExport.Invoke(new Action(() => buttonExport.Enabled = true));
 			buttonImport.Invoke(new Action(() => buttonImport.Enabled = true));
+			buttonImport.Invoke(new Action(() => buttonAbort.Enabled = false));
 		}
 
-		#endregion
-	}
+        #endregion
+
+        
+    }
 }

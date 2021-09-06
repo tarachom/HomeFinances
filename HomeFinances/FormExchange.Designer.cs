@@ -34,6 +34,7 @@ namespace HomeFinances
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
+            this.buttonAbort = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +73,7 @@ namespace HomeFinances
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.buttonAbort);
             this.panel2.Controls.Add(this.buttonExport);
             this.panel2.Controls.Add(this.buttonImport);
             this.panel2.Location = new System.Drawing.Point(0, 12);
@@ -81,15 +83,27 @@ namespace HomeFinances
             // 
             // richTextBoxInfo
             // 
-            this.richTextBoxInfo.BackColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxInfo.BackColor = System.Drawing.SystemColors.Info;
+            this.richTextBoxInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBoxInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxInfo.Font = new System.Drawing.Font("Consolas", 9.75F);
             this.richTextBoxInfo.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxInfo.Name = "richTextBoxInfo";
+            this.richTextBoxInfo.ReadOnly = true;
             this.richTextBoxInfo.Size = new System.Drawing.Size(854, 421);
             this.richTextBoxInfo.TabIndex = 0;
             this.richTextBoxInfo.Text = "";
+            // 
+            // buttonAbort
+            // 
+            this.buttonAbort.Enabled = false;
+            this.buttonAbort.Location = new System.Drawing.Point(304, 3);
+            this.buttonAbort.Name = "buttonAbort";
+            this.buttonAbort.Size = new System.Drawing.Size(75, 31);
+            this.buttonAbort.TabIndex = 2;
+            this.buttonAbort.Text = "Зупинити";
+            this.buttonAbort.UseVisualStyleBackColor = true;
+            this.buttonAbort.Click += new System.EventHandler(this.buttonAbort_Click);
             // 
             // FormExchange
             // 
@@ -116,5 +130,6 @@ namespace HomeFinances
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox richTextBoxInfo;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonAbort;
     }
 }
