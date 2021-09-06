@@ -43,9 +43,52 @@ namespace HomeFinances_1_0.Довідники
             Console.WriteLine("BeforeRecording: " + записи.Назва);
         }
 
-        public static void Записи_AfterRecording(Записи_Objest записи)
+        public static void Записи_AfterRecording(Записи_Objest запис)
         {
-            Console.WriteLine("AfterRecording: " + записи.Назва);
-        }
+            Console.WriteLine("AfterRecording: " + запис.Назва);
+
+			//Обов'язкове очищення регістру від попередніх записів
+			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);
+
+			if (запис.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
+			{
+				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+
+				record1.Income = false;
+				record2.Income = true;
+
+				record1.Owner = record2.Owner = запис.UnigueID.UGuid;
+
+				record1.Каса = запис.Каса;
+				record2.Каса = запис.КасаПереміщення;
+
+				record1.Сума = record2.Сума = запис.Сума;
+
+				залишкиКоштів_RecordsSet.Records.Add(record1);
+				залишкиКоштів_RecordsSet.Records.Add(record2);
+				залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
+			}
+			
+			if ((запис.ТипЗапису == Перелічення.ТипЗапису.Витрати) || 
+				(запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність) ||
+				(запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення))
+			{
+				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+
+				if (запис.ТипЗапису == Перелічення.ТипЗапису.Витрати || запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
+					record.Income = false;
+				else if (запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
+					record.Income = true;
+
+				record.Owner = запис.UnigueID.UGuid;
+				record.Каса = запис.Каса;
+				record.Сума = запис.Сума;
+
+				залишкиКоштів_RecordsSet.Records.Add(record);
+				залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
+			}
+		}
     }
 }

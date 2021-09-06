@@ -188,15 +188,13 @@ namespace HomeFinances
 					записи_Objest.СсилкаНаСайт = textBoxUrlLink.Text;
 					записи_Objest.Каса = (Довідники.Каса_Pointer)directoryControl2.DirectoryPointerItem;
 					записи_Objest.КасаПереміщення = (Довідники.Каса_Pointer)directoryControl3.DirectoryPointerItem;
-
 					записи_Objest.Проведено = Spend;
-
 					записи_Objest.Save();
 
-					if (Spend)
-						WriteRegisterAccumulation();
-					else
-						ClearRegisterAccumulation();
+					//if (Spend)
+					//	WriteRegisterAccumulation();
+					//else
+					//	ClearRegisterAccumulation();
 				}
 				catch (Exception exp)
 				{
@@ -211,55 +209,55 @@ namespace HomeFinances
 			}
 		}
 
-		private void ClearRegisterAccumulation()
-        {
-			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
-			залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
-		}
+		//private void ClearRegisterAccumulation()
+  //      {
+		//	РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+		//	залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
+		//}
 
-		private void WriteRegisterAccumulation()
-		{
-			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+		//private void WriteRegisterAccumulation()
+		//{
+		//	РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 
-			if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Замітка)
-			{
-				залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
-			}
-			else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
-			{
-				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
-				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+		//	if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Замітка)
+		//	{
+		//		залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
+		//	}
+		//	else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
+		//	{
+		//		РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+		//		РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
-				record1.Income = false;
-				record2.Income = true;
+		//		record1.Income = false;
+		//		record2.Income = true;
 
-				record1.Owner = record2.Owner = записи_Objest.UnigueID.UGuid;
+		//		record1.Owner = record2.Owner = записи_Objest.UnigueID.UGuid;
 
-				record1.Каса = записи_Objest.Каса;
-				record2.Каса = записи_Objest.КасаПереміщення;
+		//		record1.Каса = записи_Objest.Каса;
+		//		record2.Каса = записи_Objest.КасаПереміщення;
 
-				record1.Сума = record2.Сума = записи_Objest.Сума;
+		//		record1.Сума = record2.Сума = записи_Objest.Сума;
 
-				залишкиКоштів_RecordsSet.Records.Add(record1);
-				залишкиКоштів_RecordsSet.Records.Add(record2);
-				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
-			}
-			else
-			{
-				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+		//		залишкиКоштів_RecordsSet.Records.Add(record1);
+		//		залишкиКоштів_RecordsSet.Records.Add(record2);
+		//		залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
+		//	}
+		//	else
+		//	{
+		//		РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
-				if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Витрати || записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
-					record.Income = false;
-				else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
-					record.Income = true;
+		//		if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Витрати || записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
+		//			record.Income = false;
+		//		else if (записи_Objest.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
+		//			record.Income = true;
 
-				record.Owner = записи_Objest.UnigueID.UGuid;
-				record.Каса = записи_Objest.Каса;
-				record.Сума = записи_Objest.Сума;
+		//		record.Owner = записи_Objest.UnigueID.UGuid;
+		//		record.Каса = записи_Objest.Каса;
+		//		record.Сума = записи_Objest.Сума;
 
-				залишкиКоштів_RecordsSet.Records.Add(record);
-				залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
-			}
-		}
+		//		залишкиКоштів_RecordsSet.Records.Add(record);
+		//		залишкиКоштів_RecordsSet.Save(записи_Objest.ДатаЗапису, записи_Objest.UnigueID.UGuid);
+		//	}
+		//}
     }
 }
