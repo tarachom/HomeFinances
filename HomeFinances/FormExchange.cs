@@ -50,10 +50,14 @@ namespace HomeFinances
 
 		private void FormExchange_Load(object sender, EventArgs e)
 		{
-
+			autoResetEvent = new AutoResetEvent(true);
 		}
 
+		private AutoResetEvent autoResetEvent { get; set; }
+
 		private bool Stop { get; set; }
+
+		private Thread ThreadWork { get; set; }
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
@@ -83,6 +87,8 @@ namespace HomeFinances
 
 				Thread thread = new Thread(new ParameterizedThreadStart(Export));
 				thread.Start(fileExport);
+
+				ThreadWork = thread;
 
 				buttonAbort.Enabled = true;
 			}
@@ -115,6 +121,8 @@ namespace HomeFinances
 
 				Thread thread = new Thread(new ParameterizedThreadStart(Import));
 				thread.Start(fileImport);
+
+				ThreadWork = thread;
 
 				buttonAbort.Enabled = true;
 			}
@@ -162,6 +170,12 @@ namespace HomeFinances
 
 			ApendLine("-> КласифікаторВитрат");
 
+			if (Stop)
+			{
+				sw.Close();
+				return;
+			}
+
 			Довідники.КласифікаторВитрат_Select класифікаторВитрат_Select = new Довідники.КласифікаторВитрат_Select();
 			класифікаторВитрат_Select.Select();
 			while (класифікаторВитрат_Select.MoveNext())
@@ -182,6 +196,12 @@ namespace HomeFinances
 			sw.WriteLine("<Довідник_Записи>");
 
 			ApendLine("-> Записи");
+
+			if (Stop)
+			{
+				sw.Close();
+				return;
+			}
 
 			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
 			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
@@ -205,6 +225,12 @@ namespace HomeFinances
 
 			ApendLine("-> Контакти");
 
+			if (Stop)
+			{
+				sw.Close();
+				return;
+			}
+
 			Довідники.Контакти_Select контакти_Select = new Довідники.Контакти_Select();
 			контакти_Select.QuerySelect.Order.Add(Довідники.Контакти_Select.Назва, SelectOrder.ASC);
 			контакти_Select.Select();
@@ -227,6 +253,12 @@ namespace HomeFinances
 
 			ApendLine("-> Валюти");
 
+			if (Stop)
+			{
+				sw.Close();
+				return;
+			}
+
 			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
 			валюта_Select.QuerySelect.Order.Add(Довідники.Валюта_Select.Назва, SelectOrder.ASC);
 			валюта_Select.Select();
@@ -248,6 +280,12 @@ namespace HomeFinances
 			sw.WriteLine("<Довідник_Каси>");
 
 			ApendLine("-> Каси");
+
+			if (Stop)
+			{
+				sw.Close();
+				return;
+			}
 
 			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
 			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
@@ -297,7 +335,11 @@ namespace HomeFinances
 				XPathNodeIterator КласифікаторВитрат_Записи = rootNode.Select("Довідник_КласифікаторВитрат/Запис");
 				while (КласифікаторВитрат_Записи.MoveNext())
 				{
-					if (Stop) return;
+					if (Stop)
+					{
+						Stop = false;
+						return;
+					}
 
 					XPathNavigator current = КласифікаторВитрат_Записи.Current;
 
@@ -333,7 +375,11 @@ namespace HomeFinances
 				XPathNodeIterator Довідник_Валюти_Записи = rootNode.Select("Довідник_Валюти/Запис");
 				while (Довідник_Валюти_Записи.MoveNext())
 				{
-					if (Stop) return;
+					if (Stop)
+					{
+						Stop = false;
+						return;
+					}
 
 					XPathNavigator current = Довідник_Валюти_Записи.Current;
 
@@ -368,7 +414,11 @@ namespace HomeFinances
 				XPathNodeIterator Довідник_Каси_Записи = rootNode.Select("Довідник_Каси/Запис");
 				while (Довідник_Каси_Записи.MoveNext())
 				{
-					if (Stop) return;
+					if (Stop)
+					{
+						Stop = false;
+						return;
+					}
 
 					XPathNavigator current = Довідник_Каси_Записи.Current;
 
@@ -405,7 +455,11 @@ namespace HomeFinances
 				XPathNodeIterator Довідник_Записи_Записи = rootNode.Select("Довідник_Записи/Запис");
 				while (Довідник_Записи_Записи.MoveNext())
 				{
-					if (Stop) return;
+					if (Stop)
+					{
+						Stop = false;
+						return;
+					}
 
 					XPathNavigator current = Довідник_Записи_Записи.Current;
 
@@ -456,7 +510,11 @@ namespace HomeFinances
 				XPathNodeIterator Довідник_Контакти_Записи = rootNode.Select("Довідник_Контакти/Запис");
 				while (Довідник_Контакти_Записи.MoveNext())
 				{
-					if (Stop) return;
+					if (Stop)
+					{
+						Stop = false;
+						return;
+					}
 
 					XPathNavigator current = Довідник_Контакти_Записи.Current;
 
@@ -509,5 +567,10 @@ namespace HomeFinances
 		}
 
         #endregion
+
+        private void FormExchange_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+		}
     }
 }

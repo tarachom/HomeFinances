@@ -32,8 +32,8 @@ namespace HomeFinances
             this.buttonExport = new System.Windows.Forms.Button();
             this.buttonImport = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.buttonAbort = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -69,18 +69,6 @@ namespace HomeFinances
             this.panel1.Size = new System.Drawing.Size(625, 577);
             this.panel1.TabIndex = 2;
             // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.buttonAbort);
-            this.panel2.Controls.Add(this.buttonExport);
-            this.panel2.Controls.Add(this.buttonImport);
-            this.panel2.Location = new System.Drawing.Point(0, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(625, 39);
-            this.panel2.TabIndex = 3;
-            // 
             // richTextBoxInfo
             // 
             this.richTextBoxInfo.BackColor = System.Drawing.SystemColors.Info;
@@ -93,6 +81,18 @@ namespace HomeFinances
             this.richTextBoxInfo.Size = new System.Drawing.Size(625, 577);
             this.richTextBoxInfo.TabIndex = 0;
             this.richTextBoxInfo.Text = "";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.buttonAbort);
+            this.panel2.Controls.Add(this.buttonExport);
+            this.panel2.Controls.Add(this.buttonImport);
+            this.panel2.Location = new System.Drawing.Point(0, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(625, 39);
+            this.panel2.TabIndex = 3;
             // 
             // buttonAbort
             // 
@@ -116,6 +116,7 @@ namespace HomeFinances
             this.Name = "FormExchange";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Обмін";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormExchange_FormClosing);
             this.Load += new System.EventHandler(this.FormExchange_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
