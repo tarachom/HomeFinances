@@ -35,17 +35,16 @@ using AccountingSoftware;
 
 namespace HomeFinances_1_0.Довідники
 {
-    
     class Записи_Triggers
 	{
         public static void Записи_BeforeRecording(Записи_Objest запис)
         {
-            Console.WriteLine("BeforeRecording: " + запис.Назва);
-        }
+            //Console.WriteLine("BeforeRecording: " + запис.Назва);
+		}
 
         public static void Записи_AfterRecording(Записи_Objest запис)
         {
-            Console.WriteLine("AfterRecording: " + запис.Назва);
+            //Console.WriteLine("AfterRecording: " + запис.Назва);
 
 			//Обов'язкове очищення регістру від попередніх записів
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
@@ -96,7 +95,7 @@ namespace HomeFinances_1_0.Довідники
 
 		public static void Записи_BeforeDelete(Записи_Objest запис)
 		{
-			Console.WriteLine("BeforeDelete: " + запис.Назва);
+			//Console.WriteLine("BeforeDelete: " + запис.Назва);
 
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);

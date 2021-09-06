@@ -325,7 +325,10 @@ namespace HomeFinances
 						записи_Objest_Новий.Опис = записи_Objest.Опис;
 						записи_Objest_Новий.Сума = записи_Objest.Сума;
 						записи_Objest_Новий.ТипЗапису = записи_Objest.ТипЗапису;
+						записи_Objest_Новий.Каса = записи_Objest.Каса;
+						записи_Objest_Новий.КасаПереміщення = записи_Objest.КасаПереміщення;
 						записи_Objest_Новий.Витрата = записи_Objest.Витрата;
+						записи_Objest_Новий.СсилкаНаСайт = записи_Objest.СсилкаНаСайт;
 						записи_Objest_Новий.Save();
 					}
 					else
@@ -339,11 +342,38 @@ namespace HomeFinances
 			}
 		}
 
-        #endregion
+		private void toolStripButtonSpend_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewRecords.SelectedRows.Count != 0 &&
+				MessageBox.Show("Провести записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
+				{
+					DataGridViewRow row = dataGridViewRecords.SelectedRows[i];
+					string uid = row.Cells[0].Value.ToString();
 
-        #region ImportExport
+					Довідники.Записи_Objest записи_Objest = new Довідники.Записи_Objest();
+					if (записи_Objest.Read(new UnigueID(uid)))
+					{
+						записи_Objest.Проведено = true;
+						записи_Objest.Save();
+					}
+					else
+					{
+						MessageBox.Show("Error read");
+						break;
+					}
+				}
 
-        private void Export()
+				LoadRecords();
+			}
+		}
+
+		#endregion
+
+		#region ImportExport
+
+		private void Export()
 		{
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
 			saveFileDialog.FileName = "HomeFinances_Export_" + DateTime.Now.ToString("dd_MM_yyyy") + ".xml";
@@ -573,6 +603,7 @@ namespace HomeFinances
 				string Сума = current.SelectSingleNode("Сума").Value;
 				string Витрата = current.SelectSingleNode("Витрата").Value;
 				string Каса = current.SelectSingleNode("Каса").Value;
+				string КасаПереміщення = current.SelectSingleNode("КасаПереміщення").Value;
 				string СсилкаНаСайт = current.SelectSingleNode("СсилкаНаСайт").Value;
 				string Проведено = current.SelectSingleNode("Проведено").Value;
 
@@ -598,8 +629,9 @@ namespace HomeFinances
 				записи_Objest.Сума = int.Parse(Сума);
 				записи_Objest.Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(Витрата));
 				записи_Objest.Каса = new Довідники.Каса_Pointer(new UnigueID(Каса));
+				записи_Objest.КасаПереміщення = new Довідники.Каса_Pointer(new UnigueID(КасаПереміщення));
 				записи_Objest.СсилкаНаСайт = СсилкаНаСайт;
-				//записи_Objest.Проведено = false; // !!! Проводки потрібно доробити
+				записи_Objest.Проведено = Проведено == "1" ? true : false;
 				записи_Objest.Save();
 			}
 
@@ -689,70 +721,6 @@ namespace HomeFinances
 		private void toolStripMenuItemExport_Click(object sender, EventArgs e)
 		{
 			Export();
-
-			/*
-			XmlDocument xmlConfDocument = new XmlDocument();
-			xmlConfDocument.AppendChild(xmlConfDocument.CreateXmlDeclaration("1.0", "utf-8", ""));
-
-			XmlElement rootNode = xmlConfDocument.CreateElement("Exchange");
-			xmlConfDocument.AppendChild(rootNode);
-
-			XmlElement nodeDateTime = xmlConfDocument.CreateElement("DateTime");
-			nodeDateTime.InnerText = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
-			rootNode.AppendChild(nodeDateTime);
-
-			XmlElement nodeRecords = xmlConfDocument.CreateElement("Records");
-			rootNode.AppendChild(nodeRecords);
-
-			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
-
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Назва);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ДатаЗапису);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Опис);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.ТипЗапису);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Сума);
-			записи_Select.QuerySelect.Field.Add(Довідники.Записи_Select.Витрата);
-
-			записи_Select.Select();
-
-			while (записи_Select.MoveNext())
-			{
-				Довідники.Записи_Pointer cur = записи_Select.Current;
-
-				XmlElement nodeRecord = xmlConfDocument.CreateElement("Record");
-				nodeRecords.AppendChild(nodeRecord);
-
-				XmlElement nodeID = xmlConfDocument.CreateElement("ID");
-				nodeID.InnerText = cur.UnigueID.ToString();
-				nodeRecord.AppendChild(nodeID);
-
-				XmlElement nodeName = xmlConfDocument.CreateElement("Назва");
-				nodeName.InnerText = cur.Fields[Довідники.Записи_Select.Назва].ToString();
-				nodeRecord.AppendChild(nodeName);
-
-				XmlElement nodeDataSave = xmlConfDocument.CreateElement("ДатаЗапису");
-				nodeDataSave.InnerText = cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString();
-				nodeRecord.AppendChild(nodeDataSave);
-
-				XmlElement nodeDesc = xmlConfDocument.CreateElement("Опис");
-				nodeDesc.InnerText = cur.Fields[Довідники.Записи_Select.Опис].ToString();
-				nodeRecord.AppendChild(nodeDesc);
-
-				XmlElement nodeTypeRecord = xmlConfDocument.CreateElement("ТипЗапису");
-				nodeTypeRecord.InnerText = cur.Fields[Довідники.Записи_Select.ТипЗапису].ToString();
-				nodeRecord.AppendChild(nodeTypeRecord);
-
-				XmlElement nodeSumma = xmlConfDocument.CreateElement("Сума");
-				nodeSumma.InnerText = cur.Fields[Довідники.Записи_Select.Сума].ToString();
-				nodeRecord.AppendChild(nodeSumma);
-
-				XmlElement nodeStation = xmlConfDocument.CreateElement("Витрата");
-				nodeStation.InnerText = cur.Fields[Довідники.Записи_Select.Витрата].ToString();
-				nodeRecord.AppendChild(nodeStation);
-			}
-
-			xmlConfDocument.Save("E:\\export.xml");
-			*/
 		}
 
 		private void toolStripMenuItemImport_Click(object sender, EventArgs e)
@@ -819,16 +787,6 @@ namespace HomeFinances
 			labelCalculateBalance.Text = result;
 		}
 
-		//private string ReplaceQuery(string query, Dictionary<string,string> param)
-  //      {
-		//	string copy_query = query;
-
-		//	if (param != null)
-		//		foreach (KeyValuePair<string, string> paramItem in param)
-		//			copy_query = copy_query.Replace("{" + paramItem.Key + "}", paramItem.Value);
-
-		//	return copy_query;
-
-		//}
+       
     }
 }
