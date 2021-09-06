@@ -292,9 +292,6 @@ namespace HomeFinances
 					Довідники.Записи_Objest записи_Objest = new Довідники.Записи_Objest();
 					if (записи_Objest.Read(new UnigueID(uid)))
 					{
-						РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
-						залишкиКоштів_RecordsSet.Delete(записи_Objest.UnigueID.UGuid);
-
 						записи_Objest.Delete();
 					}
 					else

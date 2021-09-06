@@ -36,11 +36,11 @@ using AccountingSoftware;
 namespace HomeFinances_1_0.Довідники
 {
     
-    class Triggers
-    {
-        public static void Записи_BeforeRecording(Записи_Objest записи)
+    class Записи_Triggers
+	{
+        public static void Записи_BeforeRecording(Записи_Objest запис)
         {
-            Console.WriteLine("BeforeRecording: " + записи.Назва);
+            Console.WriteLine("BeforeRecording: " + запис.Назва);
         }
 
         public static void Записи_AfterRecording(Записи_Objest запис)
@@ -51,44 +51,55 @@ namespace HomeFinances_1_0.Довідники
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);
 
-			if (запис.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
+			if (запис.Проведено)
 			{
-				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
-				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+				if ((запис.ТипЗапису == Перелічення.ТипЗапису.Витрати) ||
+					(запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність) ||
+					(запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення))
+				{
+					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
-				record1.Income = false;
-				record2.Income = true;
+					if (запис.ТипЗапису == Перелічення.ТипЗапису.Витрати || запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
+						record.Income = false;
+					else if (запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
+						record.Income = true;
 
-				record1.Owner = record2.Owner = запис.UnigueID.UGuid;
+					record.Owner = запис.UnigueID.UGuid;
+					record.Каса = запис.Каса;
+					record.Сума = запис.Сума;
 
-				record1.Каса = запис.Каса;
-				record2.Каса = запис.КасаПереміщення;
+					залишкиКоштів_RecordsSet.Records.Add(record);
+					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
+				}
 
-				record1.Сума = record2.Сума = запис.Сума;
+				if (запис.ТипЗапису == Перелічення.ТипЗапису.Переміщення)
+				{
+					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 
-				залишкиКоштів_RecordsSet.Records.Add(record1);
-				залишкиКоштів_RecordsSet.Records.Add(record2);
-				залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
-			}
-			
-			if ((запис.ТипЗапису == Перелічення.ТипЗапису.Витрати) || 
-				(запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність) ||
-				(запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення))
-			{
-				РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+					record1.Income = false;
+					record2.Income = true;
 
-				if (запис.ТипЗапису == Перелічення.ТипЗапису.Витрати || запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
-					record.Income = false;
-				else if (запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення)
-					record.Income = true;
+					record1.Owner = record2.Owner = запис.UnigueID.UGuid;
 
-				record.Owner = запис.UnigueID.UGuid;
-				record.Каса = запис.Каса;
-				record.Сума = запис.Сума;
+					record1.Каса = запис.Каса;
+					record2.Каса = запис.КасаПереміщення;
 
-				залишкиКоштів_RecordsSet.Records.Add(record);
-				залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
+					record1.Сума = record2.Сума = запис.Сума;
+
+					залишкиКоштів_RecordsSet.Records.Add(record1);
+					залишкиКоштів_RecordsSet.Records.Add(record2);
+					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
+				}
 			}
 		}
-    }
+
+		public static void Записи_BeforeDelete(Записи_Objest запис)
+		{
+			Console.WriteLine("BeforeDelete: " + запис.Назва);
+
+			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
+			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);
+		}
+	}
 }

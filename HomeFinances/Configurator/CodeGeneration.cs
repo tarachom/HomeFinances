@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 06.09.2021 09:20:28
+ * Дата конфігурації: 06.09.2021 10:00:33
  *
  */
 
@@ -240,9 +240,9 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a4"] = СсилкаНаСайт;
             base.FieldValue["col_a3"] = КасаПереміщення.UnigueID.UGuid;
             base.FieldValue["col_a5"] = Проведено;
-            Triggers.Записи_BeforeRecording(this);
+            Записи_Triggers.Записи_BeforeRecording(this);
             BaseSave();
-			Triggers.Записи_AfterRecording(this);
+			Записи_Triggers.Записи_AfterRecording(this);
         }
 
         public string Serialize(string root = "Записи")
@@ -265,7 +265,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            Записи_Triggers.Записи_BeforeDelete(this);
+			base.BaseDelete();
         }
         
         public Записи_Pointer GetDirectoryPointer()
@@ -513,7 +514,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public КласифікаторВитрат_Pointer GetDirectoryPointer()
@@ -758,7 +760,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public Записник_Pointer GetDirectoryPointer()
@@ -1085,7 +1088,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public Користувач_Pointer GetDirectoryPointer()
@@ -1321,7 +1325,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public Каса_Pointer GetDirectoryPointer()
@@ -1555,7 +1560,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public Валюта_Pointer GetDirectoryPointer()
@@ -1807,7 +1813,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public Контакти_Pointer GetDirectoryPointer()
@@ -2053,7 +2060,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public Записник_Папки_Pointer GetDirectoryPointer()
@@ -2292,7 +2300,8 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            base.BaseDelete();
+            
+			base.BaseDelete();
         }
         
         public КалендарПеріодичнихЗавдань_Pointer GetDirectoryPointer()

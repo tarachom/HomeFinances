@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>06.09.2021 09:20:28</DateTimeSave>
+  <DateTimeSave>06.09.2021 10:00:33</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -178,8 +178,9 @@
         </TablePart>
       </TabularParts>
       <TriggerFunctions>
-        <BeforeSave>Triggers.Записи_BeforeRecording</BeforeSave>
-        <AfterSave>Triggers.Записи_AfterRecording</AfterSave>
+        <BeforeSave>Записи_Triggers.Записи_BeforeRecording</BeforeSave>
+        <AfterSave>Записи_Triggers.Записи_AfterRecording</AfterSave>
+        <BeforeDelete>Записи_Triggers.Записи_BeforeDelete</BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -232,6 +233,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -335,6 +338,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -389,6 +394,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -452,6 +459,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -504,6 +513,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -598,6 +609,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -662,6 +675,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>
@@ -709,6 +724,8 @@
         </BeforeSave>
         <AfterSave>
         </AfterSave>
+        <BeforeDelete>
+        </BeforeDelete>
       </TriggerFunctions>
     </Directory>
   </Directories>
