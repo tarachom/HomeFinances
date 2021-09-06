@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 03.09.2021 16:50:57
+ * Дата конфігурації: 06.09.2021 09:20:28
  *
  */
 
@@ -240,8 +240,9 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a4"] = СсилкаНаСайт;
             base.FieldValue["col_a3"] = КасаПереміщення.UnigueID.UGuid;
             base.FieldValue["col_a5"] = Проведено;
-            
+            Triggers.Записи_BeforeRecording(this);
             BaseSave();
+			Triggers.Записи_AfterRecording(this);
         }
 
         public string Serialize(string root = "Записи")
@@ -497,6 +498,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a2"] = Код;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "КласифікаторВитрат")
@@ -738,6 +740,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a5"] = Сайт;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "Записник")
@@ -1067,6 +1070,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a2"] = Код;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "Користувач")
@@ -1301,6 +1305,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a3"] = (int)ТипВалюти;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "Каса")
@@ -1535,6 +1540,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a4"] = Код;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "Валюта")
@@ -1781,6 +1787,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a2"] = Фото;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "Контакти")
@@ -2030,6 +2037,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a2"] = Дата;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "Записник_Папки")
@@ -2267,6 +2275,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a2"] = Старт;
             
             BaseSave();
+			
         }
 
         public string Serialize(string root = "КалендарПеріодичнихЗавдань")

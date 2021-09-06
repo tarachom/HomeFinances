@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>03.09.2021 16:50:57</DateTimeSave>
+  <DateTimeSave>06.09.2021 09:20:28</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -177,6 +177,10 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>Triggers.Записи_BeforeRecording</BeforeSave>
+        <AfterSave>Triggers.Записи_AfterRecording</AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>КласифікаторВитрат</Name>
@@ -223,6 +227,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>Записник</Name>
@@ -320,6 +330,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>Користувач</Name>
@@ -368,6 +384,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>Каса</Name>
@@ -425,6 +447,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>Валюта</Name>
@@ -471,6 +499,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>Контакти</Name>
@@ -559,6 +593,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>Записник_Папки</Name>
@@ -617,6 +657,12 @@
           </Fields>
         </TablePart>
       </TabularParts>
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
     <Directory>
       <Name>КалендарПеріодичнихЗавдань</Name>
@@ -658,6 +704,12 @@
         </Field>
       </Fields>
       <TabularParts />
+      <TriggerFunctions>
+        <BeforeSave>
+        </BeforeSave>
+        <AfterSave>
+        </AfterSave>
+      </TriggerFunctions>
     </Directory>
   </Directories>
   <Enums>

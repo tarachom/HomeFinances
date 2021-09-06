@@ -163,7 +163,7 @@
     <Compile Include="FormRecordFinance.Designer.cs">
       <DependentUpon>FormRecordFinance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Запис\Register.cs" />
+    <Compile Include="Configurator\Triggers.cs" />
     <Compile Include="FormAddRecord.cs">
       <SubType>Form</SubType>
     </Compile>
