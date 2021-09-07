@@ -176,6 +176,22 @@ namespace HomeFinances
 				Довідники.Записи_Select.Проведено
 			});
 
+			//записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(
+			//	$"(CASE WHEN {записи_Select.QuerySelect.Table}.{Довідники.Записи_Select.Сума} > 100 THEN " +
+			//	$"{записи_Select.QuerySelect.Table}.{Довідники.Записи_Select.Сума} ELSE -{записи_Select.QuerySelect.Table}.{Довідники.Записи_Select.Сума} END)", "suma"));
+
+			записи_Select.QuerySelect.FieldAndAlias.Add(
+				new KeyValuePair<string, string>("table2." + Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Fields["Назва"].NameInTable, "field2"));
+
+			записи_Select.QuerySelect.Joins.Add(
+				new Join()
+				{
+					JoinTable_NameAndAlias = new KeyValuePair<string, string>(Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Table, "table2"),
+					JoinField = Довідники.Записи_Select.Витрата,
+					ParentTable = Конфа.Config.Kernel.Conf.Directories["Записи"].Table
+				}
+            );
+
 			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
             записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
 
@@ -198,6 +214,7 @@ namespace HomeFinances
 
 			//Створення тимчасової таблиці
 			записи_Select.QuerySelect.CreateTempTable = true;
+			Console.WriteLine(записи_Select.QuerySelect.Construct());
 			записи_Select.Select();
 
 			Dictionary<string, string> dictionaryCostСlassifier = new Dictionary<string, string>();
@@ -231,7 +248,7 @@ namespace HomeFinances
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
+					cur.Fields[Довідники.Записи_Select.Назва].ToString() + "|" + cur.Fields["field2"].ToString(),
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
