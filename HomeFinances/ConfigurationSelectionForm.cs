@@ -159,7 +159,7 @@ namespace HomeFinances
 				}
 			}
 
-			if (listBoxConfiguration.SelectedIndex == -1)
+			if (listBoxConfiguration.SelectedIndex == -1 && listBoxConfiguration.Items.Count > 0)
 				listBoxConfiguration.SelectedIndex = 0;
 		}
 
