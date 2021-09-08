@@ -198,8 +198,7 @@ namespace HomeFinances
 					Довідники.Каса_Objest каса_Objest = new Довідники.Каса_Objest();
 					if (каса_Objest.Read(new UnigueID(uid)))
 					{
-						Довідники.Каса_Objest каса_Objest_Новий = new Довідники.Каса_Objest();
-						каса_Objest_Новий.New();
+						Довідники.Каса_Objest каса_Objest_Новий = каса_Objest.Copy();
 						каса_Objest_Новий.Назва = "(Копія) - " + каса_Objest.Назва;
 						каса_Objest_Новий.Save();
 					}

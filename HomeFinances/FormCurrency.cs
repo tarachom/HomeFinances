@@ -186,10 +186,8 @@ namespace HomeFinances
 					Довідники.Валюта_Objest валюта_Objest = new Довідники.Валюта_Objest();
 					if (валюта_Objest.Read(new UnigueID(uid)))
 					{
-						Довідники.Валюта_Objest валюта_Objest_Новий = new Довідники.Валюта_Objest();
-						валюта_Objest_Новий.New();
+						Довідники.Валюта_Objest валюта_Objest_Новий = валюта_Objest.Copy();
 						валюта_Objest_Новий.Назва = "(Копія) - " + валюта_Objest.Назва;
-						валюта_Objest_Новий.Код = валюта_Objest.Код;
 						валюта_Objest_Новий.Save();
 					}
 					else

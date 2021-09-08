@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 07.09.2021 12:00:03
+ * Дата конфігурації: 08.09.2021 20:28:56
  *
  */
 
@@ -261,6 +261,24 @@ namespace HomeFinances_1_0.Довідники
                "<КасаПереміщення>" + КасаПереміщення.ToString() + "</КасаПереміщення>"  +
                "<Проведено>" + (Проведено == true ? "1" : "0") + "</Проведено>"  +
                "</" + root + ">";
+        }
+
+        public Записи_Objest Copy()
+        {
+            Записи_Objest newCopy = new Записи_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.ДатаЗапису = ДатаЗапису;
+			newCopy.Опис = Опис;
+			newCopy.ТипЗапису = ТипЗапису;
+			newCopy.Сума = Сума;
+			newCopy.Витрата = Витрата;
+			newCopy.Каса = Каса;
+			newCopy.СсилкаНаСайт = СсилкаНаСайт;
+			newCopy.КасаПереміщення = КасаПереміщення;
+			newCopy.Проведено = Проведено;
+			
+			return newCopy;
         }
 
         public void Delete()
@@ -512,6 +530,16 @@ namespace HomeFinances_1_0.Довідники
                "</" + root + ">";
         }
 
+        public КласифікаторВитрат_Objest Copy()
+        {
+            КласифікаторВитрат_Objest newCopy = new КласифікаторВитрат_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.Код = Код;
+			
+			return newCopy;
+        }
+
         public void Delete()
         {
             
@@ -756,6 +784,19 @@ namespace HomeFinances_1_0.Довідники
                "<Папка>" + Папка.ToString() + "</Папка>"  +
                "<Сайт>" + "<![CDATA[" + Сайт + "]]>" + "</Сайт>"  +
                "</" + root + ">";
+        }
+
+        public Записник_Objest Copy()
+        {
+            Записник_Objest newCopy = new Записник_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.Опис = Опис;
+			newCopy.Дата = Дата;
+			newCopy.Папка = Папка;
+			newCopy.Сайт = Сайт;
+			
+			return newCopy;
         }
 
         public void Delete()
@@ -1086,6 +1127,16 @@ namespace HomeFinances_1_0.Довідники
                "</" + root + ">";
         }
 
+        public Користувач_Objest Copy()
+        {
+            Користувач_Objest newCopy = new Користувач_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.Код = Код;
+			
+			return newCopy;
+        }
+
         public void Delete()
         {
             
@@ -1323,6 +1374,17 @@ namespace HomeFinances_1_0.Довідники
                "</" + root + ">";
         }
 
+        public Каса_Objest Copy()
+        {
+            Каса_Objest newCopy = new Каса_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.Валюта = Валюта;
+			newCopy.ТипВалюти = ТипВалюти;
+			
+			return newCopy;
+        }
+
         public void Delete()
         {
             
@@ -1556,6 +1618,16 @@ namespace HomeFinances_1_0.Довідники
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<Код>" + "<![CDATA[" + Код + "]]>" + "</Код>"  +
                "</" + root + ">";
+        }
+
+        public Валюта_Objest Copy()
+        {
+            Валюта_Objest newCopy = new Валюта_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.Код = Код;
+			
+			return newCopy;
         }
 
         public void Delete()
@@ -1811,6 +1883,21 @@ namespace HomeFinances_1_0.Довідники
                "</" + root + ">";
         }
 
+        public Контакти_Objest Copy()
+        {
+            Контакти_Objest newCopy = new Контакти_Objest();
+			newCopy.New();
+            newCopy.Телефон = Телефон;
+			newCopy.Назва = Назва;
+			newCopy.Сайт = Сайт;
+			newCopy.Пошта = Пошта;
+			newCopy.Опис = Опис;
+			newCopy.Скайп = Скайп;
+			newCopy.Фото = Фото;
+			
+			return newCopy;
+        }
+
         public void Delete()
         {
             
@@ -2058,6 +2145,17 @@ namespace HomeFinances_1_0.Довідники
                "</" + root + ">";
         }
 
+        public Записник_Папки_Objest Copy()
+        {
+            Записник_Папки_Objest newCopy = new Записник_Папки_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.Родич = Родич;
+			newCopy.Дата = Дата;
+			
+			return newCopy;
+        }
+
         public void Delete()
         {
             
@@ -2296,6 +2394,18 @@ namespace HomeFinances_1_0.Довідники
                "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
                "<Старт>" + Старт.ToString() + "</Старт>"  +
                "</" + root + ">";
+        }
+
+        public КалендарПеріодичнихЗавдань_Objest Copy()
+        {
+            КалендарПеріодичнихЗавдань_Objest newCopy = new КалендарПеріодичнихЗавдань_Objest();
+			newCopy.New();
+            newCopy.Назва = Назва;
+			newCopy.ПеріодВиконання = ПеріодВиконання;
+			newCopy.Опис = Опис;
+			newCopy.Старт = Старт;
+			
+			return newCopy;
         }
 
         public void Delete()

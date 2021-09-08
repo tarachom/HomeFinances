@@ -201,15 +201,8 @@ namespace HomeFinances
 					Довідники.Контакти_Objest контакти_Objest = new Довідники.Контакти_Objest();
 					if (контакти_Objest.Read(new UnigueID(uid)))
 					{
-						Довідники.Контакти_Objest контакти_Objest_Новий = new Довідники.Контакти_Objest();
-						контакти_Objest_Новий.New();
+						Довідники.Контакти_Objest контакти_Objest_Новий = контакти_Objest.Copy();
 						контакти_Objest_Новий.Назва = "(Копія) - " + контакти_Objest.Назва;
-						контакти_Objest_Новий.Телефон = контакти_Objest.Телефон;
-						контакти_Objest_Новий.Пошта = контакти_Objest.Пошта;
-						контакти_Objest_Новий.Скайп = контакти_Objest.Скайп;
-						контакти_Objest_Новий.Сайт = контакти_Objest.Сайт;
-						контакти_Objest_Новий.Опис = контакти_Objest.Опис;
-
 						контакти_Objest_Новий.Save();
 					}
 					else
