@@ -83,27 +83,25 @@ namespace HomeFinances
 			dataGridViewRecords.Columns.Add(new DataGridViewImageColumn() {Name = "Image", HeaderText = "", Width = 30, DisplayIndex = 0, Image = HomeFinances.Properties.Resources.doc_text_image });
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = 500;
+			dataGridViewRecords.Columns["Назва"].Width = 300;
 
 			dataGridViewRecords.Columns["ДатаЗапису"].Width = 120;
 			dataGridViewRecords.Columns["ДатаЗапису"].DisplayIndex = 1;
 
-			dataGridViewRecords.Columns["Сума"].Width = 80;
+			dataGridViewRecords.Columns["Сума"].Width = 60;
 			dataGridViewRecords.Columns["Сума"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 			dataGridViewRecords.Columns["Сума"].DisplayIndex = 5;
 
 			dataGridViewRecords.Columns["ТипЗапису"].HeaderText = "Тип";
 			dataGridViewRecords.Columns["ТипЗапису"].Width = 80;
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 2;
-			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			//dataGridViewRecords.Columns["ТипЗапису"].CellTemplate.Style.Font = new Font("Arial", 11);
 
-			dataGridViewRecords.Columns["Витрата"].Width = 200;
+			dataGridViewRecords.Columns["Витрата"].Width = 150;
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
-			dataGridViewRecords.Columns["Проведено"].Width = 65;
+			dataGridViewRecords.Columns["Каса"].Width = 100;
 
-			
+			dataGridViewRecords.Columns["Проведено"].Width = 60;
 
 			LoadRecords();		
 		}
@@ -112,7 +110,7 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата, bool _Проведено)
+			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата, string _Каса, bool _Проведено)
 			{
 				ID = _id;
 				Назва = _Назва;
@@ -120,6 +118,7 @@ namespace HomeFinances
 				Сума = _Сума;
 				ТипЗапису = _ТипЗапису;
 				Витрата = _Витрата;
+				Каса = _Каса;
 				Проведено = _Проведено;
 			}
 			public string ID { get; set; }
@@ -128,6 +127,7 @@ namespace HomeFinances
 			public string Сума { get; set; }
 			public string ТипЗапису { get; set; }
 			public string Витрата { get; set; }
+			public string Каса { get; set; }
 			public bool Проведено { get; set; }
 		}
 
@@ -172,7 +172,6 @@ namespace HomeFinances
 				Довідники.Записи_Select.Назва,
 				Довідники.Записи_Select.Сума,
 				Довідники.Записи_Select.ТипЗапису,
-				Довідники.Записи_Select.Витрата,
 				Довідники.Записи_Select.Проведено
 			});
 
@@ -182,6 +181,13 @@ namespace HomeFinances
 
 			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field2"));
 			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Витрата, записи_Select.QuerySelect.Table));
+
+			//JOIN2
+			JoinTable = Конфа.Config.Kernel.Conf.Directories["Каса"].Table;
+			ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Каса"].Fields["Назва"].NameInTable;
+
+			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field3"));
+			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Каса, записи_Select.QuerySelect.Table));
 
 			//WHERE
 			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
@@ -221,6 +227,7 @@ namespace HomeFinances
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
 					cur.Fields["field2"].ToString(),
+					cur.Fields["field3"].ToString(),
 					cur.Fields[Довідники.Записи_Select.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Select.Проведено] : false
 					));
 			}

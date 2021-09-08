@@ -81,33 +81,20 @@ namespace HomeFinances
 			RecordsBindingList.Clear();
 
 			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
-
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Назва);
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Валюта);
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.ТипВалюти);
+
+			//JOIN
+			string JoinTable = Конфа.Config.Kernel.Conf.Directories["Валюта"].Table;
+			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Валюта"].Fields["Назва"].NameInTable;
+
+			каса_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field2"));
+			каса_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Каса_Select.Валюта, каса_Select.QuerySelect.Table));
+
+			//ORDER
 			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
 
-			//Створення тимчасової таблиці
-			каса_Select.QuerySelect.CreateTempTable = true;
-			каса_Select.Select();
-
-			Dictionary<string, string> dictionaryCurrency = new Dictionary<string, string>();
-
-			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
-			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Select.Назва);
-			валюта_Select.QuerySelect.Where.Add(new Where("uid", Comparison.IN, "SELECT DISTINCT " + Довідники.Каса_Select.Валюта + " FROM " + каса_Select.QuerySelect.TempTable, true));
-			валюта_Select.Select();
-
-			while (валюта_Select.MoveNext())
-			{
-				Довідники.Валюта_Pointer cur = валюта_Select.Current;
-				dictionaryCurrency.Add(cur.UnigueID.ToString(), cur.Fields[Довідники.Валюта_Select.Назва].ToString());
-			}
-
-			//Видалення тимчасової таблиці
-			каса_Select.DeleteTempTable();
-
-			//Нормальна вибірка даних
 			каса_Select.Select();
 
 			while (каса_Select.MoveNext())
@@ -116,13 +103,10 @@ namespace HomeFinances
 
 				string ТипВалютиПредставлення = ((Перелічення.ТипВалюти)cur.Fields[Довідники.Каса_Select.ТипВалюти]).ToString();
 
-				Довідники.Валюта_Pointer Валюта = new Довідники.Валюта_Pointer(new UnigueID(cur.Fields[Довідники.Каса_Select.Валюта].ToString()));
-				string ВалютаПредставлення = (!Валюта.IsEmpty() && dictionaryCurrency.ContainsKey(Валюта.UnigueID.ToString())) ? dictionaryCurrency[Валюта.UnigueID.ToString()] : "";
-
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
 					cur.Fields[Довідники.Каса_Select.Назва].ToString(),
-					ВалютаПредставлення,
+					cur.Fields["field2"].ToString(),
 					ТипВалютиПредставлення
 					));
 
