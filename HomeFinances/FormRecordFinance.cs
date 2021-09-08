@@ -176,22 +176,14 @@ namespace HomeFinances
 				Довідники.Записи_Select.Проведено
 			});
 
-			//записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(
-			//	$"(CASE WHEN {записи_Select.QuerySelect.Table}.{Довідники.Записи_Select.Сума} > 100 THEN " +
-			//	$"{записи_Select.QuerySelect.Table}.{Довідники.Записи_Select.Сума} ELSE -{записи_Select.QuerySelect.Table}.{Довідники.Записи_Select.Сума} END)", "suma"));
+			//JOIN
+			string JoinTable = Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Table;
+			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Fields["Назва"].NameInTable;
 
-			записи_Select.QuerySelect.FieldAndAlias.Add(
-				new KeyValuePair<string, string>("table2." + Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Fields["Назва"].NameInTable, "field2"));
+			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field2"));
+			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Витрата, записи_Select.QuerySelect.Table));
 
-			записи_Select.QuerySelect.Joins.Add(
-				new Join()
-				{
-					JoinTable_NameAndAlias = new KeyValuePair<string, string>(Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Table, "table2"),
-					JoinField = Довідники.Записи_Select.Витрата,
-					ParentTable = Конфа.Config.Kernel.Conf.Directories["Записи"].Table
-				}
-            );
-
+			//WHERE
 			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
             записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
 
@@ -210,30 +202,9 @@ namespace HomeFinances
 			if (directoryControl2.DirectoryPointerItem != null && !directoryControl2.DirectoryPointerItem.IsEmpty())
 				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Каса, Comparison.EQ, directoryControl2.DirectoryPointerItem.UnigueID.UGuid));
 
+			//OREDER
 			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
 
-			//Створення тимчасової таблиці
-			записи_Select.QuerySelect.CreateTempTable = true;
-			Console.WriteLine(записи_Select.QuerySelect.Construct());
-			записи_Select.Select();
-
-			Dictionary<string, string> dictionaryCostСlassifier = new Dictionary<string, string>();
-
-			Довідники.КласифікаторВитрат_Select класифікаторВитрат_Select = new Довідники.КласифікаторВитрат_Select();
-			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Select.Назва);
-			класифікаторВитрат_Select.QuerySelect.Where.Add(new Where("uid", Comparison.IN, "SELECT DISTINCT " + Довідники.Записи_Select.Витрата + " FROM " + записи_Select.QuerySelect.TempTable, true));
-			класифікаторВитрат_Select.Select();
-
-			while (класифікаторВитрат_Select.MoveNext())
-			{
-				Довідники.КласифікаторВитрат_Pointer cur = класифікаторВитрат_Select.Current;
-				dictionaryCostСlassifier.Add(cur.UnigueID.ToString(), cur.Fields[Довідники.КласифікаторВитрат_Select.Назва].ToString());
-			}
-
-			//Видалення тимчасової таблиці
-			записи_Select.DeleteTempTable();
-
-			//Нормальна вибірка даних
 			записи_Select.Select();
 
 			while (записи_Select.MoveNext())
@@ -243,16 +214,13 @@ namespace HomeFinances
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
 				string типЗаписуПредставлення = типЗапису.ToString();
 
-				Довідники.КласифікаторВитрат_Pointer Витрата = new Довідники.КласифікаторВитрат_Pointer(new UnigueID(cur.Fields[Довідники.Записи_Select.Витрата].ToString()));
-				string ВитратаПредставлення = (!Витрата.IsEmpty() && dictionaryCostСlassifier.ContainsKey(Витрата.UnigueID.ToString())) ? dictionaryCostСlassifier[Витрата.UnigueID.ToString()] : "";
-
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Записи_Select.Назва].ToString() + "|" + cur.Fields["field2"].ToString(),
+					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
 					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
 					типЗаписуПредставлення,
-					ВитратаПредставлення,
+					cur.Fields["field2"].ToString(),
 					cur.Fields[Довідники.Записи_Select.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Select.Проведено] : false
 					));
 			}
