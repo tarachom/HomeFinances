@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 08.09.2021 20:28:56
+ * Дата конфігурації: 08.09.2021 20:54:47
  *
  */
 
@@ -348,9 +348,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Записи_Select : DirectorySelect, IDisposable
     {
-        public Записи_Select() : base(Config.Kernel, "tab_a02",
-            new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3", "col_a5" },
-            new string[] { "Назва", "ДатаЗапису", "Опис", "ТипЗапису", "Сума", "Витрата", "Каса", "СсилкаНаСайт", "КасаПереміщення", "Проведено" }) { }
+        public Записи_Select() : base(Config.Kernel, "tab_a02") { }
         
         public const string Назва = "col_a7";
         public const string ДатаЗапису = "col_a6";
@@ -599,9 +597,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class КласифікаторВитрат_Select : DirectorySelect, IDisposable
     {
-        public КласифікаторВитрат_Select() : base(Config.Kernel, "tab_a01",
-            new string[] { "col_a1", "col_a2" },
-            new string[] { "Назва", "Код" }) { }
+        public КласифікаторВитрат_Select() : base(Config.Kernel, "tab_a01") { }
         
         public const string Назва = "col_a1";
         public const string Код = "col_a2";
@@ -862,9 +858,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Записник_Select : DirectorySelect, IDisposable
     {
-        public Записник_Select() : base(Config.Kernel, "tab_a03",
-            new string[] { "col_a1", "col_a4", "col_a3", "col_a2", "col_a5" },
-            new string[] { "Назва", "Опис", "Дата", "Папка", "Сайт" }) { }
+        public Записник_Select() : base(Config.Kernel, "tab_a03") { }
         
         public const string Назва = "col_a1";
         public const string Опис = "col_a4";
@@ -1196,9 +1190,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Користувач_Select : DirectorySelect, IDisposable
     {
-        public Користувач_Select() : base(Config.Kernel, "tab_a04",
-            new string[] { "col_a1", "col_a2" },
-            new string[] { "Назва", "Код" }) { }
+        public Користувач_Select() : base(Config.Kernel, "tab_a04") { }
         
         public const string Назва = "col_a1";
         public const string Код = "col_a2";
@@ -1445,9 +1437,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Каса_Select : DirectorySelect, IDisposable
     {
-        public Каса_Select() : base(Config.Kernel, "tab_a05",
-            new string[] { "col_a1", "col_a2", "col_a3" },
-            new string[] { "Назва", "Валюта", "ТипВалюти" }) { }
+        public Каса_Select() : base(Config.Kernel, "tab_a05") { }
         
         public const string Назва = "col_a1";
         public const string Валюта = "col_a2";
@@ -1689,9 +1679,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Валюта_Select : DirectorySelect, IDisposable
     {
-        public Валюта_Select() : base(Config.Kernel, "tab_a07",
-            new string[] { "col_a3", "col_a4" },
-            new string[] { "Назва", "Код" }) { }
+        public Валюта_Select() : base(Config.Kernel, "tab_a07") { }
         
         public const string Назва = "col_a3";
         public const string Код = "col_a4";
@@ -1962,9 +1950,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Контакти_Select : DirectorySelect, IDisposable
     {
-        public Контакти_Select() : base(Config.Kernel, "tab_a08",
-            new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1", "col_a2" },
-            new string[] { "Телефон", "Назва", "Сайт", "Пошта", "Опис", "Скайп", "Фото" }) { }
+        public Контакти_Select() : base(Config.Kernel, "tab_a08") { }
         
         public const string Телефон = "col_a4";
         public const string Назва = "col_a3";
@@ -2216,9 +2202,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class Записник_Папки_Select : DirectorySelect, IDisposable
     {
-        public Записник_Папки_Select() : base(Config.Kernel, "tab_a09",
-            new string[] { "col_a1", "col_a3", "col_a2" },
-            new string[] { "Назва", "Родич", "Дата" }) { }
+        public Записник_Папки_Select() : base(Config.Kernel, "tab_a09") { }
         
         public const string Назва = "col_a1";
         public const string Родич = "col_a3";
@@ -2466,9 +2450,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     class КалендарПеріодичнихЗавдань_Select : DirectorySelect, IDisposable
     {
-        public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53",
-            new string[] { "col_a1", "col_a3", "col_a4", "col_a2" },
-            new string[] { "Назва", "ПеріодВиконання", "Опис", "Старт" }) { }
+        public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53") { }
         
         public const string Назва = "col_a1";
         public const string ПеріодВиконання = "col_a3";
