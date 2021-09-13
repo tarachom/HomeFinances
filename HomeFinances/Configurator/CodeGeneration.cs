@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 08.09.2021 20:54:47
+ * Дата конфігурації: 13.09.2021 12:18:24
  *
  */
 
@@ -36,7 +36,7 @@ using AccountingSoftware;
 
 namespace HomeFinances_1_0
 {
-    static class Config
+    public static class Config
     {
         public static Kernel Kernel { get; set; }
 		
@@ -54,7 +54,7 @@ namespace HomeFinances_1_0.Константи
 {
     
 	#region CONSTANTS BLOCK "Основний"
-    static class Основний
+    public static class Основний
     {
         public static void ReadAll()
         {
@@ -87,7 +87,7 @@ namespace HomeFinances_1_0.Константи
     #endregion
     
 	#region CONSTANTS BLOCK "ЗначенняПоЗамовчуванню"
-    static class ЗначенняПоЗамовчуванню
+    public static class ЗначенняПоЗамовчуванню
     {
         public static void ReadAll()
         {
@@ -132,7 +132,7 @@ namespace HomeFinances_1_0.Константи
     #endregion
     
 	#region CONSTANTS BLOCK "ВигрузкаТаЗагрузкаДаних"
-    static class ВигрузкаТаЗагрузкаДаних
+    public static class ВигрузкаТаЗагрузкаДаних
     {
         public static void ReadAll()
         {
@@ -185,7 +185,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записи про витрати і надходження фінансів.
     ///</summary>
-    class Записи_Objest : DirectoryObject
+    public class Записи_Objest : DirectoryObject
     {
         public Записи_Objest() : base(Config.Kernel, "tab_a02",
              new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3", "col_a5" }) 
@@ -265,20 +265,20 @@ namespace HomeFinances_1_0.Довідники
 
         public Записи_Objest Copy()
         {
-            Записи_Objest newCopy = new Записи_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.ДатаЗапису = ДатаЗапису;
-			newCopy.Опис = Опис;
-			newCopy.ТипЗапису = ТипЗапису;
-			newCopy.Сума = Сума;
-			newCopy.Витрата = Витрата;
-			newCopy.Каса = Каса;
-			newCopy.СсилкаНаСайт = СсилкаНаСайт;
-			newCopy.КасаПереміщення = КасаПереміщення;
-			newCopy.Проведено = Проведено;
+            Записи_Objest copy = new Записи_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.ДатаЗапису = ДатаЗапису;
+			copy.Опис = Опис;
+			copy.ТипЗапису = ТипЗапису;
+			copy.Сума = Сума;
+			copy.Витрата = Витрата;
+			copy.Каса = Каса;
+			copy.СсилкаНаСайт = СсилкаНаСайт;
+			copy.КасаПереміщення = КасаПереміщення;
+			copy.Проведено = Проведено;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -312,7 +312,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записи про витрати і надходження фінансів.
     ///</summary>
-    class Записи_Pointer : DirectoryPointer
+    public class Записи_Pointer : DirectoryPointer
     {
         public Записи_Pointer(object uid = null) : base(Config.Kernel, "tab_a02")
         {
@@ -326,6 +326,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Записи_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Записи_Objest ЗаписиObjestItem = new Записи_Objest();
             return ЗаписиObjestItem.Read(base.UnigueID) ? ЗаписиObjestItem : null;
         }
@@ -346,7 +347,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записи про витрати і надходження фінансів.
     ///</summary>
-    class Записи_Select : DirectorySelect, IDisposable
+    public class Записи_Select : DirectorySelect, IDisposable
     {
         public Записи_Select() : base(Config.Kernel, "tab_a02") { }
         
@@ -387,7 +388,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Записи_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class Записи_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public Записи_ОбмінІсторія_TablePart(Записи_Objest owner) : base(Config.Kernel, "tab_a13",
              new string[] { "col_a5", "col_a6" }) 
@@ -482,7 +483,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Статті витрат.
     ///</summary>
-    class КласифікаторВитрат_Objest : DirectoryObject
+    public class КласифікаторВитрат_Objest : DirectoryObject
     {
         public КласифікаторВитрат_Objest() : base(Config.Kernel, "tab_a01",
              new string[] { "col_a1", "col_a2" }) 
@@ -530,12 +531,12 @@ namespace HomeFinances_1_0.Довідники
 
         public КласифікаторВитрат_Objest Copy()
         {
-            КласифікаторВитрат_Objest newCopy = new КласифікаторВитрат_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.Код = Код;
+            КласифікаторВитрат_Objest copy = new КласифікаторВитрат_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.Код = Код;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -561,7 +562,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Статті витрат.
     ///</summary>
-    class КласифікаторВитрат_Pointer : DirectoryPointer
+    public class КласифікаторВитрат_Pointer : DirectoryPointer
     {
         public КласифікаторВитрат_Pointer(object uid = null) : base(Config.Kernel, "tab_a01")
         {
@@ -575,6 +576,7 @@ namespace HomeFinances_1_0.Довідники
         
         public КласифікаторВитрат_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             КласифікаторВитрат_Objest КласифікаторВитратObjestItem = new КласифікаторВитрат_Objest();
             return КласифікаторВитратObjestItem.Read(base.UnigueID) ? КласифікаторВитратObjestItem : null;
         }
@@ -595,7 +597,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Статті витрат.
     ///</summary>
-    class КласифікаторВитрат_Select : DirectorySelect, IDisposable
+    public class КласифікаторВитрат_Select : DirectorySelect, IDisposable
     {
         public КласифікаторВитрат_Select() : base(Config.Kernel, "tab_a01") { }
         
@@ -628,7 +630,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class КласифікаторВитрат_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class КласифікаторВитрат_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public КласифікаторВитрат_ОбмінІсторія_TablePart(КласифікаторВитрат_Objest owner) : base(Config.Kernel, "tab_a10",
              new string[] { "col_a1", "col_a2" }) 
@@ -723,7 +725,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записник інформації.
     ///</summary>
-    class Записник_Objest : DirectoryObject
+    public class Записник_Objest : DirectoryObject
     {
         public Записник_Objest() : base(Config.Kernel, "tab_a03",
              new string[] { "col_a1", "col_a4", "col_a3", "col_a2", "col_a5" }) 
@@ -766,7 +768,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a5"] = Сайт;
             
             BaseSave();
-			
+			Записник_Triggers.Записник_AfterRecording(this);
         }
 
         public string Serialize(string root = "Записник")
@@ -784,15 +786,15 @@ namespace HomeFinances_1_0.Довідники
 
         public Записник_Objest Copy()
         {
-            Записник_Objest newCopy = new Записник_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.Опис = Опис;
-			newCopy.Дата = Дата;
-			newCopy.Папка = Папка;
-			newCopy.Сайт = Сайт;
+            Записник_Objest copy = new Записник_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.Опис = Опис;
+			copy.Дата = Дата;
+			copy.Папка = Папка;
+			copy.Сайт = Сайт;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -822,7 +824,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записник інформації.
     ///</summary>
-    class Записник_Pointer : DirectoryPointer
+    public class Записник_Pointer : DirectoryPointer
     {
         public Записник_Pointer(object uid = null) : base(Config.Kernel, "tab_a03")
         {
@@ -836,6 +838,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Записник_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Записник_Objest ЗаписникObjestItem = new Записник_Objest();
             return ЗаписникObjestItem.Read(base.UnigueID) ? ЗаписникObjestItem : null;
         }
@@ -856,7 +859,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записник інформації.
     ///</summary>
-    class Записник_Select : DirectorySelect, IDisposable
+    public class Записник_Select : DirectorySelect, IDisposable
     {
         public Записник_Select() : base(Config.Kernel, "tab_a03") { }
         
@@ -892,7 +895,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Записник_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class Записник_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public Записник_ОбмінІсторія_TablePart(Записник_Objest owner) : base(Config.Kernel, "tab_a16",
              new string[] { "col_a3", "col_a4" }) 
@@ -980,7 +983,7 @@ namespace HomeFinances_1_0.Довідники
         }
     }
       
-    class Записник_Файли_TablePart : DirectoryTablePart
+    public class Записник_Файли_TablePart : DirectoryTablePart
     {
         public Записник_Файли_TablePart(Записник_Objest owner) : base(Config.Kernel, "tab_a17",
              new string[] { "col_a1", "col_a2" }) 
@@ -1075,7 +1078,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Користувач програми.
     ///</summary>
-    class Користувач_Objest : DirectoryObject
+    public class Користувач_Objest : DirectoryObject
     {
         public Користувач_Objest() : base(Config.Kernel, "tab_a04",
              new string[] { "col_a1", "col_a2" }) 
@@ -1123,12 +1126,12 @@ namespace HomeFinances_1_0.Довідники
 
         public Користувач_Objest Copy()
         {
-            Користувач_Objest newCopy = new Користувач_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.Код = Код;
+            Користувач_Objest copy = new Користувач_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.Код = Код;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -1154,7 +1157,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Користувач програми.
     ///</summary>
-    class Користувач_Pointer : DirectoryPointer
+    public class Користувач_Pointer : DirectoryPointer
     {
         public Користувач_Pointer(object uid = null) : base(Config.Kernel, "tab_a04")
         {
@@ -1168,6 +1171,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Користувач_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Користувач_Objest КористувачObjestItem = new Користувач_Objest();
             return КористувачObjestItem.Read(base.UnigueID) ? КористувачObjestItem : null;
         }
@@ -1188,7 +1192,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Користувач програми.
     ///</summary>
-    class Користувач_Select : DirectorySelect, IDisposable
+    public class Користувач_Select : DirectorySelect, IDisposable
     {
         public Користувач_Select() : base(Config.Kernel, "tab_a04") { }
         
@@ -1221,7 +1225,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Користувач_НалаштуванняФормиЗаписиФінансів_TablePart : DirectoryTablePart
+    public class Користувач_НалаштуванняФормиЗаписиФінансів_TablePart : DirectoryTablePart
     {
         public Користувач_НалаштуванняФормиЗаписиФінансів_TablePart(Користувач_Objest owner) : base(Config.Kernel, "tab_a06",
              new string[] { "col_a5", "col_a6" }) 
@@ -1316,7 +1320,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Місце зберігання грошей.
     ///</summary>
-    class Каса_Objest : DirectoryObject
+    public class Каса_Objest : DirectoryObject
     {
         public Каса_Objest() : base(Config.Kernel, "tab_a05",
              new string[] { "col_a1", "col_a2", "col_a3" }) 
@@ -1368,13 +1372,13 @@ namespace HomeFinances_1_0.Довідники
 
         public Каса_Objest Copy()
         {
-            Каса_Objest newCopy = new Каса_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.Валюта = Валюта;
-			newCopy.ТипВалюти = ТипВалюти;
+            Каса_Objest copy = new Каса_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.Валюта = Валюта;
+			copy.ТипВалюти = ТипВалюти;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -1401,7 +1405,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Місце зберігання грошей.
     ///</summary>
-    class Каса_Pointer : DirectoryPointer
+    public class Каса_Pointer : DirectoryPointer
     {
         public Каса_Pointer(object uid = null) : base(Config.Kernel, "tab_a05")
         {
@@ -1415,6 +1419,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Каса_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Каса_Objest КасаObjestItem = new Каса_Objest();
             return КасаObjestItem.Read(base.UnigueID) ? КасаObjestItem : null;
         }
@@ -1435,7 +1440,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Місце зберігання грошей.
     ///</summary>
-    class Каса_Select : DirectorySelect, IDisposable
+    public class Каса_Select : DirectorySelect, IDisposable
     {
         public Каса_Select() : base(Config.Kernel, "tab_a05") { }
         
@@ -1469,7 +1474,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Каса_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class Каса_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public Каса_ОбмінІсторія_TablePart(Каса_Objest owner) : base(Config.Kernel, "tab_a12",
              new string[] { "col_a3", "col_a4" }) 
@@ -1564,7 +1569,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Валюта.
     ///</summary>
-    class Валюта_Objest : DirectoryObject
+    public class Валюта_Objest : DirectoryObject
     {
         public Валюта_Objest() : base(Config.Kernel, "tab_a07",
              new string[] { "col_a3", "col_a4" }) 
@@ -1612,12 +1617,12 @@ namespace HomeFinances_1_0.Довідники
 
         public Валюта_Objest Copy()
         {
-            Валюта_Objest newCopy = new Валюта_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.Код = Код;
+            Валюта_Objest copy = new Валюта_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.Код = Код;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -1643,7 +1648,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Валюта.
     ///</summary>
-    class Валюта_Pointer : DirectoryPointer
+    public class Валюта_Pointer : DirectoryPointer
     {
         public Валюта_Pointer(object uid = null) : base(Config.Kernel, "tab_a07")
         {
@@ -1657,6 +1662,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Валюта_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Валюта_Objest ВалютаObjestItem = new Валюта_Objest();
             return ВалютаObjestItem.Read(base.UnigueID) ? ВалютаObjestItem : null;
         }
@@ -1677,7 +1683,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Валюта.
     ///</summary>
-    class Валюта_Select : DirectorySelect, IDisposable
+    public class Валюта_Select : DirectorySelect, IDisposable
     {
         public Валюта_Select() : base(Config.Kernel, "tab_a07") { }
         
@@ -1710,7 +1716,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Валюта_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class Валюта_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public Валюта_ОбмінІсторія_TablePart(Валюта_Objest owner) : base(Config.Kernel, "tab_a11",
              new string[] { "col_a1", "col_a2" }) 
@@ -1805,7 +1811,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Довідник для контактів.
     ///</summary>
-    class Контакти_Objest : DirectoryObject
+    public class Контакти_Objest : DirectoryObject
     {
         public Контакти_Objest() : base(Config.Kernel, "tab_a08",
              new string[] { "col_a4", "col_a3", "col_a5", "col_a6", "col_a7", "col_a1", "col_a2" }) 
@@ -1873,17 +1879,17 @@ namespace HomeFinances_1_0.Довідники
 
         public Контакти_Objest Copy()
         {
-            Контакти_Objest newCopy = new Контакти_Objest();
-			newCopy.New();
-            newCopy.Телефон = Телефон;
-			newCopy.Назва = Назва;
-			newCopy.Сайт = Сайт;
-			newCopy.Пошта = Пошта;
-			newCopy.Опис = Опис;
-			newCopy.Скайп = Скайп;
-			newCopy.Фото = Фото;
+            Контакти_Objest copy = new Контакти_Objest();
+			copy.New();
+            copy.Телефон = Телефон;
+			copy.Назва = Назва;
+			copy.Сайт = Сайт;
+			copy.Пошта = Пошта;
+			copy.Опис = Опис;
+			copy.Скайп = Скайп;
+			copy.Фото = Фото;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -1914,7 +1920,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Довідник для контактів.
     ///</summary>
-    class Контакти_Pointer : DirectoryPointer
+    public class Контакти_Pointer : DirectoryPointer
     {
         public Контакти_Pointer(object uid = null) : base(Config.Kernel, "tab_a08")
         {
@@ -1928,6 +1934,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Контакти_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Контакти_Objest КонтактиObjestItem = new Контакти_Objest();
             return КонтактиObjestItem.Read(base.UnigueID) ? КонтактиObjestItem : null;
         }
@@ -1948,7 +1955,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Довідник для контактів.
     ///</summary>
-    class Контакти_Select : DirectorySelect, IDisposable
+    public class Контакти_Select : DirectorySelect, IDisposable
     {
         public Контакти_Select() : base(Config.Kernel, "tab_a08") { }
         
@@ -1986,7 +1993,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Контакти_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class Контакти_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public Контакти_ОбмінІсторія_TablePart(Контакти_Objest owner) : base(Config.Kernel, "tab_a14",
              new string[] { "col_a1", "col_a2" }) 
@@ -2081,7 +2088,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Ієрархія для довідника Записник.
     ///</summary>
-    class Записник_Папки_Objest : DirectoryObject
+    public class Записник_Папки_Objest : DirectoryObject
     {
         public Записник_Папки_Objest() : base(Config.Kernel, "tab_a09",
              new string[] { "col_a1", "col_a3", "col_a2" }) 
@@ -2117,7 +2124,7 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a2"] = Дата;
             
             BaseSave();
-			
+			Записник_Папки_Triggers.Записник_Папки_AfterRecording(this);
         }
 
         public string Serialize(string root = "Записник_Папки")
@@ -2133,13 +2140,13 @@ namespace HomeFinances_1_0.Довідники
 
         public Записник_Папки_Objest Copy()
         {
-            Записник_Папки_Objest newCopy = new Записник_Папки_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.Родич = Родич;
-			newCopy.Дата = Дата;
+            Записник_Папки_Objest copy = new Записник_Папки_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.Родич = Родич;
+			copy.Дата = Дата;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -2166,7 +2173,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Ієрархія для довідника Записник.
     ///</summary>
-    class Записник_Папки_Pointer : DirectoryPointer
+    public class Записник_Папки_Pointer : DirectoryPointer
     {
         public Записник_Папки_Pointer(object uid = null) : base(Config.Kernel, "tab_a09")
         {
@@ -2180,6 +2187,7 @@ namespace HomeFinances_1_0.Довідники
         
         public Записник_Папки_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             Записник_Папки_Objest Записник_ПапкиObjestItem = new Записник_Папки_Objest();
             return Записник_ПапкиObjestItem.Read(base.UnigueID) ? Записник_ПапкиObjestItem : null;
         }
@@ -2200,7 +2208,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Ієрархія для довідника Записник.
     ///</summary>
-    class Записник_Папки_Select : DirectorySelect, IDisposable
+    public class Записник_Папки_Select : DirectorySelect, IDisposable
     {
         public Записник_Папки_Select() : base(Config.Kernel, "tab_a09") { }
         
@@ -2234,7 +2242,7 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    class Записник_Папки_ОбмінІсторія_TablePart : DirectoryTablePart
+    public class Записник_Папки_ОбмінІсторія_TablePart : DirectoryTablePart
     {
         public Записник_Папки_ОбмінІсторія_TablePart(Записник_Папки_Objest owner) : base(Config.Kernel, "tab_a15",
              new string[] { "col_a1", "col_a2" }) 
@@ -2329,7 +2337,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
     ///</summary>
-    class КалендарПеріодичнихЗавдань_Objest : DirectoryObject
+    public class КалендарПеріодичнихЗавдань_Objest : DirectoryObject
     {
         public КалендарПеріодичнихЗавдань_Objest() : base(Config.Kernel, "tab_a53",
              new string[] { "col_a1", "col_a3", "col_a4", "col_a2" }) 
@@ -2382,14 +2390,14 @@ namespace HomeFinances_1_0.Довідники
 
         public КалендарПеріодичнихЗавдань_Objest Copy()
         {
-            КалендарПеріодичнихЗавдань_Objest newCopy = new КалендарПеріодичнихЗавдань_Objest();
-			newCopy.New();
-            newCopy.Назва = Назва;
-			newCopy.ПеріодВиконання = ПеріодВиконання;
-			newCopy.Опис = Опис;
-			newCopy.Старт = Старт;
+            КалендарПеріодичнихЗавдань_Objest copy = new КалендарПеріодичнихЗавдань_Objest();
+			copy.New();
+            copy.Назва = Назва;
+			copy.ПеріодВиконання = ПеріодВиконання;
+			copy.Опис = Опис;
+			copy.Старт = Старт;
 			
-			return newCopy;
+			return copy;
         }
 
         public void Delete()
@@ -2414,7 +2422,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
     ///</summary>
-    class КалендарПеріодичнихЗавдань_Pointer : DirectoryPointer
+    public class КалендарПеріодичнихЗавдань_Pointer : DirectoryPointer
     {
         public КалендарПеріодичнихЗавдань_Pointer(object uid = null) : base(Config.Kernel, "tab_a53")
         {
@@ -2428,6 +2436,7 @@ namespace HomeFinances_1_0.Довідники
         
         public КалендарПеріодичнихЗавдань_Objest GetDirectoryObject()
         {
+            if (this.IsEmpty()) return null;
             КалендарПеріодичнихЗавдань_Objest КалендарПеріодичнихЗавданьObjestItem = new КалендарПеріодичнихЗавдань_Objest();
             return КалендарПеріодичнихЗавданьObjestItem.Read(base.UnigueID) ? КалендарПеріодичнихЗавданьObjestItem : null;
         }
@@ -2448,7 +2457,7 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
     ///</summary>
-    class КалендарПеріодичнихЗавдань_Select : DirectorySelect, IDisposable
+    public class КалендарПеріодичнихЗавдань_Select : DirectorySelect, IDisposable
     {
         public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53") { }
         
@@ -2554,7 +2563,7 @@ namespace HomeFinances_1_0.РегістриНакопичення
     #region REGISTER "ЗалишкиКоштів"
     
     
-    class ЗалишкиКоштів_RecordsSet : RegisterAccumulationRecordsSet
+    public class ЗалишкиКоштів_RecordsSet : RegisterAccumulationRecordsSet
     {
         public ЗалишкиКоштів_RecordsSet() : base(Config.Kernel, "tab_a19",
              new string[] { "col_a1", "col_a2" }) 

@@ -134,7 +134,7 @@ namespace HomeFinances
 				{
 					записник_Objest.Назва = textBoxName.Text;
 					записник_Objest.Папка = directoryControl1.DirectoryPointerItem != null ? (Довідники.Записник_Папки_Pointer)directoryControl1.DirectoryPointerItem : new Довідники.Записник_Папки_Pointer();
-					записник_Objest.Дата = dateTimePickerRecord.Value;
+					записник_Objest.Дата = DateTime.Now;
 					записник_Objest.Опис = textBoxDesc.Text;
 					записник_Objest.Сайт = textBoxSite.Text;
 					записник_Objest.Save();

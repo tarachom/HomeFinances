@@ -35,7 +35,43 @@ using AccountingSoftware;
 
 namespace HomeFinances_1_0.Довідники
 {
-    class Записи_Triggers
+	class Записник_Triggers
+    {
+		public static void Записник_AfterRecording(Записник_Objest записник_Objest)
+        {
+			//Для папки встановлюється сьогоднішня дата
+			if (записник_Objest.Папка != null)
+			{
+				Довідники.Записник_Папки_Objest записник_Папки_Objest = записник_Objest.Папка.GetDirectoryObject();
+				if (записник_Папки_Objest != null)
+				{
+					записник_Папки_Objest.Дата = DateTime.Now;
+					записник_Папки_Objest.Save();
+				}
+			}
+		}
+
+	}
+
+	class Записник_Папки_Triggers
+	{
+		public static void Записник_Папки_AfterRecording(Записник_Папки_Objest записник_Папки_Objest)
+		{
+			//Для папки встановлюється сьогоднішня дата
+			if (записник_Папки_Objest.Родич != null)
+			{
+				Довідники.Записник_Папки_Objest записник_Папки_Родич_Objest = записник_Папки_Objest.Родич.GetDirectoryObject();
+				if (записник_Папки_Родич_Objest != null)
+                {
+					записник_Папки_Родич_Objest.Дата = DateTime.Now;
+					записник_Папки_Родич_Objest.Save();
+				}
+			}
+		}
+
+	}
+
+	class Записи_Triggers
 	{
         public static void Записи_BeforeRecording(Записи_Objest запис)
         {
