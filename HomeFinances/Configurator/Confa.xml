@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>13.09.2021 12:18:24</DateTimeSave>
+  <DateTimeSave>13.09.2021 12:37:28</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -673,8 +673,7 @@
         <BeforeSave>
         </BeforeSave>
         <AfterSave>Записник_Папки_Triggers.Записник_Папки_AfterRecording</AfterSave>
-        <BeforeDelete>
-        </BeforeDelete>
+        <BeforeDelete>Записник_Папки_Triggers.Записник_Папки_BeforeDelete</BeforeDelete>
       </TriggerFunctions>
     </Directory>
     <Directory>

@@ -50,14 +50,13 @@ namespace HomeFinances_1_0.Довідники
 				}
 			}
 		}
-
 	}
 
 	class Записник_Папки_Triggers
 	{
 		public static void Записник_Папки_AfterRecording(Записник_Папки_Objest записник_Папки_Objest)
 		{
-			//Для папки встановлюється сьогоднішня дата
+			//Для папки Родич встановлюється сьогоднішня дата
 			if (записник_Папки_Objest.Родич != null)
 			{
 				Довідники.Записник_Папки_Objest записник_Папки_Родич_Objest = записник_Папки_Objest.Родич.GetDirectoryObject();
@@ -65,6 +64,43 @@ namespace HomeFinances_1_0.Довідники
                 {
 					записник_Папки_Родич_Objest.Дата = DateTime.Now;
 					записник_Папки_Родич_Objest.Save();
+				}
+			}
+		}
+
+		public static void Записник_Папки_BeforeDelete(Записник_Папки_Objest записник_Папки_Objest)
+        {
+			//
+			//Вибірка елементів папки
+			//
+			Довідники.Записник_Select записник_Select = new Записник_Select();
+			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Select.Папка, Comparison.EQ, записник_Папки_Objest.UnigueID.UGuid));
+
+			записник_Select.Select();
+			while(записник_Select.MoveNext())
+            {
+				Довідники.Записник_Objest записник_Objest = записник_Select.Current.GetDirectoryObject();
+				if (записник_Objest != null)
+                {
+					//Console.WriteLine("Delete element: " + записник_Objest.Назва);
+					записник_Objest.Delete();
+				}
+			}
+
+			//
+			//Вибірка папок у папці
+			//
+			Довідники.Записник_Папки_Select записник_Папки_Select = new Записник_Папки_Select();
+			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Select.Родич, Comparison.EQ, записник_Папки_Objest.UnigueID.UGuid));
+
+			записник_Папки_Select.Select();
+			while (записник_Папки_Select.MoveNext())
+            {
+				Довідники.Записник_Папки_Objest записник_Папки_Objest_List = записник_Папки_Select.Current.GetDirectoryObject();
+				if (записник_Папки_Objest_List != null)
+                {
+					//Console.WriteLine("Delete folder: " + записник_Папки_Objest_List.Назва);
+					записник_Папки_Objest_List.Delete();
 				}
 			}
 		}

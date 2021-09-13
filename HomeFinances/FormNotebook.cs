@@ -352,8 +352,6 @@ namespace HomeFinances
 						Довідники.Записник_Папки_Objest записник_Папки_Objest = new Довідники.Записник_Папки_Objest();
 						if (записник_Папки_Objest.Read(new UnigueID(uid)))
 						{
-							//рекурсивно
-
 							записник_Папки_Objest.Delete();
 						}
 						else

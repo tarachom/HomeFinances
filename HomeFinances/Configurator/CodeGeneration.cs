@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 13.09.2021 12:18:24
+ * Дата конфігурації: 13.09.2021 12:37:28
  *
  */
 
@@ -2151,7 +2151,7 @@ namespace HomeFinances_1_0.Довідники
 
         public void Delete()
         {
-            
+            Записник_Папки_Triggers.Записник_Папки_BeforeDelete(this);
 			base.BaseDelete();
         }
         
