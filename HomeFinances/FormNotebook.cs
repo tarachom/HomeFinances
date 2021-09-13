@@ -337,7 +337,7 @@ namespace HomeFinances
 		private void toolStripButtonDelete_Click(object sender, EventArgs e)
 		{
 			if (dataGridViewRecords.SelectedRows.Count != 0 &&
-				MessageBox.Show("Видалити папки?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				MessageBox.Show("Видалити папки?\nТакожу будуть видалені всі елементи і папки які знаходяться в даній папці!", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
 				{
