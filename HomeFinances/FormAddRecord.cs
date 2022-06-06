@@ -202,5 +202,26 @@ namespace HomeFinances
 				this.Close();
 			}
 		}
+
+		/// <summary>
+		/// Зміна видимості елементів в залежності від вибору типу запису
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+        private void comboBoxTypeRecord_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			if (comboBoxTypeRecord.SelectedItem != null)
+			{
+				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
+
+				//Довідкова інформація про тип запису з конфігурації
+				label_TypeRecord_Desc.Text = Конфа.Config.Kernel.Conf.Enums["ТипЗапису"].Fields[типЗапису.ToString()].Desc;
+
+				bool EnableControl = типЗапису == Перелічення.ТипЗапису.Переміщення;
+
+				directoryControl3.Enabled = EnableControl;
+				label10.Enabled = EnableControl;
+			}			
+		}
     }
 }

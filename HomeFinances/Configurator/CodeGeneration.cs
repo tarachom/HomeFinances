@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 13.09.2021 12:37:28
+ * Дата конфігурації: 06.06.2022 17:04:12
  *
  */
 
@@ -188,7 +188,7 @@ namespace HomeFinances_1_0.Довідники
     public class Записи_Objest : DirectoryObject
     {
         public Записи_Objest() : base(Config.Kernel, "tab_a02",
-             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3", "col_a5" }) 
+             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3", "col_a5", "col_b2", "col_b3" }) 
         {
             Назва = "";
             ДатаЗапису = DateTime.MinValue;
@@ -200,6 +200,8 @@ namespace HomeFinances_1_0.Довідники
             СсилкаНаСайт = "";
             КасаПереміщення = new Довідники.Каса_Pointer();
             Проведено = false;
+            СумаОбміну = 0;
+            КурсОбміну = 0;
             
             //Табличні частини
             ОбмінІсторія_TablePart = new Записи_ОбмінІсторія_TablePart(this);
@@ -214,12 +216,14 @@ namespace HomeFinances_1_0.Довідники
                 ДатаЗапису = (base.FieldValue["col_a6"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a6"].ToString()) : DateTime.MinValue;
                 Опис = base.FieldValue["col_a8"].ToString();
                 ТипЗапису = (base.FieldValue["col_a9"] != DBNull.Value) ? (Перелічення.ТипЗапису)base.FieldValue["col_a9"] : 0;
-                Сума = (base.FieldValue["col_b1"] != DBNull.Value) ? (int)base.FieldValue["col_b1"] : 0;
+                Сума = (base.FieldValue["col_b1"] != DBNull.Value) ? (decimal)base.FieldValue["col_b1"] : 0;
                 Витрата = new Довідники.КласифікаторВитрат_Pointer(base.FieldValue["col_a1"]);
                 Каса = new Довідники.Каса_Pointer(base.FieldValue["col_a2"]);
                 СсилкаНаСайт = base.FieldValue["col_a4"].ToString();
                 КасаПереміщення = new Довідники.Каса_Pointer(base.FieldValue["col_a3"]);
                 Проведено = (base.FieldValue["col_a5"] != DBNull.Value) ? bool.Parse(base.FieldValue["col_a5"].ToString()) : false;
+                СумаОбміну = (base.FieldValue["col_b2"] != DBNull.Value) ? (decimal)base.FieldValue["col_b2"] : 0;
+                КурсОбміну = (base.FieldValue["col_b3"] != DBNull.Value) ? (decimal)base.FieldValue["col_b3"] : 0;
                 
                 BaseClear();
                 return true;
@@ -240,6 +244,8 @@ namespace HomeFinances_1_0.Довідники
             base.FieldValue["col_a4"] = СсилкаНаСайт;
             base.FieldValue["col_a3"] = КасаПереміщення.UnigueID.UGuid;
             base.FieldValue["col_a5"] = Проведено;
+            base.FieldValue["col_b2"] = СумаОбміну;
+            base.FieldValue["col_b3"] = КурсОбміну;
             Записи_Triggers.Записи_BeforeRecording(this);
             BaseSave();
 			Записи_Triggers.Записи_AfterRecording(this);
@@ -260,6 +266,8 @@ namespace HomeFinances_1_0.Довідники
                "<СсилкаНаСайт>" + "<![CDATA[" + СсилкаНаСайт + "]]>" + "</СсилкаНаСайт>"  +
                "<КасаПереміщення>" + КасаПереміщення.ToString() + "</КасаПереміщення>"  +
                "<Проведено>" + (Проведено == true ? "1" : "0") + "</Проведено>"  +
+               "<СумаОбміну>" + СумаОбміну.ToString() + "</СумаОбміну>"  +
+               "<КурсОбміну>" + КурсОбміну.ToString() + "</КурсОбміну>"  +
                "</" + root + ">";
         }
 
@@ -277,6 +285,8 @@ namespace HomeFinances_1_0.Довідники
 			copy.СсилкаНаСайт = СсилкаНаСайт;
 			copy.КасаПереміщення = КасаПереміщення;
 			copy.Проведено = Проведено;
+			copy.СумаОбміну = СумаОбміну;
+			copy.КурсОбміну = КурсОбміну;
 			
 			return copy;
         }
@@ -297,12 +307,14 @@ namespace HomeFinances_1_0.Довідники
         public DateTime ДатаЗапису { get; set; }
         public string Опис { get; set; }
         public Перелічення.ТипЗапису ТипЗапису { get; set; }
-        public int Сума { get; set; }
+        public decimal Сума { get; set; }
         public Довідники.КласифікаторВитрат_Pointer Витрата { get; set; }
         public Довідники.Каса_Pointer Каса { get; set; }
         public string СсилкаНаСайт { get; set; }
         public Довідники.Каса_Pointer КасаПереміщення { get; set; }
         public bool Проведено { get; set; }
+        public decimal СумаОбміну { get; set; }
+        public decimal КурсОбміну { get; set; }
         
         //Табличні частини
         public Записи_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
@@ -361,6 +373,8 @@ namespace HomeFinances_1_0.Довідники
         public const string СсилкаНаСайт = "col_a4";
         public const string КасаПереміщення = "col_a3";
         public const string Проведено = "col_a5";
+        public const string СумаОбміну = "col_b2";
+        public const string КурсОбміну = "col_b3";
         
         public bool Select() { return base.BaseSelect(); }
         
@@ -424,32 +438,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a5", record.Дата);
-                    fieldValue.Add("col_a6", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a5", record.Дата);
+                fieldValue.Add("col_a6", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -666,32 +675,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a1", record.Дата);
-                    fieldValue.Add("col_a2", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a1", record.Дата);
+                fieldValue.Add("col_a2", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -931,32 +935,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a3", record.Дата);
-                    fieldValue.Add("col_a4", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a3", record.Дата);
+                fieldValue.Add("col_a4", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -1019,32 +1018,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a1", record.Назва);
-                    fieldValue.Add("col_a2", record.НазваФайлуНаДиску);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a1", record.Назва);
+                fieldValue.Add("col_a2", record.НазваФайлуНаДиску);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -1261,32 +1255,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a5", record.Ключ);
-                    fieldValue.Add("col_a6", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a5", record.Ключ);
+                fieldValue.Add("col_a6", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -1510,32 +1499,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a3", record.Дата);
-                    fieldValue.Add("col_a4", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a3", record.Дата);
+                fieldValue.Add("col_a4", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -1752,32 +1736,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a1", record.Дата);
-                    fieldValue.Add("col_a2", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a1", record.Дата);
+                fieldValue.Add("col_a2", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -2029,32 +2008,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a1", record.Дата);
-                    fieldValue.Add("col_a2", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a1", record.Дата);
+                fieldValue.Add("col_a2", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -2278,32 +2252,27 @@ namespace HomeFinances_1_0.Довідники
         
         public void Save(bool clear_all_before_save /*= true*/) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+                
+            if (clear_all_before_save)
+                base.BaseDelete(Owner.UnigueID);
+
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                
-                if (clear_all_before_save)
-                    base.BaseDelete(Owner.UnigueID);
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
 
-                foreach (Record record in Records)
-                {
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                    fieldValue.Add("col_a1", record.Дата);
-                    fieldValue.Add("col_a2", record.Значення);
-                    
-                    base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-                }
+                fieldValue.Add("col_a1", record.Дата);
+                fieldValue.Add("col_a2", record.Значення);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
             }
+                
+            base.BaseCommitTransaction();
         }
         
         public void Delete()
         {
-            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
-            base.BaseCommitTransaction();
         }
         
         
@@ -2510,7 +2479,8 @@ namespace HomeFinances_1_0.Перелічення
          Поступлення = 3,
          Благодійність = 4,
          Замітка = 5,
-         Переміщення = 7
+         Переміщення = 7,
+         Обмін = 8
     }
     #endregion
     
@@ -2547,11 +2517,6 @@ namespace HomeFinances_1_0.Документи
     
 }
 
-namespace HomeFinances_1_0.Журнали
-{
-
-}
-
 namespace HomeFinances_1_0.РегістриВідомостей
 {
     
@@ -2572,6 +2537,9 @@ namespace HomeFinances_1_0.РегістриНакопичення
             Filter = new SelectFilter();
         }
         
+        public const string Каса = "col_a1";
+        public const string Сума = "col_a2";
+		
         public List<Record> Records { get; set; }
         
         public void Read()
@@ -2581,7 +2549,7 @@ namespace HomeFinances_1_0.РегістриНакопичення
             
             if (Filter.Каса != null)
             {
-                base.BaseFilter.Add(new Where("col_a1", Comparison.EQ, Filter.Каса.ToString(), false));
+                base.BaseFilter.Add(new Where("col_a1", Comparison.EQ, Filter.Каса.UnigueID.UGuid, false));
                 
             }
             

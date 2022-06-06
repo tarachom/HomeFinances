@@ -310,7 +310,7 @@ del %25hf_folder%25\Comparison.xml
 del %25hf_folder%25\ComparisonAnalize.xml
 del %25hf_folder%25\InformationSchema.xml
 
-copy $(ProjectDir)\bin\Release\*.*   $(ProjectDir)\bin\HomeFinances
+copy $(ProjectDir)\bin\Release\*.*   $(ProjectDir)bin\HomeFinances
 
 copy $(ProjectDir)\bin\ConfigurationParam.xml      $(ProjectDir)\bin\HomeFinances\ConfigurationParam.xml</PostBuildEvent>
   </PropertyGroup>

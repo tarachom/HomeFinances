@@ -56,6 +56,7 @@ namespace HomeFinances
             this.toolStripButtonSpend = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,6 @@ namespace HomeFinances
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -104,13 +104,14 @@ namespace HomeFinances
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.labelCalculateBalance);
             this.panel4.Controls.Add(this.buttonCalculateBalance);
             this.panel4.Location = new System.Drawing.Point(5, 240);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(392, 298);
+            this.panel4.Size = new System.Drawing.Size(392, 336);
             this.panel4.TabIndex = 2;
             // 
             // labelCalculateBalance
@@ -354,6 +355,15 @@ namespace HomeFinances
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.Image = global::HomeFinances.Properties.Resources.layers;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
+            this.toolStripDropDownButton1.Text = "Обмін";
+            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
+            // 
             // menuStripTop
             // 
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -452,15 +462,6 @@ namespace HomeFinances
             this.directoryControl1.Name = "directoryControl1";
             this.directoryControl1.Size = new System.Drawing.Size(296, 27);
             this.directoryControl1.TabIndex = 9;
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.Image = global::HomeFinances.Properties.Resources.layers;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
-            this.toolStripDropDownButton1.Text = "Обмін";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
             // 
             // FormRecordFinance
             // 

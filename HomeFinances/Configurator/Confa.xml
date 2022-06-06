@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>13.09.2021 12:37:28</DateTimeSave>
+  <DateTimeSave>06.06.2022 17:04:12</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -107,7 +107,7 @@
         <Field>
           <Name>Сума</Name>
           <NameInTable>col_b1</NameInTable>
-          <Type>integer</Type>
+          <Type>numeric</Type>
           <Desc>Сума операції</Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
@@ -146,8 +146,21 @@
           <Name>Проведено</Name>
           <NameInTable>col_a5</NameInTable>
           <Type>boolean</Type>
-          <Desc>
-          </Desc>
+          <Desc>Чи робить запис рух по регістрах</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>СумаОбміну</Name>
+          <NameInTable>col_b2</NameInTable>
+          <Type>numeric</Type>
+          <Desc>Сума обміну валюти по курсу</Desc>
+          <IsPresentation>0</IsPresentation>
+        </Field>
+        <Field>
+          <Name>КурсОбміну</Name>
+          <NameInTable>col_b3</NameInTable>
+          <Type>numeric</Type>
+          <Desc>Курс обміну валюти по курсу</Desc>
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
@@ -730,25 +743,22 @@
     <Enum>
       <Name>ТипЗапису</Name>
       <Desc>Тип запису  - це поступлення фінансів або витрати фінансів</Desc>
-      <SerialNumber>7</SerialNumber>
+      <SerialNumber>8</SerialNumber>
       <Fields>
         <Field>
           <Name>Витрати</Name>
           <Value>2</Value>
-          <Desc>
-          </Desc>
+          <Desc>Витрачені кошти</Desc>
         </Field>
         <Field>
           <Name>Поступлення</Name>
           <Value>3</Value>
-          <Desc>
-          </Desc>
+          <Desc>Поступлення коштів</Desc>
         </Field>
         <Field>
           <Name>Благодійність</Name>
           <Value>4</Value>
-          <Desc>
-          </Desc>
+          <Desc>Витрачені кошти на благодійність</Desc>
         </Field>
         <Field>
           <Name>Замітка</Name>
@@ -758,7 +768,12 @@
         <Field>
           <Name>Переміщення</Name>
           <Value>7</Value>
-          <Desc>Переміщення коштів між гаманцями</Desc>
+          <Desc>Переміщення коштів між касами</Desc>
+        </Field>
+        <Field>
+          <Name>Обмін</Name>
+          <Value>8</Value>
+          <Desc>Обмін на іншу валюту по курсу</Desc>
         </Field>
       </Fields>
     </Enum>

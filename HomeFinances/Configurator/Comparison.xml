@@ -115,9 +115,9 @@
       <NameInTable>col_b1</NameInTable>
       <IsExist>yes</IsExist>
       <Type>
-        <ConfType>integer</ConfType>
-        <DataType>integer</DataType>
-        <UdtName>int4</UdtName>
+        <ConfType>numeric</ConfType>
+        <DataType>numeric</DataType>
+        <UdtName>numeric</UdtName>
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
@@ -173,6 +173,28 @@
         <ConfType>boolean</ConfType>
         <DataType>boolean</DataType>
         <UdtName>bool</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>СумаОбміну</Name>
+      <NameInTable>col_b2</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>numeric</ConfType>
+        <DataType>numeric</DataType>
+        <UdtName>numeric</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>КурсОбміну</Name>
+      <NameInTable>col_b3</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>numeric</ConfType>
+        <DataType>numeric</DataType>
+        <UdtName>numeric</UdtName>
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>

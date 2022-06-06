@@ -46,14 +46,19 @@ namespace HomeFinances
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonOpenBrouser = new System.Windows.Forms.Button();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label9 = new System.Windows.Forms.Label();
-            this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.textBoxUrlLink = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.directoryControl3 = new HomeFinances.DirectoryControl();
             this.buttonSaveAndSpend = new System.Windows.Forms.Button();
             this.labelStateSpend = new System.Windows.Forms.Label();
+            this.label_TypeRecord_Desc = new System.Windows.Forms.Label();
+            this.directoryControl3 = new HomeFinances.DirectoryControl();
+            this.directoryControl2 = new HomeFinances.DirectoryControl();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
+            this.label11 = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -111,9 +116,8 @@ namespace HomeFinances
             this.maskedTextBoxSuma.Location = new System.Drawing.Point(60, 206);
             this.maskedTextBoxSuma.Mask = "00000";
             this.maskedTextBoxSuma.Name = "maskedTextBoxSuma";
-            this.maskedTextBoxSuma.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBoxSuma.Size = new System.Drawing.Size(164, 20);
             this.maskedTextBoxSuma.TabIndex = 9;
-            this.maskedTextBoxSuma.ValidatingType = typeof(int);
             // 
             // label5
             // 
@@ -141,10 +145,11 @@ namespace HomeFinances
             this.comboBoxTypeRecord.Name = "comboBoxTypeRecord";
             this.comboBoxTypeRecord.Size = new System.Drawing.Size(164, 21);
             this.comboBoxTypeRecord.TabIndex = 12;
+            this.comboBoxTypeRecord.SelectedIndexChanged += new System.EventHandler(this.comboBoxTypeRecord_SelectedIndexChanged);
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(182, 385);
+            this.buttonSave.Location = new System.Drawing.Point(182, 431);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -154,7 +159,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(438, 385);
+            this.buttonClose.Location = new System.Drawing.Point(438, 431);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -174,7 +179,7 @@ namespace HomeFinances
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 272);
+            this.label6.Location = new System.Drawing.Point(13, 332);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 13);
             this.label6.TabIndex = 17;
@@ -192,7 +197,7 @@ namespace HomeFinances
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 301);
+            this.label8.Location = new System.Drawing.Point(12, 361);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(88, 13);
             this.label8.TabIndex = 19;
@@ -200,22 +205,13 @@ namespace HomeFinances
             // 
             // buttonOpenBrouser
             // 
-            this.buttonOpenBrouser.Location = new System.Drawing.Point(694, 296);
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(903, 356);
             this.buttonOpenBrouser.Name = "buttonOpenBrouser";
-            this.buttonOpenBrouser.Size = new System.Drawing.Size(33, 23);
+            this.buttonOpenBrouser.Size = new System.Drawing.Size(32, 23);
             this.buttonOpenBrouser.TabIndex = 21;
             this.buttonOpenBrouser.Text = "...";
             this.buttonOpenBrouser.UseVisualStyleBackColor = true;
             this.buttonOpenBrouser.Click += new System.EventHandler(this.buttonOpenBrouser_Click);
-            // 
-            // directoryControl1
-            // 
-            this.directoryControl1.CallBack = null;
-            this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(99, 265);
-            this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(453, 27);
-            this.directoryControl1.TabIndex = 15;
             // 
             // label9
             // 
@@ -226,20 +222,11 @@ namespace HomeFinances
             this.label9.TabIndex = 23;
             this.label9.Text = "Каса:";
             // 
-            // directoryControl2
-            // 
-            this.directoryControl2.CallBack = null;
-            this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(60, 232);
-            this.directoryControl2.Name = "directoryControl2";
-            this.directoryControl2.Size = new System.Drawing.Size(416, 27);
-            this.directoryControl2.TabIndex = 22;
-            // 
             // textBoxUrlLink
             // 
-            this.textBoxUrlLink.Location = new System.Drawing.Point(99, 298);
+            this.textBoxUrlLink.Location = new System.Drawing.Point(100, 358);
             this.textBoxUrlLink.Name = "textBoxUrlLink";
-            this.textBoxUrlLink.Size = new System.Drawing.Size(589, 20);
+            this.textBoxUrlLink.Size = new System.Drawing.Size(797, 20);
             this.textBoxUrlLink.TabIndex = 20;
             // 
             // label10
@@ -251,18 +238,9 @@ namespace HomeFinances
             this.label10.TabIndex = 25;
             this.label10.Text = "--> Каса переміщення:";
             // 
-            // directoryControl3
-            // 
-            this.directoryControl3.CallBack = null;
-            this.directoryControl3.DirectoryPointerItem = null;
-            this.directoryControl3.Location = new System.Drawing.Point(605, 232);
-            this.directoryControl3.Name = "directoryControl3";
-            this.directoryControl3.Size = new System.Drawing.Size(370, 27);
-            this.directoryControl3.TabIndex = 24;
-            // 
             // buttonSaveAndSpend
             // 
-            this.buttonSaveAndSpend.Location = new System.Drawing.Point(12, 385);
+            this.buttonSaveAndSpend.Location = new System.Drawing.Point(12, 431);
             this.buttonSaveAndSpend.Name = "buttonSaveAndSpend";
             this.buttonSaveAndSpend.Size = new System.Drawing.Size(164, 23);
             this.buttonSaveAndSpend.TabIndex = 26;
@@ -279,11 +257,87 @@ namespace HomeFinances
             this.labelStateSpend.TabIndex = 27;
             this.labelStateSpend.Text = "<проведений>";
             // 
+            // label_TypeRecord_Desc
+            // 
+            this.label_TypeRecord_Desc.AutoSize = true;
+            this.label_TypeRecord_Desc.Location = new System.Drawing.Point(230, 182);
+            this.label_TypeRecord_Desc.Name = "label_TypeRecord_Desc";
+            this.label_TypeRecord_Desc.Size = new System.Drawing.Size(43, 13);
+            this.label_TypeRecord_Desc.TabIndex = 28;
+            this.label_TypeRecord_Desc.Text = "... опис";
+            this.label_TypeRecord_Desc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // directoryControl3
+            // 
+            this.directoryControl3.CallBack = null;
+            this.directoryControl3.DirectoryPointerItem = null;
+            this.directoryControl3.Location = new System.Drawing.Point(605, 232);
+            this.directoryControl3.Name = "directoryControl3";
+            this.directoryControl3.Size = new System.Drawing.Size(370, 27);
+            this.directoryControl3.TabIndex = 24;
+            // 
+            // directoryControl2
+            // 
+            this.directoryControl2.CallBack = null;
+            this.directoryControl2.DirectoryPointerItem = null;
+            this.directoryControl2.Location = new System.Drawing.Point(60, 232);
+            this.directoryControl2.Name = "directoryControl2";
+            this.directoryControl2.Size = new System.Drawing.Size(416, 27);
+            this.directoryControl2.TabIndex = 22;
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.CallBack = null;
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(100, 325);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(876, 27);
+            this.directoryControl1.TabIndex = 15;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(566, 268);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Сума:";
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(605, 265);
+            this.maskedTextBox1.Mask = "00000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(132, 20);
+            this.maskedTextBox1.TabIndex = 29;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(757, 268);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(34, 13);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Курс:";
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(797, 265);
+            this.maskedTextBox2.Mask = "00000";
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox2.TabIndex = 31;
+            // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 420);
+            this.ClientSize = new System.Drawing.Size(989, 466);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.maskedTextBox2);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.label_TypeRecord_Desc);
             this.Controls.Add(this.labelStateSpend);
             this.Controls.Add(this.buttonSaveAndSpend);
             this.Controls.Add(this.label10);
@@ -346,5 +400,10 @@ namespace HomeFinances
         private DirectoryControl directoryControl3;
         private System.Windows.Forms.Button buttonSaveAndSpend;
         private System.Windows.Forms.Label labelStateSpend;
+        private System.Windows.Forms.Label label_TypeRecord_Desc;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
     }
 }
