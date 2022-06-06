@@ -35,7 +35,6 @@ namespace HomeFinances
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerRecord = new System.Windows.Forms.DateTimePicker();
-            this.maskedTextBoxSuma = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
@@ -52,13 +51,14 @@ namespace HomeFinances
             this.buttonSaveAndSpend = new System.Windows.Forms.Button();
             this.labelStateSpend = new System.Windows.Forms.Label();
             this.label_TypeRecord_Desc = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.CursObmin = new HomeFinances.NumericControl();
+            this.SumaObmin = new HomeFinances.NumericControl();
             this.directoryControl3 = new HomeFinances.DirectoryControl();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
-            this.label11 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.Suma = new HomeFinances.NumericControl();
             this.SuspendLayout();
             // 
             // label1
@@ -110,14 +110,6 @@ namespace HomeFinances
             this.dateTimePickerRecord.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerRecord.TabIndex = 6;
             this.dateTimePickerRecord.Value = new System.DateTime(2021, 3, 5, 13, 45, 55, 0);
-            // 
-            // maskedTextBoxSuma
-            // 
-            this.maskedTextBoxSuma.Location = new System.Drawing.Point(60, 206);
-            this.maskedTextBoxSuma.Mask = "00000";
-            this.maskedTextBoxSuma.Name = "maskedTextBoxSuma";
-            this.maskedTextBoxSuma.Size = new System.Drawing.Size(164, 20);
-            this.maskedTextBoxSuma.TabIndex = 9;
             // 
             // label5
             // 
@@ -267,6 +259,48 @@ namespace HomeFinances
             this.label_TypeRecord_Desc.Text = "... опис";
             this.label_TypeRecord_Desc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(566, 268);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Сума:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(788, 268);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(34, 13);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Курс:";
+            // 
+            // CursObmin
+            // 
+            this.CursObmin.Location = new System.Drawing.Point(828, 265);
+            this.CursObmin.Name = "CursObmin";
+            this.CursObmin.Size = new System.Drawing.Size(147, 20);
+            this.CursObmin.TabIndex = 34;
+            this.CursObmin.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // SumaObmin
+            // 
+            this.SumaObmin.Location = new System.Drawing.Point(604, 265);
+            this.SumaObmin.Name = "SumaObmin";
+            this.SumaObmin.Size = new System.Drawing.Size(178, 20);
+            this.SumaObmin.TabIndex = 33;
+            this.SumaObmin.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // directoryControl3
             // 
             this.directoryControl3.CallBack = null;
@@ -294,49 +328,28 @@ namespace HomeFinances
             this.directoryControl1.Size = new System.Drawing.Size(876, 27);
             this.directoryControl1.TabIndex = 15;
             // 
-            // label11
+            // Suma
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(566, 268);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 13);
-            this.label11.TabIndex = 30;
-            this.label11.Text = "Сума:";
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(605, 265);
-            this.maskedTextBox1.Mask = "00000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(132, 20);
-            this.maskedTextBox1.TabIndex = 29;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(757, 268);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(34, 13);
-            this.label12.TabIndex = 32;
-            this.label12.Text = "Курс:";
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(797, 265);
-            this.maskedTextBox2.Mask = "00000";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox2.TabIndex = 31;
+            this.Suma.Location = new System.Drawing.Point(60, 206);
+            this.Suma.Name = "Suma";
+            this.Suma.Size = new System.Drawing.Size(187, 20);
+            this.Suma.TabIndex = 35;
+            this.Suma.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 466);
+            this.Controls.Add(this.Suma);
+            this.Controls.Add(this.CursObmin);
+            this.Controls.Add(this.SumaObmin);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.maskedTextBox2);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.label_TypeRecord_Desc);
             this.Controls.Add(this.labelStateSpend);
             this.Controls.Add(this.buttonSaveAndSpend);
@@ -356,7 +369,6 @@ namespace HomeFinances
             this.Controls.Add(this.comboBoxTypeRecord);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.maskedTextBoxSuma);
             this.Controls.Add(this.dateTimePickerRecord);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxOpys);
@@ -381,7 +393,6 @@ namespace HomeFinances
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.DateTimePicker dateTimePickerRecord;
-		private System.Windows.Forms.MaskedTextBox maskedTextBoxSuma;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.ComboBox comboBoxTypeRecord;
@@ -402,8 +413,9 @@ namespace HomeFinances
         private System.Windows.Forms.Label labelStateSpend;
         private System.Windows.Forms.Label label_TypeRecord_Desc;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private NumericControl SumaObmin;
+        private NumericControl CursObmin;
+        private NumericControl Suma;
     }
 }

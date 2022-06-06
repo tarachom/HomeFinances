@@ -176,6 +176,12 @@
     <Compile Include="FormAddRecord.Designer.cs">
       <DependentUpon>FormAddRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="NumericControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NumericControl.Designer.cs">
+      <DependentUpon>NumericControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConfigurationSelectionForm.resx">
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddRecord.resx">
       <DependentUpon>FormAddRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumericControl.resx">
+      <DependentUpon>NumericControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

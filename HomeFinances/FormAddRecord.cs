@@ -114,7 +114,6 @@ namespace HomeFinances
 					dateTimePickerRecord.Value = DateTime.Now;
 					maskedTextBoxTime.Text = DateTime.Now.TimeOfDay.ToString();
 					comboBoxTypeRecord.SelectedIndex = 0;
-					maskedTextBoxSuma.Text = "0";
 					directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer();
 					directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer();
 					directoryControl3.DirectoryPointerItem = new Довідники.Каса_Pointer();
@@ -134,11 +133,14 @@ namespace HomeFinances
 						textBoxName.Text = записи_Objest.Назва;
 						textBoxOpys.Text = записи_Objest.Опис;
 						comboBoxTypeRecord.SelectedItem = записи_Objest.ТипЗапису;
-						maskedTextBoxSuma.Text = записи_Objest.Сума.ToString();
+						Suma.Value = записи_Objest.Сума;
 						directoryControl1.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(записи_Objest.Витрата.UnigueID);
 						textBoxUrlLink.Text = записи_Objest.СсилкаНаСайт;
 						directoryControl2.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.Каса.UnigueID);
 						directoryControl3.DirectoryPointerItem = new Довідники.Каса_Pointer(записи_Objest.КасаПереміщення.UnigueID);
+						SumaObmin.Value = записи_Objest.СумаОбміну;
+						CursObmin.Value = записи_Objest.КурсОбміну;
+
 						записи_Objest.Проведено = записи_Objest.Проведено;
 					}
 					else
@@ -166,6 +168,12 @@ namespace HomeFinances
 
 		private void Save(bool Spend)
         {
+			if (!Suma.IsValid || !SumaObmin.IsValid || !CursObmin.IsValid)
+            {
+				MessageBox.Show("Невірний формат числового поля", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+            }
+
 			if (IsNew.HasValue)
 			{
 				if (IsNew.Value)
@@ -182,11 +190,14 @@ namespace HomeFinances
 					записи_Objest.Назва = textBoxName.Text;
 					записи_Objest.Опис = textBoxOpys.Text;
 					записи_Objest.ТипЗапису = (Перелічення.ТипЗапису)comboBoxTypeRecord.SelectedItem;
-					записи_Objest.Сума = int.Parse(maskedTextBoxSuma.Text);
+					записи_Objest.Сума = Suma.Value;
 					записи_Objest.Витрата = (Довідники.КласифікаторВитрат_Pointer)directoryControl1.DirectoryPointerItem;
 					записи_Objest.СсилкаНаСайт = textBoxUrlLink.Text;
 					записи_Objest.Каса = (Довідники.Каса_Pointer)directoryControl2.DirectoryPointerItem;
 					записи_Objest.КасаПереміщення = (Довідники.Каса_Pointer)directoryControl3.DirectoryPointerItem;
+					записи_Objest.СумаОбміну = SumaObmin.Value;
+					записи_Objest.КурсОбміну = CursObmin.Value;
+
 					записи_Objest.Проведено = Spend;
 					записи_Objest.Save();
 				}
