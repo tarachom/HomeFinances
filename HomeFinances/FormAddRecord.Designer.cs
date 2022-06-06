@@ -53,12 +53,12 @@ namespace HomeFinances
             this.label_TypeRecord_Desc = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.Suma = new HomeFinances.NumericControl();
             this.CursObmin = new HomeFinances.NumericControl();
             this.SumaObmin = new HomeFinances.NumericControl();
             this.directoryControl3 = new HomeFinances.DirectoryControl();
             this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.directoryControl1 = new HomeFinances.DirectoryControl();
-            this.Suma = new HomeFinances.NumericControl();
             this.SuspendLayout();
             // 
             // label1
@@ -141,7 +141,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(182, 431);
+            this.buttonSave.Location = new System.Drawing.Point(182, 375);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 13;
@@ -151,7 +151,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(438, 431);
+            this.buttonClose.Location = new System.Drawing.Point(438, 375);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 14;
@@ -171,11 +171,11 @@ namespace HomeFinances
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 332);
+            this.label6.Location = new System.Drawing.Point(12, 301);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Стаття витрат:";
+            this.label6.Text = "Стаття:";
             // 
             // label7
             // 
@@ -189,15 +189,15 @@ namespace HomeFinances
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 361);
+            this.label8.Location = new System.Drawing.Point(11, 330);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 13);
+            this.label8.Size = new System.Drawing.Size(34, 13);
             this.label8.TabIndex = 19;
-            this.label8.Text = "Ссилка на сайт:";
+            this.label8.Text = "Сайт:";
             // 
             // buttonOpenBrouser
             // 
-            this.buttonOpenBrouser.Location = new System.Drawing.Point(903, 356);
+            this.buttonOpenBrouser.Location = new System.Drawing.Point(943, 325);
             this.buttonOpenBrouser.Name = "buttonOpenBrouser";
             this.buttonOpenBrouser.Size = new System.Drawing.Size(32, 23);
             this.buttonOpenBrouser.TabIndex = 21;
@@ -216,9 +216,9 @@ namespace HomeFinances
             // 
             // textBoxUrlLink
             // 
-            this.textBoxUrlLink.Location = new System.Drawing.Point(100, 358);
+            this.textBoxUrlLink.Location = new System.Drawing.Point(60, 327);
             this.textBoxUrlLink.Name = "textBoxUrlLink";
-            this.textBoxUrlLink.Size = new System.Drawing.Size(797, 20);
+            this.textBoxUrlLink.Size = new System.Drawing.Size(877, 20);
             this.textBoxUrlLink.TabIndex = 20;
             // 
             // label10
@@ -232,7 +232,7 @@ namespace HomeFinances
             // 
             // buttonSaveAndSpend
             // 
-            this.buttonSaveAndSpend.Location = new System.Drawing.Point(12, 431);
+            this.buttonSaveAndSpend.Location = new System.Drawing.Point(12, 375);
             this.buttonSaveAndSpend.Name = "buttonSaveAndSpend";
             this.buttonSaveAndSpend.Size = new System.Drawing.Size(164, 23);
             this.buttonSaveAndSpend.TabIndex = 26;
@@ -262,7 +262,7 @@ namespace HomeFinances
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(566, 268);
+            this.label11.Location = new System.Drawing.Point(759, 271);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 13);
             this.label11.TabIndex = 30;
@@ -271,15 +271,27 @@ namespace HomeFinances
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(788, 268);
+            this.label12.Location = new System.Drawing.Point(565, 271);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(34, 13);
             this.label12.TabIndex = 32;
             this.label12.Text = "Курс:";
             // 
+            // Suma
+            // 
+            this.Suma.Location = new System.Drawing.Point(60, 206);
+            this.Suma.Name = "Suma";
+            this.Suma.Size = new System.Drawing.Size(187, 20);
+            this.Suma.TabIndex = 35;
+            this.Suma.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // CursObmin
             // 
-            this.CursObmin.Location = new System.Drawing.Point(828, 265);
+            this.CursObmin.Location = new System.Drawing.Point(605, 268);
             this.CursObmin.Name = "CursObmin";
             this.CursObmin.Size = new System.Drawing.Size(147, 20);
             this.CursObmin.TabIndex = 34;
@@ -291,7 +303,7 @@ namespace HomeFinances
             // 
             // SumaObmin
             // 
-            this.SumaObmin.Location = new System.Drawing.Point(604, 265);
+            this.SumaObmin.Location = new System.Drawing.Point(797, 268);
             this.SumaObmin.Name = "SumaObmin";
             this.SumaObmin.Size = new System.Drawing.Size(178, 20);
             this.SumaObmin.TabIndex = 33;
@@ -323,28 +335,16 @@ namespace HomeFinances
             // 
             this.directoryControl1.CallBack = null;
             this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(100, 325);
+            this.directoryControl1.Location = new System.Drawing.Point(60, 294);
             this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(876, 27);
+            this.directoryControl1.Size = new System.Drawing.Size(416, 27);
             this.directoryControl1.TabIndex = 15;
-            // 
-            // Suma
-            // 
-            this.Suma.Location = new System.Drawing.Point(60, 206);
-            this.Suma.Name = "Suma";
-            this.Suma.Size = new System.Drawing.Size(187, 20);
-            this.Suma.TabIndex = 35;
-            this.Suma.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // FormAddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 466);
+            this.ClientSize = new System.Drawing.Size(989, 419);
             this.Controls.Add(this.Suma);
             this.Controls.Add(this.CursObmin);
             this.Controls.Add(this.SumaObmin);

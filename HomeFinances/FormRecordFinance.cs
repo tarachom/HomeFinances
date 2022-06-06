@@ -48,7 +48,7 @@ namespace HomeFinances
 
 		private void FormRecordFinance_Load(object sender, EventArgs e)
 		{
-			this.splitContainer1.SplitterDistance = 400;
+			this.splitContainer1.SplitterDistance = 430;
 			this.Text += OpenDataBaseName;
 
 			//this.записникToolStripMenuItem.Visible = false;
@@ -70,6 +70,7 @@ namespace HomeFinances
 			//Стаття витрат, Каса
 			directoryControl1.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
 			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
+			directoryControl3.CallBack = CallBack_DirectoryControl_Open_FormCashMove;
 
 			//Обчислення залишків по касах
 			labelCalculateBalance.Text = "";
@@ -157,9 +158,21 @@ namespace HomeFinances
 			formCash.ShowDialog();
 		}
 
-        #endregion
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
+		/// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
+		public void CallBack_DirectoryControl_Open_FormCashMove(DirectoryPointer directoryPointerItem)
+		{
+			FormCash formCash = new FormCash();
+			formCash.DirectoryPointerItem = directoryPointerItem;
+			formCash.DirectoryControlItem = directoryControl3;
+			formCash.ShowDialog();
+		}
 
-        public void LoadRecords()
+		#endregion
+
+		public void LoadRecords()
 		{
 			int selectRow = dataGridViewRecords.SelectedRows.Count > 0 ?
 				dataGridViewRecords.SelectedRows[dataGridViewRecords.SelectedRows.Count - 1].Index : 0;
@@ -202,11 +215,17 @@ namespace HomeFinances
 			if (!(типЗаписуФільтер.Value == 0))
 				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.ТипЗапису, Comparison.EQ, типЗаписуФільтер.Value));
 
+			//Стаття
 			if (directoryControl1.DirectoryPointerItem != null && !directoryControl1.DirectoryPointerItem.IsEmpty())
 				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Витрата, Comparison.EQ, directoryControl1.DirectoryPointerItem.UnigueID.UGuid));
 
+			//Каса
 			if (directoryControl2.DirectoryPointerItem != null && !directoryControl2.DirectoryPointerItem.IsEmpty())
 				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Каса, Comparison.EQ, directoryControl2.DirectoryPointerItem.UnigueID.UGuid));
+
+			//Каса переміщення
+			if (directoryControl3.DirectoryPointerItem != null && !directoryControl3.DirectoryPointerItem.IsEmpty())
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.КасаПереміщення, Comparison.EQ, directoryControl3.DirectoryPointerItem.UnigueID.UGuid));
 
 			//OREDER
 			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);

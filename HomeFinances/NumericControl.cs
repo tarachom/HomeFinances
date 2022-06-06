@@ -17,6 +17,8 @@ namespace HomeFinances
             InitializeComponent();
         }
 
+        public event EventHandler OnChanged;
+
         public decimal Value
         {
             get
@@ -60,6 +62,8 @@ namespace HomeFinances
             bool isValid = IsValidParse(out result);
 
             labelError.Visible = !isValid;
+
+            OnChanged?.Invoke(this, null);
         }
 
         private void NumericControl_Load(object sender, EventArgs e)

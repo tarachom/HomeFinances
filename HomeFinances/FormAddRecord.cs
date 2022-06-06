@@ -103,6 +103,8 @@ namespace HomeFinances
 			directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCash;
 			directoryControl3.CallBack = CallBack_DirectoryControl_Open_FormCash_Back;
 
+            CursObmin.OnChanged += CursObmin_OnChanged;
+
 			if (IsNew.HasValue)
 			{
 				записи_Objest = new Довідники.Записи_Objest();
@@ -151,7 +153,15 @@ namespace HomeFinances
 			}
 		}
 
-		private void buttonSaveAndSpend_Click(object sender, EventArgs e)
+        private void CursObmin_OnChanged(object sender, EventArgs e)
+        {
+            if (Suma.IsValid && CursObmin.IsValid)
+            {
+				SumaObmin.Value = Suma.Value * CursObmin.Value;
+			}
+        }
+
+        private void buttonSaveAndSpend_Click(object sender, EventArgs e)
 		{
 			Save(true);
 		}
@@ -228,10 +238,13 @@ namespace HomeFinances
 				//Довідкова інформація про тип запису з конфігурації
 				label_TypeRecord_Desc.Text = Конфа.Config.Kernel.Conf.Enums["ТипЗапису"].Fields[типЗапису.ToString()].Desc;
 
-				bool EnableControl = типЗапису == Перелічення.ТипЗапису.Переміщення;
+				bool EnableControlMove = типЗапису == Перелічення.ТипЗапису.Переміщення;
+				bool EnableControlObmin = типЗапису == Перелічення.ТипЗапису.Обмін;
 
-				directoryControl3.Enabled = EnableControl;
-				label10.Enabled = EnableControl;
+				directoryControl3.Enabled = EnableControlMove || EnableControlObmin;
+				SumaObmin.Enabled = EnableControlObmin;
+				CursObmin.Enabled = EnableControlObmin;
+
 			}			
 		}
     }
