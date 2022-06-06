@@ -60,7 +60,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(397, 628);
+            this.buttonClose.Location = new System.Drawing.Point(319, 275);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 18;
@@ -70,7 +70,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(100, 628);
+            this.buttonSave.Location = new System.Drawing.Point(22, 275);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 17;
@@ -205,7 +205,7 @@ namespace HomeFinances
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 663);
+            this.ClientSize = new System.Drawing.Size(723, 320);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBoxCatalogFiles);

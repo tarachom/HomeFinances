@@ -94,6 +94,7 @@
             this.buttonConnect.TabIndex = 9;
             this.buttonConnect.Text = "Створити базу даних";
             this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Visible = false;
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
             // buttonTryConnect
