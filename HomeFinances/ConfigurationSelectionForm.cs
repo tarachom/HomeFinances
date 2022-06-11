@@ -24,6 +24,8 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Resources;
+using System.Text;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
@@ -45,7 +47,7 @@ namespace HomeFinances
 
 		private string PathToConfXML { get; set; }
 
-		private string PathToSQLXML { get; set; }
+		//private string PathToSQLXML { get; set; }
 
 		private List<ConfigurationParam> ListConfigurationParam { get; set; }
 
@@ -54,15 +56,12 @@ namespace HomeFinances
 			string assemblyLocation = Application.ExecutablePath;
 
 			PathToXML = Path.GetDirectoryName(assemblyLocation) + "\\ConfigurationParam.xml";
-			PathToSQLXML = Path.GetDirectoryName(assemblyLocation) + "\\Sql.xml";
 
-#if DEBUG
-			//Конфігурація береться із папки Configurator
-			PathToConfXML = Path.GetFullPath(Path.GetDirectoryName(assemblyLocation) + "\\..\\..\\Configurator\\Confa.xml");
-#else
+			//
+			//PathToSQLXML = Path.GetDirectoryName(assemblyLocation) + "\\SQL.xml";
+
 			//Конфігурація знаходиться в тому самому каталозі що і програма
 			PathToConfXML = Path.GetDirectoryName(assemblyLocation) + "\\Confa.xml";
-#endif
 
 			LoadConfigurationParamFromXML();
 
@@ -197,8 +196,8 @@ namespace HomeFinances
 
 		#endregion
 
-		private void listBoxConfiguration_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
+		private void EditDataBaseParams()
+        {
 			if (listBoxConfiguration.SelectedItem != null)
 			{
 				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
@@ -209,6 +208,146 @@ namespace HomeFinances
 				configurationSelectionParamForm.CallBack_Update = CallBack_Update;
 				configurationSelectionParamForm.ShowDialog();
 			}
+		}
+
+		private void CreateTables()
+		{
+			XmlDocument XmlDoc = new XmlDocument();
+			XmlDoc.LoadXml(Properties.Resources.SQL);
+
+			//new FileStream(Properties.Resources.SQL, FileAccess.Read));
+			XPathNavigator xPathDocNavigator = XmlDoc.CreateNavigator();
+
+			XPathNodeIterator SQLNodes = xPathDocNavigator.Select("/root/sql");
+			while (SQLNodes.MoveNext())
+			{
+				XPathNavigator currentNode = SQLNodes.Current;
+
+				string SQLText = currentNode.Value;
+
+				Console.WriteLine(SQLText);
+
+				Конфа.Config.Kernel.DataBase.ExecuteSQL(SQLText);
+			}
+		}
+
+		private void StartProgram()
+        {
+			if (listBoxConfiguration.SelectedItem != null)
+			{
+				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
+
+				Exception exception;
+				bool IsExistsDatabase;
+
+				Конфа.Config.Kernel = new Kernel();
+
+				//Створення бази даних
+				bool flagCreateDatabase = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
+						itemConfigurationParam.DataBaseServer,
+						itemConfigurationParam.DataBaseLogin,
+						itemConfigurationParam.DataBasePassword,
+						itemConfigurationParam.DataBasePort,
+						itemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
+
+				if (exception != null)
+				{
+					MessageBox.Show(exception.Message);
+					return;
+				}
+
+				//Підключення до бази даних
+				bool flagOpen2 = Конфа.Config.Kernel.Open2(
+						PathToConfXML,
+						itemConfigurationParam.DataBaseServer,
+						itemConfigurationParam.DataBaseLogin,
+						itemConfigurationParam.DataBasePassword,
+						itemConfigurationParam.DataBasePort,
+						itemConfigurationParam.DataBaseBaseName, out exception);
+
+				if (exception != null)
+				{
+					MessageBox.Show(exception.Message);
+					return;
+				}
+
+				//База створена і відкрита
+				if (flagCreateDatabase == true && flagOpen2 == true)
+				{
+					if (IsExistsDatabase)
+                    {
+						//Якщо база існувала раніше?
+						#region Перевірка наявності таблиць
+
+						ConfigurationInformationSchema configurationInformationSchema = Конфа.Config.Kernel.DataBase.SelectInformationSchema();
+
+						string msg = "Не знайдено таблицю '{tab_name}'.";
+
+						//Конфігуратор
+						if (!configurationInformationSchema.Tables.ContainsKey("tab_constants"))
+						{
+							MessageBox.Show(msg.Replace("{tab_name}", "tab_constants"));
+							return;
+						}
+
+						//Довідники
+						foreach (ConfigurationDirectories configurationDirectories in Конфа.Config.Kernel.Conf.Directories.Values)
+						{
+							if (!configurationInformationSchema.Tables.ContainsKey(configurationDirectories.Table))
+							{
+								MessageBox.Show(msg.Replace("{tab_name}", configurationDirectories.Table));
+								return;
+							}
+
+							//Табличні частини довідника
+							foreach (ConfigurationObjectTablePart configurationObjectTablePart in configurationDirectories.TabularParts.Values)
+							{
+								if (!configurationInformationSchema.Tables.ContainsKey(configurationObjectTablePart.Table))
+								{
+									MessageBox.Show(msg.Replace("{tab_name}", configurationObjectTablePart.Table));
+									return;
+								}
+							}
+						}
+
+						//Регістри
+						foreach (ConfigurationRegistersAccumulation configurationRegistersAccumulation in Конфа.Config.Kernel.Conf.RegistersAccumulation.Values)
+						{
+							if (!configurationInformationSchema.Tables.ContainsKey(configurationRegistersAccumulation.Table))
+							{
+								MessageBox.Show(msg.Replace("{tab_name}", configurationRegistersAccumulation.Table));
+								return;
+							}
+						}
+
+						#endregion
+					}
+					else
+                    {
+						//Створити таблиці
+						CreateTables();
+					}
+				}
+                else
+                {
+					MessageBox.Show("Не вдалось відкрити базу даних");
+					return;
+                }
+                
+				Конфа.Config.ReadAllConstants();
+
+				FormRecordFinance formRecordFinance = new FormRecordFinance();
+				formRecordFinance.OpenDataBaseName = " - " + itemConfigurationParam.ConfigurationName;
+				formRecordFinance.Show();
+
+				this.DialogResult = DialogResult.OK;
+				this.Hide();
+			}
+		}
+
+		private void listBoxConfiguration_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			EditDataBaseParams();
 		}
 
 		private void buttonAddConf_Click(object sender, EventArgs e)
@@ -245,98 +384,7 @@ namespace HomeFinances
 
 		private void buttonOpenConf_Click(object sender, EventArgs e)
 		{
-			if (listBoxConfiguration.SelectedItem != null)
-			{
-				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
-
-				Exception exception;
-				bool IsExistsDatabase = false;
-
-				Конфа.Config.Kernel = new Kernel();
-
-				//Створення бази даних
-				bool flagCreateDatabase = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
-						itemConfigurationParam.DataBaseServer,
-						itemConfigurationParam.DataBaseLogin,
-						itemConfigurationParam.DataBasePassword,
-						itemConfigurationParam.DataBasePort,
-						itemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
-
-				if (exception != null)
-				{
-					MessageBox.Show(exception.Message);
-					return;
-				}
-
-				//Підключення до бази даних
-				bool flagOpen2 = Конфа.Config.Kernel.Open2(
-						PathToConfXML,
-						itemConfigurationParam.DataBaseServer,
-						itemConfigurationParam.DataBaseLogin,
-						itemConfigurationParam.DataBasePassword,
-						itemConfigurationParam.DataBasePort,
-						itemConfigurationParam.DataBaseBaseName, out exception);
-
-				if (exception != null)
-				{
-					MessageBox.Show(exception.Message);
-					return;
-				}
-
-                #region Перевірка наявності таблиць
-
-                ConfigurationInformationSchema configurationInformationSchema = Конфа.Config.Kernel.DataBase.SelectInformationSchema();
-
-				string msg = "Не знайдено таблицю '{tab_name}'. Запустіть конфігуратор і збережіть конфігурацію для створення таблиць.";
-
-				//Конфігуратор
-				if (!configurationInformationSchema.Tables.ContainsKey("tab_constants"))
-				{
-					MessageBox.Show(msg.Replace("{tab_name}", "tab_constants"));
-					return;
-				}
-
-				//Довідники
-				foreach (ConfigurationDirectories configurationDirectories in Конфа.Config.Kernel.Conf.Directories.Values)
-				{
-					if (!configurationInformationSchema.Tables.ContainsKey(configurationDirectories.Table))
-                    {
-						MessageBox.Show(msg.Replace("{tab_name}", configurationDirectories.Table));
-						return;
-					}
-
-					//Табличні частини довідника
-					foreach(ConfigurationObjectTablePart configurationObjectTablePart in configurationDirectories.TabularParts.Values)
-                    {
-						if (!configurationInformationSchema.Tables.ContainsKey(configurationObjectTablePart.Table))
-						{
-							MessageBox.Show(msg.Replace("{tab_name}", configurationObjectTablePart.Table));
-							return;
-						}
-					}
-				}
-
-				//Регістри
-				foreach (ConfigurationRegistersAccumulation configurationRegistersAccumulation in Конфа.Config.Kernel.Conf.RegistersAccumulation.Values)
-				{
-					if (!configurationInformationSchema.Tables.ContainsKey(configurationRegistersAccumulation.Table))
-					{
-						MessageBox.Show(msg.Replace("{tab_name}", configurationRegistersAccumulation.Table));
-						return;
-					}
-				}
-
-                #endregion
-
-                Конфа.Config.ReadAllConstants();
-
-				FormRecordFinance formRecordFinance = new FormRecordFinance();
-				formRecordFinance.OpenDataBaseName = " - " + itemConfigurationParam.ConfigurationName;
-				formRecordFinance.Show();
-
-				this.DialogResult = DialogResult.OK;
-				this.Hide();
-			}
+			StartProgram();
 		}
 
 		private void buttonCopy_Click(object sender, EventArgs e)
@@ -352,18 +400,18 @@ namespace HomeFinances
 			}
 		}
 
-		private void buttonOpenConfigurator_Click(object sender, EventArgs e)
-		{
-			if (listBoxConfiguration.SelectedItem != null)
-			{
-				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
-#if DEBUG
-				System.Diagnostics.Process.Start(@"E:\Project\AccountingSoftware_29_05_21\Configurator\bin\Debug\Configurator.exe", itemConfigurationParam.ConfigurationKey); 
-#else
-				System.Diagnostics.Process.Start("Configurator.exe", itemConfigurationParam.ConfigurationKey);
-#endif
-			}
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+			EditDataBaseParams();
 		}
+
+        private void listBoxConfiguration_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Enter)
+            {
+				StartProgram();
+			}
+        }
     }
 
     /// <summary>

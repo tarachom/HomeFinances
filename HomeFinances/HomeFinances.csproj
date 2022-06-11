@@ -300,27 +300,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-set conf_folder_code=E:\Project\AccountingSoftware_29_05_21\Configurator
-set conf_folder=%25conf_folder_code%25\bin\Release
-
-set hf_folder=$(TargetDir)
-
-copy %25conf_folder%25\Configurator.exe                       %25hf_folder%25\Configurator.exe
-copy %25conf_folder%25\Configurator.pdb                      %25hf_folder%25\Configurator.pdb
-copy %25conf_folder%25\Configurator.exe.config           %25hf_folder%25\Configurator.exe.config
-
-copy %25conf_folder_code%25\Comparison.xslt                          %25hf_folder%25\Comparison.xslt
-copy %25conf_folder_code%25\ComparisonAnalize.xslt             %25hf_folder%25\ComparisonAnalize.xslt
-
-copy $(ProjectDir)\bin\Debug\ConfigurationParam.xml %25hf_folder%25\ConfigurationParam.xml
-copy $(ProjectDir)\Configurator\Confa.xml %25hf_folder%25\Confa.xml
-
-del %25hf_folder%25\Comparison.xml
-del %25hf_folder%25\ComparisonAnalize.xml
-del %25hf_folder%25\InformationSchema.xml
-
-copy $(ProjectDir)\bin\Release\*.*   $(ProjectDir)bin\HomeFinances
-
-copy $(ProjectDir)\bin\ConfigurationParam.xml      $(ProjectDir)\bin\HomeFinances\ConfigurationParam.xml</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

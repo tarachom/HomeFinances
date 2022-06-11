@@ -34,7 +34,7 @@
             this.buttonOpenConf = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonCopy = new System.Windows.Forms.Button();
-            this.buttonOpenConfigurator = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxConfiguration
@@ -46,11 +46,12 @@
             this.listBoxConfiguration.Name = "listBoxConfiguration";
             this.listBoxConfiguration.Size = new System.Drawing.Size(502, 270);
             this.listBoxConfiguration.TabIndex = 0;
+            this.listBoxConfiguration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxConfiguration_KeyDown);
             this.listBoxConfiguration.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxConfiguration_MouseDoubleClick);
             // 
             // buttonAddConf
             // 
-            this.buttonAddConf.Location = new System.Drawing.Point(520, 135);
+            this.buttonAddConf.Location = new System.Drawing.Point(520, 150);
             this.buttonAddConf.Name = "buttonAddConf";
             this.buttonAddConf.Size = new System.Drawing.Size(97, 30);
             this.buttonAddConf.TabIndex = 1;
@@ -80,7 +81,7 @@
             // 
             // buttonCopy
             // 
-            this.buttonCopy.Location = new System.Drawing.Point(520, 171);
+            this.buttonCopy.Location = new System.Drawing.Point(520, 218);
             this.buttonCopy.Name = "buttonCopy";
             this.buttonCopy.Size = new System.Drawing.Size(97, 30);
             this.buttonCopy.TabIndex = 5;
@@ -88,22 +89,22 @@
             this.buttonCopy.UseVisualStyleBackColor = true;
             this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
-            // buttonOpenConfigurator
+            // buttonEdit
             // 
-            this.buttonOpenConfigurator.Location = new System.Drawing.Point(520, 48);
-            this.buttonOpenConfigurator.Name = "buttonOpenConfigurator";
-            this.buttonOpenConfigurator.Size = new System.Drawing.Size(97, 30);
-            this.buttonOpenConfigurator.TabIndex = 6;
-            this.buttonOpenConfigurator.Text = "Конфігуратор";
-            this.buttonOpenConfigurator.UseVisualStyleBackColor = true;
-            this.buttonOpenConfigurator.Click += new System.EventHandler(this.buttonOpenConfigurator_Click);
+            this.buttonEdit.Location = new System.Drawing.Point(520, 184);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(97, 30);
+            this.buttonEdit.TabIndex = 7;
+            this.buttonEdit.Text = "Редагувати";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // ConfigurationSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 292);
-            this.Controls.Add(this.buttonOpenConfigurator);
+            this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonOpenConf);
@@ -128,6 +129,6 @@
 		private System.Windows.Forms.Button buttonOpenConf;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonCopy;
-        private System.Windows.Forms.Button buttonOpenConfigurator;
+        private System.Windows.Forms.Button buttonEdit;
     }
 }

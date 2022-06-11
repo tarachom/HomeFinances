@@ -93,28 +93,32 @@ namespace HomeFinances
 
 		private void buttonConnect_Click(object sender, EventArgs e)
 		{
-			UpdateItemConfigurationParam();
+			//UpdateItemConfigurationParam();
 
-			Конфа.Config.Kernel = new Kernel();
+			//Конфа.Config.Kernel = new Kernel();
 
-			Exception exception = null;
-			bool IsExistsDatabase = false;
+			//Exception exception = null;
+			//bool IsExistsDatabase = false;
 
-			bool flag = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
-				ItemConfigurationParam.DataBaseServer,
-				ItemConfigurationParam.DataBaseLogin,
-				ItemConfigurationParam.DataBasePassword,
-				ItemConfigurationParam.DataBasePort,
-				ItemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
+			//bool flag = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
+			//	ItemConfigurationParam.DataBaseServer,
+			//	ItemConfigurationParam.DataBaseLogin,
+			//	ItemConfigurationParam.DataBasePassword,
+			//	ItemConfigurationParam.DataBasePort,
+			//	ItemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
 
-			if (flag)
-			{
-				MessageBox.Show("ОК. База створена!");				    
-			}
-			else
-			{
-				MessageBox.Show("Помилка! " + (exception != null ? exception.Message : ""));
-			}
+			//if(IsExistsDatabase)
+   //         {
+			//	MessageBox.Show("ОК. База вже існує!");
+			//}
+			//else if (flag)
+			//{
+			//	MessageBox.Show("ОК. База створена!");				    
+			//}
+			//else
+			//{
+			//	MessageBox.Show("Помилка! " + (exception != null ? exception.Message : ""));
+			//}
 		}
 
 		private void buttonTryConnect_Click(object sender, EventArgs e)
