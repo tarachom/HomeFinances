@@ -24,8 +24,6 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Resources;
-using System.Text;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
@@ -47,8 +45,6 @@ namespace HomeFinances
 
 		private string PathToConfXML { get; set; }
 
-		//private string PathToSQLXML { get; set; }
-
 		private List<ConfigurationParam> ListConfigurationParam { get; set; }
 
 		private void ConfigurationSelectionForm_Load(object sender, EventArgs e)
@@ -56,9 +52,6 @@ namespace HomeFinances
 			string assemblyLocation = Application.ExecutablePath;
 
 			PathToXML = Path.GetDirectoryName(assemblyLocation) + "\\ConfigurationParam.xml";
-
-			//
-			//PathToSQLXML = Path.GetDirectoryName(assemblyLocation) + "\\SQL.xml";
 
 			//Конфігурація знаходиться в тому самому каталозі що і програма
 			PathToConfXML = Path.GetDirectoryName(assemblyLocation) + "\\Confa.xml";
@@ -215,7 +208,6 @@ namespace HomeFinances
 			XmlDocument XmlDoc = new XmlDocument();
 			XmlDoc.LoadXml(Properties.Resources.SQL);
 
-			//new FileStream(Properties.Resources.SQL, FileAccess.Read));
 			XPathNavigator xPathDocNavigator = XmlDoc.CreateNavigator();
 
 			XPathNodeIterator SQLNodes = xPathDocNavigator.Select("/root/sql");
@@ -225,7 +217,7 @@ namespace HomeFinances
 
 				string SQLText = currentNode.Value;
 
-				Console.WriteLine(SQLText);
+				//Console.WriteLine(SQLText);
 
 				Конфа.Config.Kernel.DataBase.ExecuteSQL(SQLText);
 			}
@@ -272,7 +264,7 @@ namespace HomeFinances
 				}
 
 				//База створена і відкрита
-				if (flagCreateDatabase == true && flagOpen2 == true)
+				if (flagCreateDatabase  && flagOpen2)
 				{
 					//Створити таблиці
 					CreateTables();
