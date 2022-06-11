@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 06.06.2022 17:04:12
+ * Дата конфігурації: 11.06.2022 15:12:00
  *
  */
 
@@ -45,6 +45,8 @@ namespace HomeFinances_1_0
             Константи.Основний.ReadAll();
             Константи.ЗначенняПоЗамовчуванню.ReadAll();
             Константи.ВигрузкаТаЗагрузкаДаних.ReadAll();
+            Константи.Інтерфейс.ReadAll();
+            Константи.СписокГоловнаФорма.ReadAll();
             
         }
     }
@@ -170,6 +172,120 @@ namespace HomeFinances_1_0.Константи
             {
                 m_ПапкаДляЗагрузкиДаних_Const = value;
                 Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a5", m_ПапкаДляЗагрузкиДаних_Const);
+            }
+        }
+             
+    }
+    #endregion
+    
+	#region CONSTANTS BLOCK "Інтерфейс"
+    public static class Інтерфейс
+    {
+        public static void ReadAll()
+        {
+            
+            Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+            bool IsSelect = Config.Kernel.DataBase.SelectAllConstants("tab_constants",
+                 new string[] { "col_a6" }, fieldValue);
+            
+            if (IsSelect)
+            {
+                m_ДатаПочаткуПеріоду_Const = (fieldValue["col_a6"] != DBNull.Value) ? (Перелічення.ВаріантиПочаткуПеріоду)fieldValue["col_a6"] : 0;
+                
+            }
+			
+        }
+        
+        
+        static Перелічення.ВаріантиПочаткуПеріоду m_ДатаПочаткуПеріоду_Const = 0;
+        public static Перелічення.ВаріантиПочаткуПеріоду ДатаПочаткуПеріоду_Const
+        {
+            get { return m_ДатаПочаткуПеріоду_Const; }
+            set
+            {
+                m_ДатаПочаткуПеріоду_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a6", (int)m_ДатаПочаткуПеріоду_Const);
+            }
+        }
+             
+    }
+    #endregion
+    
+	#region CONSTANTS BLOCK "СписокГоловнаФорма"
+    public static class СписокГоловнаФорма
+    {
+        public static void ReadAll()
+        {
+            
+            Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+            bool IsSelect = Config.Kernel.DataBase.SelectAllConstants("tab_constants",
+                 new string[] { "col_a7", "col_a8", "col_a9", "col_b1", "col_b2" }, fieldValue);
+            
+            if (IsSelect)
+            {
+                m_СтовпчикНазваШирина_Const = (fieldValue["col_a7"] != DBNull.Value) ? (int)fieldValue["col_a7"] : 0;
+                m_СтовпчикДатаЗаписуШирина_Const = (fieldValue["col_a8"] != DBNull.Value) ? (int)fieldValue["col_a8"] : 0;
+                m_СтовпчикСумаШирина_Const = (fieldValue["col_a9"] != DBNull.Value) ? (int)fieldValue["col_a9"] : 0;
+                m_СтовпчикВитратаШирина_Const = (fieldValue["col_b1"] != DBNull.Value) ? (int)fieldValue["col_b1"] : 0;
+                m_СтовпчикКасаШирина_Const = (fieldValue["col_b2"] != DBNull.Value) ? (int)fieldValue["col_b2"] : 0;
+                
+            }
+			
+        }
+        
+        
+        static int m_СтовпчикНазваШирина_Const = 0;
+        public static int СтовпчикНазваШирина_Const
+        {
+            get { return m_СтовпчикНазваШирина_Const; }
+            set
+            {
+                m_СтовпчикНазваШирина_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a7", m_СтовпчикНазваШирина_Const);
+            }
+        }
+        
+        static int m_СтовпчикДатаЗаписуШирина_Const = 0;
+        public static int СтовпчикДатаЗаписуШирина_Const
+        {
+            get { return m_СтовпчикДатаЗаписуШирина_Const; }
+            set
+            {
+                m_СтовпчикДатаЗаписуШирина_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a8", m_СтовпчикДатаЗаписуШирина_Const);
+            }
+        }
+        
+        static int m_СтовпчикСумаШирина_Const = 0;
+        public static int СтовпчикСумаШирина_Const
+        {
+            get { return m_СтовпчикСумаШирина_Const; }
+            set
+            {
+                m_СтовпчикСумаШирина_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_a9", m_СтовпчикСумаШирина_Const);
+            }
+        }
+        
+        static int m_СтовпчикВитратаШирина_Const = 0;
+        public static int СтовпчикВитратаШирина_Const
+        {
+            get { return m_СтовпчикВитратаШирина_Const; }
+            set
+            {
+                m_СтовпчикВитратаШирина_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_b1", m_СтовпчикВитратаШирина_Const);
+            }
+        }
+        
+        static int m_СтовпчикКасаШирина_Const = 0;
+        public static int СтовпчикКасаШирина_Const
+        {
+            get { return m_СтовпчикКасаШирина_Const; }
+            set
+            {
+                m_СтовпчикКасаШирина_Const = value;
+                Config.Kernel.DataBase.SaveConstants("tab_constants", "col_b2", m_СтовпчикКасаШирина_Const);
             }
         }
              
@@ -2507,6 +2623,21 @@ namespace HomeFinances_1_0.Перелічення
          Квартал = 5,
          Півроку = 6,
          Рік = 7
+    }
+    #endregion
+    
+    #region ENUM "ВаріантиПочаткуПеріоду"
+    ///<summary>
+    ///Для константи ДатаПочаткуПеріоду..
+    ///</summary>
+    public enum ВаріантиПочаткуПеріоду
+    {
+         ЗПочаткуМісяця = 1,
+         Тиждень = 2,
+         Місяць = 6,
+         Квартал = 3,
+         ПівРоку = 4,
+         Рік = 5
     }
     #endregion
     

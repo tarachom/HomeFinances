@@ -46,8 +46,13 @@ namespace HomeFinances
 
 		public string OpenDataBaseName { get; set; }
 
+		//Признак процесу завантаження форми
+		private bool FormLoadProcessedFlag { get; set; }
+
 		private void FormRecordFinance_Load(object sender, EventArgs e)
 		{
+			FormLoadProcessedFlag = true;
+
 			this.splitContainer1.SplitterDistance = 430;
 			this.Text += OpenDataBaseName;
 
@@ -57,7 +62,41 @@ namespace HomeFinances
 			//Параметри в лівій панелі
 			DateTime start = DateTime.Today;
 
-			dateTimePickerStart.Value = start.AddDays(-7);
+			//Початок періоду в залежності від значення константи
+			switch (Константи.Інтерфейс.ДатаПочаткуПеріоду_Const)
+            {
+				case Перелічення.ВаріантиПочаткуПеріоду.Тиждень:
+                    {
+						dateTimePickerStart.Value = start.AddDays(-7);
+						break;
+					}
+				case Перелічення.ВаріантиПочаткуПеріоду.Місяць:
+					{
+						dateTimePickerStart.Value = start.AddDays(-30);
+						break;
+					}
+				case Перелічення.ВаріантиПочаткуПеріоду.Квартал:
+					{
+						dateTimePickerStart.Value = start.AddDays(-90);
+						break;
+					}
+				case Перелічення.ВаріантиПочаткуПеріоду.ПівРоку:
+					{
+						dateTimePickerStart.Value = start.AddDays(-180);
+						break;
+					}
+				case Перелічення.ВаріантиПочаткуПеріоду.Рік:
+					{
+						dateTimePickerStart.Value = start.AddDays(-365);
+						break;
+					}
+				case Перелічення.ВаріантиПочаткуПеріоду.ЗПочаткуМісяця:
+					{
+						dateTimePickerStart.Value = start.AddDays(-(start.Day - 1));
+						break;
+					}
+			}
+
 			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);
 
 			//Заповнення елементів перелічення
@@ -84,12 +123,12 @@ namespace HomeFinances
 			dataGridViewRecords.Columns.Add(new DataGridViewImageColumn() {Name = "Image", HeaderText = "", Width = 30, DisplayIndex = 0, Image = HomeFinances.Properties.Resources.doc_text_image });
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = 300;
+			dataGridViewRecords.Columns["Назва"].Width = Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const: 300;
 
-			dataGridViewRecords.Columns["ДатаЗапису"].Width = 120;
+			dataGridViewRecords.Columns["ДатаЗапису"].Width = Константи.СписокГоловнаФорма.СтовпчикДатаЗаписуШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикДатаЗаписуШирина_Const : 120;
 			dataGridViewRecords.Columns["ДатаЗапису"].DisplayIndex = 1;
 
-			dataGridViewRecords.Columns["Сума"].Width = 60;
+			dataGridViewRecords.Columns["Сума"].Width = Константи.СписокГоловнаФорма.СтовпчикСумаШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикСумаШирина_Const : 60;
 			dataGridViewRecords.Columns["Сума"].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 			dataGridViewRecords.Columns["Сума"].DisplayIndex = 5;
 
@@ -97,14 +136,18 @@ namespace HomeFinances
 			dataGridViewRecords.Columns["ТипЗапису"].Width = 80;
 			dataGridViewRecords.Columns["ТипЗапису"].DisplayIndex = 2;
 
-			dataGridViewRecords.Columns["Витрата"].Width = 150;
+			dataGridViewRecords.Columns["Витрата"].Width = Константи.СписокГоловнаФорма.СтовпчикВитратаШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикВитратаШирина_Const : 150;
 			dataGridViewRecords.Columns["Витрата"].HeaderText = "Стаття витрат";
 
-			dataGridViewRecords.Columns["Каса"].Width = 100;
+			dataGridViewRecords.Columns["Каса"].Width = Константи.СписокГоловнаФорма.СтовпчикКасаШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикКасаШирина_Const : 100;
 
-			dataGridViewRecords.Columns["Проведено"].Width = 60;
+			dataGridViewRecords.Columns["Проведено"].Width = 70;
 
-			LoadRecords();		
+			LoadRecords();
+
+			CalculateBalance();
+
+			FormLoadProcessedFlag = false;
 		}
 
 		private BindingList<Записи> RecordsBindingList { get; set; }
@@ -228,7 +271,7 @@ namespace HomeFinances
 				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.КасаПереміщення, Comparison.EQ, directoryControl3.DirectoryPointerItem.UnigueID.UGuid));
 
 			//OREDER
-			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.DESC);
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
 
 			записи_Select.Select();
 
@@ -288,7 +331,7 @@ namespace HomeFinances
 		private void toolStripButtonDelete_Click(object sender, EventArgs e)
 		{
 			if (dataGridViewRecords.SelectedRows.Count != 0 && 
-				MessageBox.Show("Видалити записи?","Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				MessageBox.Show("Видалити виділені записи?","Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
 				{
@@ -314,7 +357,7 @@ namespace HomeFinances
 		private void toolStripButtonCopy_Click(object sender, EventArgs e)
 		{
 			if (dataGridViewRecords.SelectedRows.Count != 0 &&
-				MessageBox.Show("Копіювати записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				MessageBox.Show("Копіювати виділені записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
 				{
@@ -326,6 +369,8 @@ namespace HomeFinances
 					{
 						Довідники.Записи_Objest записи_Objest_Новий = записи_Objest.Copy();
 						записи_Objest_Новий.Назва = "(Копія) - " + записи_Objest.Назва;
+						записи_Objest_Новий.ДатаЗапису = DateTime.Now;
+						записи_Objest_Новий.Проведено = false;
 						записи_Objest_Новий.Save();
 					}
 					else
@@ -339,10 +384,15 @@ namespace HomeFinances
 			}
 		}
 
-		private void toolStripButtonSpend_Click(object sender, EventArgs e)
-		{
+		/// <summary>
+		/// Встановлює флажок Проведено і записує Обєкт.
+		/// Відповідно при запису викликаються трігери, тому записуються значення в регістр, або стираються
+		/// </summary>
+		/// <param name="SpendFlag"></param>
+		private void SaveSpendFlag(string messageBoxText, bool SpendFlag)
+        {
 			if (dataGridViewRecords.SelectedRows.Count != 0 &&
-				MessageBox.Show("Провести записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				MessageBox.Show(messageBoxText, "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
 				{
@@ -352,7 +402,7 @@ namespace HomeFinances
 					Довідники.Записи_Objest записи_Objest = new Довідники.Записи_Objest();
 					if (записи_Objest.Read(new UnigueID(uid)))
 					{
-						записи_Objest.Проведено = true;
+						записи_Objest.Проведено = SpendFlag;
 						записи_Objest.Save();
 					}
 					else
@@ -363,16 +413,25 @@ namespace HomeFinances
 				}
 
 				LoadRecords();
+				CalculateBalance();
 			}
+		}
+
+		private void toolStripButtonSpend_Click(object sender, EventArgs e)
+		{
+			SaveSpendFlag("Провести виділені записи?", true);
+		}
+
+		private void toolStripButtonClearSpend_Click(object sender, EventArgs e)
+		{
+			SaveSpendFlag("Відмінити проведення виділених записів?", false);
 		}
 
 		#endregion
 
-		
+		#region MENU
 
-        #region MENU
-
-        private void класифікаторВитратToolStripMenuItem_Click(object sender, EventArgs e)
+		private void класифікаторВитратToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
 			formCostСlassifier.Show();
@@ -432,7 +491,10 @@ namespace HomeFinances
 			Application.Exit();
         }
 
-        private void buttonCalculateBalance_Click(object sender, EventArgs e)
+		/// <summary>
+		/// Обчислення залишків по касах
+		/// </summary>
+		public void CalculateBalance()
         {
 			Configuration Conf = Конфа.Config.Kernel.Conf;
 
@@ -465,14 +527,38 @@ namespace HomeFinances
 
 			string result = "";
 
-			foreach(object[] o in listRow)
-            {
+			foreach (object[] o in listRow)
+			{
 				result += (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " + o[2].ToString() + " " + o[3].ToString() + "\n\r";
 			}
 
 			labelCalculateBalance.Text = result;
 		}
 
-        
+		private void buttonCalculateBalance_Click(object sender, EventArgs e)
+        {
+			CalculateBalance();
+		}
+
+        private void dataGridViewRecords_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+			if (!FormLoadProcessedFlag)
+			{
+				if (e.Column.Name == "Назва")
+					Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const = e.Column.Width;
+
+				if (e.Column.Name == "ДатаЗапису")
+					Константи.СписокГоловнаФорма.СтовпчикДатаЗаписуШирина_Const = e.Column.Width;
+
+				if (e.Column.Name == "Сума")
+					Константи.СписокГоловнаФорма.СтовпчикСумаШирина_Const = e.Column.Width;
+
+				if (e.Column.Name == "Витрата")
+					Константи.СписокГоловнаФорма.СтовпчикВитратаШирина_Const = e.Column.Width;
+
+				if (e.Column.Name == "Каса")
+					Константи.СписокГоловнаФорма.СтовпчикКасаШирина_Const = e.Column.Width;
+			}
+		}
     }
 }

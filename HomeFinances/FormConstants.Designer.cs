@@ -45,8 +45,12 @@ namespace HomeFinances
             this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBoxDateStartPeriod = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +64,7 @@ namespace HomeFinances
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(319, 275);
+            this.buttonClose.Location = new System.Drawing.Point(319, 430);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(164, 23);
             this.buttonClose.TabIndex = 18;
@@ -70,7 +74,7 @@ namespace HomeFinances
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(22, 275);
+            this.buttonSave.Location = new System.Drawing.Point(22, 430);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 17;
@@ -90,7 +94,7 @@ namespace HomeFinances
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 226);
+            this.label3.Location = new System.Drawing.Point(27, 381);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 21;
@@ -98,7 +102,7 @@ namespace HomeFinances
             // 
             // textBoxCatalogFiles
             // 
-            this.textBoxCatalogFiles.Location = new System.Drawing.Point(142, 223);
+            this.textBoxCatalogFiles.Location = new System.Drawing.Point(142, 378);
             this.textBoxCatalogFiles.Name = "textBoxCatalogFiles";
             this.textBoxCatalogFiles.Size = new System.Drawing.Size(516, 20);
             this.textBoxCatalogFiles.TabIndex = 22;
@@ -181,7 +185,7 @@ namespace HomeFinances
             this.groupBox1.Controls.Add(this.buttonExportFolder);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBoxImportFolder);
-            this.groupBox1.Location = new System.Drawing.Point(15, 113);
+            this.groupBox1.Location = new System.Drawing.Point(15, 268);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(696, 90);
             this.groupBox1.TabIndex = 29;
@@ -201,11 +205,41 @@ namespace HomeFinances
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Значення по замовчуванню для заповнення форм";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.comboBoxDateStartPeriod);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Location = new System.Drawing.Point(15, 113);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(696, 149);
+            this.groupBox3.TabIndex = 30;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Відбір";
+            // 
+            // comboBoxDateStartPeriod
+            // 
+            this.comboBoxDateStartPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDateStartPeriod.FormattingEnabled = true;
+            this.comboBoxDateStartPeriod.Location = new System.Drawing.Point(136, 25);
+            this.comboBoxDateStartPeriod.Name = "comboBoxDateStartPeriod";
+            this.comboBoxDateStartPeriod.Size = new System.Drawing.Size(299, 21);
+            this.comboBoxDateStartPeriod.TabIndex = 31;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Дата початку періоду:";
+            // 
             // FormConstants
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 320);
+            this.ClientSize = new System.Drawing.Size(723, 471);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBoxCatalogFiles);
@@ -221,6 +255,8 @@ namespace HomeFinances
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +280,8 @@ namespace HomeFinances
         private System.Windows.Forms.Button buttonImportFolder;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxDateStartPeriod;
     }
 }

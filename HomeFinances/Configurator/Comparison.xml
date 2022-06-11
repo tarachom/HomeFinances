@@ -60,6 +60,72 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
+    <Control_Field>
+      <Name>ДатаПочаткуПеріоду</Name>
+      <NameInTable>col_a6</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>enum</ConfType>
+        <DataType>integer</DataType>
+        <UdtName>int4</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>СтовпчикНазваШирина</Name>
+      <NameInTable>col_a7</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>integer</ConfType>
+        <DataType>integer</DataType>
+        <UdtName>int4</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>СтовпчикДатаЗаписуШирина</Name>
+      <NameInTable>col_a8</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>integer</ConfType>
+        <DataType>integer</DataType>
+        <UdtName>int4</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>СтовпчикСумаШирина</Name>
+      <NameInTable>col_a9</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>integer</ConfType>
+        <DataType>integer</DataType>
+        <UdtName>int4</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>СтовпчикВитратаШирина</Name>
+      <NameInTable>col_b1</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>integer</ConfType>
+        <DataType>integer</DataType>
+        <UdtName>int4</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
+    <Control_Field>
+      <Name>СтовпчикКасаШирина</Name>
+      <NameInTable>col_b2</NameInTable>
+      <IsExist>yes</IsExist>
+      <Type>
+        <ConfType>integer</ConfType>
+        <DataType>integer</DataType>
+        <UdtName>int4</UdtName>
+        <Coincide>yes</Coincide>
+      </Type>
+    </Control_Field>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>

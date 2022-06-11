@@ -148,7 +148,7 @@ namespace HomeFinances
 			}
 			else
 			{
-				richTextBoxInfo.Text = "\n" + text + richTextBoxInfo.Text;
+				richTextBoxInfo.AppendText("\n" + text);
 			}
 		}
 

@@ -218,7 +218,10 @@ namespace HomeFinances
 				}
 
 				if (OwnerForm != null)
+				{
 					OwnerForm.LoadRecords();
+					OwnerForm.CalculateBalance();
+				}
 
 				this.Close();
 			}

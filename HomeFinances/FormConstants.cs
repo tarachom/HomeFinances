@@ -73,6 +73,29 @@ namespace HomeFinances
             directoryControl2.DirectoryPointerItem = new Довідники.КласифікаторВитрат_Pointer(Константи.ЗначенняПоЗамовчуванню.ОсновнаСтаттяВитрат_Const.UnigueID);
             directoryControl2.CallBack = CallBack_DirectoryControl_Open_FormCostСlassifier;
 
+            //Заповнення елементів перелічення
+            foreach (ConfigurationEnumField field in Конфа.Config.Kernel.Conf.Enums["ВаріантиПочаткуПеріоду"].Fields.Values)
+                comboBoxDateStartPeriod.Items.Add(new NameValue<Перелічення.ВаріантиПочаткуПеріоду>(field.Desc, (Перелічення.ВаріантиПочаткуПеріоду)field.Value));
+
+            if (Константи.Інтерфейс.ДатаПочаткуПеріоду_Const != 0)
+            {
+                foreach (NameValue<Перелічення.ВаріантиПочаткуПеріоду> nameValue in comboBoxDateStartPeriod.Items)
+                    if (nameValue.Value == Константи.Інтерфейс.ДатаПочаткуПеріоду_Const)
+                    {
+                        comboBoxDateStartPeriod.SelectedItem = nameValue;
+                        break;
+                    }
+            }
+            else
+            {
+                foreach (NameValue<Перелічення.ВаріантиПочаткуПеріоду> nameValue in comboBoxDateStartPeriod.Items)
+                    if (nameValue.Value == Перелічення.ВаріантиПочаткуПеріоду.Тиждень)
+                    {
+                        comboBoxDateStartPeriod.SelectedItem = nameValue;
+                        break;
+                    }
+            }
+
             textBoxCatalogFiles.Text = Константи.Основний.КаталогДляФайлів_Const;
             textBoxExportFolder.Text = Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const;
             textBoxImportFolder.Text = Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const;
@@ -85,6 +108,8 @@ namespace HomeFinances
             Константи.Основний.КаталогДляФайлів_Const = textBoxCatalogFiles.Text;
             Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const = textBoxExportFolder.Text;
             Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const = textBoxImportFolder.Text;
+
+            Константи.Інтерфейс.ДатаПочаткуПеріоду_Const = ((NameValue<Перелічення.ВаріантиПочаткуПеріоду>)comboBoxDateStartPeriod.SelectedItem).Value;
 
             this.Close();
         }

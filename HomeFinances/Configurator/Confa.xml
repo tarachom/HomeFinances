@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>06.06.2022 17:04:12</DateTimeSave>
+  <DateTimeSave>11.06.2022 15:12:00</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -63,6 +63,69 @@
           <Desc>
           </Desc>
           <Type>string</Type>
+          <TabularParts />
+        </Constant>
+      </Constants>
+    </ConstantsBlock>
+    <ConstantsBlock>
+      <Name>Інтерфейс</Name>
+      <Desc>
+      </Desc>
+      <Constants>
+        <Constant>
+          <Name>ДатаПочаткуПеріоду</Name>
+          <NameInTable>col_a6</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>enum</Type>
+          <Pointer>Перелічення.ВаріантиПочаткуПеріоду</Pointer>
+          <TabularParts />
+        </Constant>
+      </Constants>
+    </ConstantsBlock>
+    <ConstantsBlock>
+      <Name>СписокГоловнаФорма</Name>
+      <Desc>
+      </Desc>
+      <Constants>
+        <Constant>
+          <Name>СтовпчикНазваШирина</Name>
+          <NameInTable>col_a7</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>integer</Type>
+          <TabularParts />
+        </Constant>
+        <Constant>
+          <Name>СтовпчикДатаЗаписуШирина</Name>
+          <NameInTable>col_a8</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>integer</Type>
+          <TabularParts />
+        </Constant>
+        <Constant>
+          <Name>СтовпчикСумаШирина</Name>
+          <NameInTable>col_a9</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>integer</Type>
+          <TabularParts />
+        </Constant>
+        <Constant>
+          <Name>СтовпчикВитратаШирина</Name>
+          <NameInTable>col_b1</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>integer</Type>
+          <TabularParts />
+        </Constant>
+        <Constant>
+          <Name>СтовпчикКасаШирина</Name>
+          <NameInTable>col_b2</NameInTable>
+          <Desc>
+          </Desc>
+          <Type>integer</Type>
           <TabularParts />
         </Constant>
       </Constants>
@@ -836,6 +899,43 @@
           <Value>7</Value>
           <Desc>
           </Desc>
+        </Field>
+      </Fields>
+    </Enum>
+    <Enum>
+      <Name>ВаріантиПочаткуПеріоду</Name>
+      <Desc>Для константи ДатаПочаткуПеріоду.</Desc>
+      <SerialNumber>6</SerialNumber>
+      <Fields>
+        <Field>
+          <Name>ЗПочаткуМісяця</Name>
+          <Value>1</Value>
+          <Desc>З початку поточного місяця</Desc>
+        </Field>
+        <Field>
+          <Name>Тиждень</Name>
+          <Value>2</Value>
+          <Desc>Тиждень (7 днів)</Desc>
+        </Field>
+        <Field>
+          <Name>Місяць</Name>
+          <Value>6</Value>
+          <Desc>Місяць (30 днів)</Desc>
+        </Field>
+        <Field>
+          <Name>Квартал</Name>
+          <Value>3</Value>
+          <Desc>Квартал (90 днів)</Desc>
+        </Field>
+        <Field>
+          <Name>ПівРоку</Name>
+          <Value>4</Value>
+          <Desc>Пів року (180 днів)</Desc>
+        </Field>
+        <Field>
+          <Name>Рік</Name>
+          <Value>5</Value>
+          <Desc>Рік (365 днів)</Desc>
         </Field>
       </Fields>
     </Enum>
