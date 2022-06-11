@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 11.06.2022 18:37:41
+ * Дата конфігурації: 11.06.2022 19:03:27
  *
  */
 
@@ -319,9 +319,6 @@ namespace HomeFinances_1_0.Довідники
             СумаОбміну = 0;
             КурсОбміну = 0;
             
-            //Табличні частини
-            ОбмінІсторія_TablePart = new Записи_ОбмінІсторія_TablePart(this);
-            
         }
         
         public bool Read(UnigueID uid)
@@ -432,9 +429,6 @@ namespace HomeFinances_1_0.Довідники
         public decimal СумаОбміну { get; set; }
         public decimal КурсОбміну { get; set; }
         
-        //Табличні частини
-        public Записи_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
-        
     }
     
     ///<summary>
@@ -518,89 +512,6 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    public class Записи_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public Записи_ОбмінІсторія_TablePart(Записи_Objest owner) : base(Config.Kernel, "tab_a13",
-             new string[] { "col_a5", "col_a6" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Записи_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a5"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a5"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a6"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a5", record.Дата);
-                fieldValue.Add("col_a6", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
-      
    
     #endregion
     
@@ -615,9 +526,6 @@ namespace HomeFinances_1_0.Довідники
         {
             Назва = "";
             Код = "";
-            
-            //Табличні частини
-            ОбмінІсторія_TablePart = new КласифікаторВитрат_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -678,9 +586,6 @@ namespace HomeFinances_1_0.Довідники
         
         public string Назва { get; set; }
         public string Код { get; set; }
-        
-        //Табличні частини
-        public КласифікаторВитрат_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -755,89 +660,6 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    public class КласифікаторВитрат_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public КласифікаторВитрат_ОбмінІсторія_TablePart(КласифікаторВитрат_Objest owner) : base(Config.Kernel, "tab_a10",
-             new string[] { "col_a1", "col_a2" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public КласифікаторВитрат_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a1"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a2"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a1", record.Дата);
-                fieldValue.Add("col_a2", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
-      
    
     #endregion
     
@@ -857,7 +679,6 @@ namespace HomeFinances_1_0.Довідники
             Сайт = "";
             
             //Табличні частини
-            ОбмінІсторія_TablePart = new Записник_ОбмінІсторія_TablePart(this);
             Файли_TablePart = new Записник_Файли_TablePart(this);
             
         }
@@ -936,7 +757,6 @@ namespace HomeFinances_1_0.Довідники
         public string Сайт { get; set; }
         
         //Табличні частини
-        public Записник_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         public Записник_Файли_TablePart Файли_TablePart { get; set; }
         
     }
@@ -1014,89 +834,6 @@ namespace HomeFinances_1_0.Довідники
         }
     }
     
-      
-    public class Записник_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public Записник_ОбмінІсторія_TablePart(Записник_Objest owner) : base(Config.Kernel, "tab_a16",
-             new string[] { "col_a3", "col_a4" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Записник_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a3"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a3"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a4"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a3", record.Дата);
-                fieldValue.Add("col_a4", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
       
     public class Записник_Файли_TablePart : DirectoryTablePart
     {
@@ -1196,9 +933,6 @@ namespace HomeFinances_1_0.Довідники
             Назва = "";
             Код = "";
             
-            //Табличні частини
-            НалаштуванняФормиЗаписиФінансів_TablePart = new Користувач_НалаштуванняФормиЗаписиФінансів_TablePart(this);
-            
         }
         
         public bool Read(UnigueID uid)
@@ -1258,9 +992,6 @@ namespace HomeFinances_1_0.Довідники
         
         public string Назва { get; set; }
         public string Код { get; set; }
-        
-        //Табличні частини
-        public Користувач_НалаштуванняФормиЗаписиФінансів_TablePart НалаштуванняФормиЗаписиФінансів_TablePart { get; set; }
         
     }
     
@@ -1335,89 +1066,6 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    public class Користувач_НалаштуванняФормиЗаписиФінансів_TablePart : DirectoryTablePart
-    {
-        public Користувач_НалаштуванняФормиЗаписиФінансів_TablePart(Користувач_Objest owner) : base(Config.Kernel, "tab_a06",
-             new string[] { "col_a5", "col_a6" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Користувач_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Ключ = fieldValue["col_a5"].ToString();
-                record.Значення = fieldValue["col_a6"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a5", record.Ключ);
-                fieldValue.Add("col_a6", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Ключ = "";
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                string _Ключ = "", string _Значення = "")
-            {
-                Ключ = _Ключ;
-                Значення = _Значення;
-                
-            }
-            public string Ключ { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
-      
    
     #endregion
     
@@ -1433,9 +1081,6 @@ namespace HomeFinances_1_0.Довідники
             Назва = "";
             Валюта = new Довідники.Валюта_Pointer();
             ТипВалюти = 0;
-            
-            //Табличні частини
-            ОбмінІсторія_TablePart = new Каса_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -1501,9 +1146,6 @@ namespace HomeFinances_1_0.Довідники
         public string Назва { get; set; }
         public Довідники.Валюта_Pointer Валюта { get; set; }
         public Перелічення.ТипВалюти ТипВалюти { get; set; }
-        
-        //Табличні частини
-        public Каса_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -1579,89 +1221,6 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    public class Каса_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public Каса_ОбмінІсторія_TablePart(Каса_Objest owner) : base(Config.Kernel, "tab_a12",
-             new string[] { "col_a3", "col_a4" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Каса_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a3"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a3"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a4"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a3", record.Дата);
-                fieldValue.Add("col_a4", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
-      
    
     #endregion
     
@@ -1676,9 +1235,6 @@ namespace HomeFinances_1_0.Довідники
         {
             Назва = "";
             Код = "";
-            
-            //Табличні частини
-            ОбмінІсторія_TablePart = new Валюта_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -1739,9 +1295,6 @@ namespace HomeFinances_1_0.Довідники
         
         public string Назва { get; set; }
         public string Код { get; set; }
-        
-        //Табличні частини
-        public Валюта_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -1816,89 +1369,6 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    public class Валюта_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public Валюта_ОбмінІсторія_TablePart(Валюта_Objest owner) : base(Config.Kernel, "tab_a11",
-             new string[] { "col_a1", "col_a2" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Валюта_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a1"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a2"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a1", record.Дата);
-                fieldValue.Add("col_a2", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
-      
    
     #endregion
     
@@ -1918,9 +1388,6 @@ namespace HomeFinances_1_0.Довідники
             Опис = "";
             Скайп = "";
             Фото = "";
-            
-            //Табличні частини
-            ОбмінІсторія_TablePart = new Контакти_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -2007,9 +1474,6 @@ namespace HomeFinances_1_0.Довідники
         public string Скайп { get; set; }
         public string Фото { get; set; }
         
-        //Табличні частини
-        public Контакти_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
-        
     }
     
     ///<summary>
@@ -2088,89 +1552,6 @@ namespace HomeFinances_1_0.Довідники
     }
     
       
-    public class Контакти_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public Контакти_ОбмінІсторія_TablePart(Контакти_Objest owner) : base(Config.Kernel, "tab_a14",
-             new string[] { "col_a1", "col_a2" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Контакти_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a1"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a2"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a1", record.Дата);
-                fieldValue.Add("col_a2", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
-      
    
     #endregion
     
@@ -2186,9 +1567,6 @@ namespace HomeFinances_1_0.Довідники
             Назва = "";
             Родич = new Довідники.Записник_Папки_Pointer();
             Дата = DateTime.MinValue;
-            
-            //Табличні частини
-            ОбмінІсторія_TablePart = new Записник_Папки_ОбмінІсторія_TablePart(this);
             
         }
         
@@ -2254,9 +1632,6 @@ namespace HomeFinances_1_0.Довідники
         public string Назва { get; set; }
         public Довідники.Записник_Папки_Pointer Родич { get; set; }
         public DateTime Дата { get; set; }
-        
-        //Табличні частини
-        public Записник_Папки_ОбмінІсторія_TablePart ОбмінІсторія_TablePart { get; set; }
         
     }
     
@@ -2331,89 +1706,6 @@ namespace HomeFinances_1_0.Довідники
         }
     }
     
-      
-    public class Записник_Папки_ОбмінІсторія_TablePart : DirectoryTablePart
-    {
-        public Записник_Папки_ОбмінІсторія_TablePart(Записник_Папки_Objest owner) : base(Config.Kernel, "tab_a15",
-             new string[] { "col_a1", "col_a2" }) 
-        {
-            if (owner == null) throw new Exception("owner null");
-            
-            Owner = owner;
-            Records = new List<Record>();
-        }
-        
-        public Записник_Папки_Objest Owner { get; private set; }
-        
-        public List<Record> Records { get; set; }
-        
-        public void Read()
-        {
-            Records.Clear();
-            base.BaseRead(Owner.UnigueID);
-
-            foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
-            {
-                Record record = new Record();
-                record.UID = (Guid)fieldValue["uid"];
-                
-                record.Дата = (fieldValue["col_a1"] != DBNull.Value) ? DateTime.Parse(fieldValue["col_a1"].ToString()) : DateTime.MinValue;
-                record.Значення = fieldValue["col_a2"].ToString();
-                
-                Records.Add(record);
-            }
-            
-            base.BaseClear();
-        }
-        
-        public void Save(bool clear_all_before_save /*= true*/) 
-        {
-            base.BaseBeginTransaction();
-                
-            if (clear_all_before_save)
-                base.BaseDelete(Owner.UnigueID);
-
-            foreach (Record record in Records)
-            {
-                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
-                fieldValue.Add("col_a1", record.Дата);
-                fieldValue.Add("col_a2", record.Значення);
-                
-                base.BaseSave(record.UID, Owner.UnigueID, fieldValue);
-            }
-                
-            base.BaseCommitTransaction();
-        }
-        
-        public void Delete()
-        {
-            base.BaseDelete(Owner.UnigueID);
-        }
-        
-        
-        public class Record : DirectoryTablePartRecord
-        {
-            public Record()
-            {
-                Дата = DateTime.MinValue;
-                Значення = "";
-                
-            }
-        
-            
-            public Record(
-                DateTime?  _Дата = null, string _Значення = "")
-            {
-                Дата = _Дата ?? DateTime.MinValue;
-                Значення = _Значення;
-                
-            }
-            public DateTime Дата { get; set; }
-            public string Значення { get; set; }
-            
-        }
-    }
       
    
     #endregion

@@ -153,26 +153,6 @@
         <DataType>numeric</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a13</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a5</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a6</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -193,26 +173,6 @@
         <DataType>text</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a10</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a1</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a2</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -251,26 +211,6 @@
         <DataType>text</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a16</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a3</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a4</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
     <Control_TabularParts>
       <Name>Файли</Name>
       <Table>tab_a17</Table>
@@ -311,26 +251,6 @@
         <DataType>text</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>НалаштуванняФормиЗаписиФінансів</Name>
-      <Table>tab_a06</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Ключ</Name>
-          <NameInTable>col_a5</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a6</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -357,26 +277,6 @@
         <DataType>integer</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a12</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a3</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a4</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -397,26 +297,6 @@
         <DataType>text</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a11</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a1</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a2</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -467,26 +347,6 @@
         <DataType>text</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a14</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a1</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a2</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>
@@ -513,26 +373,6 @@
         <DataType>timestamp without time zone</DataType>
       </FieldCreate>
     </TableCreate>
-    <Control_TabularParts>
-      <Name>ОбмінІсторія</Name>
-      <Table>tab_a15</Table>
-      <IsCreateOwner>yes</IsCreateOwner>
-      <IsExist>no</IsExist>
-      <TableCreate>
-        <FieldCreate>
-          <Name>Дата</Name>
-          <NameInTable>col_a1</NameInTable>
-          <ConfType>datetime</ConfType>
-          <DataType>timestamp without time zone</DataType>
-        </FieldCreate>
-        <FieldCreate>
-          <Name>Значення</Name>
-          <NameInTable>col_a2</NameInTable>
-          <ConfType>string</ConfType>
-          <DataType>text</DataType>
-        </FieldCreate>
-      </TableCreate>
-    </Control_TabularParts>
   </Control_Table>
   <Control_Table>
     <Type>Directory</Type>

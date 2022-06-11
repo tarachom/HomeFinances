@@ -355,9 +355,9 @@ namespace HomeFinances
 					if (класифікаторВитрат_Objest != null)
 					{
 						//Збереження попередніх значень
-						класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Records.Add(
-							new Довідники.КласифікаторВитрат_ОбмінІсторія_TablePart.Record(DateTime.Now, класифікаторВитрат_Objest.Serialize("Запис")));
-						класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Save(true);
+						//класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Records.Add(
+						//	new Довідники.КласифікаторВитрат_ОбмінІсторія_TablePart.Record(DateTime.Now, класифікаторВитрат_Objest.Serialize("Запис")));
+						//класифікаторВитрат_Objest.ОбмінІсторія_TablePart.Save(true);
 					}
 					else
 					{
@@ -394,9 +394,9 @@ namespace HomeFinances
 					if (валюта_Objest != null)
 					{
 						//Збереження попередніх значень
-						валюта_Objest.ОбмінІсторія_TablePart.Records.Add(
-							new Довідники.Валюта_ОбмінІсторія_TablePart.Record(DateTime.Now, валюта_Objest.Serialize("Запис")));
-						валюта_Objest.ОбмінІсторія_TablePart.Save(true);
+						//валюта_Objest.ОбмінІсторія_TablePart.Records.Add(
+						//	new Довідники.Валюта_ОбмінІсторія_TablePart.Record(DateTime.Now, валюта_Objest.Serialize("Запис")));
+						//валюта_Objest.ОбмінІсторія_TablePart.Save(true);
 					}
 					else
 					{
@@ -434,9 +434,9 @@ namespace HomeFinances
 					if (каса_Objest != null)
 					{
 						//Збереження попередніх значень
-						каса_Objest.ОбмінІсторія_TablePart.Records.Add(
-							new Довідники.Каса_ОбмінІсторія_TablePart.Record(DateTime.Now, каса_Objest.Serialize("Запис")));
-						каса_Objest.ОбмінІсторія_TablePart.Save(true);
+						//каса_Objest.ОбмінІсторія_TablePart.Records.Add(
+						//	new Довідники.Каса_ОбмінІсторія_TablePart.Record(DateTime.Now, каса_Objest.Serialize("Запис")));
+						//каса_Objest.ОбмінІсторія_TablePart.Save(true);
 					}
 					else
 					{
@@ -482,9 +482,9 @@ namespace HomeFinances
 					if (записи_Objest != null)
 					{
 						//Збереження попередніх значень
-						записи_Objest.ОбмінІсторія_TablePart.Records.Add(
-							new Довідники.Записи_ОбмінІсторія_TablePart.Record(DateTime.Now, записи_Objest.Serialize("Запис")));
-						записи_Objest.ОбмінІсторія_TablePart.Save(true);
+						//записи_Objest.ОбмінІсторія_TablePart.Records.Add(
+						//	new Довідники.Записи_ОбмінІсторія_TablePart.Record(DateTime.Now, записи_Objest.Serialize("Запис")));
+						//записи_Objest.ОбмінІсторія_TablePart.Save(true);
 					}
 					else
 					{
@@ -533,9 +533,9 @@ namespace HomeFinances
 					if (контакти_Objest != null)
 					{
 						//Збереження попередніх значень
-						контакти_Objest.ОбмінІсторія_TablePart.Records.Add(
-							new Довідники.Контакти_ОбмінІсторія_TablePart.Record(DateTime.Now, контакти_Objest.Serialize("Запис")));
-						контакти_Objest.ОбмінІсторія_TablePart.Save(true);
+						//контакти_Objest.ОбмінІсторія_TablePart.Records.Add(
+						//	new Довідники.Контакти_ОбмінІсторія_TablePart.Record(DateTime.Now, контакти_Objest.Serialize("Запис")));
+						//контакти_Objest.ОбмінІсторія_TablePart.Save(true);
 					}
 					else
 					{

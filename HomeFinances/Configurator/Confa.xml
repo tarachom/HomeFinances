@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>11.06.2022 18:37:41</DateTimeSave>
+  <DateTimeSave>11.06.2022 19:03:27</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -227,32 +227,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a13</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a5</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a6</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>Записи_Triggers.Записи_BeforeRecording</BeforeSave>
         <AfterSave>Записи_Triggers.Записи_AfterRecording</AfterSave>
@@ -279,31 +254,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a10</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
-              <Desc>Формат ХМЛ</Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>
         </BeforeSave>
@@ -361,30 +312,6 @@
       </Fields>
       <TabularParts>
         <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a16</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a3</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a4</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-        <TablePart>
           <Name>Файли</Name>
           <Table>tab_a17</Table>
           <Desc>
@@ -438,32 +365,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>НалаштуванняФормиЗаписиФінансів</Name>
-          <Table>tab_a06</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Ключ</Name>
-              <NameInTable>col_a5</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a6</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>
         </BeforeSave>
@@ -504,31 +406,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a12</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a3</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a4</NameInTable>
-              <Type>string</Type>
-              <Desc>ХМЛ</Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>
         </BeforeSave>
@@ -558,31 +436,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a11</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
-              <Desc>ХМЛ</Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>
         </BeforeSave>
@@ -653,32 +507,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a14</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>
         </BeforeSave>
@@ -719,32 +548,7 @@
           <IsPresentation>0</IsPresentation>
         </Field>
       </Fields>
-      <TabularParts>
-        <TablePart>
-          <Name>ОбмінІсторія</Name>
-          <Table>tab_a15</Table>
-          <Desc>
-          </Desc>
-          <Fields>
-            <Field>
-              <Name>Дата</Name>
-              <NameInTable>col_a1</NameInTable>
-              <Type>datetime</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-            <Field>
-              <Name>Значення</Name>
-              <NameInTable>col_a2</NameInTable>
-              <Type>string</Type>
-              <Desc>
-              </Desc>
-              <IsPresentation>0</IsPresentation>
-            </Field>
-          </Fields>
-        </TablePart>
-      </TabularParts>
+      <TabularParts />
       <TriggerFunctions>
         <BeforeSave>
         </BeforeSave>

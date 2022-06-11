@@ -58,6 +58,7 @@ namespace HomeFinances
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSpend = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonClearSpend = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripButton();
@@ -70,7 +71,6 @@ namespace HomeFinances
             this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButtonClearSpend = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -101,8 +101,8 @@ namespace HomeFinances
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1061, 579);
-            this.splitContainer1.SplitterDistance = 430;
+            this.splitContainer1.Size = new System.Drawing.Size(1079, 579);
+            this.splitContainer1.SplitterDistance = 437;
             this.splitContainer1.TabIndex = 0;
             // 
             // panel4
@@ -114,7 +114,7 @@ namespace HomeFinances
             this.panel4.Controls.Add(this.buttonCalculateBalance);
             this.panel4.Location = new System.Drawing.Point(5, 243);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(422, 333);
+            this.panel4.Size = new System.Drawing.Size(429, 333);
             this.panel4.TabIndex = 2;
             // 
             // labelCalculateBalance
@@ -158,7 +158,7 @@ namespace HomeFinances
             this.panel3.Controls.Add(this.dateTimePickerStop);
             this.panel3.Location = new System.Drawing.Point(3, 39);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(424, 198);
+            this.panel3.Size = new System.Drawing.Size(431, 198);
             this.panel3.TabIndex = 7;
             // 
             // directoryControl3
@@ -301,7 +301,7 @@ namespace HomeFinances
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(627, 551);
+            this.panel2.Size = new System.Drawing.Size(638, 551);
             this.panel2.TabIndex = 2;
             // 
             // dataGridViewRecords
@@ -317,7 +317,7 @@ namespace HomeFinances
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.ReadOnly = true;
             this.dataGridViewRecords.RowHeadersVisible = false;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(627, 551);
+            this.dataGridViewRecords.Size = new System.Drawing.Size(638, 551);
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
             this.dataGridViewRecords.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridViewRecords_ColumnWidthChanged);
@@ -328,7 +328,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(627, 28);
+            this.panel1.Size = new System.Drawing.Size(638, 28);
             this.panel1.TabIndex = 1;
             // 
             // toolStripRecords
@@ -344,7 +344,7 @@ namespace HomeFinances
             this.toolStripDropDownButton1});
             this.toolStripRecords.Location = new System.Drawing.Point(0, 0);
             this.toolStripRecords.Name = "toolStripRecords";
-            this.toolStripRecords.Size = new System.Drawing.Size(627, 25);
+            this.toolStripRecords.Size = new System.Drawing.Size(638, 25);
             this.toolStripRecords.TabIndex = 0;
             this.toolStripRecords.Text = "toolStrip1";
             // 
@@ -384,6 +384,15 @@ namespace HomeFinances
             this.toolStripButtonSpend.Text = "Провести";
             this.toolStripButtonSpend.Click += new System.EventHandler(this.toolStripButtonSpend_Click);
             // 
+            // toolStripButtonClearSpend
+            // 
+            this.toolStripButtonClearSpend.Image = global::HomeFinances.Properties.Resources.page;
+            this.toolStripButtonClearSpend.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonClearSpend.Name = "toolStripButtonClearSpend";
+            this.toolStripButtonClearSpend.Size = new System.Drawing.Size(149, 22);
+            this.toolStripButtonClearSpend.Text = "Відмінити проведення";
+            this.toolStripButtonClearSpend.Click += new System.EventHandler(this.toolStripButtonClearSpend_Click);
+            // 
             // toolStripButtonDelete
             // 
             this.toolStripButtonDelete.Image = global::HomeFinances.Properties.Resources.page_white_delete;
@@ -403,7 +412,7 @@ namespace HomeFinances
             this.toolStripDropDownButton1.Image = global::HomeFinances.Properties.Resources.layers;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 20);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
             this.toolStripDropDownButton1.Text = "Обмін";
             this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
             // 
@@ -413,7 +422,7 @@ namespace HomeFinances
             this.довідникиToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
-            this.menuStripTop.Size = new System.Drawing.Size(1061, 24);
+            this.menuStripTop.Size = new System.Drawing.Size(1079, 24);
             this.menuStripTop.TabIndex = 1;
             this.menuStripTop.Text = "menuStripTop";
             // 
@@ -488,20 +497,11 @@ namespace HomeFinances
             this.періодичніЗавданняToolStripMenuItem.Text = "Періодичні завдання";
             this.періодичніЗавданняToolStripMenuItem.Click += new System.EventHandler(this.періодичніЗавданняToolStripMenuItem_Click);
             // 
-            // toolStripButtonClearSpend
-            // 
-            this.toolStripButtonClearSpend.Image = global::HomeFinances.Properties.Resources.page;
-            this.toolStripButtonClearSpend.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonClearSpend.Name = "toolStripButtonClearSpend";
-            this.toolStripButtonClearSpend.Size = new System.Drawing.Size(149, 22);
-            this.toolStripButtonClearSpend.Text = "Відмінити проведення";
-            this.toolStripButtonClearSpend.Click += new System.EventHandler(this.toolStripButtonClearSpend_Click);
-            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 603);
+            this.ClientSize = new System.Drawing.Size(1079, 603);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStripTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

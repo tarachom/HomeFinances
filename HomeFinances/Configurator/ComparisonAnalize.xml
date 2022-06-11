@@ -4,47 +4,23 @@
   <sql>CREATE TABLE IF NOT EXISTS tab_constants (uid uuid NOT NULL,  "col_a3" text,  "col_a1" uuid,  "col_a2" uuid,  "col_a4" text,  "col_a5" text,  "col_a6" integer,  "col_a7" integer,  "col_a8" integer,  "col_a9" integer,  "col_b1" integer,  "col_b2" integer, PRIMARY KEY(uid));</sql>
   <info>Створити таблицю Записи (tab_a02)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a02 (uid uuid NOT NULL,  "col_a7" text,  "col_a6" timestamp without time zone,  "col_a8" text,  "col_a9" integer,  "col_b1" numeric,  "col_a1" uuid,  "col_a2" uuid,  "col_a4" text,  "col_a3" uuid,  "col_a5" boolean,  "col_b2" numeric,  "col_b3" numeric, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a13)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a13 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a5" timestamp without time zone, "col_a6" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a13_owner_idx ON tab_a13 (owner);</sql>
   <info>Створити таблицю КласифікаторВитрат (tab_a01)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a01 (uid uuid NOT NULL,  "col_a1" text,  "col_a2" text, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a10)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a10 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a10_owner_idx ON tab_a10 (owner);</sql>
   <info>Створити таблицю Записник (tab_a03)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a03 (uid uuid NOT NULL,  "col_a1" text,  "col_a4" text,  "col_a3" timestamp without time zone,  "col_a2" uuid,  "col_a5" text, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a16)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a16 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a3" timestamp without time zone, "col_a4" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a16_owner_idx ON tab_a16 (owner);</sql>
   <info>Створити таблицю Файли (tab_a17)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a17 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" text, "col_a2" text, PRIMARY KEY(uid));</sql>
   <sql>CREATE INDEX IF NOT EXISTS tab_a17_owner_idx ON tab_a17 (owner);</sql>
   <info>Створити таблицю Користувач (tab_a04)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a04 (uid uuid NOT NULL,  "col_a1" text,  "col_a2" text, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю НалаштуванняФормиЗаписиФінансів (tab_a06)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a06 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a5" text, "col_a6" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a06_owner_idx ON tab_a06 (owner);</sql>
   <info>Створити таблицю Каса (tab_a05)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a05 (uid uuid NOT NULL,  "col_a1" text,  "col_a2" uuid,  "col_a3" integer, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a12)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a12 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a3" timestamp without time zone, "col_a4" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a12_owner_idx ON tab_a12 (owner);</sql>
   <info>Створити таблицю Валюта (tab_a07)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a07 (uid uuid NOT NULL,  "col_a3" text,  "col_a4" text, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a11)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a11 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a11_owner_idx ON tab_a11 (owner);</sql>
   <info>Створити таблицю Контакти (tab_a08)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a08 (uid uuid NOT NULL,  "col_a4" text,  "col_a3" text,  "col_a5" text,  "col_a6" text,  "col_a7" text,  "col_a1" text,  "col_a2" text, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a14)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a14 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a14_owner_idx ON tab_a14 (owner);</sql>
   <info>Створити таблицю Записник_Папки (tab_a09)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a09 (uid uuid NOT NULL,  "col_a1" text,  "col_a3" uuid,  "col_a2" timestamp without time zone, PRIMARY KEY(uid));</sql>
-  <info>Створити таблицю ОбмінІсторія (tab_a15)</info>
-  <sql>CREATE TABLE IF NOT EXISTS tab_a15 (uid uuid NOT NULL, owner uuid NOT NULL, "col_a1" timestamp without time zone, "col_a2" text, PRIMARY KEY(uid));</sql>
-  <sql>CREATE INDEX IF NOT EXISTS tab_a15_owner_idx ON tab_a15 (owner);</sql>
   <info>Створити таблицю КалендарПеріодичнихЗавдань (tab_a53)</info>
   <sql>CREATE TABLE IF NOT EXISTS tab_a53 (uid uuid NOT NULL,  "col_a1" text,  "col_a3" integer,  "col_a4" text,  "col_a2" timestamp without time zone, PRIMARY KEY(uid));</sql>
   <info>Створити таблицю ЗалишкиКоштів (tab_a19)</info>
