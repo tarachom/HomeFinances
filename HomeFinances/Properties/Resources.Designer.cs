@@ -274,9 +274,9 @@ namespace HomeFinances.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;root&gt;
         ///  &lt;info&gt;Створити таблицю Константи (tab_constants)&lt;/info&gt;
-        ///  &lt;sql&gt;CREATE TABLE tab_constants (uid uuid NOT NULL,  &quot;col_a3&quot; text,  &quot;col_a1&quot; uuid,  &quot;col_a2&quot; uuid,  &quot;col_a4&quot; text,  &quot;col_a5&quot; text,  &quot;col_a6&quot; integer,  &quot;col_a7&quot; integer,  &quot;col_a8&quot; integer,  &quot;col_a9&quot; integer,  &quot;col_b1&quot; integer,  &quot;col_b2&quot; integer, PRIMARY KEY(uid));&lt;/sql&gt;
+        ///  &lt;sql&gt;CREATE TABLE IF NOT EXISTS tab_constants (uid uuid NOT NULL,  &quot;col_a3&quot; text,  &quot;col_a1&quot; uuid,  &quot;col_a2&quot; uuid,  &quot;col_a4&quot; text,  &quot;col_a5&quot; text,  &quot;col_a6&quot; integer,  &quot;col_a7&quot; integer,  &quot;col_a8&quot; integer,  &quot;col_a9&quot; integer,  &quot;col_b1&quot; integer,  &quot;col_b2&quot; integer, PRIMARY KEY(uid));&lt;/sql&gt;
         ///  &lt;info&gt;Створити таблицю Записи (tab_a02)&lt;/info&gt;
-        ///  &lt;sql&gt;CREATE TABLE tab_a02 (uid uuid NOT NULL,  &quot;col_a7&quot; text,  &quot;col_a6&quot; timesta [rest of string was truncated]&quot;;.
+        ///  &lt;sql&gt;CREATE TABLE IF NOT EXISTS tab_a02 (uid uuid NOT NULL,  &quot;col [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SQL {
             get {

@@ -95,6 +95,11 @@ namespace HomeFinances
 						dateTimePickerStart.Value = start.AddDays(-(start.Day - 1));
 						break;
 					}
+				default:
+                    {
+						dateTimePickerStart.Value = start.AddDays(-7);
+						break;
+					}
 			}
 
 			dateTimePickerStop.Value = new DateTime(start.Year, start.Month, start.Day, 23, 59, 59);

@@ -274,59 +274,8 @@ namespace HomeFinances
 				//База створена і відкрита
 				if (flagCreateDatabase == true && flagOpen2 == true)
 				{
-					if (IsExistsDatabase)
-                    {
-						//Якщо база існувала раніше?
-						#region Перевірка наявності таблиць
-
-						ConfigurationInformationSchema configurationInformationSchema = Конфа.Config.Kernel.DataBase.SelectInformationSchema();
-
-						string msg = "Не знайдено таблицю '{tab_name}'.";
-
-						//Конфігуратор
-						if (!configurationInformationSchema.Tables.ContainsKey("tab_constants"))
-						{
-							MessageBox.Show(msg.Replace("{tab_name}", "tab_constants"));
-							return;
-						}
-
-						//Довідники
-						foreach (ConfigurationDirectories configurationDirectories in Конфа.Config.Kernel.Conf.Directories.Values)
-						{
-							if (!configurationInformationSchema.Tables.ContainsKey(configurationDirectories.Table))
-							{
-								MessageBox.Show(msg.Replace("{tab_name}", configurationDirectories.Table));
-								return;
-							}
-
-							//Табличні частини довідника
-							foreach (ConfigurationObjectTablePart configurationObjectTablePart in configurationDirectories.TabularParts.Values)
-							{
-								if (!configurationInformationSchema.Tables.ContainsKey(configurationObjectTablePart.Table))
-								{
-									MessageBox.Show(msg.Replace("{tab_name}", configurationObjectTablePart.Table));
-									return;
-								}
-							}
-						}
-
-						//Регістри
-						foreach (ConfigurationRegistersAccumulation configurationRegistersAccumulation in Конфа.Config.Kernel.Conf.RegistersAccumulation.Values)
-						{
-							if (!configurationInformationSchema.Tables.ContainsKey(configurationRegistersAccumulation.Table))
-							{
-								MessageBox.Show(msg.Replace("{tab_name}", configurationRegistersAccumulation.Table));
-								return;
-							}
-						}
-
-						#endregion
-					}
-					else
-                    {
-						//Створити таблиці
-						CreateTables();
-					}
+					//Створити таблиці
+					CreateTables();
 				}
                 else
                 {
