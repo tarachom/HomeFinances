@@ -63,6 +63,16 @@ namespace HomeFinances.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_document {
+            get {
+                object obj = ResourceManager.GetObject("add_document", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blog {
             get {
                 object obj = ResourceManager.GetObject("blog", resourceCulture);
@@ -136,6 +146,16 @@ namespace HomeFinances.Properties {
         internal static System.Drawing.Bitmap doc_text_image {
             get {
                 object obj = ResourceManager.GetObject("doc_text_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap document_not_spend {
+            get {
+                object obj = ResourceManager.GetObject("document_not_spend", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

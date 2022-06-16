@@ -105,6 +105,7 @@
             this.buttonTryConnect.TabIndex = 10;
             this.buttonTryConnect.Text = "Перевірити підключення";
             this.buttonTryConnect.UseVisualStyleBackColor = true;
+            this.buttonTryConnect.Visible = false;
             this.buttonTryConnect.Click += new System.EventHandler(this.buttonTryConnect_Click);
             // 
             // textBoxPostgreSQLPort

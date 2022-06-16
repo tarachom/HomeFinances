@@ -351,7 +351,7 @@ namespace HomeFinances
             // 
             // toolStripButtonAdd
             // 
-            this.toolStripButtonAdd.Image = global::HomeFinances.Properties.Resources.page;
+            this.toolStripButtonAdd.Image = global::HomeFinances.Properties.Resources.add_document;
             this.toolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAdd.Name = "toolStripButtonAdd";
             this.toolStripButtonAdd.Size = new System.Drawing.Size(66, 22);
@@ -387,7 +387,7 @@ namespace HomeFinances
             // 
             // toolStripButtonClearSpend
             // 
-            this.toolStripButtonClearSpend.Image = global::HomeFinances.Properties.Resources.page;
+            this.toolStripButtonClearSpend.Image = global::HomeFinances.Properties.Resources.document_not_spend;
             this.toolStripButtonClearSpend.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonClearSpend.Name = "toolStripButtonClearSpend";
             this.toolStripButtonClearSpend.Size = new System.Drawing.Size(149, 22);
@@ -519,7 +519,7 @@ namespace HomeFinances
             this.MainMenuStrip = this.menuStripTop;
             this.Name = "FormRecordFinance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Домашні фінанси 1.0";
+            this.Text = "Домашні фінанси";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormRecordFinance_FormClosing);
             this.Load += new System.EventHandler(this.FormRecordFinance_Load);

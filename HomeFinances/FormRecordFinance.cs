@@ -527,7 +527,7 @@ FROM
     LEFT JOIN {Довідник_Каса.Table} AS КасаТаб ON КасаТаб.uid = ЗалишкиКоштів.{fieldCasa}
     LEFT JOIN {Довідник_Валюта.Table} AS ВалютаТаб ON ВалютаТаб.uid = КасаТаб.{Довідник_Каса.Fields["Валюта"].NameInTable}
 GROUP BY КасаІд, КасаНазва, ВалютаКод
-HAVING SUM(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{fieldSuma} ELSE -ЗалишкиКоштів.{fieldSuma} END) > 0
+HAVING SUM(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{fieldSuma} ELSE -ЗалишкиКоштів.{fieldSuma} END) != 0
 ORDER BY КасаНазва ASC";
 
 			string[] columnsName;

@@ -272,6 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="homefinances.ico" />
+    <None Include="Resources\add_document.ico" />
+    <None Include="Resources\document_not_spend.ico" />
     <None Include="Resources\refresh.ico" />
     <None Include="Resources\calculator.ico" />
     <None Include="Resources\data.png" />
