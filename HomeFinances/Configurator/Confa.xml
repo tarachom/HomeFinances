@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>11.06.2022 19:03:27</DateTimeSave>
+  <DateTimeSave>16.06.2022 10:53:43</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -144,6 +144,7 @@
           <Type>string</Type>
           <Desc>Назва операції</Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>ДатаЗапису</Name>
@@ -151,6 +152,7 @@
           <Type>datetime</Type>
           <Desc>Дата запису</Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>1</IsIndex>
         </Field>
         <Field>
           <Name>Опис</Name>
@@ -158,6 +160,7 @@
           <Type>string</Type>
           <Desc>Опис операції</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>ТипЗапису</Name>
@@ -166,6 +169,7 @@
           <Pointer>Перелічення.ТипЗапису</Pointer>
           <Desc>Тип операції</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>1</IsIndex>
         </Field>
         <Field>
           <Name>Сума</Name>
@@ -173,6 +177,7 @@
           <Type>numeric</Type>
           <Desc>Сума операції</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Витрата</Name>
@@ -181,6 +186,7 @@
           <Pointer>Довідники.КласифікаторВитрат</Pointer>
           <Desc>Стаття витрат</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>1</IsIndex>
         </Field>
         <Field>
           <Name>Каса</Name>
@@ -189,6 +195,7 @@
           <Pointer>Довідники.Каса</Pointer>
           <Desc>З якого місця зберігання грошей відбувається операція</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>1</IsIndex>
         </Field>
         <Field>
           <Name>СсилкаНаСайт</Name>
@@ -196,6 +203,7 @@
           <Type>string</Type>
           <Desc>Привязка запису до сторінки в інтернеті</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>КасаПереміщення</Name>
@@ -204,6 +212,7 @@
           <Pointer>Довідники.Каса</Pointer>
           <Desc>Каса куди переміщаються гроші</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>1</IsIndex>
         </Field>
         <Field>
           <Name>Проведено</Name>
@@ -211,6 +220,7 @@
           <Type>boolean</Type>
           <Desc>Чи робить запис рух по регістрах</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>СумаОбміну</Name>
@@ -218,6 +228,7 @@
           <Type>numeric</Type>
           <Desc>Сума обміну валюти по курсу</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>КурсОбміну</Name>
@@ -225,6 +236,7 @@
           <Type>numeric</Type>
           <Desc>Курс обміну валюти по курсу</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -245,6 +257,7 @@
           <Type>string</Type>
           <Desc>Назва</Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Код</Name>
@@ -252,6 +265,7 @@
           <Type>string</Type>
           <Desc>Код</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -275,6 +289,7 @@
           <Type>string</Type>
           <Desc>Назва</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Опис</Name>
@@ -283,6 +298,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Дата</Name>
@@ -291,6 +307,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Папка</Name>
@@ -300,6 +317,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Сайт</Name>
@@ -308,6 +326,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts>
@@ -324,6 +343,7 @@
               <Desc>
               </Desc>
               <IsPresentation>0</IsPresentation>
+              <IsIndex>0</IsIndex>
             </Field>
             <Field>
               <Name>НазваФайлуНаДиску</Name>
@@ -332,6 +352,7 @@
               <Desc>
               </Desc>
               <IsPresentation>0</IsPresentation>
+              <IsIndex>0</IsIndex>
             </Field>
           </Fields>
         </TablePart>
@@ -355,6 +376,7 @@
           <Type>string</Type>
           <Desc>Назва</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Код</Name>
@@ -363,6 +385,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -386,6 +409,7 @@
           <Type>string</Type>
           <Desc>Назва</Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Валюта</Name>
@@ -395,6 +419,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>ТипВалюти</Name>
@@ -404,6 +429,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -427,6 +453,7 @@
           <Type>string</Type>
           <Desc>Назва</Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Код</Name>
@@ -434,6 +461,7 @@
           <Type>string</Type>
           <Desc>Код</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -458,6 +486,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Назва</Name>
@@ -466,6 +495,7 @@
           <Desc>
           </Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Сайт</Name>
@@ -474,6 +504,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Пошта</Name>
@@ -482,6 +513,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Опис</Name>
@@ -490,6 +522,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Скайп</Name>
@@ -498,6 +531,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Фото</Name>
@@ -505,6 +539,7 @@
           <Type>string</Type>
           <Desc>Зарезервовано під фотографію</Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -529,6 +564,7 @@
           <Desc>
           </Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Родич</Name>
@@ -538,6 +574,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Дата</Name>
@@ -546,6 +583,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -568,6 +606,7 @@
           <Type>string</Type>
           <Desc>Назва</Desc>
           <IsPresentation>1</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>ПеріодВиконання</Name>
@@ -577,6 +616,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Опис</Name>
@@ -585,6 +625,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>Старт</Name>
@@ -593,6 +634,7 @@
           <Desc>
           </Desc>
           <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
         </Field>
       </Fields>
       <TabularParts />
@@ -610,7 +652,7 @@
     <Enum>
       <Name>ТипЗапису</Name>
       <Desc>Тип запису  - це поступлення фінансів або витрати фінансів</Desc>
-      <SerialNumber>8</SerialNumber>
+      <SerialNumber>9</SerialNumber>
       <Fields>
         <Field>
           <Name>Витрати</Name>
@@ -641,6 +683,11 @@
           <Name>Обмін</Name>
           <Value>8</Value>
           <Desc>Обмін на іншу валюту по курсу</Desc>
+        </Field>
+        <Field>
+          <Name>Корегування</Name>
+          <Value>9</Value>
+          <Desc>Корегування залишку коштів у касі</Desc>
         </Field>
       </Fields>
     </Enum>
@@ -763,6 +810,7 @@
             <Desc>
             </Desc>
             <IsPresentation>0</IsPresentation>
+            <IsIndex>0</IsIndex>
           </Field>
         </Fields>
       </DimensionFields>
@@ -775,6 +823,7 @@
             <Desc>
             </Desc>
             <IsPresentation>0</IsPresentation>
+            <IsIndex>0</IsIndex>
           </Field>
         </Fields>
       </ResourcesFields>

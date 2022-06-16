@@ -71,6 +71,7 @@ namespace HomeFinances
             this.записникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.калькуляторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -418,8 +419,10 @@ namespace HomeFinances
             // 
             // menuStripTop
             // 
+            this.menuStripTop.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.довідникиToolStripMenuItem});
+            this.довідникиToolStripMenuItem,
+            this.калькуляторToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(1079, 24);
@@ -496,6 +499,14 @@ namespace HomeFinances
             this.періодичніЗавданняToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.періодичніЗавданняToolStripMenuItem.Text = "Періодичні завдання";
             this.періодичніЗавданняToolStripMenuItem.Click += new System.EventHandler(this.періодичніЗавданняToolStripMenuItem_Click);
+            // 
+            // калькуляторToolStripMenuItem
+            // 
+            this.калькуляторToolStripMenuItem.Image = global::HomeFinances.Properties.Resources.calculator;
+            this.калькуляторToolStripMenuItem.Name = "калькуляторToolStripMenuItem";
+            this.калькуляторToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+            this.калькуляторToolStripMenuItem.Text = "Калькулятор";
+            this.калькуляторToolStripMenuItem.Click += new System.EventHandler(this.калькуляторToolStripMenuItem_Click);
             // 
             // FormRecordFinance
             // 
@@ -577,6 +588,7 @@ namespace HomeFinances
         private DirectoryControl directoryControl3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripButton toolStripButtonClearSpend;
+        private System.Windows.Forms.ToolStripMenuItem калькуляторToolStripMenuItem;
     }
 }
 

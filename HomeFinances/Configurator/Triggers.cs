@@ -143,8 +143,8 @@ namespace HomeFinances_1_0.Довідники
 					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
 				}
 
-				if ((запис.ТипЗапису == Перелічення.ТипЗапису.Переміщення ||
-					запис.ТипЗапису == Перелічення.ТипЗапису.Обмін))
+				if (запис.ТипЗапису == Перелічення.ТипЗапису.Переміщення ||
+					запис.ТипЗапису == Перелічення.ТипЗапису.Обмін)
 				{
 					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record1 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
 					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record2 = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
@@ -167,6 +167,20 @@ namespace HomeFinances_1_0.Довідники
 
 					залишкиКоштів_RecordsSet.Records.Add(record1);
 					залишкиКоштів_RecordsSet.Records.Add(record2);
+					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
+				}
+
+				if (запис.ТипЗапису == Перелічення.ТипЗапису.Корегування)
+				{
+					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
+
+					record.Income = true;
+
+					record.Owner = запис.UnigueID.UGuid;
+					record.Каса = запис.Каса;
+					record.Сума = запис.Сума;
+
+					залишкиКоштів_RecordsSet.Records.Add(record);
 					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
 				}
 			}

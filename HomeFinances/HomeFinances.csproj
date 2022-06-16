@@ -272,6 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="homefinances.ico" />
+    <None Include="Resources\refresh.ico" />
+    <None Include="Resources\calculator.ico" />
     <None Include="Resources\data.png" />
     <None Include="Resources\money.png" />
     <None Include="Resources\note.png" />
@@ -299,7 +301,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)Configurator\Confa.xml    $(TargetDir)Confa.xml</PostBuildEvent>
   </PropertyGroup>
 </Project>

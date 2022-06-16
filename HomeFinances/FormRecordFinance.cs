@@ -240,14 +240,14 @@ namespace HomeFinances
 			string JoinTable = Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Table;
 			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Fields["Назва"].NameInTable;
 
-			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field2"));
+			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "statya_name"));
 			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Витрата, записи_Select.QuerySelect.Table));
 
 			//JOIN2
 			JoinTable = Конфа.Config.Kernel.Conf.Directories["Каса"].Table;
 			ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Каса"].Fields["Назва"].NameInTable;
 
-			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field3"));
+			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "casa_name"));
 			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Каса, записи_Select.QuerySelect.Table));
 
 			//WHERE
@@ -291,12 +291,12 @@ namespace HomeFinances
 					cur.UnigueID.ToString(),
 					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
 					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
-					cur.Fields[Довідники.Записи_Select.Сума].ToString(),
+					Math.Round((decimal)cur.Fields[Довідники.Записи_Select.Сума], 2).ToString(),
 					типЗаписуПредставлення,
-					cur.Fields["field2"].ToString(),
-					cur.Fields["field3"].ToString(),
+					cur.Fields["statya_name"].ToString(),
+					cur.Fields["casa_name"].ToString(),
 					cur.Fields[Довідники.Записи_Select.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Select.Проведено] : false
-					));
+			    ));
 			}
 
 			if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
@@ -484,6 +484,11 @@ namespace HomeFinances
 			formPeriodicTasks.Show();
 		}
 
+		private void калькуляторToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("calc.exe");
+		}
+
 		#endregion
 
 		private void buttonRefresh_Click(object sender, EventArgs e)
@@ -516,7 +521,7 @@ namespace HomeFinances
 				SELECT 
                     ЗалишкиКоштів.{КасаІд} AS КасаІд, 
                     КасаТаб.{КасаНазва} AS КасаНазва,
-				    sum(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{Сума} ELSE -ЗалишкиКоштів.{Сума} END) AS Сума,
+				    SUM(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{Сума} ELSE -ЗалишкиКоштів.{Сума} END) AS Сума,
                     ВалютаТаб.{ВалютаКод} AS ВалютаКод
 				FROM 
                     {Регістр_ЗалишкиКоштів} AS ЗалишкиКоштів
@@ -534,7 +539,8 @@ namespace HomeFinances
 
 			foreach (object[] o in listRow)
 			{
-				result += (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " + o[2].ToString() + " " + o[3].ToString() + "\n\r";
+				result += (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " + 
+					Math.Round((decimal)o[2], 2).ToString() + " " + o[3].ToString() + "\n\r";
 			}
 
 			labelCalculateBalance.Text = result;
@@ -565,5 +571,7 @@ namespace HomeFinances
 					Константи.СписокГоловнаФорма.СтовпчикКасаШирина_Const = e.Column.Width;
 			}
 		}
+
+        
     }
 }

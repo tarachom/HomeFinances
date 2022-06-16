@@ -73,8 +73,11 @@ namespace HomeFinances
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-			DirectoryPointerItem.Init(new UnigueID(Guid.Empty));
-			ReadPresentation();
+			if (DirectoryPointerItem != null)
+			{
+				DirectoryPointerItem.Init(new UnigueID(Guid.Empty));
+				ReadPresentation();
+			}
 		}
     }
 }

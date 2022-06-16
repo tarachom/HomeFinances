@@ -19,6 +19,7 @@ limitations under the License.
 */
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 using AccountingSoftware;
@@ -150,6 +151,9 @@ namespace HomeFinances
 				}
 
 				labelStateSpend.Text = записи_Objest.Проведено ? "проведено" : "не проведено";
+
+				//Обчислення залишку по касі
+				CalculateOstatokCasa();
 			}
 		}
 
@@ -176,7 +180,7 @@ namespace HomeFinances
 			System.Diagnostics.Process.Start("firefox.exe", textBoxUrlLink.Text);
 		}
 
-		private void Save(bool Spend)
+		private void Save(bool Spend, bool CloseForm = true)
         {
 			if (!Suma.IsValid || !SumaObmin.IsValid || !CursObmin.IsValid)
             {
@@ -210,6 +214,9 @@ namespace HomeFinances
 
 					записи_Objest.Проведено = Spend;
 					записи_Objest.Save();
+
+					IsNew = false;
+					Uid = записи_Objest.UnigueID.ToString();
 				}
 				catch (Exception exp)
 				{
@@ -223,7 +230,8 @@ namespace HomeFinances
 					OwnerForm.CalculateBalance();
 				}
 
-				this.Close();
+				if (CloseForm)
+					this.Close();
 			}
 		}
 
@@ -247,8 +255,72 @@ namespace HomeFinances
 				directoryControl3.Enabled = EnableControlMove || EnableControlObmin;
 				SumaObmin.Enabled = EnableControlObmin;
 				CursObmin.Enabled = EnableControlObmin;
-
 			}			
+		}
+
+		/// <summary>
+		/// Порахувати залишок по касі
+		/// </summary>
+		private void CalculateOstatokCasa()
+        {
+			Configuration Conf = Конфа.Config.Kernel.Conf;
+
+			ConfigurationRegistersAccumulation Регістр_ЗалишкиКоштів = Conf.RegistersAccumulation["ЗалишкиКоштів"];
+
+			ConfigurationDirectories Довідник_Каса = Conf.Directories["Каса"];
+			ConfigurationDirectories Довідник_Валюта = Conf.Directories["Валюта"];
+
+			string query = $@"
+SELECT 
+    ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable} AS КасаІд, 
+    КасаТаб.{Довідник_Каса.Fields["Назва"].NameInTable} AS КасаНазва,
+	SUM(CASE WHEN ЗалишкиКоштів.income = true THEN 
+             ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.ResourcesFields["Сума"].NameInTable} ELSE 
+             -ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.ResourcesFields["Сума"].NameInTable} END) AS Сума,
+    ВалютаТаб.{Довідник_Валюта.Fields["Код"].NameInTable} AS ВалютаКод
+FROM 
+    {Регістр_ЗалишкиКоштів.Table} AS ЗалишкиКоштів
+    LEFT JOIN {Довідник_Каса.Table} AS КасаТаб ON КасаТаб.uid = ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable}
+    LEFT JOIN {Довідник_Валюта.Table} AS ВалютаТаб ON ВалютаТаб.uid = КасаТаб.{Довідник_Каса.Fields["Валюта"].NameInTable}
+WHERE
+    ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable} = @КасаІд
+GROUP BY КасаІд, КасаНазва, ВалютаКод";
+
+			//Console.WriteLine(query);
+
+			Dictionary<string, object> paramQuery = new Dictionary<string, object>();
+			paramQuery.Add("КасаІд", directoryControl2.DirectoryPointerItem.UnigueID.UGuid);
+
+			string[] columnsName;
+			List<object[]> listRow;
+
+			Конфа.Config.Kernel.DataBase.SelectRequest(query, paramQuery, out columnsName, out listRow);
+
+			string result = "";
+
+			foreach (object[] o in listRow)
+			{
+				result = (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " +
+					Math.Round((decimal)o[2], 2).ToString() + " " + o[3].ToString();
+			}
+
+			labelOstatokCasa.Text = "Залишок: " + result;
+		}
+
+        private void buttonRefreshOstatokCasa_Click(object sender, EventArgs e)
+        {
+			CalculateOstatokCasa();
+		}
+
+        private void калькуляторToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			System.Diagnostics.Process.Start("calc.exe");
+		}
+
+        private void buttonSpend_Click(object sender, EventArgs e)
+        {
+			Save(true, false);
+			CalculateOstatokCasa();
 		}
     }
 }
