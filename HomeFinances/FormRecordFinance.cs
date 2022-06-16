@@ -356,6 +356,7 @@ namespace HomeFinances
 				}
 
 				LoadRecords();
+				CalculateBalance();
 			}
 		}
 
@@ -432,6 +433,11 @@ namespace HomeFinances
 			SaveSpendFlag("Відмінити проведення виділених записів?", false);
 		}
 
+		private void buttonRefresh_Click(object sender, EventArgs e)
+		{
+			LoadRecords();
+		}
+
 		#endregion
 
 		#region MENU
@@ -491,11 +497,6 @@ namespace HomeFinances
 
 		#endregion
 
-		private void buttonRefresh_Click(object sender, EventArgs e)
-        {
-			LoadRecords();
-		}
-
         private void FormRecordFinance_FormClosing(object sender, FormClosingEventArgs e)
         {
 			Application.Exit();
@@ -508,27 +509,26 @@ namespace HomeFinances
         {
 			Configuration Conf = Конфа.Config.Kernel.Conf;
 
-			string КасаІд = Conf.RegistersAccumulation["ЗалишкиКоштів"].DimensionFields["Каса"].NameInTable;
-			string КасаНазва = Conf.Directories["Каса"].Fields["Назва"].NameInTable;
-			string Сума = Conf.RegistersAccumulation["ЗалишкиКоштів"].ResourcesFields["Сума"].NameInTable;
-			string ВалютаКод = Conf.Directories["Валюта"].Fields["Код"].NameInTable;
-			string Регістр_ЗалишкиКоштів = Conf.RegistersAccumulation["ЗалишкиКоштів"].Table;
-			string КасаТаб = Conf.Directories["Каса"].Table;
-			string ВалютаТаб = Conf.Directories["Валюта"].Table;
-			string КасаТаб_Валюта = Conf.Directories["Каса"].Fields["Валюта"].NameInTable;
+			ConfigurationRegistersAccumulation Регістр_ЗалишкиКоштів = Conf.RegistersAccumulation["ЗалишкиКоштів"];
+			ConfigurationDirectories Довідник_Каса = Conf.Directories["Каса"];
+			ConfigurationDirectories Довідник_Валюта = Conf.Directories["Валюта"];
+
+			string fieldCasa = Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable;
+			string fieldSuma = Регістр_ЗалишкиКоштів.ResourcesFields["Сума"].NameInTable;
 
 			string query = $@"
-				SELECT 
-                    ЗалишкиКоштів.{КасаІд} AS КасаІд, 
-                    КасаТаб.{КасаНазва} AS КасаНазва,
-				    SUM(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{Сума} ELSE -ЗалишкиКоштів.{Сума} END) AS Сума,
-                    ВалютаТаб.{ВалютаКод} AS ВалютаКод
-				FROM 
-                    {Регістр_ЗалишкиКоштів} AS ЗалишкиКоштів
-                    LEFT JOIN {КасаТаб} AS КасаТаб ON ЗалишкиКоштів.{КасаІд} = КасаТаб.uid
-                    LEFT JOIN {ВалютаТаб} AS ВалютаТаб ON КасаТаб.{КасаТаб_Валюта} = ВалютаТаб.uid 
-			    GROUP BY КасаІд, КасаНазва, ВалютаКод
-                ORDER BY КасаНазва";
+SELECT 
+    ЗалишкиКоштів.{fieldCasa} AS КасаІд, 
+    КасаТаб.{Довідник_Каса.Fields["Назва"].NameInTable} AS КасаНазва,
+	SUM(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{fieldSuma} ELSE -ЗалишкиКоштів.{fieldSuma} END) AS Сума,
+    ВалютаТаб.{Довідник_Валюта.Fields["Код"].NameInTable} AS ВалютаКод
+FROM 
+    {Регістр_ЗалишкиКоштів.Table} AS ЗалишкиКоштів
+    LEFT JOIN {Довідник_Каса.Table} AS КасаТаб ON КасаТаб.uid = ЗалишкиКоштів.{fieldCasa}
+    LEFT JOIN {Довідник_Валюта.Table} AS ВалютаТаб ON ВалютаТаб.uid = КасаТаб.{Довідник_Каса.Fields["Валюта"].NameInTable}
+GROUP BY КасаІд, КасаНазва, ВалютаКод
+HAVING SUM(CASE WHEN ЗалишкиКоштів.income = true THEN ЗалишкиКоштів.{fieldSuma} ELSE -ЗалишкиКоштів.{fieldSuma} END) > 0
+ORDER BY КасаНазва ASC";
 
 			string[] columnsName;
 			List<object[]> listRow;
