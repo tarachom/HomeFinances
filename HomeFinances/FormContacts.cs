@@ -86,13 +86,13 @@ namespace HomeFinances
 
 			Довідники.Контакти_Select контакти_Select = new Довідники.Контакти_Select();
 
-			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Select.Назва);
-			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Select.Телефон);
-			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Select.Пошта);
-			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Select.Скайп);
-			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Select.Сайт);
+			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Const.Назва);
+			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Const.Телефон);
+			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Const.Пошта);
+			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Const.Скайп);
+			контакти_Select.QuerySelect.Field.Add(Довідники.Контакти_Const.Сайт);
 
-			контакти_Select.QuerySelect.Order.Add(Довідники.Контакти_Select.Назва, SelectOrder.ASC);
+			контакти_Select.QuerySelect.Order.Add(Довідники.Контакти_Const.Назва, SelectOrder.ASC);
 
 			контакти_Select.Select();
 
@@ -102,8 +102,8 @@ namespace HomeFinances
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Контакти_Select.Назва].ToString(),
-					cur.Fields[Довідники.Контакти_Select.Телефон].ToString()/*,
+					cur.Fields[Довідники.Контакти_Const.Назва].ToString(),
+					cur.Fields[Довідники.Контакти_Const.Телефон].ToString()/*,
 					cur.Fields[Довідники.Контакти_Select.Пошта].ToString(),
 					cur.Fields[Довідники.Контакти_Select.Скайп].ToString(),
 					cur.Fields[Довідники.Контакти_Select.Сайт].ToString()*/

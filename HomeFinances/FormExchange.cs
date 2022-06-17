@@ -204,7 +204,7 @@ namespace HomeFinances
 			}
 
 			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
-			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Const.ДатаЗапису, SelectOrder.ASC);
 			записи_Select.Select();
 			while (записи_Select.MoveNext())
 			{
@@ -232,7 +232,7 @@ namespace HomeFinances
 			}
 
 			Довідники.Контакти_Select контакти_Select = new Довідники.Контакти_Select();
-			контакти_Select.QuerySelect.Order.Add(Довідники.Контакти_Select.Назва, SelectOrder.ASC);
+			контакти_Select.QuerySelect.Order.Add(Довідники.Контакти_Const.Назва, SelectOrder.ASC);
 			контакти_Select.Select();
 			while (контакти_Select.MoveNext())
 			{
@@ -260,7 +260,7 @@ namespace HomeFinances
 			}
 
 			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
-			валюта_Select.QuerySelect.Order.Add(Довідники.Валюта_Select.Назва, SelectOrder.ASC);
+			валюта_Select.QuerySelect.Order.Add(Довідники.Валюта_Const.Назва, SelectOrder.ASC);
 			валюта_Select.Select();
 			while (валюта_Select.MoveNext())
 			{
@@ -288,7 +288,7 @@ namespace HomeFinances
 			}
 
 			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
-			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
+			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Const.Назва, SelectOrder.ASC);
 			каса_Select.Select();
 			while (каса_Select.MoveNext())
 			{

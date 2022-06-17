@@ -83,9 +83,9 @@ namespace HomeFinances
 
 			Довідники.КласифікаторВитрат_Select класифікаторВитрат_Select = new Довідники.КласифікаторВитрат_Select();
 
-			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Select.Назва);
-			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Select.Код);
-			класифікаторВитрат_Select.QuerySelect.Order.Add(Довідники.КласифікаторВитрат_Select.Назва, SelectOrder.ASC);
+			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Const.Назва);
+			класифікаторВитрат_Select.QuerySelect.Field.Add(Довідники.КласифікаторВитрат_Const.Код);
+			класифікаторВитрат_Select.QuerySelect.Order.Add(Довідники.КласифікаторВитрат_Const.Назва, SelectOrder.ASC);
 
 			класифікаторВитрат_Select.Select();
 
@@ -95,8 +95,8 @@ namespace HomeFinances
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.КласифікаторВитрат_Select.Назва].ToString(),
-					cur.Fields[Довідники.КласифікаторВитрат_Select.Код].ToString()
+					cur.Fields[Довідники.КласифікаторВитрат_Const.Назва].ToString(),
+					cur.Fields[Довідники.КласифікаторВитрат_Const.Код].ToString()
 					));
 
 				if (DirectoryPointerItem != null && selectRow == 0) //??

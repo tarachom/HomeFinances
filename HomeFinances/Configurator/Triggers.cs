@@ -74,7 +74,7 @@ namespace HomeFinances_1_0.Довідники
 			//Вибірка елементів папки
 			//
 			Довідники.Записник_Select записник_Select = new Записник_Select();
-			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Select.Папка, Comparison.EQ, записник_Папки_Objest.UnigueID.UGuid));
+			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Const.Папка, Comparison.EQ, записник_Папки_Objest.UnigueID.UGuid));
 
 			записник_Select.Select();
 			while(записник_Select.MoveNext())
@@ -91,7 +91,7 @@ namespace HomeFinances_1_0.Довідники
 			//Вибірка папок у папці
 			//
 			Довідники.Записник_Папки_Select записник_Папки_Select = new Записник_Папки_Select();
-			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Select.Родич, Comparison.EQ, записник_Папки_Objest.UnigueID.UGuid));
+			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Const.Родич, Comparison.EQ, записник_Папки_Objest.UnigueID.UGuid));
 
 			записник_Папки_Select.Select();
 			while (записник_Папки_Select.MoveNext())

@@ -3,7 +3,7 @@
   <Name>Домашні фінанси 1.0</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>16.06.2022 13:48:42</DateTimeSave>
+  <DateTimeSave>17.06.2022 13:40:10</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -155,14 +155,6 @@
           <IsIndex>1</IsIndex>
         </Field>
         <Field>
-          <Name>Опис</Name>
-          <NameInTable>col_a8</NameInTable>
-          <Type>string</Type>
-          <Desc>Опис операції</Desc>
-          <IsPresentation>0</IsPresentation>
-          <IsIndex>0</IsIndex>
-        </Field>
-        <Field>
           <Name>ТипЗапису</Name>
           <NameInTable>col_a9</NameInTable>
           <Type>enum</Type>
@@ -198,14 +190,6 @@
           <IsIndex>1</IsIndex>
         </Field>
         <Field>
-          <Name>СсилкаНаСайт</Name>
-          <NameInTable>col_a4</NameInTable>
-          <Type>string</Type>
-          <Desc>Привязка запису до сторінки в інтернеті</Desc>
-          <IsPresentation>0</IsPresentation>
-          <IsIndex>0</IsIndex>
-        </Field>
-        <Field>
           <Name>КасаПереміщення</Name>
           <NameInTable>col_a3</NameInTable>
           <Type>pointer</Type>
@@ -213,14 +197,6 @@
           <Desc>Каса куди переміщаються гроші</Desc>
           <IsPresentation>0</IsPresentation>
           <IsIndex>1</IsIndex>
-        </Field>
-        <Field>
-          <Name>Проведено</Name>
-          <NameInTable>col_a5</NameInTable>
-          <Type>boolean</Type>
-          <Desc>Чи робить запис рух по регістрах</Desc>
-          <IsPresentation>0</IsPresentation>
-          <IsIndex>0</IsIndex>
         </Field>
         <Field>
           <Name>СумаОбміну</Name>
@@ -235,6 +211,30 @@
           <NameInTable>col_b3</NameInTable>
           <Type>numeric</Type>
           <Desc>Курс обміну валюти по курсу</Desc>
+          <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
+        </Field>
+        <Field>
+          <Name>Проведено</Name>
+          <NameInTable>col_a5</NameInTable>
+          <Type>boolean</Type>
+          <Desc>Чи робить запис рух по регістрах</Desc>
+          <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
+        </Field>
+        <Field>
+          <Name>Опис</Name>
+          <NameInTable>col_a8</NameInTable>
+          <Type>string</Type>
+          <Desc>Опис операції</Desc>
+          <IsPresentation>0</IsPresentation>
+          <IsIndex>0</IsIndex>
+        </Field>
+        <Field>
+          <Name>СсилкаНаСайт</Name>
+          <NameInTable>col_a4</NameInTable>
+          <Type>string</Type>
+          <Desc>Привязка запису до сторінки в інтернеті</Desc>
           <IsPresentation>0</IsPresentation>
           <IsIndex>0</IsIndex>
         </Field>

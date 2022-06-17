@@ -83,9 +83,9 @@ namespace HomeFinances
 
 			Довідники.Валюта_Select валюта_Select = new Довідники.Валюта_Select();
 
-			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Select.Назва);
-			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Select.Код);
-			валюта_Select.QuerySelect.Order.Add(Довідники.Валюта_Select.Назва, SelectOrder.ASC);
+			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Const.Назва);
+			валюта_Select.QuerySelect.Field.Add(Довідники.Валюта_Const.Код);
+			валюта_Select.QuerySelect.Order.Add(Довідники.Валюта_Const.Назва, SelectOrder.ASC);
 
 			валюта_Select.Select();
 
@@ -95,8 +95,8 @@ namespace HomeFinances
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Валюта_Select.Назва].ToString(),
-					cur.Fields[Довідники.Валюта_Select.Код].ToString()
+					cur.Fields[Довідники.Валюта_Const.Назва].ToString(),
+					cur.Fields[Довідники.Валюта_Const.Код].ToString()
 					));
 
 				if (DirectoryPointerItem != null && selectRow == 0) //??

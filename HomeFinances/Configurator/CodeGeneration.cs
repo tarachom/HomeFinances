@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 16.06.2022 13:48:42
+ * Дата конфігурації: 17.06.2022 13:40:10
  *
  */
 
@@ -301,23 +301,44 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Записи про витрати і надходження фінансів.
     ///</summary>
+    public static class Записи_Const
+    {
+        public const string TABLE = "tab_a02";
+        
+        public const string Назва = "col_a7";
+        public const string ДатаЗапису = "col_a6";
+        public const string ТипЗапису = "col_a9";
+        public const string Сума = "col_b1";
+        public const string Витрата = "col_a1";
+        public const string Каса = "col_a2";
+        public const string КасаПереміщення = "col_a3";
+        public const string СумаОбміну = "col_b2";
+        public const string КурсОбміну = "col_b3";
+        public const string Проведено = "col_a5";
+        public const string Опис = "col_a8";
+        public const string СсилкаНаСайт = "col_a4";
+    }
+	
+    ///<summary>
+    ///Записи про витрати і надходження фінансів.
+    ///</summary>
     public class Записи_Objest : DirectoryObject
     {
         public Записи_Objest() : base(Config.Kernel, "tab_a02",
-             new string[] { "col_a7", "col_a6", "col_a8", "col_a9", "col_b1", "col_a1", "col_a2", "col_a4", "col_a3", "col_a5", "col_b2", "col_b3" }) 
+             new string[] { "col_a7", "col_a6", "col_a9", "col_b1", "col_a1", "col_a2", "col_a3", "col_b2", "col_b3", "col_a5", "col_a8", "col_a4" }) 
         {
             Назва = "";
             ДатаЗапису = DateTime.MinValue;
-            Опис = "";
             ТипЗапису = 0;
             Сума = 0;
             Витрата = new Довідники.КласифікаторВитрат_Pointer();
             Каса = new Довідники.Каса_Pointer();
-            СсилкаНаСайт = "";
             КасаПереміщення = new Довідники.Каса_Pointer();
-            Проведено = false;
             СумаОбміну = 0;
             КурсОбміну = 0;
+            Проведено = false;
+            Опис = "";
+            СсилкаНаСайт = "";
             
         }
         
@@ -327,16 +348,16 @@ namespace HomeFinances_1_0.Довідники
             {
                 Назва = base.FieldValue["col_a7"].ToString();
                 ДатаЗапису = (base.FieldValue["col_a6"] != DBNull.Value) ? DateTime.Parse(base.FieldValue["col_a6"].ToString()) : DateTime.MinValue;
-                Опис = base.FieldValue["col_a8"].ToString();
                 ТипЗапису = (base.FieldValue["col_a9"] != DBNull.Value) ? (Перелічення.ТипЗапису)base.FieldValue["col_a9"] : 0;
                 Сума = (base.FieldValue["col_b1"] != DBNull.Value) ? (decimal)base.FieldValue["col_b1"] : 0;
                 Витрата = new Довідники.КласифікаторВитрат_Pointer(base.FieldValue["col_a1"]);
                 Каса = new Довідники.Каса_Pointer(base.FieldValue["col_a2"]);
-                СсилкаНаСайт = base.FieldValue["col_a4"].ToString();
                 КасаПереміщення = new Довідники.Каса_Pointer(base.FieldValue["col_a3"]);
-                Проведено = (base.FieldValue["col_a5"] != DBNull.Value) ? bool.Parse(base.FieldValue["col_a5"].ToString()) : false;
                 СумаОбміну = (base.FieldValue["col_b2"] != DBNull.Value) ? (decimal)base.FieldValue["col_b2"] : 0;
                 КурсОбміну = (base.FieldValue["col_b3"] != DBNull.Value) ? (decimal)base.FieldValue["col_b3"] : 0;
+                Проведено = (base.FieldValue["col_a5"] != DBNull.Value) ? bool.Parse(base.FieldValue["col_a5"].ToString()) : false;
+                Опис = base.FieldValue["col_a8"].ToString();
+                СсилкаНаСайт = base.FieldValue["col_a4"].ToString();
                 
                 BaseClear();
                 return true;
@@ -349,16 +370,16 @@ namespace HomeFinances_1_0.Довідники
         {
             base.FieldValue["col_a7"] = Назва;
             base.FieldValue["col_a6"] = ДатаЗапису;
-            base.FieldValue["col_a8"] = Опис;
             base.FieldValue["col_a9"] = (int)ТипЗапису;
             base.FieldValue["col_b1"] = Сума;
             base.FieldValue["col_a1"] = Витрата.UnigueID.UGuid;
             base.FieldValue["col_a2"] = Каса.UnigueID.UGuid;
-            base.FieldValue["col_a4"] = СсилкаНаСайт;
             base.FieldValue["col_a3"] = КасаПереміщення.UnigueID.UGuid;
-            base.FieldValue["col_a5"] = Проведено;
             base.FieldValue["col_b2"] = СумаОбміну;
             base.FieldValue["col_b3"] = КурсОбміну;
+            base.FieldValue["col_a5"] = Проведено;
+            base.FieldValue["col_a8"] = Опис;
+            base.FieldValue["col_a4"] = СсилкаНаСайт;
             Записи_Triggers.Записи_BeforeRecording(this);
             BaseSave();
 			Записи_Triggers.Записи_AfterRecording(this);
@@ -371,16 +392,16 @@ namespace HomeFinances_1_0.Довідники
                "<uid>" + base.UnigueID.ToString() + "</uid>" +
                "<Назва>" + "<![CDATA[" + Назва + "]]>" + "</Назва>"  +
                "<ДатаЗапису>" + ДатаЗапису.ToString() + "</ДатаЗапису>"  +
-               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
                "<ТипЗапису>" + ((int)ТипЗапису).ToString() + "</ТипЗапису>"  +
                "<Сума>" + Сума.ToString() + "</Сума>"  +
                "<Витрата>" + Витрата.ToString() + "</Витрата>"  +
                "<Каса>" + Каса.ToString() + "</Каса>"  +
-               "<СсилкаНаСайт>" + "<![CDATA[" + СсилкаНаСайт + "]]>" + "</СсилкаНаСайт>"  +
                "<КасаПереміщення>" + КасаПереміщення.ToString() + "</КасаПереміщення>"  +
-               "<Проведено>" + (Проведено == true ? "1" : "0") + "</Проведено>"  +
                "<СумаОбміну>" + СумаОбміну.ToString() + "</СумаОбміну>"  +
                "<КурсОбміну>" + КурсОбміну.ToString() + "</КурсОбміну>"  +
+               "<Проведено>" + (Проведено == true ? "1" : "0") + "</Проведено>"  +
+               "<Опис>" + "<![CDATA[" + Опис + "]]>" + "</Опис>"  +
+               "<СсилкаНаСайт>" + "<![CDATA[" + СсилкаНаСайт + "]]>" + "</СсилкаНаСайт>"  +
                "</" + root + ">";
         }
 
@@ -390,16 +411,16 @@ namespace HomeFinances_1_0.Довідники
 			copy.New();
             copy.Назва = Назва;
 			copy.ДатаЗапису = ДатаЗапису;
-			copy.Опис = Опис;
 			copy.ТипЗапису = ТипЗапису;
 			copy.Сума = Сума;
 			copy.Витрата = Витрата;
 			copy.Каса = Каса;
-			copy.СсилкаНаСайт = СсилкаНаСайт;
 			copy.КасаПереміщення = КасаПереміщення;
-			copy.Проведено = Проведено;
 			copy.СумаОбміну = СумаОбміну;
 			copy.КурсОбміну = КурсОбміну;
+			copy.Проведено = Проведено;
+			copy.Опис = Опис;
+			copy.СсилкаНаСайт = СсилкаНаСайт;
 			
 			return copy;
         }
@@ -418,16 +439,16 @@ namespace HomeFinances_1_0.Довідники
         
         public string Назва { get; set; }
         public DateTime ДатаЗапису { get; set; }
-        public string Опис { get; set; }
         public Перелічення.ТипЗапису ТипЗапису { get; set; }
         public decimal Сума { get; set; }
         public Довідники.КласифікаторВитрат_Pointer Витрата { get; set; }
         public Довідники.Каса_Pointer Каса { get; set; }
-        public string СсилкаНаСайт { get; set; }
         public Довідники.Каса_Pointer КасаПереміщення { get; set; }
-        public bool Проведено { get; set; }
         public decimal СумаОбміну { get; set; }
         public decimal КурсОбміну { get; set; }
+        public bool Проведено { get; set; }
+        public string Опис { get; set; }
+        public string СсилкаНаСайт { get; set; }
         
     }
     
@@ -471,21 +492,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Записи_Select : DirectorySelect, IDisposable
     {
-        public Записи_Select() : base(Config.Kernel, "tab_a02") { }
-        
-        public const string Назва = "col_a7";
-        public const string ДатаЗапису = "col_a6";
-        public const string Опис = "col_a8";
-        public const string ТипЗапису = "col_a9";
-        public const string Сума = "col_b1";
-        public const string Витрата = "col_a1";
-        public const string Каса = "col_a2";
-        public const string СсилкаНаСайт = "col_a4";
-        public const string КасаПереміщення = "col_a3";
-        public const string Проведено = "col_a5";
-        public const string СумаОбміну = "col_b2";
-        public const string КурсОбміну = "col_b3";
-        
+        public Записи_Select() : base(Config.Kernel, "tab_a02") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -516,6 +523,17 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "КласифікаторВитрат"
+    ///<summary>
+    ///Статті витрат.
+    ///</summary>
+    public static class КласифікаторВитрат_Const
+    {
+        public const string TABLE = "tab_a01";
+        
+        public const string Назва = "col_a1";
+        public const string Код = "col_a2";
+    }
+	
     ///<summary>
     ///Статті витрат.
     ///</summary>
@@ -629,11 +647,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class КласифікаторВитрат_Select : DirectorySelect, IDisposable
     {
-        public КласифікаторВитрат_Select() : base(Config.Kernel, "tab_a01") { }
-        
-        public const string Назва = "col_a1";
-        public const string Код = "col_a2";
-        
+        public КласифікаторВитрат_Select() : base(Config.Kernel, "tab_a01") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -664,6 +678,20 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Записник"
+    ///<summary>
+    ///Записник інформації.
+    ///</summary>
+    public static class Записник_Const
+    {
+        public const string TABLE = "tab_a03";
+        
+        public const string Назва = "col_a1";
+        public const string Опис = "col_a4";
+        public const string Дата = "col_a3";
+        public const string Папка = "col_a2";
+        public const string Сайт = "col_a5";
+    }
+	
     ///<summary>
     ///Записник інформації.
     ///</summary>
@@ -801,14 +829,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Записник_Select : DirectorySelect, IDisposable
     {
-        public Записник_Select() : base(Config.Kernel, "tab_a03") { }
-        
-        public const string Назва = "col_a1";
-        public const string Опис = "col_a4";
-        public const string Дата = "col_a3";
-        public const string Папка = "col_a2";
-        public const string Сайт = "col_a5";
-        
+        public Записник_Select() : base(Config.Kernel, "tab_a03") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -925,6 +946,17 @@ namespace HomeFinances_1_0.Довідники
     ///<summary>
     ///Користувач програми.
     ///</summary>
+    public static class Користувач_Const
+    {
+        public const string TABLE = "tab_a04";
+        
+        public const string Назва = "col_a1";
+        public const string Код = "col_a2";
+    }
+	
+    ///<summary>
+    ///Користувач програми.
+    ///</summary>
     public class Користувач_Objest : DirectoryObject
     {
         public Користувач_Objest() : base(Config.Kernel, "tab_a04",
@@ -1035,11 +1067,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Користувач_Select : DirectorySelect, IDisposable
     {
-        public Користувач_Select() : base(Config.Kernel, "tab_a04") { }
-        
-        public const string Назва = "col_a1";
-        public const string Код = "col_a2";
-        
+        public Користувач_Select() : base(Config.Kernel, "tab_a04") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -1070,6 +1098,18 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Каса"
+    ///<summary>
+    ///Місце зберігання грошей.
+    ///</summary>
+    public static class Каса_Const
+    {
+        public const string TABLE = "tab_a05";
+        
+        public const string Назва = "col_a1";
+        public const string Валюта = "col_a2";
+        public const string ТипВалюти = "col_a3";
+    }
+	
     ///<summary>
     ///Місце зберігання грошей.
     ///</summary>
@@ -1189,12 +1229,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Каса_Select : DirectorySelect, IDisposable
     {
-        public Каса_Select() : base(Config.Kernel, "tab_a05") { }
-        
-        public const string Назва = "col_a1";
-        public const string Валюта = "col_a2";
-        public const string ТипВалюти = "col_a3";
-        
+        public Каса_Select() : base(Config.Kernel, "tab_a05") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -1225,6 +1260,17 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Валюта"
+    ///<summary>
+    ///Валюта.
+    ///</summary>
+    public static class Валюта_Const
+    {
+        public const string TABLE = "tab_a07";
+        
+        public const string Назва = "col_a3";
+        public const string Код = "col_a4";
+    }
+	
     ///<summary>
     ///Валюта.
     ///</summary>
@@ -1338,11 +1384,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Валюта_Select : DirectorySelect, IDisposable
     {
-        public Валюта_Select() : base(Config.Kernel, "tab_a07") { }
-        
-        public const string Назва = "col_a3";
-        public const string Код = "col_a4";
-        
+        public Валюта_Select() : base(Config.Kernel, "tab_a07") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -1373,6 +1415,22 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Контакти"
+    ///<summary>
+    ///Довідник для контактів.
+    ///</summary>
+    public static class Контакти_Const
+    {
+        public const string TABLE = "tab_a08";
+        
+        public const string Телефон = "col_a4";
+        public const string Назва = "col_a3";
+        public const string Сайт = "col_a5";
+        public const string Пошта = "col_a6";
+        public const string Опис = "col_a7";
+        public const string Скайп = "col_a1";
+        public const string Фото = "col_a2";
+    }
+	
     ///<summary>
     ///Довідник для контактів.
     ///</summary>
@@ -1516,16 +1574,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Контакти_Select : DirectorySelect, IDisposable
     {
-        public Контакти_Select() : base(Config.Kernel, "tab_a08") { }
-        
-        public const string Телефон = "col_a4";
-        public const string Назва = "col_a3";
-        public const string Сайт = "col_a5";
-        public const string Пошта = "col_a6";
-        public const string Опис = "col_a7";
-        public const string Скайп = "col_a1";
-        public const string Фото = "col_a2";
-        
+        public Контакти_Select() : base(Config.Kernel, "tab_a08") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -1556,6 +1605,18 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "Записник_Папки"
+    ///<summary>
+    ///Ієрархія для довідника Записник.
+    ///</summary>
+    public static class Записник_Папки_Const
+    {
+        public const string TABLE = "tab_a09";
+        
+        public const string Назва = "col_a1";
+        public const string Родич = "col_a3";
+        public const string Дата = "col_a2";
+    }
+	
     ///<summary>
     ///Ієрархія для довідника Записник.
     ///</summary>
@@ -1675,12 +1736,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class Записник_Папки_Select : DirectorySelect, IDisposable
     {
-        public Записник_Папки_Select() : base(Config.Kernel, "tab_a09") { }
-        
-        public const string Назва = "col_a1";
-        public const string Родич = "col_a3";
-        public const string Дата = "col_a2";
-        
+        public Записник_Папки_Select() : base(Config.Kernel, "tab_a09") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -1711,6 +1767,19 @@ namespace HomeFinances_1_0.Довідники
     #endregion
     
     #region DIRECTORY "КалендарПеріодичнихЗавдань"
+    ///<summary>
+    ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
+    ///</summary>
+    public static class КалендарПеріодичнихЗавдань_Const
+    {
+        public const string TABLE = "tab_a53";
+        
+        public const string Назва = "col_a1";
+        public const string ПеріодВиконання = "col_a3";
+        public const string Опис = "col_a4";
+        public const string Старт = "col_a2";
+    }
+	
     ///<summary>
     ///Список періодичних завдань. Наприклад: подати покази лічильників води, світла і т.д з періодичністю раз на місяць..
     ///</summary>
@@ -1836,13 +1905,7 @@ namespace HomeFinances_1_0.Довідники
     ///</summary>
     public class КалендарПеріодичнихЗавдань_Select : DirectorySelect, IDisposable
     {
-        public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53") { }
-        
-        public const string Назва = "col_a1";
-        public const string ПеріодВиконання = "col_a3";
-        public const string Опис = "col_a4";
-        public const string Старт = "col_a2";
-        
+        public КалендарПеріодичнихЗавдань_Select() : base(Config.Kernel, "tab_a53") { }        
         public bool Select() { return base.BaseSelect(); }
         
         public bool SelectSingle() { if (base.BaseSelectSingle()) { MoveNext(); return true; } else { Current = null; return false; } }
@@ -1951,6 +2014,14 @@ namespace HomeFinances_1_0.РегістриНакопичення
     
     #region REGISTER "ЗалишкиКоштів"
     
+    public static class ЗалишкиКоштів_Const
+    {
+        public const string TABLE = "tab_a19";
+        
+        public const string Каса = "col_a1";
+        public const string Сума = "col_a2";
+    }
+	
     
     public class ЗалишкиКоштів_RecordsSet : RegisterAccumulationRecordsSet
     {
@@ -1960,9 +2031,6 @@ namespace HomeFinances_1_0.РегістриНакопичення
             Records = new List<Record>();
             Filter = new SelectFilter();
         }
-        
-        public const string Каса = "col_a1";
-        public const string Сума = "col_a2";
 		
         public List<Record> Records { get; set; }
         

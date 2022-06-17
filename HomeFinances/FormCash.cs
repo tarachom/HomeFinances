@@ -81,19 +81,19 @@ namespace HomeFinances
 			RecordsBindingList.Clear();
 
 			Довідники.Каса_Select каса_Select = new Довідники.Каса_Select();
-			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Назва);
-			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.Валюта);
-			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Select.ТипВалюти);
+			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Const.Назва);
+			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Const.Валюта);
+			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Const.ТипВалюти);
 
 			//JOIN
 			string JoinTable = Конфа.Config.Kernel.Conf.Directories["Валюта"].Table;
 			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Валюта"].Fields["Назва"].NameInTable;
 
 			каса_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field2"));
-			каса_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Каса_Select.Валюта, каса_Select.QuerySelect.Table));
+			каса_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Каса_Const.Валюта, каса_Select.QuerySelect.Table));
 
 			//ORDER
-			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Select.Назва, SelectOrder.ASC);
+			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Const.Назва, SelectOrder.ASC);
 
 			каса_Select.Select();
 
@@ -101,11 +101,11 @@ namespace HomeFinances
 			{
 				Довідники.Каса_Pointer cur = каса_Select.Current;
 
-				string ТипВалютиПредставлення = ((Перелічення.ТипВалюти)cur.Fields[Довідники.Каса_Select.ТипВалюти]).ToString();
+				string ТипВалютиПредставлення = ((Перелічення.ТипВалюти)cur.Fields[Довідники.Каса_Const.ТипВалюти]).ToString();
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Каса_Select.Назва].ToString(),
+					cur.Fields[Довідники.Каса_Const.Назва].ToString(),
 					cur.Fields["field2"].ToString(),
 					ТипВалютиПредставлення
 					));

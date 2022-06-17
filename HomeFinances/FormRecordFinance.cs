@@ -229,11 +229,11 @@ namespace HomeFinances
 
 			Довідники.Записи_Select записи_Select = new Довідники.Записи_Select();
 			записи_Select.QuerySelect.Field.AddRange(new string[] {
-				Довідники.Записи_Select.ДатаЗапису,
-				Довідники.Записи_Select.Назва,
-				Довідники.Записи_Select.Сума,
-				Довідники.Записи_Select.ТипЗапису,
-				Довідники.Записи_Select.Проведено
+				Довідники.Записи_Const.ДатаЗапису,
+				Довідники.Записи_Const.Назва,
+				Довідники.Записи_Const.Сума,
+				Довідники.Записи_Const.ТипЗапису,
+				Довідники.Записи_Const.Проведено
 			});
 
 			//JOIN
@@ -241,18 +241,18 @@ namespace HomeFinances
 			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Fields["Назва"].NameInTable;
 
 			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "statya_name"));
-			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Витрата, записи_Select.QuerySelect.Table));
+			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Const.Витрата, записи_Select.QuerySelect.Table));
 
 			//JOIN2
 			JoinTable = Конфа.Config.Kernel.Conf.Directories["Каса"].Table;
 			ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Каса"].Fields["Назва"].NameInTable;
 
 			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "casa_name"));
-			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Select.Каса, записи_Select.QuerySelect.Table));
+			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Const.Каса, записи_Select.QuerySelect.Table));
 
 			//WHERE
-			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
-            записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
+			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Const.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
+            записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Const.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
 
 			//записи_Select.QuerySelect.Where.Add(
 			//    new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.BETWEEN,
@@ -261,22 +261,22 @@ namespace HomeFinances
 			NameValue<int> типЗаписуФільтер = (NameValue<int>)comboBoxTypeRecord.SelectedItem;
 
 			if (!(типЗаписуФільтер.Value == 0))
-				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.ТипЗапису, Comparison.EQ, типЗаписуФільтер.Value));
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Const.ТипЗапису, Comparison.EQ, типЗаписуФільтер.Value));
 
 			//Стаття
 			if (directoryControl1.DirectoryPointerItem != null && !directoryControl1.DirectoryPointerItem.IsEmpty())
-				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Витрата, Comparison.EQ, directoryControl1.DirectoryPointerItem.UnigueID.UGuid));
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Const.Витрата, Comparison.EQ, directoryControl1.DirectoryPointerItem.UnigueID.UGuid));
 
 			//Каса
 			if (directoryControl2.DirectoryPointerItem != null && !directoryControl2.DirectoryPointerItem.IsEmpty())
-				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.Каса, Comparison.EQ, directoryControl2.DirectoryPointerItem.UnigueID.UGuid));
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Const.Каса, Comparison.EQ, directoryControl2.DirectoryPointerItem.UnigueID.UGuid));
 
 			//Каса переміщення
 			if (directoryControl3.DirectoryPointerItem != null && !directoryControl3.DirectoryPointerItem.IsEmpty())
-				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Select.КасаПереміщення, Comparison.EQ, directoryControl3.DirectoryPointerItem.UnigueID.UGuid));
+				записи_Select.QuerySelect.Where.Add(new Where(Comparison.AND, Довідники.Записи_Const.КасаПереміщення, Comparison.EQ, directoryControl3.DirectoryPointerItem.UnigueID.UGuid));
 
 			//OREDER
-			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Select.ДатаЗапису, SelectOrder.ASC);
+			записи_Select.QuerySelect.Order.Add(Довідники.Записи_Const.ДатаЗапису, SelectOrder.ASC);
 
 			записи_Select.Select();
 
@@ -284,18 +284,18 @@ namespace HomeFinances
 			{
 				Довідники.Записи_Pointer cur = записи_Select.Current;
 
-				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Select.ТипЗапису];
+				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Const.ТипЗапису];
 				string типЗаписуПредставлення = типЗапису.ToString();
 
 				RecordsBindingList.Add(new Записи(
 					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Записи_Select.Назва].ToString(),
-					cur.Fields[Довідники.Записи_Select.ДатаЗапису].ToString(),
-					Math.Round((decimal)cur.Fields[Довідники.Записи_Select.Сума], 2).ToString(),
+					cur.Fields[Довідники.Записи_Const.Назва].ToString(),
+					cur.Fields[Довідники.Записи_Const.ДатаЗапису].ToString(),
+					Math.Round((decimal)cur.Fields[Довідники.Записи_Const.Сума], 2).ToString(),
 					типЗаписуПредставлення,
 					cur.Fields["statya_name"].ToString(),
 					cur.Fields["casa_name"].ToString(),
-					cur.Fields[Довідники.Записи_Select.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Select.Проведено] : false
+					cur.Fields[Довідники.Записи_Const.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Const.Проведено] : false
 			    ));
 			}
 

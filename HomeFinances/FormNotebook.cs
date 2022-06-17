@@ -124,11 +124,11 @@ namespace HomeFinances
 			//Групи
 			Довідники.Записник_Папки_Select записник_Папки_Select = new Довідники.Записник_Папки_Select();
 
-			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Назва);
-			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Select.Дата);
-			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Select.Родич, Comparison.EQ, ParentFolder.UnigueID.UGuid));
+			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Const.Назва);
+			записник_Папки_Select.QuerySelect.Field.Add(Довідники.Записник_Папки_Const.Дата);
+			записник_Папки_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Папки_Const.Родич, Comparison.EQ, ParentFolder.UnigueID.UGuid));
 
-			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Select.Дата, SelectOrder.DESC);
+			записник_Папки_Select.QuerySelect.Order.Add(Довідники.Записник_Папки_Const.Дата, SelectOrder.DESC);
 
 			записник_Папки_Select.Select();
 
@@ -140,8 +140,8 @@ namespace HomeFinances
 					cur.UnigueID.ToString(),
 					true,
 					false,
-					cur.Fields[Довідники.Записник_Папки_Select.Назва].ToString(),
-					cur.Fields[Довідники.Записник_Папки_Select.Дата].ToString()
+					cur.Fields[Довідники.Записник_Папки_Const.Назва].ToString(),
+					cur.Fields[Довідники.Записник_Папки_Const.Дата].ToString()
 					));
 
 				if (DirectoryPointerItem != null) //??
@@ -155,11 +155,11 @@ namespace HomeFinances
 			//Елементи
 			Довідники.Записник_Select записник_Select = new Довідники.Записник_Select();
 
-			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Select.Назва);
-			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Select.Дата);
-			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Select.Папка, Comparison.EQ, ParentFolder.UnigueID.UGuid));
+			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Const.Назва);
+			записник_Select.QuerySelect.Field.Add(Довідники.Записник_Const.Дата);
+			записник_Select.QuerySelect.Where.Add(new Where(Довідники.Записник_Const.Папка, Comparison.EQ, ParentFolder.UnigueID.UGuid));
 
-			записник_Select.QuerySelect.Order.Add(Довідники.Записник_Select.Дата, SelectOrder.DESC);
+			записник_Select.QuerySelect.Order.Add(Довідники.Записник_Const.Дата, SelectOrder.DESC);
 
 			записник_Select.Select();
 
@@ -171,8 +171,8 @@ namespace HomeFinances
 					cur.UnigueID.ToString(),
 					false,
 					false,
-					cur.Fields[Довідники.Записник_Select.Назва].ToString(),
-					cur.Fields[Довідники.Записник_Select.Дата].ToString()
+					cur.Fields[Довідники.Записник_Const.Назва].ToString(),
+					cur.Fields[Довідники.Записник_Const.Дата].ToString()
 					));
 
 				//if (DirectoryPointerItem != null && selectRow == 0) //??
