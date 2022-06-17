@@ -27,6 +27,7 @@ using Конфа = HomeFinances_1_0;
 using Константи = HomeFinances_1_0.Константи;
 using Довідники = HomeFinances_1_0.Довідники;
 using Перелічення = HomeFinances_1_0.Перелічення;
+using РегістриНакопичення = HomeFinances_1_0.РегістриНакопичення;
 
 namespace HomeFinances
 {
@@ -263,27 +264,20 @@ namespace HomeFinances
 		/// </summary>
 		private void CalculateOstatokCasa()
         {
-			Configuration Conf = Конфа.Config.Kernel.Conf;
-
-			ConfigurationRegistersAccumulation Регістр_ЗалишкиКоштів = Conf.RegistersAccumulation["ЗалишкиКоштів"];
-
-			ConfigurationDirectories Довідник_Каса = Conf.Directories["Каса"];
-			ConfigurationDirectories Довідник_Валюта = Conf.Directories["Валюта"];
-
 			string query = $@"
 SELECT 
-    ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable} AS КасаІд, 
-    КасаТаб.{Довідник_Каса.Fields["Назва"].NameInTable} AS КасаНазва,
+    ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Каса} AS КасаІд, 
+    КасаТаб.{Довідники.Каса_Const.Назва} AS КасаНазва,
 	SUM(CASE WHEN ЗалишкиКоштів.income = true THEN 
-             ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.ResourcesFields["Сума"].NameInTable} ELSE 
-             -ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.ResourcesFields["Сума"].NameInTable} END) AS Сума,
-    ВалютаТаб.{Довідник_Валюта.Fields["Код"].NameInTable} AS ВалютаКод
+             ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Сума} ELSE 
+             -ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Сума} END) AS Сума,
+    ВалютаТаб.{Довідники.Валюта_Const.Код} AS ВалютаКод
 FROM 
-    {Регістр_ЗалишкиКоштів.Table} AS ЗалишкиКоштів
-    LEFT JOIN {Довідник_Каса.Table} AS КасаТаб ON КасаТаб.uid = ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable}
-    LEFT JOIN {Довідник_Валюта.Table} AS ВалютаТаб ON ВалютаТаб.uid = КасаТаб.{Довідник_Каса.Fields["Валюта"].NameInTable}
+    {РегістриНакопичення.ЗалишкиКоштів_Const.TABLE} AS ЗалишкиКоштів
+    LEFT JOIN {Довідники.Каса_Const.TABLE} AS КасаТаб ON КасаТаб.uid = ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Каса}
+    LEFT JOIN {Довідники.Валюта_Const.TABLE} AS ВалютаТаб ON ВалютаТаб.uid = КасаТаб.{Довідники.Каса_Const.Валюта}
 WHERE
-    ЗалишкиКоштів.{Регістр_ЗалишкиКоштів.DimensionFields["Каса"].NameInTable} = @КасаІд
+    ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Каса} = @КасаІд
 GROUP BY КасаІд, КасаНазва, ВалютаКод";
 
 			//Console.WriteLine(query);
