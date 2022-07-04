@@ -787,4 +787,10 @@
       </Type>
     </Control_Field>
   </Control_Table>
+  <Control_Table>
+    <Type>RegisterAccumulation</Type>
+    <Name>ЗалишкиКоштів_Підсумки</Name>
+    <Table>tab_a21</Table>
+    <IsExist>delete</IsExist>
+  </Control_Table>
 </root>

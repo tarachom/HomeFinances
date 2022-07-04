@@ -111,13 +111,11 @@ namespace HomeFinances_1_0.Довідники
 	{
         public static void Записи_BeforeRecording(Записи_Objest запис)
         {
-            //Console.WriteLine("BeforeRecording: " + запис.Назва);
+            //
 		}
 
         public static void Записи_AfterRecording(Записи_Objest запис)
         {
-            //Console.WriteLine("AfterRecording: " + запис.Назва);
-
 			//Обов'язкове очищення регістру від попередніх записів
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);
@@ -129,7 +127,7 @@ namespace HomeFinances_1_0.Довідники
 					(запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення))
 				{
 					РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record record = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet.Record();
-
+					
 					if (запис.ТипЗапису == Перелічення.ТипЗапису.Витрати || запис.ТипЗапису == Перелічення.ТипЗапису.Благодійність)
 						record.Income = false;
 					else if (запис.ТипЗапису == Перелічення.ТипЗапису.Поступлення)

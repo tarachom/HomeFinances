@@ -26,7 +26,7 @@ limitations under the License.
  *
  * Конфігурації "Домашні фінанси 1.0"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 17.06.2022 13:40:10
+ * Дата конфігурації: 04.07.2022 23:37:42
  *
  */
 
@@ -428,7 +428,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             Записи_Triggers.Записи_BeforeDelete(this);
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public Записи_Pointer GetDirectoryPointer()
@@ -593,7 +593,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public КласифікаторВитрат_Pointer GetDirectoryPointer()
@@ -769,7 +769,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] { "tab_a17" });
         }
         
         public Записник_Pointer GetDirectoryPointer()
@@ -912,7 +912,9 @@ namespace HomeFinances_1_0.Довідники
         
         public void Delete()
         {
+            base.BaseBeginTransaction();
             base.BaseDelete(Owner.UnigueID);
+            base.BaseCommitTransaction();
         }
         
         
@@ -1013,7 +1015,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public Користувач_Pointer GetDirectoryPointer()
@@ -1174,7 +1176,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public Каса_Pointer GetDirectoryPointer()
@@ -1330,7 +1332,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public Валюта_Pointer GetDirectoryPointer()
@@ -1515,7 +1517,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public Контакти_Pointer GetDirectoryPointer()
@@ -1681,7 +1683,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             Записник_Папки_Triggers.Записник_Папки_BeforeDelete(this);
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public Записник_Папки_Pointer GetDirectoryPointer()
@@ -1849,7 +1851,7 @@ namespace HomeFinances_1_0.Довідники
         public void Delete()
         {
             
-			base.BaseDelete();
+			base.BaseDelete(new string[] {  });
         }
         
         public КалендарПеріодичнихЗавдань_Pointer GetDirectoryPointer()
@@ -2029,7 +2031,6 @@ namespace HomeFinances_1_0.РегістриНакопичення
              new string[] { "col_a1", "col_a2" }) 
         {
             Records = new List<Record>();
-            Filter = new SelectFilter();
         }
 		
         public List<Record> Records { get; set; }
@@ -2038,14 +2039,6 @@ namespace HomeFinances_1_0.РегістриНакопичення
         {
             Records.Clear();
             
-            
-            if (Filter.Каса != null)
-            {
-                base.BaseFilter.Add(new Where("col_a1", Comparison.EQ, Filter.Каса.UnigueID.UGuid, false));
-                
-            }
-            
-
             base.BaseRead();
             
             foreach (Dictionary<string, object> fieldValue in base.FieldValueList) 
@@ -2072,12 +2065,13 @@ namespace HomeFinances_1_0.РегістриНакопичення
                 base.BaseDelete(owner);
                 foreach (Record record in Records)
                 {
+                    record.Period = period;
+                    record.Owner = owner;
                     Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-
                     fieldValue.Add("col_a1", record.Каса.UnigueID.UGuid);
                     fieldValue.Add("col_a2", record.Сума);
                     
-                    base.BaseSave(record.UID, period, record.Income, record.Owner, fieldValue);
+                    base.BaseSave(record.UID, period, record.Income, owner, fieldValue);
                 }
                 
                 base.BaseCommitTransaction();
@@ -2090,11 +2084,9 @@ namespace HomeFinances_1_0.РегістриНакопичення
             base.BaseDelete(owner);
             base.BaseCommitTransaction();
         }
-
-        public SelectFilter Filter { get; set; }
         
         
-        public class Record : RegisterRecord
+        public class Record : RegisterAccumulationRecord
         {
             public Record()
             {
@@ -2104,18 +2096,6 @@ namespace HomeFinances_1_0.РегістриНакопичення
             }
             public Довідники.Каса_Pointer Каса { get; set; }
             public decimal Сума { get; set; }
-            
-        }
-    
-        public class SelectFilter
-        {
-            public SelectFilter()
-            {
-                 Каса = null;
-                 
-            }
-        
-            public Довідники.Каса_Pointer Каса { get; set; }
             
         }
     }

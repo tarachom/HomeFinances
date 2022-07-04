@@ -525,6 +525,8 @@ HAVING SUM(CASE WHEN ЗалишкиКоштів.income = true THEN
        -ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Сума} END) != 0
 ORDER BY КасаНазва ASC";
 
+			Console.WriteLine(query);
+
 			string[] columnsName;
 			List<object[]> listRow;
 
@@ -567,6 +569,9 @@ ORDER BY КасаНазва ASC";
 			}
 		}
 
-        
+        private void підсумкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
