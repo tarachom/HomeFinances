@@ -86,11 +86,10 @@ namespace HomeFinances
 			каса_Select.QuerySelect.Field.Add(Довідники.Каса_Const.ТипВалюти);
 
 			//JOIN
-			string JoinTable = Конфа.Config.Kernel.Conf.Directories["Валюта"].Table;
-			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Валюта"].Fields["Назва"].NameInTable;
-
-			каса_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "field2"));
-			каса_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Каса_Const.Валюта, каса_Select.QuerySelect.Table));
+			каса_Select.QuerySelect.FieldAndAlias.Add(
+				new NameValue<string>(Довідники.Валюта_Const.TABLE + "." + Довідники.Валюта_Const.Назва, "field2"));
+			каса_Select.QuerySelect.Joins.Add(
+				new Join(Довідники.Валюта_Const.TABLE, Довідники.Каса_Const.Валюта, Довідники.Каса_Const.TABLE));
 
 			//ORDER
 			каса_Select.QuerySelect.Order.Add(Довідники.Каса_Const.Назва, SelectOrder.ASC);
@@ -103,12 +102,12 @@ namespace HomeFinances
 
 				string ТипВалютиПредставлення = ((Перелічення.ТипВалюти)cur.Fields[Довідники.Каса_Const.ТипВалюти]).ToString();
 
-				RecordsBindingList.Add(new Записи(
-					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Каса_Const.Назва].ToString(),
-					cur.Fields["field2"].ToString(),
-					ТипВалютиПредставлення
-					));
+				RecordsBindingList.Add(new Записи(){
+					ID = cur.UnigueID.ToString(),
+					Назва = cur.Fields[Довідники.Каса_Const.Назва].ToString(),
+					Валюта = cur.Fields["field2"].ToString(),
+					ТипВалюти = ТипВалютиПредставлення
+				});
 
 				if (DirectoryPointerItem != null && selectRow == 0) //??
 					if (cur.UnigueID.ToString() == DirectoryPointerItem.UnigueID.ToString())
@@ -127,13 +126,6 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _Валюта, string _ТипВалюти)
-			{
-				ID = _id;
-				Назва = _Назва;
-				Валюта = _Валюта;
-				ТипВалюти = _ТипВалюти;
-			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
 			public string Валюта { get; set; }

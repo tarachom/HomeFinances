@@ -159,17 +159,6 @@ namespace HomeFinances
 
 		private class Записи
 		{
-			public Записи(string _id, string _Назва, string _ДатаЗапису, string _Сума, string _ТипЗапису, string _Витрата, string _Каса, bool _Проведено)
-			{
-				ID = _id;
-				Назва = _Назва;
-				ДатаЗапису = _ДатаЗапису;
-				Сума = _Сума;
-				ТипЗапису = _ТипЗапису;
-				Витрата = _Витрата;
-				Каса = _Каса;
-				Проведено = _Проведено;
-			}
 			public string ID { get; set; }
 			public string Назва { get; set; }
 			public string ДатаЗапису { get; set; }
@@ -237,18 +226,16 @@ namespace HomeFinances
 			});
 
 			//JOIN
-			string JoinTable = Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Table;
-			string ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["КласифікаторВитрат"].Fields["Назва"].NameInTable;
-
-			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "statya_name"));
-			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Const.Витрата, записи_Select.QuerySelect.Table));
+			записи_Select.QuerySelect.FieldAndAlias.Add(
+				new NameValue<string>(Довідники.КласифікаторВитрат_Const.TABLE + "." + Довідники.КласифікаторВитрат_Const.Назва, "statya_name"));
+			записи_Select.QuerySelect.Joins.Add(
+				new Join(Довідники.КласифікаторВитрат_Const.TABLE, Довідники.Записи_Const.Витрата, Довідники.Записи_Const.TABLE));
 
 			//JOIN2
-			JoinTable = Конфа.Config.Kernel.Conf.Directories["Каса"].Table;
-			ParentField = JoinTable + "." + Конфа.Config.Kernel.Conf.Directories["Каса"].Fields["Назва"].NameInTable;
-
-			записи_Select.QuerySelect.FieldAndAlias.Add(new KeyValuePair<string, string>(ParentField, "casa_name"));
-			записи_Select.QuerySelect.Joins.Add(new Join(JoinTable, Довідники.Записи_Const.Каса, записи_Select.QuerySelect.Table));
+			записи_Select.QuerySelect.FieldAndAlias.Add(
+				new NameValue<string>(Довідники.Каса_Const.TABLE + "." + Довідники.Каса_Const.Назва, "casa_name"));
+			записи_Select.QuerySelect.Joins.Add(
+				new Join(Довідники.Каса_Const.TABLE, Довідники.Записи_Const.Каса, Довідники.Записи_Const.TABLE));
 
 			//WHERE
 			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Const.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
@@ -287,16 +274,16 @@ namespace HomeFinances
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Const.ТипЗапису];
 				string типЗаписуПредставлення = типЗапису.ToString();
 
-				RecordsBindingList.Add(new Записи(
-					cur.UnigueID.ToString(),
-					cur.Fields[Довідники.Записи_Const.Назва].ToString(),
-					cur.Fields[Довідники.Записи_Const.ДатаЗапису].ToString(),
-					Math.Round((decimal)cur.Fields[Довідники.Записи_Const.Сума], 2).ToString(),
-					типЗаписуПредставлення,
-					cur.Fields["statya_name"].ToString(),
-					cur.Fields["casa_name"].ToString(),
-					cur.Fields[Довідники.Записи_Const.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Const.Проведено] : false
-			    ));
+				RecordsBindingList.Add(new Записи() {
+					ID = cur.UnigueID.ToString(),
+					Назва = cur.Fields[Довідники.Записи_Const.Назва].ToString(),
+					ДатаЗапису = cur.Fields[Довідники.Записи_Const.ДатаЗапису].ToString(),
+					Сума = Math.Round((decimal)cur.Fields[Довідники.Записи_Const.Сума], 2).ToString(),
+					ТипЗапису = типЗаписуПредставлення,
+					Витрата = cur.Fields["statya_name"].ToString(),
+					Каса = cur.Fields["casa_name"].ToString(),
+					Проведено = cur.Fields[Довідники.Записи_Const.Проведено] != DBNull.Value ? (bool)cur.Fields[Довідники.Записи_Const.Проведено] : false
+				});
 			}
 
 			if (selectRow != 0 && selectRow < dataGridViewRecords.Rows.Count)
