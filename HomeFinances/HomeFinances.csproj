@@ -38,8 +38,9 @@
     <ApplicationIcon>homefinances.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccountingSoftware">
-      <HintPath>..\..\AccountingSoftware_29_05_21\bin\Debug\AccountingSoftware.dll</HintPath>
+    <Reference Include="AccountingSoftware, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AccountingSoftware\bin\Debug\AccountingSoftware.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

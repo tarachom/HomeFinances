@@ -249,7 +249,7 @@ namespace HomeFinances
 				}
 
 				//Підключення до бази даних
-				bool flagOpen2 = Конфа.Config.Kernel.Open2(
+				bool flagOpen2 = Конфа.Config.Kernel.Open(
 						PathToConfXML,
 						itemConfigurationParam.DataBaseServer,
 						itemConfigurationParam.DataBaseLogin,

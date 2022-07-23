@@ -45,6 +45,20 @@
       </Type>
     </Control_Field>
     <Control_Field>
+      <Name>ол</Name>
+      <NameInTable>col_b3</NameInTable>
+      <Index></Index>
+      <IndexExist />
+      <IsExist>no</IsExist>
+      <FieldCreate>
+        <Name>ол</Name>
+        <NameInTable>col_b3</NameInTable>
+        <ConfType>string</ConfType>
+        <DataType>text</DataType>
+        <Index></Index>
+      </FieldCreate>
+    </Control_Field>
+    <Control_Field>
       <Name>ПапкаДляВигрузкиДаних</Name>
       <NameInTable>col_a4</NameInTable>
       <Index></Index>
@@ -786,11 +800,5 @@
         <Coincide>yes</Coincide>
       </Type>
     </Control_Field>
-  </Control_Table>
-  <Control_Table>
-    <Type>RegisterAccumulation</Type>
-    <Name>ЗалишкиКоштів_Підсумки</Name>
-    <Table>tab_a21</Table>
-    <IsExist>delete</IsExist>
   </Control_Table>
 </root>
