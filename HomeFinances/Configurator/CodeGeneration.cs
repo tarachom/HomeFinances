@@ -24,9 +24,9 @@ limitations under the License.
   
 /*
  *
- * Конфігурації "Домашні фінанси 1.0"
+ * Конфігурації "Фінанси"
  * Автор Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com
- * Дата конфігурації: 04.07.2022 23:37:42
+ * Дата конфігурації: 23.07.2022 13:16:00
  *
  */
 
@@ -39,6 +39,7 @@ namespace HomeFinances_1_0
     public static class Config
     {
         public static Kernel Kernel { get; set; }
+        public static Kernel KernelBackgroundTask { get; set; }
 		
         public static void ReadAllConstants()
         {
@@ -924,15 +925,6 @@ namespace HomeFinances_1_0.Довідники
             {
                 Назва = "";
                 НазваФайлуНаДиску = "";
-                
-            }
-        
-            
-            public Record(
-                string _Назва = "", string _НазваФайлуНаДиску = "")
-            {
-                Назва = _Назва;
-                НазваФайлуНаДиску = _НазваФайлуНаДиску;
                 
             }
             public string Назва { get; set; }
@@ -2059,23 +2051,19 @@ namespace HomeFinances_1_0.РегістриНакопичення
         
         public void Save(DateTime period, Guid owner) 
         {
-            if (Records.Count > 0)
+            base.BaseBeginTransaction();
+            base.BaseDelete(owner);
+            foreach (Record record in Records)
             {
-                base.BaseBeginTransaction();
-                base.BaseDelete(owner);
-                foreach (Record record in Records)
-                {
-                    record.Period = period;
-                    record.Owner = owner;
-                    Dictionary<string, object> fieldValue = new Dictionary<string, object>();
-                    fieldValue.Add("col_a1", record.Каса.UnigueID.UGuid);
-                    fieldValue.Add("col_a2", record.Сума);
-                    
-                    base.BaseSave(record.UID, period, record.Income, owner, fieldValue);
-                }
+                record.Period = period;
+                record.Owner = owner;
+                Dictionary<string, object> fieldValue = new Dictionary<string, object>();
+                fieldValue.Add("col_a1", record.Каса.UnigueID.UGuid);
+                fieldValue.Add("col_a2", record.Сума);
                 
-                base.BaseCommitTransaction();
+                base.BaseSave(record.UID, period, record.Income, owner, fieldValue);
             }
+            base.BaseCommitTransaction();
         }
 
         public void Delete(Guid owner)

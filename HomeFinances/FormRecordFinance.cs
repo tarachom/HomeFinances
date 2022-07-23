@@ -568,10 +568,5 @@ ORDER BY КасаНазва ASC";
 					Константи.СписокГоловнаФорма.СтовпчикКасаШирина_Const = e.Column.Width;
 			}
 		}
-
-        private void підсумкиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

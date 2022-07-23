@@ -62,7 +62,7 @@ namespace HomeFinances
         private void buttonExport_Click(object sender, EventArgs e)
         {
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
-			saveFileDialog.FileName = "HomeFinances_Export_" + DateTime.Now.ToString("dd_MM_yyyy") + ".xml";
+			saveFileDialog.FileName = "Finances_Export_" + DateTime.Now.ToString("dd_MM_yyyy") + ".xml";
 			saveFileDialog.Filter = "XML|*.xml";
 			saveFileDialog.Title = "Файл для вигрузки даних";
 			saveFileDialog.InitialDirectory =

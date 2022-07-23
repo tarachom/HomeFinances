@@ -116,7 +116,7 @@
             this.MinimizeBox = false;
             this.Name = "ConfigurationSelectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Домашні фінанси - Бази даних";
+            this.Text = "Фінанси - Бази даних";
             this.Load += new System.EventHandler(this.ConfigurationSelectionForm_Load);
             this.ResumeLayout(false);
 

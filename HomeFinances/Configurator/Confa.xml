@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
-  <Name>Домашні фінанси 1.0</Name>
+  <Name>Фінанси</Name>
   <NameSpace>HomeFinances_1_0</NameSpace>
   <Author>Тарахомин Юрій Іванович, Україна, м. Львів, accounting.org.ua, tarachom@gmail.com</Author>
-  <DateTimeSave>04.07.2022 23:37:42</DateTimeSave>
-<Desc></Desc>
+  <Desc>Програма для обліку фінансів.
+https://accounting.org.ua/finances.html</Desc>
+  <DateTimeSave>23.07.2022 13:16:00</DateTimeSave>
   <ConstantsBlocks>
     <ConstantsBlock>
       <Name>Основний</Name>
@@ -343,7 +344,6 @@
               <Type>string</Type>
               <Desc>
               </Desc>
-              <IsPresentation>0</IsPresentation>
               <IsIndex>0</IsIndex>
             </Field>
             <Field>
@@ -352,7 +352,6 @@
               <Type>string</Type>
               <Desc>
               </Desc>
-              <IsPresentation>0</IsPresentation>
               <IsIndex>0</IsIndex>
             </Field>
           </Fields>
@@ -810,7 +809,6 @@
             <Pointer>Довідники.Каса</Pointer>
             <Desc>
             </Desc>
-            <IsPresentation>0</IsPresentation>
             <IsIndex>0</IsIndex>
           </Field>
         </Fields>
@@ -823,7 +821,6 @@
             <Type>numeric</Type>
             <Desc>
             </Desc>
-            <IsPresentation>0</IsPresentation>
             <IsIndex>0</IsIndex>
           </Field>
         </Fields>

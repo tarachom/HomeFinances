@@ -72,7 +72,6 @@ namespace HomeFinances
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.калькуляторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.підсумкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -423,8 +422,7 @@ namespace HomeFinances
             this.menuStripTop.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.довідникиToolStripMenuItem,
-            this.калькуляторToolStripMenuItem,
-            this.підсумкиToolStripMenuItem});
+            this.калькуляторToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(1079, 24);
@@ -510,13 +508,6 @@ namespace HomeFinances
             this.калькуляторToolStripMenuItem.Text = "Калькулятор";
             this.калькуляторToolStripMenuItem.Click += new System.EventHandler(this.калькуляторToolStripMenuItem_Click);
             // 
-            // підсумкиToolStripMenuItem
-            // 
-            this.підсумкиToolStripMenuItem.Name = "підсумкиToolStripMenuItem";
-            this.підсумкиToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.підсумкиToolStripMenuItem.Text = "Підсумки";
-            this.підсумкиToolStripMenuItem.Click += new System.EventHandler(this.підсумкиToolStripMenuItem_Click);
-            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,7 +519,7 @@ namespace HomeFinances
             this.MainMenuStrip = this.menuStripTop;
             this.Name = "FormRecordFinance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Домашні фінанси";
+            this.Text = "Фінанси";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormRecordFinance_FormClosing);
             this.Load += new System.EventHandler(this.FormRecordFinance_Load);
@@ -598,7 +589,6 @@ namespace HomeFinances
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripButton toolStripButtonClearSpend;
         private System.Windows.Forms.ToolStripMenuItem калькуляторToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem підсумкиToolStripMenuItem;
     }
 }
 
