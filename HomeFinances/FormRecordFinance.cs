@@ -615,6 +615,7 @@ ORDER BY КасаНазва ASC";
         private void проПрограмуToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			FormAbout formAbout = new FormAbout();
+			formAbout.OpenConfigurationParam = OpenConfigurationParam;
 			formAbout.ShowDialog();
 		}
     }

@@ -12,6 +12,8 @@ namespace HomeFinances
 {
     public partial class FormAbout : Form
     {
+        public ConfigurationParam OpenConfigurationParam { get; set; }
+
         public FormAbout()
         {
             InitializeComponent();
@@ -25,6 +27,15 @@ namespace HomeFinances
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://accounting.org.ua/finances.html");
+        }
+
+        private void FormAbout_Load(object sender, EventArgs e)
+        {
+            if (OpenConfigurationParam != null)
+                textBoxInfo.Text =
+                    "Конфігурація: " + OpenConfigurationParam.ConfigurationName + "\r\n" +
+                    "База: " + OpenConfigurationParam.DataBaseBaseName + "\r\n" +
+                    "Сервер: " + OpenConfigurationParam.DataBaseServer + "\r\n";
         }
     }
 }

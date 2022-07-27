@@ -116,9 +116,7 @@ namespace HomeFinances_1_0.Довідники
 
         public static void Записи_AfterRecording(Записи_Objest запис)
         {
-			//Обов'язкове очищення регістру від попередніх записів
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
-			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);
 
 			if (запис.Проведено)
 			{
@@ -138,7 +136,6 @@ namespace HomeFinances_1_0.Довідники
 					record.Сума = запис.Сума;
 
 					залишкиКоштів_RecordsSet.Records.Add(record);
-					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
 				}
 
 				if (запис.ТипЗапису == Перелічення.ТипЗапису.Переміщення ||
@@ -165,7 +162,6 @@ namespace HomeFinances_1_0.Довідники
 
 					залишкиКоштів_RecordsSet.Records.Add(record1);
 					залишкиКоштів_RecordsSet.Records.Add(record2);
-					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
 				}
 
 				if (запис.ТипЗапису == Перелічення.ТипЗапису.Корегування)
@@ -179,9 +175,10 @@ namespace HomeFinances_1_0.Довідники
 					record.Сума = запис.Сума;
 
 					залишкиКоштів_RecordsSet.Records.Add(record);
-					залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
 				}
 			}
+
+			залишкиКоштів_RecordsSet.Save(запис.ДатаЗапису, запис.UnigueID.UGuid);
 		}
 
 		public static void Записи_BeforeDelete(Записи_Objest запис)
