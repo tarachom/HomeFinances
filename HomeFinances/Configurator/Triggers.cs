@@ -183,8 +183,6 @@ namespace HomeFinances_1_0.Довідники
 
 		public static void Записи_BeforeDelete(Записи_Objest запис)
 		{
-			//Console.WriteLine("BeforeDelete: " + запис.Назва);
-
 			РегістриНакопичення.ЗалишкиКоштів_RecordsSet залишкиКоштів_RecordsSet = new РегістриНакопичення.ЗалишкиКоштів_RecordsSet();
 			залишкиКоштів_RecordsSet.Delete(запис.UnigueID.UGuid);
 		}

@@ -35,11 +35,8 @@ namespace HomeFinances
             this.labelCalculateBalance = new System.Windows.Forms.Label();
             this.buttonCalculateBalance = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.directoryControl3 = new HomeFinances.DirectoryControl();
             this.label8 = new System.Windows.Forms.Label();
-            this.directoryControl2 = new HomeFinances.DirectoryControl();
             this.label7 = new System.Windows.Forms.Label();
-            this.directoryControl1 = new HomeFinances.DirectoryControl();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxTypeRecord = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -77,6 +74,10 @@ namespace HomeFinances
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.калькуляторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.проПрограмуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.проведенняВсіхЗаписівToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directoryControl3 = new HomeFinances.DirectoryControl();
+            this.directoryControl2 = new HomeFinances.DirectoryControl();
+            this.directoryControl1 = new HomeFinances.DirectoryControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -167,15 +168,6 @@ namespace HomeFinances
             this.panel3.Size = new System.Drawing.Size(424, 198);
             this.panel3.TabIndex = 7;
             // 
-            // directoryControl3
-            // 
-            this.directoryControl3.CallBack = null;
-            this.directoryControl3.DirectoryPointerItem = null;
-            this.directoryControl3.Location = new System.Drawing.Point(118, 98);
-            this.directoryControl3.Name = "directoryControl3";
-            this.directoryControl3.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl3.TabIndex = 13;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -185,15 +177,6 @@ namespace HomeFinances
             this.label8.TabIndex = 12;
             this.label8.Text = "Каса переміщення:";
             // 
-            // directoryControl2
-            // 
-            this.directoryControl2.CallBack = null;
-            this.directoryControl2.DirectoryPointerItem = null;
-            this.directoryControl2.Location = new System.Drawing.Point(118, 65);
-            this.directoryControl2.Name = "directoryControl2";
-            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl2.TabIndex = 11;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -202,15 +185,6 @@ namespace HomeFinances
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Каса:";
-            // 
-            // directoryControl1
-            // 
-            this.directoryControl1.CallBack = null;
-            this.directoryControl1.DirectoryPointerItem = null;
-            this.directoryControl1.Location = new System.Drawing.Point(118, 131);
-            this.directoryControl1.Name = "directoryControl1";
-            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
-            this.directoryControl1.TabIndex = 9;
             // 
             // label6
             // 
@@ -419,6 +393,7 @@ namespace HomeFinances
             this.вигрузкаToolStripMenuItem,
             this.загрузкаToolStripMenuItem,
             this.toolStripSeparator2,
+            this.проведенняВсіхЗаписівToolStripMenuItem,
             this.ВідкритиКонфігураторToolStripMenuItem});
             this.toolStripDropDownButtonОбмин.Image = global::HomeFinances.Properties.Resources.layers;
             this.toolStripDropDownButtonОбмин.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -429,26 +404,26 @@ namespace HomeFinances
             // вигрузкаToolStripMenuItem
             // 
             this.вигрузкаToolStripMenuItem.Name = "вигрузкаToolStripMenuItem";
-            this.вигрузкаToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.вигрузкаToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.вигрузкаToolStripMenuItem.Text = "Вигрузити";
             this.вигрузкаToolStripMenuItem.Click += new System.EventHandler(this.вигрузкаToolStripMenuItem_Click);
             // 
             // загрузкаToolStripMenuItem
             // 
             this.загрузкаToolStripMenuItem.Name = "загрузкаToolStripMenuItem";
-            this.загрузкаToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.загрузкаToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.загрузкаToolStripMenuItem.Text = "Загрузити";
             this.загрузкаToolStripMenuItem.Click += new System.EventHandler(this.загрузкаToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(197, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(204, 6);
             // 
             // ВідкритиКонфігураторToolStripMenuItem
             // 
             this.ВідкритиКонфігураторToolStripMenuItem.Name = "ВідкритиКонфігураторToolStripMenuItem";
-            this.ВідкритиКонфігураторToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.ВідкритиКонфігураторToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.ВідкритиКонфігураторToolStripMenuItem.Text = "Відкрити конфігуратор";
             this.ВідкритиКонфігураторToolStripMenuItem.Click += new System.EventHandler(this.ВідкритиКонфігураторToolStripMenuItem_Click);
             // 
@@ -551,6 +526,40 @@ namespace HomeFinances
             this.проПрограмуToolStripMenuItem.Text = "Про програму";
             this.проПрограмуToolStripMenuItem.Click += new System.EventHandler(this.проПрограмуToolStripMenuItem_Click);
             // 
+            // проведенняВсіхЗаписівToolStripMenuItem
+            // 
+            this.проведенняВсіхЗаписівToolStripMenuItem.Name = "проведенняВсіхЗаписівToolStripMenuItem";
+            this.проведенняВсіхЗаписівToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.проведенняВсіхЗаписівToolStripMenuItem.Text = "Проведення всіх записів";
+            this.проведенняВсіхЗаписівToolStripMenuItem.Click += new System.EventHandler(this.проведенняВсіхЗаписівToolStripMenuItem_Click);
+            // 
+            // directoryControl3
+            // 
+            this.directoryControl3.CallBack = null;
+            this.directoryControl3.DirectoryPointerItem = null;
+            this.directoryControl3.Location = new System.Drawing.Point(118, 98);
+            this.directoryControl3.Name = "directoryControl3";
+            this.directoryControl3.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl3.TabIndex = 13;
+            // 
+            // directoryControl2
+            // 
+            this.directoryControl2.CallBack = null;
+            this.directoryControl2.DirectoryPointerItem = null;
+            this.directoryControl2.Location = new System.Drawing.Point(118, 65);
+            this.directoryControl2.Name = "directoryControl2";
+            this.directoryControl2.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl2.TabIndex = 11;
+            // 
+            // directoryControl1
+            // 
+            this.directoryControl1.CallBack = null;
+            this.directoryControl1.DirectoryPointerItem = null;
+            this.directoryControl1.Location = new System.Drawing.Point(118, 131);
+            this.directoryControl1.Name = "directoryControl1";
+            this.directoryControl1.Size = new System.Drawing.Size(296, 27);
+            this.directoryControl1.TabIndex = 9;
+            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,6 +646,7 @@ namespace HomeFinances
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem ВідкритиКонфігураторToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem проПрограмуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem проведенняВсіхЗаписівToolStripMenuItem;
     }
 }
 

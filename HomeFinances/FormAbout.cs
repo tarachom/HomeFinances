@@ -34,8 +34,8 @@ namespace HomeFinances
             if (OpenConfigurationParam != null)
                 textBoxInfo.Text =
                     "Конфігурація: " + OpenConfigurationParam.ConfigurationName + "\r\n" +
-                    "База: " + OpenConfigurationParam.DataBaseBaseName + "\r\n" +
-                    "Сервер: " + OpenConfigurationParam.DataBaseServer + "\r\n";
+                    "Сервер: " + OpenConfigurationParam.DataBaseServer + "\r\n" +
+                    "База: " + OpenConfigurationParam.DataBaseBaseName + "\r\n";
         }
     }
 }

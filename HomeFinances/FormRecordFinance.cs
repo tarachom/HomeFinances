@@ -597,10 +597,19 @@ ORDER BY КасаНазва ASC";
 				string fileImport = openFileDialog.FileName;
 				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const = Path.GetDirectoryName(fileImport);
 
-				System.Diagnostics.Process.Start("Configurator.exe",
+				System.Diagnostics.Process process = System.Diagnostics.Process.Start("Configurator.exe",
 					OpenConfigurationParam.ConfigurationKey + " " +
 					"loadingdata" + " " +
 					fileImport);
+
+				process.WaitForExit();
+
+				FormExchange formExchange = new FormExchange();
+				formExchange.AutoCommandExecute = "spendall";
+				formExchange.ShowDialog();
+
+				LoadRecords();
+				CalculateBalance();
 			}
 		}
 
@@ -617,6 +626,12 @@ ORDER BY КасаНазва ASC";
 			FormAbout formAbout = new FormAbout();
 			formAbout.OpenConfigurationParam = OpenConfigurationParam;
 			formAbout.ShowDialog();
+		}
+
+        private void проведенняВсіхЗаписівToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormExchange formExchange = new FormExchange();
+			formExchange.ShowDialog();
 		}
     }
 }
