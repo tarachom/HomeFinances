@@ -74,11 +74,17 @@
     <Compile Include="DirectoryControl.Designer.cs">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormExchange.cs">
+    <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <None Include="FormExchange.cs.delete">
+      <SubType>Form</SubType>
+    </None>
     <Compile Include="FormExchange.Designer.cs">
-      <DependentUpon>FormExchange.cs</DependentUpon>
+      <DependentUpon>FormExchange.cs.delete</DependentUpon>
     </Compile>
     <Compile Include="FormAddPeriodicTasks.cs">
       <SubType>Form</SubType>
@@ -194,8 +200,11 @@
     <EmbeddedResource Include="DirectoryControl.resx">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExchange.resx">
-      <DependentUpon>FormExchange.cs</DependentUpon>
+      <DependentUpon>FormExchange.cs.delete</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddPeriodicTasks.resx">
       <DependentUpon>FormAddPeriodicTasks.cs</DependentUpon>
@@ -306,5 +315,22 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>set conf_folder_code=E:\Project\AccountingSoftware\Configurator
+set conf_folder=%25conf_folder_code%25\bin\Release
+
+set st_folder=$(TargetDir)
+
+copy %25conf_folder%25\Configurator.exe                       %25st_folder%25\Configurator.exe
+copy %25conf_folder%25\Configurator.pdb                      %25st_folder%25\Configurator.pdb
+copy %25conf_folder%25\Configurator.exe.config           %25st_folder%25\Configurator.exe.config
+
+copy %25conf_folder_code%25\CodeGeneration.xslt                    %25st_folder%25\CodeGeneration.xslt
+copy %25conf_folder_code%25\Comparison.xslt                          %25st_folder%25\Comparison.xslt
+copy %25conf_folder_code%25\ComparisonAnalize.xslt             %25st_folder%25\ComparisonAnalize.xslt
+
+copy %25conf_folder_code%25\UnloadingAndLoadingDataXML.xslt               %25st_folder%25\UnloadingAndLoadingDataXML.xslt
+copy %25conf_folder_code%25\UnloadingAndLoadingDataSQL.xslt                %25st_folder%25\UnloadingAndLoadingDataSQL.xslt</PreBuildEvent>
   </PropertyGroup>
 </Project>

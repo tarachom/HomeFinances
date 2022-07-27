@@ -61,7 +61,11 @@ namespace HomeFinances
             this.toolStripButtonClearSpend = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButtonОбмин = new System.Windows.Forms.ToolStripDropDownButton();
+            this.вигрузкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ВідкритиКонфігураторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
             this.довідникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.класифікаторВитратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +76,7 @@ namespace HomeFinances
             this.константиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.періодичніЗавданняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.калькуляторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.проПрограмуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,8 +107,8 @@ namespace HomeFinances
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1079, 579);
-            this.splitContainer1.SplitterDistance = 437;
+            this.splitContainer1.Size = new System.Drawing.Size(1084, 579);
+            this.splitContainer1.SplitterDistance = 430;
             this.splitContainer1.TabIndex = 0;
             // 
             // panel4
@@ -115,7 +120,7 @@ namespace HomeFinances
             this.panel4.Controls.Add(this.buttonCalculateBalance);
             this.panel4.Location = new System.Drawing.Point(5, 243);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(429, 333);
+            this.panel4.Size = new System.Drawing.Size(422, 333);
             this.panel4.TabIndex = 2;
             // 
             // labelCalculateBalance
@@ -159,7 +164,7 @@ namespace HomeFinances
             this.panel3.Controls.Add(this.dateTimePickerStop);
             this.panel3.Location = new System.Drawing.Point(3, 39);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(431, 198);
+            this.panel3.Size = new System.Drawing.Size(424, 198);
             this.panel3.TabIndex = 7;
             // 
             // directoryControl3
@@ -302,7 +307,7 @@ namespace HomeFinances
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(638, 551);
+            this.panel2.Size = new System.Drawing.Size(650, 551);
             this.panel2.TabIndex = 2;
             // 
             // dataGridViewRecords
@@ -318,7 +323,7 @@ namespace HomeFinances
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.ReadOnly = true;
             this.dataGridViewRecords.RowHeadersVisible = false;
-            this.dataGridViewRecords.Size = new System.Drawing.Size(638, 551);
+            this.dataGridViewRecords.Size = new System.Drawing.Size(650, 551);
             this.dataGridViewRecords.TabIndex = 0;
             this.dataGridViewRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRecords_CellDoubleClick);
             this.dataGridViewRecords.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridViewRecords_ColumnWidthChanged);
@@ -329,7 +334,7 @@ namespace HomeFinances
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(638, 28);
+            this.panel1.Size = new System.Drawing.Size(650, 28);
             this.panel1.TabIndex = 1;
             // 
             // toolStripRecords
@@ -342,10 +347,10 @@ namespace HomeFinances
             this.toolStripButtonClearSpend,
             this.toolStripButtonDelete,
             this.toolStripSeparator1,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButtonОбмин});
             this.toolStripRecords.Location = new System.Drawing.Point(0, 0);
             this.toolStripRecords.Name = "toolStripRecords";
-            this.toolStripRecords.Size = new System.Drawing.Size(638, 25);
+            this.toolStripRecords.Size = new System.Drawing.Size(650, 25);
             this.toolStripRecords.TabIndex = 0;
             this.toolStripRecords.Text = "toolStrip1";
             // 
@@ -408,24 +413,55 @@ namespace HomeFinances
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripDropDownButton1
+            // toolStripDropDownButtonОбмин
             // 
-            this.toolStripDropDownButton1.Image = global::HomeFinances.Properties.Resources.layers;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
-            this.toolStripDropDownButton1.Text = "Обмін";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
+            this.toolStripDropDownButtonОбмин.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.вигрузкаToolStripMenuItem,
+            this.загрузкаToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.ВідкритиКонфігураторToolStripMenuItem});
+            this.toolStripDropDownButtonОбмин.Image = global::HomeFinances.Properties.Resources.layers;
+            this.toolStripDropDownButtonОбмин.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonОбмин.Name = "toolStripDropDownButtonОбмин";
+            this.toolStripDropDownButtonОбмин.Size = new System.Drawing.Size(71, 22);
+            this.toolStripDropDownButtonОбмин.Text = "Обмін";
+            // 
+            // вигрузкаToolStripMenuItem
+            // 
+            this.вигрузкаToolStripMenuItem.Name = "вигрузкаToolStripMenuItem";
+            this.вигрузкаToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.вигрузкаToolStripMenuItem.Text = "Вигрузити";
+            this.вигрузкаToolStripMenuItem.Click += new System.EventHandler(this.вигрузкаToolStripMenuItem_Click);
+            // 
+            // загрузкаToolStripMenuItem
+            // 
+            this.загрузкаToolStripMenuItem.Name = "загрузкаToolStripMenuItem";
+            this.загрузкаToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.загрузкаToolStripMenuItem.Text = "Загрузити";
+            this.загрузкаToolStripMenuItem.Click += new System.EventHandler(this.загрузкаToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(197, 6);
+            // 
+            // ВідкритиКонфігураторToolStripMenuItem
+            // 
+            this.ВідкритиКонфігураторToolStripMenuItem.Name = "ВідкритиКонфігураторToolStripMenuItem";
+            this.ВідкритиКонфігураторToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.ВідкритиКонфігураторToolStripMenuItem.Text = "Відкрити конфігуратор";
+            this.ВідкритиКонфігураторToolStripMenuItem.Click += new System.EventHandler(this.ВідкритиКонфігураторToolStripMenuItem_Click);
             // 
             // menuStripTop
             // 
             this.menuStripTop.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.довідникиToolStripMenuItem,
-            this.калькуляторToolStripMenuItem});
+            this.калькуляторToolStripMenuItem,
+            this.проПрограмуToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
-            this.menuStripTop.Size = new System.Drawing.Size(1079, 24);
+            this.menuStripTop.Size = new System.Drawing.Size(1084, 24);
             this.menuStripTop.TabIndex = 1;
             this.menuStripTop.Text = "menuStripTop";
             // 
@@ -508,11 +544,18 @@ namespace HomeFinances
             this.калькуляторToolStripMenuItem.Text = "Калькулятор";
             this.калькуляторToolStripMenuItem.Click += new System.EventHandler(this.калькуляторToolStripMenuItem_Click);
             // 
+            // проПрограмуToolStripMenuItem
+            // 
+            this.проПрограмуToolStripMenuItem.Name = "проПрограмуToolStripMenuItem";
+            this.проПрограмуToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.проПрограмуToolStripMenuItem.Text = "Про програму";
+            this.проПрограмуToolStripMenuItem.Click += new System.EventHandler(this.проПрограмуToolStripMenuItem_Click);
+            // 
             // FormRecordFinance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 603);
+            this.ClientSize = new System.Drawing.Size(1084, 603);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStripTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -584,11 +627,16 @@ namespace HomeFinances
         private System.Windows.Forms.Button buttonCalculateBalance;
         private System.Windows.Forms.Label labelCalculateBalance;
         private System.Windows.Forms.ToolStripButton toolStripButtonSpend;
-        private System.Windows.Forms.ToolStripButton toolStripDropDownButton1;
         private DirectoryControl directoryControl3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripButton toolStripButtonClearSpend;
         private System.Windows.Forms.ToolStripMenuItem калькуляторToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonОбмин;
+        private System.Windows.Forms.ToolStripMenuItem вигрузкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem ВідкритиКонфігураторToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem проПрограмуToolStripMenuItem;
     }
 }
 

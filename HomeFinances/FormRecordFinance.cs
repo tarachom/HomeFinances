@@ -27,6 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using AccountingSoftware;
 using Конфа = HomeFinances_1_0;
@@ -44,7 +45,7 @@ namespace HomeFinances
 			InitializeComponent();
 		}
 
-		public string OpenDataBaseName { get; set; }
+		public ConfigurationParam OpenConfigurationParam { get; set; }
 
 		//Признак процесу завантаження форми
 		private bool FormLoadProcessedFlag { get; set; }
@@ -54,7 +55,9 @@ namespace HomeFinances
 			FormLoadProcessedFlag = true;
 
 			this.splitContainer1.SplitterDistance = 430;
-			this.Text += OpenDataBaseName;
+
+			if (OpenConfigurationParam != null)
+				this.Text += " (" + OpenConfigurationParam.ConfigurationName + ")";
 
 			//this.записникToolStripMenuItem.Visible = false;
 			//this.періодичніЗавданняToolStripMenuItem.Visible = false;
@@ -64,9 +67,9 @@ namespace HomeFinances
 
 			//Початок періоду в залежності від значення константи
 			switch (Константи.Інтерфейс.ДатаПочаткуПеріоду_Const)
-            {
+			{
 				case Перелічення.ВаріантиПочаткуПеріоду.Тиждень:
-                    {
+					{
 						dateTimePickerStart.Value = start.AddDays(-7);
 						break;
 					}
@@ -96,7 +99,7 @@ namespace HomeFinances
 						break;
 					}
 				default:
-                    {
+					{
 						dateTimePickerStart.Value = start.AddDays(-7);
 						break;
 					}
@@ -125,10 +128,10 @@ namespace HomeFinances
 			RecordsBindingList = new BindingList<Записи>();
 			dataGridViewRecords.DataSource = RecordsBindingList;
 
-			dataGridViewRecords.Columns.Add(new DataGridViewImageColumn() {Name = "Image", HeaderText = "", Width = 30, DisplayIndex = 0, Image = HomeFinances.Properties.Resources.doc_text_image });
+			dataGridViewRecords.Columns.Add(new DataGridViewImageColumn() { Name = "Image", HeaderText = "", Width = 30, DisplayIndex = 0, Image = HomeFinances.Properties.Resources.doc_text_image });
 
 			dataGridViewRecords.Columns["ID"].Visible = false;
-			dataGridViewRecords.Columns["Назва"].Width = Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const: 300;
+			dataGridViewRecords.Columns["Назва"].Width = Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикНазваШирина_Const : 300;
 
 			dataGridViewRecords.Columns["ДатаЗапису"].Width = Константи.СписокГоловнаФорма.СтовпчикДатаЗаписуШирина_Const != 0 ? Константи.СписокГоловнаФорма.СтовпчикДатаЗаписуШирина_Const : 120;
 			dataGridViewRecords.Columns["ДатаЗапису"].DisplayIndex = 1;
@@ -169,13 +172,13 @@ namespace HomeFinances
 			public bool Проведено { get; set; }
 		}
 
-        #region Call_Back
+		#region Call_Back
 
-        /// <summary>
-        /// Зворотня функція для вибору із списку
-        /// </summary>
-        /// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
-        public void CallBack_DirectoryControl_Open_FormCostСlassifier(DirectoryPointer directoryPointerItem)
+		/// <summary>
+		/// Зворотня функція для вибору із списку
+		/// </summary>
+		/// <param name="directoryPointerItem">Ссилка на елемент довідника</param>
+		public void CallBack_DirectoryControl_Open_FormCostСlassifier(DirectoryPointer directoryPointerItem)
 		{
 			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
 			formCostСlassifier.DirectoryPointerItem = directoryPointerItem;
@@ -239,7 +242,7 @@ namespace HomeFinances
 
 			//WHERE
 			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Const.ДатаЗапису, Comparison.QT_EQ, dateTimePickerStart.Value, false, Comparison.AND));
-            записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Const.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
+			записи_Select.QuerySelect.Where.Add(new Where(Довідники.Записи_Const.ДатаЗапису, Comparison.LT_EQ, dateTimePickerStop.Value));
 
 			//записи_Select.QuerySelect.Where.Add(
 			//    new Where(Довідники.Записи_Select.ДатаЗапису, Comparison.BETWEEN,
@@ -274,7 +277,8 @@ namespace HomeFinances
 				Перелічення.ТипЗапису типЗапису = (Перелічення.ТипЗапису)cur.Fields[Довідники.Записи_Const.ТипЗапису];
 				string типЗаписуПредставлення = типЗапису.ToString();
 
-				RecordsBindingList.Add(new Записи() {
+				RecordsBindingList.Add(new Записи()
+				{
 					ID = cur.UnigueID.ToString(),
 					Назва = cur.Fields[Довідники.Записи_Const.Назва].ToString(),
 					ДатаЗапису = cur.Fields[Довідники.Записи_Const.ДатаЗапису].ToString(),
@@ -305,9 +309,9 @@ namespace HomeFinances
 			}
 		}
 
-        #region ToolStrip Menu
+		#region ToolStrip Menu
 
-        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+		private void toolStripButtonRefresh_Click(object sender, EventArgs e)
 		{
 			LoadRecords();
 		}
@@ -322,8 +326,8 @@ namespace HomeFinances
 
 		private void toolStripButtonDelete_Click(object sender, EventArgs e)
 		{
-			if (dataGridViewRecords.SelectedRows.Count != 0 && 
-				MessageBox.Show("Видалити виділені записи?","Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if (dataGridViewRecords.SelectedRows.Count != 0 &&
+				MessageBox.Show("Видалити виділені записи?", "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				for (int i = 0; i < dataGridViewRecords.SelectedRows.Count; i++)
 				{
@@ -383,7 +387,7 @@ namespace HomeFinances
 		/// </summary>
 		/// <param name="SpendFlag"></param>
 		private void SaveSpendFlag(string messageBoxText, bool SpendFlag)
-        {
+		{
 			if (dataGridViewRecords.SelectedRows.Count != 0 &&
 				MessageBox.Show(messageBoxText, "Повідомлення", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
@@ -430,45 +434,39 @@ namespace HomeFinances
 		#region MENU
 
 		private void класифікаторВитратToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		{
 			FormCostСlassifier formCostСlassifier = new FormCostСlassifier();
 			formCostСlassifier.Show();
 		}
 
-        private void контактиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		private void контактиToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 			FormContacts formContacts = new FormContacts();
 			formContacts.Show();
 		}
 
-        private void валютиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		private void валютиToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 			FormCurrency formCurrency = new FormCurrency();
 			formCurrency.Show();
 		}
 
-        private void касиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		private void касиToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 			FormCash formCash = new FormCash();
 			formCash.Show();
 		}
 
-        private void записникToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		private void записникToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 			FormNotebook formNotebook = new FormNotebook();
 			formNotebook.Show();
 		}
 
-        private void константиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		private void константиToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 			FormConstants formConstats = new FormConstants();
 			formConstats.Show();
-		}
-
-		private void toolStripDropDownButton1_Click(object sender, EventArgs e)
-		{
-			FormExchange formExchange = new FormExchange();
-			formExchange.ShowDialog();
 		}
 
 		private void періодичніЗавданняToolStripMenuItem_Click(object sender, EventArgs e)
@@ -484,16 +482,16 @@ namespace HomeFinances
 
 		#endregion
 
-        private void FormRecordFinance_FormClosing(object sender, FormClosingEventArgs e)
-        {
+		private void FormRecordFinance_FormClosing(object sender, FormClosingEventArgs e)
+		{
 			Application.Exit();
-        }
+		}
 
 		/// <summary>
 		/// Обчислення залишків по касах
 		/// </summary>
 		public void CalculateBalance()
-        {
+		{
 			string query = $@"
 SELECT 
     ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Каса} AS КасаІд, 
@@ -512,7 +510,7 @@ HAVING SUM(CASE WHEN ЗалишкиКоштів.income = true THEN
        -ЗалишкиКоштів.{РегістриНакопичення.ЗалишкиКоштів_Const.Сума} END) != 0
 ORDER BY КасаНазва ASC";
 
-			Console.WriteLine(query);
+			//Console.WriteLine(query);
 
 			string[] columnsName;
 			List<object[]> listRow;
@@ -523,7 +521,7 @@ ORDER BY КасаНазва ASC";
 
 			foreach (object[] o in listRow)
 			{
-				result += (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " + 
+				result += (String.IsNullOrEmpty(o[1].ToString()) ? "<каса не вказана>" : o[1].ToString()) + ": " +
 					Math.Round((decimal)o[2], 2).ToString() + " " + o[3].ToString() + "\n\r";
 			}
 
@@ -531,12 +529,12 @@ ORDER BY КасаНазва ASC";
 		}
 
 		private void buttonCalculateBalance_Click(object sender, EventArgs e)
-        {
+		{
 			CalculateBalance();
 		}
 
-        private void dataGridViewRecords_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
+		private void dataGridViewRecords_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+		{
 			if (!FormLoadProcessedFlag)
 			{
 				if (e.Column.Name == "Назва")
@@ -554,6 +552,70 @@ ORDER BY КасаНазва ASC";
 				if (e.Column.Name == "Каса")
 					Константи.СписокГоловнаФорма.СтовпчикКасаШирина_Const = e.Column.Width;
 			}
+		}
+
+        #region ОБМІН
+
+        private void вигрузкаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.FileName = "Finances_Export_" + DateTime.Now.ToString("dd_MM_yyyy") + ".xml";
+			saveFileDialog.Filter = "XML|*.xml";
+			saveFileDialog.Title = "Файл для вигрузки даних";
+			saveFileDialog.InitialDirectory =
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const.Trim() != "" ?
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const : Environment.SpecialFolder.Desktop.ToString();
+
+			if (!(saveFileDialog.ShowDialog() == DialogResult.OK))
+				return;
+			else
+			{
+				string fileExport = saveFileDialog.FileName;
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляВигрузкиДаних_Const = Path.GetDirectoryName(fileExport);
+
+				System.Diagnostics.Process.Start("Configurator.exe",
+					OpenConfigurationParam.ConfigurationKey + " " +
+					"unloadingdata" + " " +
+					fileExport);
+			}
+		}
+
+		private void загрузкаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "XML|*.xml";
+			openFileDialog.Title = "Файл для загрузки даних";
+
+			openFileDialog.InitialDirectory =
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const.Trim() != "" ?
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const : Environment.SpecialFolder.Desktop.ToString();
+
+			if (!(openFileDialog.ShowDialog() == DialogResult.OK))
+				return;
+			else
+			{
+				string fileImport = openFileDialog.FileName;
+				Константи.ВигрузкаТаЗагрузкаДаних.ПапкаДляЗагрузкиДаних_Const = Path.GetDirectoryName(fileImport);
+
+				System.Diagnostics.Process.Start("Configurator.exe",
+					OpenConfigurationParam.ConfigurationKey + " " +
+					"loadingdata" + " " +
+					fileImport);
+			}
+		}
+
+        private void ВідкритиКонфігураторToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			System.Diagnostics.Process.Start("Configurator.exe",
+					OpenConfigurationParam.ConfigurationKey);
+		}
+
+        #endregion
+
+        private void проПрограмуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FormAbout formAbout = new FormAbout();
+			formAbout.ShowDialog();
 		}
     }
 }

@@ -178,7 +178,7 @@ namespace HomeFinances
 
 		private void buttonOpenBrouser_Click(object sender, EventArgs e)
         {
-			System.Diagnostics.Process.Start("firefox.exe", textBoxUrlLink.Text);
+			System.Diagnostics.Process.Start(textBoxUrlLink.Text);
 		}
 
 		private void Save(bool Spend, bool CloseForm = true)

@@ -77,6 +77,10 @@ namespace HomeFinances
 
 					XPathNavigator currentNode = ConfigurationParamNodes.Current;
 
+					string SelectAttribute = currentNode.GetAttribute("Select", "");
+					if (!String.IsNullOrEmpty(SelectAttribute))
+						ItemConfigurationParam.Select = bool.Parse(SelectAttribute);
+
 					ItemConfigurationParam.ConfigurationKey = currentNode.SelectSingleNode("Key").Value;
 					ItemConfigurationParam.ConfigurationName = currentNode.SelectSingleNode("Name").Value;
 					ItemConfigurationParam.DataBaseServer = currentNode.SelectSingleNode("Server").Value;
@@ -102,6 +106,10 @@ namespace HomeFinances
 			{
 				XmlElement configurationNode = xmlConfParamDocument.CreateElement("Configuration");
 				rootNode.AppendChild(configurationNode);
+
+				XmlAttribute selectAttribute = xmlConfParamDocument.CreateAttribute("Select");
+				selectAttribute.Value = ItemConfigurationParam.Select.ToString();
+				configurationNode.Attributes.Append(selectAttribute);
 
 				XmlElement nodeKey = xmlConfParamDocument.CreateElement("Key");
 				nodeKey.InnerText = ItemConfigurationParam.ConfigurationKey;
@@ -144,10 +152,14 @@ namespace HomeFinances
 				listBoxConfiguration.Items.Add(ItemConfigurationParam);
 
 				if (!String.IsNullOrEmpty(selectConfKey))
-                {
+				{
 					if (ItemConfigurationParam.ConfigurationKey == selectConfKey)
 						listBoxConfiguration.SelectedItem = ItemConfigurationParam;
-
+				}
+				else
+				{
+					if (ItemConfigurationParam.Select)
+						listBoxConfiguration.SelectedItem = ItemConfigurationParam;
 				}
 			}
 
@@ -159,8 +171,12 @@ namespace HomeFinances
 
 		void CallBack_Update(ConfigurationParam itemConfigurationParam, bool isNew)
 		{
+			foreach (ConfigurationParam ItemConfigurationParam in ListConfigurationParam)
+				ItemConfigurationParam.Select = false;
+
 			if (isNew)
 			{
+				itemConfigurationParam.Select = true;
 				ListConfigurationParam.Add(itemConfigurationParam);
 				SaveConfigurationParamFromXML();
 			}
@@ -176,6 +192,7 @@ namespace HomeFinances
 						ItemConfigurationParam.DataBasePassword = itemConfigurationParam.DataBasePassword;
 						ItemConfigurationParam.DataBaseBaseName = itemConfigurationParam.DataBaseBaseName;
 						ItemConfigurationParam.DataBasePort = itemConfigurationParam.DataBasePort;
+						ItemConfigurationParam.Select = true;
 
 						SaveConfigurationParamFromXML();
 						break;
@@ -183,7 +200,6 @@ namespace HomeFinances
 				}
 			}
 
-			LoadConfigurationParamFromXML();
 			Fill_listBoxConfiguration(itemConfigurationParam.ConfigurationKey);
 		}
 
@@ -228,6 +244,11 @@ namespace HomeFinances
 			if (listBoxConfiguration.SelectedItem != null)
 			{
 				ConfigurationParam itemConfigurationParam = (ConfigurationParam)listBoxConfiguration.SelectedItem;
+
+				foreach (ConfigurationParam ItemConfigurationParam in ListConfigurationParam)
+					ItemConfigurationParam.Select = ItemConfigurationParam.ConfigurationKey == itemConfigurationParam.ConfigurationKey;
+
+				SaveConfigurationParamFromXML();
 
 				Exception exception;
 				bool IsExistsDatabase;
@@ -278,7 +299,7 @@ namespace HomeFinances
 				Конфа.Config.ReadAllConstants();
 
 				FormRecordFinance formRecordFinance = new FormRecordFinance();
-				formRecordFinance.OpenDataBaseName = " - " + itemConfigurationParam.ConfigurationName;
+				formRecordFinance.OpenConfigurationParam = itemConfigurationParam;
 				formRecordFinance.Show();
 
 				this.DialogResult = DialogResult.OK;
@@ -380,6 +401,8 @@ namespace HomeFinances
 		public string DataBasePassword { get; set; }
 
 		public string DataBaseBaseName { get; set; }
+
+		public bool Select { get; set; }
 
 		public override string ToString()
 		{
