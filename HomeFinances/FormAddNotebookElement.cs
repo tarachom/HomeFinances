@@ -214,7 +214,7 @@ namespace HomeFinances
 
         private void buttonOpenBrouser_Click(object sender, EventArgs e)
         {
-			System.Diagnostics.Process.Start("firefox.exe", textBoxSite.Text);
+			System.Diagnostics.Process.Start(textBoxSite.Text);
 		}
     }
 }
