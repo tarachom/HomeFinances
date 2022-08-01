@@ -39,19 +39,22 @@ namespace HomeFinances
             this.textBoxControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxControl.BackColor = System.Drawing.Color.White;
             this.textBoxControl.Location = new System.Drawing.Point(0, 2);
             this.textBoxControl.Multiline = true;
             this.textBoxControl.Name = "textBoxControl";
             this.textBoxControl.ReadOnly = true;
-            this.textBoxControl.Size = new System.Drawing.Size(265, 22);
+            this.textBoxControl.Size = new System.Drawing.Size(277, 23);
             this.textBoxControl.TabIndex = 0;
+            this.textBoxControl.TextChanged += new System.EventHandler(this.textBoxControl_TextChanged);
             // 
             // buttonOpen
             // 
-            this.buttonOpen.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonOpen.Location = new System.Drawing.Point(271, 2);
+            this.buttonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpen.Location = new System.Drawing.Point(281, 2);
             this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(32, 23);
+            this.buttonOpen.Size = new System.Drawing.Size(28, 23);
             this.buttonOpen.TabIndex = 1;
             this.buttonOpen.Text = "...";
             this.buttonOpen.UseVisualStyleBackColor = true;
@@ -59,10 +62,11 @@ namespace HomeFinances
             // 
             // buttonClear
             // 
-            this.buttonClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonClear.Location = new System.Drawing.Point(309, 2);
+            this.buttonClear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClear.Location = new System.Drawing.Point(312, 2);
             this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(32, 23);
+            this.buttonClear.Size = new System.Drawing.Size(28, 23);
             this.buttonClear.TabIndex = 2;
             this.buttonClear.Text = "X";
             this.buttonClear.UseVisualStyleBackColor = true;
