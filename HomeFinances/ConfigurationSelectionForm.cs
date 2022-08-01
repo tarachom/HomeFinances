@@ -219,26 +219,6 @@ namespace HomeFinances
 			}
 		}
 
-		private void CreateTables()
-		{
-			XmlDocument XmlDoc = new XmlDocument();
-			XmlDoc.LoadXml(Properties.Resources.SQL);
-
-			XPathNavigator xPathDocNavigator = XmlDoc.CreateNavigator();
-
-			XPathNodeIterator SQLNodes = xPathDocNavigator.Select("/root/sql");
-			while (SQLNodes.MoveNext())
-			{
-				XPathNavigator currentNode = SQLNodes.Current;
-
-				string SQLText = currentNode.Value;
-
-				//Console.WriteLine(SQLText);
-
-				Конфа.Config.Kernel.DataBase.ExecuteSQL(SQLText);
-			}
-		}
-
 		private void StartProgram()
         {
 			if (listBoxConfiguration.SelectedItem != null)
@@ -251,23 +231,8 @@ namespace HomeFinances
 				SaveConfigurationParamFromXML();
 
 				Exception exception;
-				bool IsExistsDatabase;
 
 				Конфа.Config.Kernel = new Kernel();
-
-				//Створення бази даних
-				bool flagCreateDatabase = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
-						itemConfigurationParam.DataBaseServer,
-						itemConfigurationParam.DataBaseLogin,
-						itemConfigurationParam.DataBasePassword,
-						itemConfigurationParam.DataBasePort,
-						itemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
-
-				if (exception != null)
-				{
-					MessageBox.Show(exception.Message);
-					return;
-				}
 
 				//Підключення до бази даних
 				bool flagOpen2 = Конфа.Config.Kernel.Open(
@@ -283,18 +248,6 @@ namespace HomeFinances
 					MessageBox.Show(exception.Message);
 					return;
 				}
-
-				//База створена і відкрита
-				if (flagCreateDatabase  && flagOpen2)
-				{
-					//Створити таблиці
-					CreateTables();
-				}
-                else
-                {
-					MessageBox.Show("Не вдалось відкрити базу даних");
-					return;
-                }
                 
 				Конфа.Config.ReadAllConstants();
 
@@ -413,7 +366,7 @@ namespace HomeFinances
 		{
 			ConfigurationParam configurationParam = new ConfigurationParam();
 			configurationParam.ConfigurationKey = Guid.NewGuid().ToString();
-			configurationParam.ConfigurationName = "Копія - " + ConfigurationName;
+			configurationParam.ConfigurationName = ConfigurationName + "*";
 			configurationParam.DataBaseServer = DataBaseServer;
 			configurationParam.DataBaseLogin = DataBaseLogin;
 			configurationParam.DataBasePassword = DataBasePassword;

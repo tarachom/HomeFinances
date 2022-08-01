@@ -24,6 +24,8 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
+using System.Xml.XPath;
 using System.Windows.Forms;
 using AccountingSoftware;
 using Конфа = HomeFinances_1_0;
@@ -91,59 +93,77 @@ namespace HomeFinances
 			this.Close();
 		}
 
-		private void buttonConnect_Click(object sender, EventArgs e)
+		private void CreateTables()
 		{
-			//UpdateItemConfigurationParam();
+			XmlDocument XmlDoc = new XmlDocument();
+			XmlDoc.LoadXml(Properties.Resources.SQL);
 
-			//Конфа.Config.Kernel = new Kernel();
+			XPathNavigator xPathDocNavigator = XmlDoc.CreateNavigator();
 
-			//Exception exception = null;
-			//bool IsExistsDatabase = false;
+			XPathNodeIterator SQLNodes = xPathDocNavigator.Select("/root/sql");
+			while (SQLNodes.MoveNext())
+			{
+				XPathNavigator currentNode = SQLNodes.Current;
 
-			//bool flag = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
-			//	ItemConfigurationParam.DataBaseServer,
-			//	ItemConfigurationParam.DataBaseLogin,
-			//	ItemConfigurationParam.DataBasePassword,
-			//	ItemConfigurationParam.DataBasePort,
-			//	ItemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
+				string SQLText = currentNode.Value;
 
-			//if(IsExistsDatabase)
-   //         {
-			//	MessageBox.Show("ОК. База вже існує!");
-			//}
-			//else if (flag)
-			//{
-			//	MessageBox.Show("ОК. База створена!");				    
-			//}
-			//else
-			//{
-			//	MessageBox.Show("Помилка! " + (exception != null ? exception.Message : ""));
-			//}
+                try
+                {
+					Конфа.Config.Kernel.DataBase.ExecuteSQL(SQLText);
+				}
+                catch (Exception ex)
+                {
+					MessageBox.Show(ex.Message);
+					return;
+                }
+			}
 		}
 
-		private void buttonTryConnect_Click(object sender, EventArgs e)
+		private void buttonConnect_Click(object sender, EventArgs e)
 		{
+			buttonConnect.Enabled = false;
+
 			UpdateItemConfigurationParam();
+
+			Exception exception;
+			bool IsExistsDatabase;
 
 			Конфа.Config.Kernel = new Kernel();
 
-			Exception exception = null;
+			//Створення бази даних
+			bool flagCreateDatabase = Конфа.Config.Kernel.CreateDatabaseIfNotExist(
+					ItemConfigurationParam.DataBaseServer,
+					ItemConfigurationParam.DataBaseLogin,
+					ItemConfigurationParam.DataBasePassword,
+					ItemConfigurationParam.DataBasePort,
+					ItemConfigurationParam.DataBaseBaseName, out exception, out IsExistsDatabase);
 
-			bool flag = Конфа.Config.Kernel.TryConnectToServer(
-                ItemConfigurationParam.DataBaseServer,
-                ItemConfigurationParam.DataBaseLogin,
-                ItemConfigurationParam.DataBasePassword,
-                ItemConfigurationParam.DataBasePort,
-				ItemConfigurationParam.DataBaseBaseName, out exception);
+			//Підключення до бази даних без загрузки конфігурації
+			bool flagOpen2 = Конфа.Config.Kernel.OpenOnlyDataBase(
+					ItemConfigurationParam.DataBaseServer,
+					ItemConfigurationParam.DataBaseLogin,
+					ItemConfigurationParam.DataBasePassword,
+					ItemConfigurationParam.DataBasePort,
+					ItemConfigurationParam.DataBaseBaseName, out exception);
 
-			if (flag)
-            {
-				MessageBox.Show("ОК. Є підключення!");
+			if (exception != null)
+			{
+				MessageBox.Show(exception.Message);
+
+				buttonConnect.Enabled = true;
+				return;
 			}
-            else
-            {
-				MessageBox.Show("Помилка! " + (exception != null ? exception.Message : ""));
+
+			//База відкрита
+			if (flagOpen2)
+			{
+				//Створити таблиці
+				CreateTables();
+
+				MessageBox.Show("Готово!");
 			}
-        }
+
+			buttonConnect.Enabled = true;
+		}
 	}
 }

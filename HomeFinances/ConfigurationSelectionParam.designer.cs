@@ -33,7 +33,6 @@
             this.textBoxPostgreSQLServer = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonConnect = new System.Windows.Forms.Button();
-            this.buttonTryConnect = new System.Windows.Forms.Button();
             this.textBoxPostgreSQLPort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPostgreSQLDataBase = new System.Windows.Forms.TextBox();
@@ -68,7 +67,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.buttonConnect);
-            this.groupBox1.Controls.Add(this.buttonTryConnect);
             this.groupBox1.Controls.Add(this.textBoxPostgreSQLPort);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxPostgreSQLDataBase);
@@ -81,32 +79,20 @@
             this.groupBox1.Controls.Add(this.labelPostgreSQLServer);
             this.groupBox1.Location = new System.Drawing.Point(12, 59);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(594, 159);
+            this.groupBox1.Size = new System.Drawing.Size(534, 159);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "База даних PostgreSQL";
             // 
             // buttonConnect
             // 
-            this.buttonConnect.Location = new System.Drawing.Point(431, 119);
+            this.buttonConnect.Location = new System.Drawing.Point(355, 22);
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Size = new System.Drawing.Size(157, 28);
             this.buttonConnect.TabIndex = 9;
             this.buttonConnect.Text = "Створити базу даних";
             this.buttonConnect.UseVisualStyleBackColor = true;
-            this.buttonConnect.Visible = false;
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
-            // 
-            // buttonTryConnect
-            // 
-            this.buttonTryConnect.Location = new System.Drawing.Point(431, 22);
-            this.buttonTryConnect.Name = "buttonTryConnect";
-            this.buttonTryConnect.Size = new System.Drawing.Size(157, 28);
-            this.buttonTryConnect.TabIndex = 10;
-            this.buttonTryConnect.Text = "Перевірити підключення";
-            this.buttonTryConnect.UseVisualStyleBackColor = true;
-            this.buttonTryConnect.Visible = false;
-            this.buttonTryConnect.Click += new System.EventHandler(this.buttonTryConnect_Click);
             // 
             // textBoxPostgreSQLPort
             // 
@@ -176,7 +162,7 @@
             // 
             this.textBoxConfName.Location = new System.Drawing.Point(94, 20);
             this.textBoxConfName.Name = "textBoxConfName";
-            this.textBoxConfName.Size = new System.Drawing.Size(512, 20);
+            this.textBoxConfName.Size = new System.Drawing.Size(452, 20);
             this.textBoxConfName.TabIndex = 0;
             // 
             // labelConfName
@@ -200,7 +186,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(496, 235);
+            this.buttonClose.Location = new System.Drawing.Point(436, 235);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(110, 28);
             this.buttonClose.TabIndex = 8;
@@ -212,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 275);
+            this.ClientSize = new System.Drawing.Size(558, 275);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.textBoxConfName);
@@ -250,6 +236,5 @@
 		private System.Windows.Forms.Button buttonConnect;
 		private System.Windows.Forms.TextBox textBoxPostgreSQLPort;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Button buttonTryConnect;
 	}
 }
