@@ -79,10 +79,5 @@ namespace HomeFinances
 				ReadPresentation();
 			}
 		}
-
-        private void textBoxControl_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

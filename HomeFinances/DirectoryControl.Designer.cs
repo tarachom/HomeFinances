@@ -46,7 +46,6 @@ namespace HomeFinances
             this.textBoxControl.ReadOnly = true;
             this.textBoxControl.Size = new System.Drawing.Size(277, 23);
             this.textBoxControl.TabIndex = 0;
-            this.textBoxControl.TextChanged += new System.EventHandler(this.textBoxControl_TextChanged);
             // 
             // buttonOpen
             // 
