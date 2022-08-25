@@ -1,7 +1,6 @@
 # Фінанси
-Навчальна програма для обліку фінансів.
 
-Для роботи потрібна база даних PostgreSQL.
+<img src="https://accounting.org.ua/images/dollar.ico" /> <b>Програма для обліку фінансів.</b>
 
 Скачати програму      https://accounting.org.ua/finances.html
 
